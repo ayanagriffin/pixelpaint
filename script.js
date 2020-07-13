@@ -10,9 +10,10 @@ function setup() {
   backgroundColor = 95;
   coinX = random(width);
   coinY = random(height);
-  time = 1000;
+  time = 100;
   gameIsOver = false;
   hit = false;
+  score = 0;
 }
 
 function draw() {
@@ -20,6 +21,7 @@ function draw() {
   ellipse(coinX, coinY, 20);
   ellipse(mouseX, mouseY, 20);
   text(`Time remaining: ${time}`, 20, 40);
+  text(`Score: ${score}`, 20, 60);
   
   hit = collideCircleCircle(coinX, coinY, 20, mouseX, mouseY, 20);
   if (hit) {
@@ -31,7 +33,13 @@ function draw() {
 
 function handleCollision() {
   // We'll write code for what happens if your character hits a coin.
-  console.log('hit');
+  if (!gameIsOver) {
+  // if (gameIsOver === false) {
+    score += 1;
+    // score++;
+    coinX = random(width);
+    coinY = random(height);
+  }
 }
 
 function handleTime() {
