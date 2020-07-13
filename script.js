@@ -1,62 +1,74 @@
-/* global collideCircleCircle, createCanvas, colorMode, HSB, background, random, width, height, ellipse, mouseX, mouseY, text */
+/* global fill, rect, ellipse, keyCode, UP_ARROW, textSize, text, createCanvas, colorMode, HSB, random, width, height, background */
 
-let brushHue, backgroundColor, coinX, coinY, score, time, gameIsOver, hit;
+let backgroundColor, frogX, frogY, score, lives, gameIsOver, car1X, car1Y, car1V;
 
 function setup() {
   // Canvas & color settings
-  createCanvas(400, 400);
+  createCanvas(500, 500);
   colorMode(HSB, 360, 100, 100);
-  brushHue = 0;
   backgroundColor = 95;
-  coinX = random(width);
-  coinY = random(height);
-  time = 100;
-  gameIsOver = false;
-  hit = false;
+  frogX = random(width);
+  frogY = random(height);
   score = 0;
+  lives = 3;
+  gameIsOver = false;
+  car1X = 0;
+  car1Y = 100;
+  car1V = 5;
 }
 
 function draw() {
   background(backgroundColor);
-  ellipse(coinX, coinY, 20);
-  ellipse(mouseX, mouseY, 20);
-  text(`Time remaining: ${time}`, 20, 40);
-  text(`Score: ${score}`, 20, 60);
-  if (gameIsOver === true) {
-    text('Game over!', 20, 80);
-  }
-  
-  hit = collideCircleCircle(coinX, coinY, 20, mouseX, mouseY, 20);
-  if (hit) {
-    handleCollision();
-  }
-  
-  handleTime();
+  // Code for gold goal line
+  fill(60, 80, 80);
+  rect(0, 0, width, 50);
+  // Code to display Frog
+  fill(120, 80, 80);
+  ellipse(frogX, frogY, 20);
+  moveCars();
+  drawCars();
+  checkCollisions();
+  checkWin();
+  displayScores();
 }
 
-function handleCollision() {
-  // We'll write code for what happens if your character hits a coin.
-  if (!gameIsOver) {
-  // if (gameIsOver === false) {
-    score += 1;
-    // score++;
-    coinX = random(width);
-    coinY = random(height);
+function keyPressed() {
+  if (keyCode === UP_ARROW) {
+    frogY -= 10;
   }
 }
 
-function handleTime() {
-  // We'll write code to handle the time.
-  // time -= 1;
-  // // time--;
-  // if (time < 0) {
-  //   time = 0;
-  //   gameIsOver = true;
-  // }
-  
-  if (time > 0) {
-    time--;
-  } else {
-    gameIsOver = true;
-  }
+function moveCars() {
+  // Move the car
+
+  // Reset if it moves off screen
+
+}
+
+function drawCars() {
+  // Code for car 1
+  fill(0, 80, 80);
+  rect(car1X, car1Y, 40, 30);
+  // Code for additional cars
+}
+
+function checkCollisions() {
+  // If the frog collides with the car, reset the frog and subtract a life.
+
+}
+
+function checkWin() {
+  // If the frog makes it into the yellow gold zone, increment the score
+  // and move the frog back down to the bottom.
+}
+
+function displayScores() {
+  textSize(12);
+  fill(0);
+  // Display Lives
+  text(`Lives: ${lives}`, 10, 20);
+  // Display Score
+
+  // Display game over message if the game is over
+
 }
