@@ -22,6 +22,9 @@ function draw() {
   ellipse(mouseX, mouseY, 20);
   text(`Time remaining: ${time}`, 20, 40);
   text(`Score: ${score}`, 20, 60);
+  if (gameIsOver === true) {
+    text('Game over!', 20, 80);
+  }
   
   hit = collideCircleCircle(coinX, coinY, 20, mouseX, mouseY, 20);
   if (hit) {
