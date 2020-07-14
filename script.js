@@ -1,14 +1,14 @@
 /* global fill, rect, ellipse, keyCode, UP_ARROW, textSize, text, createCanvas, colorMode, HSB, random, width, height, background */
 
-let backgroundColor,
-  frogX,
-  frogY,
-  score,
-  lives,
-  gameIsOver,
-  car1X,
-  car1Y,
-  car1V;
+let backgroundColor, // color of the background
+  frogX, // x position of frog
+  frogY, // y position of frog
+  score, // # of points
+  lives, // number of lives/tries
+  gameIsOver, // whether game is over
+  car1X, // x position of car 1
+  car1Y, // y position of car 1
+  car1V; // velocity of car 1
 
 function setup() {
   // Canvas & color settings
