@@ -10,13 +10,15 @@ let backgroundColor, // color of the background
   car1Y, // y position of car 1
   car1V; // velocity of car 1
 
+// FUNCTIONS CALLED BY P5
+
 function setup() {
   // Canvas & color settings
   createCanvas(500, 500);
   colorMode(HSB, 360, 100, 100);
   backgroundColor = 95;
-  frogX = random(width);
-  frogY = random(height);
+  frogX = width / 2;
+  frogY = height - 20;
   score = 0;
   lives = 3;
   gameIsOver = false;
@@ -27,12 +29,8 @@ function setup() {
 
 function draw() {
   background(backgroundColor);
-  // Code for gold goal line
-  fill(60, 80, 80);
-  rect(0, 0, width, 50);
-  // Code to display Frog
-  fill(120, 80, 80);
-  ellipse(frogX, frogY, 20);
+  drawGoalLine();
+  drawFrog();
   moveCars();
   drawCars();
   checkCollisions();
@@ -44,6 +42,18 @@ function keyPressed() {
   if (keyCode === UP_ARROW) {
     frogY -= 10;
   }
+}
+
+// OUR FUNCTIONS
+
+function drawGoalLine() {
+  fill(60, 80, 80);
+  rect(0, 0, width, 50);
+}
+
+function drawFrog() {
+  fill(120, 80, 80);
+  ellipse(frogX, frogY, 20);
 }
 
 function moveCars() {
