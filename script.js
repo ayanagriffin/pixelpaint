@@ -1,4 +1,4 @@
-/* global fill, rect, ellipse, keyCode, UP_ARROW, textSize, text, createCanvas, colorMode, HSB, random, width, height, background */
+/* global fill, rect, ellipse, keyCode, UP_ARROW, DOWN_ARROW, RIGHT_ARROW, LEFT_ARROW, textSize, text, createCanvas, colorMode, HSB, random, width, height, background */
 
 let backgroundColor, // color of the background
   frogX, // x position of frog
@@ -42,6 +42,16 @@ function keyPressed() {
   if (keyCode === UP_ARROW) {
     frogY -= 10;
   }
+  // Add in right, left, and down movement
+  if (keyCode === DOWN_ARROW) {
+    frogY += 10;
+  }
+  if (keyCode === RIGHT_ARROW) {
+    frogX += 10;
+  }
+  if (keyCode === LEFT_ARROW) {
+    frogX -= 10;
+  }
 }
 
 // OUR FUNCTIONS
@@ -58,7 +68,11 @@ function drawFrog() {
 
 function moveCars() {
   // Move the car
+  car1X += car1V;
   // Reset if it moves off screen
+  if (car1X > width) {
+    car1X = 0;
+  }
 }
 
 function drawCars() {
@@ -70,6 +84,7 @@ function drawCars() {
 
 function checkCollisions() {
   // If the frog collides with the car, reset the frog and subtract a life.
+  collideRectCircle(x1, y1, width1, height1, cx, cy, diameter);
 }
 
 function checkWin() {
