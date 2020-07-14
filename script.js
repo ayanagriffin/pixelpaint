@@ -1,4 +1,4 @@
-/* global fill, rect, ellipse, keyCode, UP_ARROW, DOWN_ARROW, RIGHT_ARROW, LEFT_ARROW, textSize, text, createCanvas, colorMode, HSB, random, width, height, background */
+/* global collideRectCircle, fill, rect, ellipse, keyCode, UP_ARROW, DOWN_ARROW, RIGHT_ARROW, LEFT_ARROW, textSize, text, createCanvas, colorMode, HSB, random, width, height, background */
 
 let backgroundColor, // color of the background
   frogX, // x position of frog
@@ -8,7 +8,10 @@ let backgroundColor, // color of the background
   gameIsOver, // whether game is over
   car1X, // x position of car 1
   car1Y, // y position of car 1
-  car1V; // velocity of car 1
+  car1V, // velocity of car 1
+  carWidth,
+  carHeight,
+  frogDiameter; 
 
 // FUNCTIONS CALLED BY P5
 
@@ -19,12 +22,15 @@ function setup() {
   backgroundColor = 95;
   frogX = width / 2;
   frogY = height - 20;
+  frogDiameter = 20;
   score = 0;
   lives = 3;
   gameIsOver = false;
   car1X = 0;
   car1Y = 100;
   car1V = 5;
+  carWidth = 40;
+  carHeight = 30;
 }
 
 function draw() {
@@ -63,7 +69,7 @@ function drawGoalLine() {
 
 function drawFrog() {
   fill(120, 80, 80);
-  ellipse(frogX, frogY, 20);
+  ellipse(frogX, frogY, frogDiameter);
 }
 
 function moveCars() {
@@ -78,18 +84,32 @@ function moveCars() {
 function drawCars() {
   // Code for car 1
   fill(0, 80, 80);
-  rect(car1X, car1Y, 40, 30);
+  rect(car1X, car1Y, carWidth, carHeight);
   // Code for additional cars
 }
 
 function checkCollisions() {
   // If the frog collides with the car, reset the frog and subtract a life.
-  collideRectCircle(x1, y1, width1, height1, cx, cy, diameter);
+  // let hasCarCollidedWithFrog = collideRectCircle(car1X, car1Y, carWidth, carHeight, frogX, frogY, frogDiameter);
+  // if (hasCarCollidedWithFrog) {
+  if (collideRectCircle(car1X, car1Y, carWidth, carHeight, frogX, frogY, frogDiameter)) {
+    resetFrog();
+    lives--;
+  }
 }
 
 function checkWin() {
   // If the frog makes it into the yellow gold zone, increment the score
   // and move the frog back down to the bottom.
+  if (frogY < 50) {
+    score++;
+    resetFrog();
+  }
+}
+
+function resetFrog() {
+  frogX = width / 2;
+  frogY = height - 20;
 }
 
 function displayScores() {
