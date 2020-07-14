@@ -1,6 +1,14 @@
 /* global fill, rect, ellipse, keyCode, UP_ARROW, textSize, text, createCanvas, colorMode, HSB, random, width, height, background */
 
-let backgroundColor, frogX, frogY, score, lives, gameIsOver, car1X, car1Y, car1V;
+let backgroundColor,
+  frogX,
+  frogY,
+  score,
+  lives,
+  gameIsOver,
+  car1X,
+  car1Y,
+  car1V;
 
 function setup() {
   // Canvas & color settings
@@ -40,9 +48,7 @@ function keyPressed() {
 
 function moveCars() {
   // Move the car
-
   // Reset if it moves off screen
-
 }
 
 function drawCars() {
@@ -54,7 +60,6 @@ function drawCars() {
 
 function checkCollisions() {
   // If the frog collides with the car, reset the frog and subtract a life.
-
 }
 
 function checkWin() {
@@ -70,5 +75,4 @@ function displayScores() {
   // Display Score
 
   // Display game over message if the game is over
-
 }
