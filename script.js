@@ -1,6 +1,6 @@
 /* global createCanvas, colorMode, HSB, background, height, width, noStroke, fill, random, ellipse */
 
-let drop1x, drop1y, drop1d, drop1FallSpeed;
+let drop1x, drop1y, drop1d, drop1FallSpeed, drop2x, drop2y, drop2d, drop2FallSpeed;
 
 function setup() {
   createCanvas(500, 500);
@@ -12,6 +12,10 @@ function setup() {
   drop1FallSpeed = 8; // or random(8, 20)
 
   // Variables for droplet 2
+  drop2x = random(width);
+  drop2y = 0; // or random(height)
+  drop2d = 10; // or random(5,15)
+  drop2FallSpeed = 8; // or random(8, 20)
 }
 
 function draw() {
@@ -33,4 +37,16 @@ function draw() {
 
   //// Code for droplet 2
   // Code your next droplet here
+  drop2y += drop2FallSpeed;
+  // If it goes off the screen...
+  if (drop2y > height) {
+    // ...reset it...
+    drop2y = 0;
+    // ...and move it somewhere random.
+    drop2x = random(width);
+  }
+  
+  noStroke();
+  fill(60, 80, 80);
+  ellipse(drop2x, drop2y, drop2d);
 }
