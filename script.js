@@ -5,46 +5,36 @@ let drop1, drop2;
 function setup() {
   createCanvas(500, 500);
   colorMode(HSB, 100);
+  
   drop1 = new RainDrop(200, 0, 10, 8);
-
-  // Variables for droplet 2
-  drop2x = random(width);
-  drop2y = 0; // or random(height)
-  drop2d = 10; // or random(5,15)
-  drop2FallSpeed = 8; // or random(8, 20)
+  drop2 = new RainDrop(random(width), 0, 10, 8);
 }
 
 function draw() {
   background(0, 0, 95);
   //// Code for droplet 1
   // Move droplet 1
-  drop1y += drop1FallSpeed;
+  drop1.y += drop1.fallSpeed;
   // If it goes off the screen...
-  if (drop1y > height) {
+  if (drop1.y > height) {
     // ...reset it...
-    drop1y = 0;
+    drop1.y = 0;
     // ...and move it somewhere random.
-    drop1x = random(width);
+    drop1.x = random(width);
   }
-  // Display droplet 1
-  noStroke();
-  fill(60, 80, 80);
-  ellipse(drop1x, drop1y, drop1d);
+  drop1.show();
 
   //// Code for droplet 2
   // Code your next droplet here
-  drop2y += drop2FallSpeed;
+  drop2.y += drop2.fallSpeed;
   // If it goes off the screen...
-  if (drop2y > height) {
+  if (drop2.y > height) {
     // ...reset it...
-    drop2y = 0;
+    drop2.y = 0;
     // ...and move it somewhere random.
-    drop2x = random(width);
+    drop2.x = random(width);
   }
-  
-  noStroke();
-  fill(60, 80, 80);
-  ellipse(drop2x, drop2y, drop2d);
+  drop2.show();
 }
 
 class RainDrop {
@@ -53,5 +43,13 @@ class RainDrop {
     this.y = y;
     this.d = d;
     this.fallSpeed = fallSpeed;
+  }
+  
+  
+  
+  show() {
+    noStroke();
+    fill(60, 80, 80);
+    ellipse(this.x, this.y, this.d);
   }
 }
