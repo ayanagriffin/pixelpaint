@@ -14,7 +14,7 @@ function setup() {
   spaceBetweenGrass = 10;
   bladesOfGrass = [];
   for (let i = 1; i < width / spaceBetweenGrass; i++)
-  bladesOfGrass.push(new Grass(i * spaceBetweenGrass));
+    bladesOfGrass.push(new Grass(i * spaceBetweenGrass));
 }
 
 function draw() {
@@ -30,32 +30,6 @@ function draw() {
       bladesOfGrass[j].grow();
     }
     bladesOfGrass[j].show();
-  }
-}
-
-class RainDrop {
-  constructor() {
-    this.x = random(width);
-    this.y = random(height);
-    this.d = random(5, 15);
-    this.fallSpeed = random(5, 15);
-  }
-
-  drip() {
-    this.y += this.fallSpeed;
-    // If it goes off the screen...
-    if (this.y > height) {
-      // ...reset it...
-      this.y = 0;
-      // ...and move it somewhere random.
-      this.x = random(width);
-    }
-  }
-
-  show() {
-    noStroke();
-    fill(215, 80, 80);
-    ellipse(this.x, this.y, this.d);
   }
 }
 
@@ -85,7 +59,7 @@ class Grass {
     }
     return false;
   }
-  
+
   grow() {
     this.bladeHeight += 5;
   }
