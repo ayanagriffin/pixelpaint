@@ -1,31 +1,40 @@
-/* global createCanvas, colorMode, HSB, background, height, width, noStroke, fill, random, ellipse */
+/* global rect, createCanvas, colorMode, HSB, background, height, width, noStroke, fill, random, ellipse */
 
-let drop1, drop2;
+let drops, bladesOfGrass;
 
 function setup() {
   createCanvas(500, 500);
-  colorMode(HSB, 100);
+  colorMode(HSB);
 
-  drop1 = new RainDrop(10, 8);
-  drop2 = new RainDrop(10, 8);
+  drops = [];
+  for (let i = 0; i < 10; i++) {
+    drops.push(new RainDrop());
+  }
+  
+  bladesOfGrass = [];
+  bladesOfGrass.push(new Grass(10));
 }
 
 function draw() {
   background(0, 0, 95);
   
-  drop1.drip();
-  drop1.show();
-
-  drop2.drip();
-  drop2.show();
+  for (let i = 0; i < drops.length; i++) {
+    drops[i].drip();
+    drops[i].show();
+  }
+  
+  for (let j = 0; j < bladesOfGrass.length; j++) {
+    
+    bladesOfGrass[j].show();
+  }
 }
 
 class RainDrop {
-  constructor(d, fallSpeed) {
+  constructor() {
     this.x = random(width);
     this.y = random(height);
-    this.d = d;
-    this.fallSpeed = fallSpeed;
+    this.d = random(5, 15);
+    this.fallSpeed = random(5, 15);
   }
 
   drip() {
@@ -41,7 +50,20 @@ class RainDrop {
 
   show() {
     noStroke();
-    fill(60, 80, 80);
+    fill(215, 80, 80);
     ellipse(this.x, this.y, this.d);
+  }
+}
+
+class Grass {
+  constructor(x) {
+    this.x = x;
+    this.bladeHeight = 5;
+  }
+  
+  show() {
+    noStroke();
+    fill(130, 100, 75);
+    rect(this.x, height - this.bladeHeight, 5, this.bladeHeight);
   }
 }
