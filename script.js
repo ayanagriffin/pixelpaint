@@ -1,4 +1,4 @@
-/* global collideLineCircle, rect, createCanvas, colorMode, HSB, background, height, width, noStroke, fill, random, ellipse */
+/* global RainDrop, collideLineCircle, rect, createCanvas, colorMode, HSB, background, height, width, noStroke, fill, random, ellipse */
 
 let drops, bladesOfGrass, spaceBetweenGrass;
 
