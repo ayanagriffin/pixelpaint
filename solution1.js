@@ -1,6 +1,6 @@
-/* global keyCode, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, createCanvas, colorMode, HSB, frameRate, background, width, height, noStroke, stroke, noFill, rect*/
+/* global fill, text, collideRectRect, round, random, keyCode, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, createCanvas, colorMode, HSB, frameRate, background, width, height, noStroke, stroke, noFill, rect*/
 
-let backgroundColor, playerSnake, currentApple, score
+let backgroundColor, playerSnake, currentApple, score;
 
 function setup() {
   // Canvas & color settings
@@ -26,7 +26,10 @@ function draw() {
   displayScore();
 }
 
-function displayScore() {}
+function displayScore() {
+  fill(0);
+  text(`Score: ${score}`, 20, 20);
+}
 
 class Snake {
   constructor() {
@@ -58,21 +61,37 @@ class Snake {
     noStroke();
   }
 
-  checkApples() {}
+  checkApples() {
+    // If the head of the snake collides with the apple...
+    if (collideRectRect(this.x, this.y, this.size, this.size,
+        currentApple.x, currentApple.y, currentApple.size, currentApple.size)) {
+      // Make a new apple, increment the score, and extend the tail.
+      score += 1;
+      currentApple = new Apple();
+    }
+  }
 
   checkCollisions() {}
 
   extendTail() {}
 }
 
-class Apple {
-  constructor() {}
 
-  showSelf() {}
+class Apple {
+  constructor() {
+    this.x = round(random(width - 10));
+    this.y = round(random(height - 10));
+    this.size = 10;
+  }
+
+  showSelf() {
+    fill(0, 80, 80);
+    rect(this.x, this.y, this.size, this.size);
+  }
 }
 
 function keyPressed() {
-  console.log("key pressed: ", keyCode)
+  console.log("key pressed: ", keyCode);
   if (keyCode === UP_ARROW && playerSnake.direction != 'S') {
     playerSnake.direction = "N";
   } else if (keyCode === DOWN_ARROW && playerSnake.direction != 'N') {
