@@ -9,6 +9,7 @@ function setup() {
   backgroundColor = 95;
   // This variable contains a JSON object aka POJsO (Plain Old JavaScript Object)
   spherePosition = {
+    "x": 100,
     "y": 100,
   };
   rectPosition = {
