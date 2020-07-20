@@ -7,11 +7,11 @@ function setup() {
   createCanvas(500, 400);
   colorMode(HSB, 360, 100, 100);
   backgroundColor = 95;
-  // This variable contains a JSON object
+  // This variable contains a JSON object aka POJsO (Plain Old JavaScript Object)
   spherePosition = {
     "x": 100,
     "y": 100
-  }
+  };
 }
 
 function draw() {
