@@ -1,6 +1,6 @@
-/* global text, sq, sqrt, rect, line, createCanvas, colorMode, HSB, background, ellipse, random, width, height */
+/* global mouseX, mouseY, round, text, sq, sqrt, rect, line, createCanvas, colorMode, HSB, background, ellipse, random, width, height */
 
-let backgroundColor, spherePosition, rectPosition
+let backgroundColor, spherePosition, rectPosition, mousePosition; 
 
 function setup() {
   // Canvas & color settings
@@ -16,6 +16,10 @@ function setup() {
     "x": 130,
     "y": 140,
   };
+  mousePosition = {
+    "x": 0,
+    "y": 0,
+  };
 }
 
 function draw() {
@@ -23,7 +27,17 @@ function draw() {
   ellipse(spherePosition.x, spherePosition.y, 20, 20);
   rect(rectPosition.x, rectPosition.y, 20, 20);
   line(spherePosition.x, spherePosition.y, rectPosition.x, rectPosition.y);
-  text(`The circle and the square are ${computeDistance(spherePosition, rectPosition)} apart`, 20, 20);
+  let circleSquareDistance = computeDistance(spherePosition, rectPosition);
+  text(`The circle and the square are ${circleSquareDistance} apart`, 20, 20);
+  
+  mousePosition.x = mouseX;
+  mousePosition.y = mouseY;
+  // mousePosition = {
+  //   "x": mouseX,
+  //   "y": mouseY,
+  // }
+  let mouseCircleDistance = computeDistance(mousePosition, spherePosition);
+  text(`The circle and your mouse are ${mouseCircleDistance} apart`, 20, 40);
 }
 
 function mousePressed() {
@@ -36,5 +50,13 @@ function computeDistance(point1, point2) {
   // squared
   let xDiff = point1.x - point2.x;
   let yDiff = point1.y - point2.y;
-  return sqrt(sq(xDiff) + sq(yDiff));
+  let distance = sqrt(sq(xDiff) + sq(yDiff));
+  return round(distance);
+}
+
+function computeCategoryOfDistance(distance) {
+  if (distance > 200) {
+    backgroundColor = color(240, 10, 100);
+    
+  }
 }
