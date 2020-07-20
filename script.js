@@ -1,4 +1,4 @@
-/* global mouseX, mouseY, round, text, sq, sqrt, rect, line, createCanvas, colorMode, HSB, background, ellipse, random, width, height */
+/* global color, mouseX, mouseY, round, text, sq, sqrt, rect, line, createCanvas, colorMode, HSB, background, ellipse, random, width, height */
 
 let backgroundColor, spherePosition, rectPosition, mousePosition; 
 
@@ -9,7 +9,6 @@ function setup() {
   backgroundColor = 95;
   // This variable contains a JSON object aka POJsO (Plain Old JavaScript Object)
   spherePosition = {
-    "x": 100,
     "y": 100,
   };
   rectPosition = {
@@ -24,11 +23,11 @@ function setup() {
 
 function draw() {
   background(backgroundColor);
-  ellipse(spherePosition.x, spherePosition.y, 20, 20);
-  rect(rectPosition.x, rectPosition.y, 20, 20);
-  line(spherePosition.x, spherePosition.y, rectPosition.x, rectPosition.y);
-  let circleSquareDistance = computeDistance(spherePosition, rectPosition);
-  text(`The circle and the square are ${circleSquareDistance} apart`, 20, 20);
+  // ellipse(spherePosition.x, spherePosition.y, 20, 20);
+  // rect(rectPosition.x, rectPosition.y, 20, 20);
+  // line(spherePosition.x, spherePosition.y, rectPosition.x, rectPosition.y);
+  // let circleSquareDistance = computeDistance(spherePosition, rectPosition);
+  // text(`The circle and the square are ${circleSquareDistance} apart`, 20, 20);
   
   mousePosition.x = mouseX;
   mousePosition.y = mouseY;
@@ -37,7 +36,8 @@ function draw() {
   //   "y": mouseY,
   // }
   let mouseCircleDistance = computeDistance(mousePosition, spherePosition);
-  text(`The circle and your mouse are ${mouseCircleDistance} apart`, 20, 40);
+  let category = computeCategoryOfDistance(mouseCircleDistance);
+  text(`The circle and your mouse are ${mouseCircleDistance} apart; you're ${category}!`, 20, 40);
 }
 
 function mousePressed() {
@@ -57,6 +57,12 @@ function computeDistance(point1, point2) {
 function computeCategoryOfDistance(distance) {
   if (distance > 200) {
     backgroundColor = color(240, 10, 100);
-    
+    return "cold";
+  } else if (distance > 50) {
+    backgroundColor = color(120, 10, 100);
+    return "warmer";
+  } else {
+    backgroundColor = color(0, 10, 100);
+    return "red hot";
   }
 }
