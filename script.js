@@ -1,4 +1,4 @@
-/* global keyCode, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, createCanvas, colorMode, HSB, frameRate, background, width, height, noStroke, stroke, noFill, rect*/
+/* global keyCode, text, random, ellipse, collideRectCircle, fill, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, createCanvas, colorMode, HSB, frameRate, background, width, height, noStroke, stroke, noFill, rect*/
 
 let backgroundColor, playerSnake, currentApple, score
 
@@ -26,7 +26,10 @@ function draw() {
   displayScore();
 }
 
-function displayScore() {}
+function displayScore() {
+  fill(0);
+  text(`Score: ${score}`, 20, 20);
+}
 
 class Snake {
   constructor() {
@@ -58,7 +61,10 @@ class Snake {
     noStroke();
   }
 
-  checkApples() {}
+  checkApples() {
+    collideRectCircle(this.x, this.y, this.size, this.size, 
+                      currentApple.x, currentApple.y, currentApple.diameter);
+  }
 
   checkCollisions() {}
 
@@ -66,9 +72,17 @@ class Snake {
 }
 
 class Apple {
-  constructor() {}
+  constructor() {
+    this.diameter = 10;
+    this.x = random(this.diameter, width - this.diameter);
+    this.y = random(this.diameter, height - this.diameter);
+    
+  }
 
-  showSelf() {}
+  showSelf() {
+    fill(0, 80, 80);
+    ellipse(this.x, this.y, this.diameter);
+  }
 }
 
 function keyPressed() {
