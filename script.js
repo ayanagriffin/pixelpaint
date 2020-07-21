@@ -1,6 +1,6 @@
 /* global keyCode, text, random, ellipse, collideRectCircle, fill, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, createCanvas, colorMode, HSB, frameRate, background, width, height, noStroke, stroke, noFill, rect*/
 
-let backgroundColor, playerSnake, currentApple, score
+let backgroundColor, playerSnake, currentApple, score;
 
 function setup() {
   // Canvas & color settings
@@ -34,11 +34,11 @@ function displayScore() {
 class Snake {
   constructor() {
     this.size = 10;
-    this.x = width/2;
+    this.x = width / 2;
     this.y = height - 10;
-    this.direction = 'N';
+    this.direction = "N";
     this.speed = 12;
-    this.tailSegments =[new TailSegment(this.x, this.y)];
+    this.tailSegments = [new TailSegment(this.x, this.y)];
   }
 
   moveSelf() {
@@ -53,50 +53,83 @@ class Snake {
     } else {
       console.log("Error: invalid direction");
     }
+
+    let previousTailSegmentX = this.x;
+    let previousTailSegmentY = this.y;
+    for (let i = 0; i < this.tailSegments.length; i++){
+      let tempX = this.tailSegments.length[i].x;
+      let tempY = this.tailSegments.length[i].y;
+      this.tailSegments[i].moveSelf(previousTailSegmentX, previousTailSegmentY);
+      previousTailSegmentX = tempX;
+      previousTailSegmentY = tempY;
+    }
     
-    this.tailSegments[0].moveSelf(this.x, this.y);
   }
 
   showSelf() {
-    for(let i = 0; i < this.tailSegments.length; i++){
+    for (let i = 0; i < this.tailSegments.length; i++) {
       this.tailSegments[i].showSelf();
     }
   }
 
   checkApples() {
-    let snakeCollidedWithApple = collideRectCircle(this.x, this.y, this.size, this.size, 
-                      currentApple.x, currentApple.y, currentApple.diameter);
-    
-    if(snakeCollidedWithApple){
-      let lastTailSegment = this.tailSegments[length - 1];
-      let newX = lastTailSegment.x;
-      let newY = lastTailSegment.y;
-      this.tailSegments.push(new TailSegment(newX, newY));
+    let snakeCollidedWithApple = collideRectCircle(
+      this.x,
+      this.y,
+      this.size,
+      this.size,
+      currentApple.x,
+      currentApple.y,
+      currentApple.diameter
+    );
+
+    if (snakeCollidedWithApple) {
       score++;
       currentApple = new Apple();
+      this.extendTail();
     }
   }
 
   checkCollisions() {}
 
-  extendTail() {}
+  extendTail() {
+    let lastTailSegment = this.tailSegments[length - 1];
+    let newXPos = lastTailSegment.x;
+    let newYPos = lastTailSegment.y;
+
+    if (this.direction === "N") {
+      newYPos += this.size;
+    } else if (this.direction === "S") {
+      newYPos -= this.size;
+    } else if (this.direction === "E") {
+      newXPos -= this.size;
+    } else if (this.direction === "W") {
+      newXPos += this.size;
+    } else {
+      console.log("Error: invalid direction");
+    }
+    
+  
+
+    this.tailSegments.push(new TailSegment(this.x, this.y));
+  }
 }
 
 class TailSegment {
-  constructor(x, y){
+  constructor(x, y) {
     this.size = 10;
     this.x;
     this.y;
   }
-  
-  showSelf(){
+
+  showSelf() {
     stroke(240, 100, 100);
     noFill();
     rect(this.x, this.y, this.size, this.size);
     noStroke();
   }
-  
-  moveSelf(x, y){
+
+  moveSelf(x, y) {
     this.x = x;
     this.y = y;
   }
@@ -107,7 +140,6 @@ class Apple {
     this.diameter = 10;
     this.x = random(this.diameter, width - this.diameter);
     this.y = random(this.diameter, height - this.diameter);
-    
   }
 
   showSelf() {
@@ -117,14 +149,14 @@ class Apple {
 }
 
 function keyPressed() {
-  console.log("key pressed: ", keyCode)
-  if (keyCode === UP_ARROW && playerSnake.direction != 'S') {
+  console.log("key pressed: ", keyCode);
+  if (keyCode === UP_ARROW && playerSnake.direction != "S") {
     playerSnake.direction = "N";
-  } else if (keyCode === DOWN_ARROW && playerSnake.direction != 'N') {
+  } else if (keyCode === DOWN_ARROW && playerSnake.direction != "N") {
     playerSnake.direction = "S";
-  } else if (keyCode === RIGHT_ARROW && playerSnake.direction != 'W') {
+  } else if (keyCode === RIGHT_ARROW && playerSnake.direction != "W") {
     playerSnake.direction = "E";
-  } else if (keyCode === LEFT_ARROW && playerSnake.direction != 'E') {
+  } else if (keyCode === LEFT_ARROW && playerSnake.direction != "E") {
     playerSnake.direction = "W";
   } else {
     console.log("wrong key");
