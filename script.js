@@ -93,7 +93,7 @@ class Snake {
   checkCollisions() {}
 
   extendTail() {
-    let lastTailSegment = this.tailSegments[length - 1];
+    let lastTailSegment = this.tailSegments[this.tailSegments.length - 1];
     let newXPos = lastTailSegment.x;
     let newYPos = lastTailSegment.y;
 
