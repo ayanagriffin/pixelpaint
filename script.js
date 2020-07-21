@@ -38,7 +38,7 @@ class Snake {
     this.y = height - 10;
     this.direction = 'N';
     this.speed = 12;
-    this.tailSegment =[];
+    this.tailSegments =[new TailSegment(this.x, this.y)];
   }
 
   moveSelf() {
@@ -53,13 +53,14 @@ class Snake {
     } else {
       console.log("Error: invalid direction");
     }
+    
+    this.tailSegments[0].moveSelf(this.x, this.y);
   }
 
   showSelf() {
-    stroke(240, 100, 100);
-    noFill();
-    rect(this.x, this.y, this.size, this.size);
-    noStroke();
+    for(let i = 0; i < this.tailSegments.length; i++){
+      this.tailSegments[i].showSelf();
+    }
   }
 
   checkApples() {
@@ -67,6 +68,10 @@ class Snake {
                       currentApple.x, currentApple.y, currentApple.diameter);
     
     if(snakeCollidedWithApple){
+      let lastTailSegment = this.tailSegments[length - 1];
+      let newX = lastTailSegment.x;
+      let newY = lastTailSegment.y;
+      this.tailSegments.push(new TailSegment(newX, newY));
       score++;
       currentApple = new Apple();
     }
@@ -91,8 +96,9 @@ class TailSegment {
     noStroke();
   }
   
-  moveSelf(){
-    
+  moveSelf(x, y){
+    this.x = x;
+    this.y = y;
   }
 }
 
