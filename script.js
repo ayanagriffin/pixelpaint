@@ -57,8 +57,8 @@ class Snake {
     let previousTailSegmentX = this.x;
     let previousTailSegmentY = this.y;
     for (let i = 0; i < this.tailSegments.length; i++){
-      let tempX = this.tailSegments.length[i].x;
-      let tempY = this.tailSegments.length[i].y;
+      let tempX = this.tailSegments[i].x;
+      let tempY = this.tailSegments[i].y;
       this.tailSegments[i].moveSelf(previousTailSegmentX, previousTailSegmentY);
       previousTailSegmentX = tempX;
       previousTailSegmentY = tempY;
@@ -108,8 +108,6 @@ class Snake {
     } else {
       console.log("Error: invalid direction");
     }
-    
-  
 
     this.tailSegments.push(new TailSegment(this.x, this.y));
   }
