@@ -38,6 +38,7 @@ class Snake {
     this.y = height - 10;
     this.direction = 'N';
     this.speed = 12;
+    this.tailSegment =[];
   }
 
   moveSelf() {
@@ -62,13 +63,37 @@ class Snake {
   }
 
   checkApples() {
-    collideRectCircle(this.x, this.y, this.size, this.size, 
+    let snakeCollidedWithApple = collideRectCircle(this.x, this.y, this.size, this.size, 
                       currentApple.x, currentApple.y, currentApple.diameter);
+    
+    if(snakeCollidedWithApple){
+      score++;
+      currentApple = new Apple();
+    }
   }
 
   checkCollisions() {}
 
   extendTail() {}
+}
+
+class TailSegment {
+  constructor(x, y){
+    this.size = 10;
+    this.x;
+    this.y;
+  }
+  
+  showSelf(){
+    stroke(240, 100, 100);
+    noFill();
+    rect(this.x, this.y, this.size, this.size);
+    noStroke();
+  }
+  
+  moveSelf(){
+    
+  }
 }
 
 class Apple {
