@@ -4,7 +4,7 @@ let mySound;
 
 function preload(){
   soundFormats('mp3');
-  mySound = loadSound('assets/songExample.mp3');
+  mySound = loadSound('https://cdn.glitch.com/923ded2e-470f-4401-a948-0e2b20cf279c%2FsongExample.mp3?v=1595447316715');
   
 }
 function setup() {
