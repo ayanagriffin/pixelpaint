@@ -9,9 +9,9 @@ function preload() {
 }
 function setup() {
   createCanvas(400, 400);
-  colorMode(RGB, 255, 255, 255);
-  numRows = 2;
-  numCols = 2;
+  colorMode(RGB, 255);
+  numRows = 25;
+  numCols = 25;
   imgW = 300;
   imgH = 300;
   blockW = imgW / numCols;
@@ -24,25 +24,30 @@ function setup() {
     }
   }
 
-  for (let i = 0; i < blocks.length; i++) {
-    blocks[i].getColors();
-    blocks[i].findAverageColor();
-  }
+  // for (let i = 0; i < blocks.length; i++) {
+  //   blocks[i].getColors();
+  //   blocks[i].findAverageColor();
+  // }
+  
+  
 }
 
 function draw() {
-  background(100);
+  background(242, 242, 242);
   image(img, 0, 0, imgW, imgH);
 
   for (let i = 0; i < blocks.length; i++) {
+    blocks[i].getColors();
+    blocks[i].findAverageColor();
     blocks[i].draw();
+    //console.log(blocks[i].finalB);
     //blocks[i].test();
   }
 
   // console.log(blocks[3].totalB);
   // console.log(blocks[3].colors.length);
   //console.log(0 / 22500);
-  
+  //console.log(get(350, 350));
 }
 
 class Block {
