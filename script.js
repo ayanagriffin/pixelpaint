@@ -1,17 +1,17 @@
-/*global createCanvas, colorMode, HSB, background, image, loadImage, get, fill, rect, RGB*/
+/*global createCanvas, colorMode, HSB, background, image, loadImage, get, fill, rect, RGB, noStroke*/
 
 let img, numRows, numCols, imgW, imgH, blockW, blockH, blocks, finalColors;
 
 function preload() {
   img = loadImage(
-    "https://cdn.glitch.com/d82135a4-9f9d-4654-a46b-f7f58cdc9d01%2Fmosaic-758754_960_720.webp?v=1595547170968"
+    "https://cdn.glitch.com/d82135a4-9f9d-4654-a46b-f7f58cdc9d01%2Fimg_lights.jpg?v=1595543508242"
   );
 }
 function setup() {
   createCanvas(400, 400);
   colorMode(RGB, 255);
-  numRows = 100;
-  numCols = 100;
+  numRows = 2;
+  numCols = 2;
   imgW = 300;
   imgH = 300;
   blockW = imgW / numCols;
@@ -25,10 +25,6 @@ function setup() {
     }
   }
 
-  // for (let i = 0; i < blocks.length; i++) {
-  //   blocks[i].getColors();
-  //   blocks[i].findAverageColor();
-  // }
 }
 
 function draw() {
@@ -36,18 +32,12 @@ function draw() {
   image(img, 0, 0, imgW, imgH);
 
   for (let i = 0; i < blocks.length; i++) {
-    blocks[i].getColors();
-    blocks[i].findAverageColor();
     blocks[i].draw();
-    //console.log(blocks[i].finalB);
-    //blocks[i].test();
+    
   }
 
   getFinalColors();
-  // console.log(blocks[3].totalB);
-  // console.log(blocks[3].colors.length);
-  //console.log(0 / 22500);
-  //console.log(get(350, 350));
+  
 }
 
 class Block {
@@ -58,7 +48,6 @@ class Block {
     this.height = blockH;
     this.startingX = this.row * this.width;
     this.startingY = this.col * this.height;
-    this.colors = [];
     this.totalR = 0;
     this.totalG = 0;
     this.totalB = 0;
@@ -69,43 +58,51 @@ class Block {
   }
 
   getColors() {
+  // creates and returns an array consisting of the R,G,B,A color values of each pixel in the block
+    let colors = [];
     for (let i = this.startingX; i < this.width + this.startingX; i++) {
       for (let j = this.startingY; j < this.height + this.startingY; j++) {
-        this.colors.push(get(i, j));
+        colors.push(get(i, j));
       }
     }
+    
+    return colors;
   }
 
-  findAverageColor() {
+  findAverageColor(colors) {
+  // goes through each color value of each pixel in the block and finds the average color
     let totalR = 0;
     let totalG = 0;
     let totalB = 0;
-    for (let i = 0; i < this.colors.length; i++) {
-      totalR += this.colors[i][0];
-      totalG += this.colors[i][1];
-      totalB += this.colors[i][2];
+    for (let i = 0; i < colors.length; i++) {
+      totalR += colors[i][0];
+      totalG += colors[i][1];
+      totalB += colors[i][2];
     }
 
-    this.finalR = totalR / this.colors.length;
-    this.finalG = totalG / this.colors.length;
-    this.finalB = totalB / this.colors.length;
+    this.finalR = totalR / colors.length;
+    this.finalG = totalG / colors.length;
+    this.finalB = totalB / colors.length;
 
     this.finalColor = [this.finalR, this.finalG, this.finalB];
     
-   // return this.finalColor;
-    //console.log(this.colors.length);
-    //console.log(this.finalR, this.finalG, this.finalB);
-    //return this.finalB;
+   return this.finalColor;
+   
   }
   draw() {
-    fill(this.finalR, this.finalG, this.finalB);
+    noStroke();
+    fill(this.findAverageColor(this.getColors()));
     rect(this.startingX, this.startingY, this.width, this.height);
-    //console.log(this.colors[0]);
+    
   }
 }
 
 function getFinalColors() {
   for (let i = 0; i < blocks.length; i++) {
-    
+    finalColors.push(blocks[i].finalColor);
+  }
+  
+  for(let i = 0; i < finalColors.length; i++){
+    console.log(finalColors[i]);
   }
 }
