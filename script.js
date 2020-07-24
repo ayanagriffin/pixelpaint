@@ -51,7 +51,7 @@ function draw() {
    // console.log(blocks[i].finalColor);
   }
 
-  getFinalColors();
+  //getFinalColors();
   refactorColors();
 }
 
@@ -116,21 +116,22 @@ class Block {
   }
 }
 
-function getFinalColors() {
-  for (let i = 0; i < blocks.length; i++) {
-    finalColors.push(blocks[i].finalColor);
-  }
-}
+// function getFinalColors() {
+//   for (let i = 0; i < blocks.length; i++) {
+//     finalColors.push(blocks[i].finalColor);
+//   }
+// }
 
 function refactorColors() {
   
   for(let i = 0; i < blocks.length; i++){
     if(!blocks[i].foundMatch){
       //let color = blocks[i].finalColor;
-      blocks[i].foundMatch = true;
+      numColors ++;
+      //blocks[i].foundMatch = true;
       findMatches(blocks[i]);
       
-      //console.log(color);
+      console.log(numColors);
     }
     
   }
@@ -163,10 +164,10 @@ function findMatches(testBlock) {
         // curBlock.finalB = testBlock.finalB;
         curBlock.foundMatch = true;
   
-        console.log('match: ', i);
+        //console.log('match: ', i);
         
       }else{
-        console.log('no match: ', i);
+       // console.log('no match: ', i);
       }
     }
   }
@@ -175,5 +176,26 @@ function findMatches(testBlock) {
 }
 
 function findAverageColor(matches){
+  let totalR = 0;
+  let totalG = 0;
+  let totalB = 0;
+  
+  for(let i = 0; i < matches.length; i++){
+    let curBlock = matches[i];
+    totalR += curBlock.finalR;
+    totalG += curBlock.finalG;
+    totalB += curBlock.finalB;
+  }
+  
+  let finalR = totalR / matches.length;
+  let finalG = totalG / matches.length;
+  let finalB = totalB / matches.length;
+  
+  let finalColor = [finalR, finalG, finalB];
+  
+  for(let i = 0; i < matches.length; i++){
+    let curBlock = matches[i];
+    curBlock.finalColor = finalColor;
+  }
   
 }
