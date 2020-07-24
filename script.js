@@ -37,13 +37,19 @@ function setup() {
   colorVals = [];
 
   for (let i = 0; i < numRows; i++) {
+    let row = [];
     for (let j = 0; j < numCols; j++) {
-      blocks.push(new Block(j, i));
+      row.push(new Block(j, i));
     }
+    blocks.push(row);
   }
   
   for (let i = 0; i < blocks.length; i++){
-    colorVals.push(0);
+    let row = [];
+    for(let j = 0; j < blocks[i].length; j++){
+      row.push(0);
+    }
+    colorVals.push(row);
   }
 }
 
@@ -52,13 +58,16 @@ function draw() {
   image(img, 0, 0, imgW, imgH);
 
   for (let i = 0; i < blocks.length; i++) {
-    //blocks[i].draw();
-    if(!blocks[i].foundMatch){
-      blocks[i].getColors();
-      blocks[i].findAverageColor();
+    for(let j = 0; j < blocks[i].length; j++){
+      if(!blocks[j][i].foundMatch){
+      blocks[j][i].getColors();
+      blocks[j][i].findAverageColor();
     }
     
-    blocks[i].draw();
+    blocks[j][i].draw();
+    }
+    //blocks[i].draw();
+    
    // console.log(blocks[i].finalColor);
   }
 
@@ -142,14 +151,17 @@ class Block {
 function refactorColors() {
   
   for(let i = 0; i < blocks.length; i++){
-    if(!blocks[i].foundMatch){
+    for(let j = 0; j < blocks[i].length; j++){
+      if(!blocks[j][i].foundMatch){
       //let color = blocks[i].finalColor;
       numColors ++;
       //blocks[i].foundMatch = true;
-      findMatches(blocks[i], numColors);
+      findMatches(blocks[j][i], numColors);
       
       console.log(numColors);
     }
+    }
+    
     
   }
   // while (numColors < maxColors) {
@@ -164,7 +176,8 @@ function refactorColors() {
 function findMatches(testBlock, colorVal) {
   let matches = [];
   for (let i = 0; i < blocks.length; i++) {
-    let curBlock = blocks[i];
+    for(let j = 0; j < blocks[i].length; j++){
+      let curBlock = blocks[j][i];
     if (!curBlock.foundMatch) {
       //console.log(testBlock.finalR, curBlock.finalR);
     
@@ -180,7 +193,7 @@ function findMatches(testBlock, colorVal) {
         // curBlock.finalG = testBlock.finalG;
         // curBlock.finalB = testBlock.finalB;
         curBlock.foundMatch = true;
-        colorVals[i] = colorVal;
+        colorVals[j][i] = colorVal;
   
         //console.log('match: ', i);
         
@@ -188,6 +201,8 @@ function findMatches(testBlock, colorVal) {
        // console.log('no match: ', i);
       }
     }
+    }
+    
   }
   
   findAverageColor(matches);
