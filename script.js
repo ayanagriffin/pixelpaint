@@ -20,15 +20,15 @@ let img,
 
  function preload() {
   img = loadImage(
-    "https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909"
+    "https://cdn.glitch.com/d82135a4-9f9d-4654-a46b-f7f58cdc9d01%2Fimg_lights.jpg?v=1595543508242"
   );
  }
 function setup() {
   
   createCanvas(400, 400);
   colorMode(RGB, 255);
-  numRows = 20;
-  numCols = 20;
+  numRows = 50;
+  numCols = 50;
   imgW = 300;
   imgH = 300;
   blockW = imgW / numCols;
@@ -37,7 +37,7 @@ function setup() {
   finalColors = [];
   //maxColors = 3;
   numColors = 0;
-  cushion = 100; // the lower the cushion, the more the number of colors will be
+  cushion = 20; // the lower the cushion, the more the number of colors will be
   colorVals = [];
 
   image(img, 0, 0, imgW, imgH); 
@@ -76,12 +76,14 @@ function setup() {
   refactorColors();
 
   console.log(colorVals);
+  
 }
 
 function draw() {
   background(242, 242, 242);
   
-
+  
+  drawBlocks();
   
 }
 
@@ -237,4 +239,12 @@ function findAverageColor(matches) {
 
 function getFinalColorArray() {
   return colorVals;
+}
+
+function drawBlocks(){
+  for (let i = 0; i < blocks.length; i++) {
+    for (let j = 0; j < blocks[i].length; j++) {
+      blocks[j][i].draw();
+    }
+  }
 }
