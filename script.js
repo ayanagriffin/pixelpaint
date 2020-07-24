@@ -18,12 +18,13 @@ let img,
   cushion,
   colorVals;
 
-function preload() {
+ function preload() {
   img = loadImage(
     "https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909"
   );
-}
+ }
 function setup() {
+  
   createCanvas(400, 400);
   colorMode(RGB, 255);
   numRows = 20;

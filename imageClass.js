@@ -1,17 +1,23 @@
 /*global createCanvas, colorMode, HSB, background, image, loadImage, get, abs, fill, rect, RGB, noStroke*/
 // TODO: combine! possibly eliminate setup and draw
+let img, testPic;
 
+function preload(){
+  img = new Pic();
+  testPic = loadImage(img.imgLink);
+}
 
 function setup(){
   createCanvas(400,400);
-  let img = new Pic();
+  image(testPic, 0, 0, 300, 300);
   img.getFinalArray();
   
   
 }
 class Pic {
   constructor() {
-    this.img = loadImage("https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909");
+    this.imgLink = "https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909";
+    //this.img = loadImage(this.imgLink);
     this.numRows = 20;
     this.numCols = 20;
     this.imgW = 300;
@@ -23,7 +29,11 @@ class Pic {
     this.finalColors = [];
     this.numColors = 0;
     this.cushion = 100;
-    image(this.img, 0, 0, this.imgW, this.imgH);
+    //image(this.img, 0, 0, this.imgW, this.imgH);
+  }
+  
+  load(){
+    
   }
   
 
