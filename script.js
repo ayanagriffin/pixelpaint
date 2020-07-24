@@ -4,14 +4,14 @@ let img, numRows, numCols, imgW, imgH, blockW, blockH, blocks, finalColors;
 
 function preload() {
   img = loadImage(
-    "https://cdn.glitch.com/d82135a4-9f9d-4654-a46b-f7f58cdc9d01%2Fimg_lights.jpg?v=1595543508242"
+    "https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909"
   );
 }
 function setup() {
   createCanvas(400, 400);
   colorMode(RGB, 255);
-  numRows = 2;
-  numCols = 2;
+  numRows = 20;
+  numCols = 20;
   imgW = 300;
   imgH = 300;
   blockW = imgW / numCols;
@@ -102,7 +102,7 @@ function getFinalColors() {
     finalColors.push(blocks[i].finalColor);
   }
   
-  for(let i = 0; i < finalColors.length; i++){
-    console.log(finalColors[i]);
-  }
+  // for(let i = 0; i < finalColors.length; i++){
+  //   console.log(finalColors[i]);
+  // }
 }
