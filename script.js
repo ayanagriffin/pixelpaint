@@ -52,9 +52,13 @@ function draw() {
   image(img, 0, 0, imgW, imgH);
 
   for (let i = 0; i < blocks.length; i++) {
+    //blocks[i].draw();
+    if(!blocks[i].foundMatch){
+      blocks[i].getColors();
+      blocks[i].findAverageColor();
+    }
+    
     blocks[i].draw();
-    //blocks[i].getColors();
-    //blocks[i].findAverageColor();
    // console.log(blocks[i].finalColor);
   }
 
@@ -86,44 +90,46 @@ class Block {
 
   getColors() {
     // creates and returns an array consisting of the R,G,B,A color values of each pixel in the block
-    let colors = [];
+    //let colors = [];
     for (let i = this.startingX; i < this.width + this.startingX; i++) {
       for (let j = this.startingY; j < this.height + this.startingY; j++) {
-        colors.push(get(i, j));
+        this.colors.push(get(i, j));
       }
     }
 
-    return colors;
+    //return colors;
   }
 
-  findAverageColor(colors) {
+  findAverageColor() {
     // goes through each color value of each pixel in the block and finds the average color
     let totalR = 0;
     let totalG = 0;
     let totalB = 0;
-    for (let i = 0; i < colors.length; i++) {
-      totalR += colors[i][0];
-      totalG += colors[i][1];
-      totalB += colors[i][2];
+    for (let i = 0; i < this.colors.length; i++) {
+      totalR += this.colors[i][0];
+      totalG += this.colors[i][1];
+      totalB += this.colors[i][2];
     }
 
-    this.finalR = totalR / colors.length;
-    this.finalG = totalG / colors.length;
-    this.finalB = totalB / colors.length;
+    this.finalR = totalR / this.colors.length;
+    this.finalG = totalG / this.colors.length;
+    this.finalB = totalB / this.colors.length;
 
     this.finalColor = [this.finalR, this.finalG, this.finalB];
 
-    return this.finalColor;
+    //return this.finalColor;
   }
   draw() {
     noStroke();
-    if(!this.foundMatch){
-      fill(this.findAverageColor(this.getColors()));
-    }else{
-      fill(this.finalColor);
-    }
+    // if(!this.foundMatch){
+    //   fill(this.findAverageColor(this.getColors()));
+    // }else{
+    //   fill(this.finalColor);
+    // }
     
-    //rect(this.startingX, this.startingY, this.width, this.height);
+    fill(this.finalColor);
+    
+    rect(this.startingX, this.startingY, this.width, this.height);
   }
 }
 
