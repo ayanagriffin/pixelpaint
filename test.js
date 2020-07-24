@@ -22,6 +22,10 @@ let squareSize,
   undoButton,
   starIsVisible = false;
 
+function preload(){
+  
+}
+
 function setup() {
   squares = [];
   moves = [];

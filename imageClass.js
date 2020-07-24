@@ -1,20 +1,27 @@
 /*global createCanvas, colorMode, HSB, background, image, loadImage, get, abs, fill, rect, RGB, noStroke*/
 // TODO: combine! possibly eliminate setup and draw
-let img, testPic;
+let img, testPic, allFinalArrays = [];
 
 function preload(){
-  img = new Pic();
+  img = new Picture();
   testPic = loadImage(img.imgLink);
 }
 
 function setup(){
+
   createCanvas(400,400);
   image(testPic, 0, 0, 300, 300);
   img.getFinalArray();
+  allFinalArrays.push(img.getFinalArray());
   
   
 }
-class Pic {
+
+// function draw(){
+//   background(100);
+// }
+
+class Picture {
   constructor() {
     this.imgLink = "https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909";
     //this.img = loadImage(this.imgLink);
@@ -29,7 +36,7 @@ class Pic {
     this.finalColors = [];
     this.numColors = 0;
     this.cushion = 100;
-    //image(this.img, 0, 0, this.imgW, this.imgH);
+
   }
   
   load(){
@@ -74,12 +81,12 @@ class Pic {
     for (let i = 0; i < this.blocks.length; i++) {
       for (let j = 0; j < this.blocks[i].length; j++) {
         if (!this.blocks[j][i].foundMatch) {
-          //let color = blocks[i].finalColor;
+         
           this.numColors++;
-          //blocks[i].foundMatch = true;
+          
           this.findMatches(this.blocks[j][i], this.numColors);
 
-          //console.log(numColors);
+          
         }
       }
     }
@@ -91,7 +98,7 @@ class Pic {
       for (let j = 0; j < this.blocks[i].length; j++) {
         let curBlock = this.blocks[j][i];
         if (!curBlock.foundMatch) {
-          //console.log(testBlock.finalR, curBlock.finalR);
+          
 
           if (
             abs(testBlock.finalR - curBlock.finalR) < this.cushion &&
@@ -99,16 +106,13 @@ class Pic {
             abs(testBlock.finalB - curBlock.finalB) < this.cushion
           ) {
             matches.push(curBlock);
-            //curBlock.finalColor = testBlock.finalColor;
-            // curBlock.finalR = testBlock.finalR;
-            // curBlock.finalG = testBlock.finalG;
-            // curBlock.finalB = testBlock.finalB;
+        
             curBlock.foundMatch = true;
             this.colorVals[j][i] = colorVal;
 
-            //console.log('match: ', i);
+            
           } else {
-            // console.log('no match: ', i);
+            
           }
         }
       }
@@ -181,7 +185,7 @@ class Block {
       }
     }
 
-    //return colors;
+  
   }
 
   findAverageColor() {
@@ -201,108 +205,13 @@ class Block {
 
     this.finalColor = [this.finalR, this.finalG, this.finalB];
 
-    //return this.finalColor;
+    
   }
   draw() {
     noStroke();
-    // if(!this.foundMatch){
-    //   fill(this.findAverageColor(this.getColors()));
-    // }else{
-    //   fill(this.finalColor);
-    // }
-
     fill(this.finalColor);
 
     rect(this.startingX, this.startingY, this.width, this.height);
   }
 }
 
-// function getFinalColors() {
-//   for (let i = 0; i < blocks.length; i++) {
-//     finalColors.push(blocks[i].finalColor);
-//   }
-// }
-
-// function refactorColors() {
-//   for (let i = 0; i < blocks.length; i++) {
-//     for (let j = 0; j < blocks[i].length; j++) {
-//       if (!blocks[j][i].foundMatch) {
-//         //let color = blocks[i].finalColor;
-//         numColors++;
-//         //blocks[i].foundMatch = true;
-//         findMatches(blocks[j][i], numColors);
-
-//         console.log(numColors);
-//       }
-//     }
-//   }
-//   // while (numColors < maxColors) {
-//   //   let color = blocks[i].finalColor;
-//   //   blocks[i].foundMatch = true;
-//   //   //findMatches(color, 20);
-//   //   numColors++;
-//   //   //console.log(color);
-//   // }
-// }
-
-// function findMatches(testBlock, colorVal) {
-//   let matches = [];
-//   for (let i = 0; i < blocks.length; i++) {
-//     for (let j = 0; j < blocks[i].length; j++) {
-//       let curBlock = blocks[j][i];
-//       if (!curBlock.foundMatch) {
-//         //console.log(testBlock.finalR, curBlock.finalR);
-
-//         if (
-//           abs(testBlock.finalR - curBlock.finalR) < cushion &&
-//           abs(testBlock.finalG - curBlock.finalG) < cushion &&
-//           abs(testBlock.finalB - curBlock.finalB) < cushion
-//         ) {
-//           matches.push(curBlock);
-//           //curBlock.finalColor = testBlock.finalColor;
-//           // curBlock.finalR = testBlock.finalR;
-//           // curBlock.finalG = testBlock.finalG;
-//           // curBlock.finalB = testBlock.finalB;
-//           curBlock.foundMatch = true;
-//           colorVals[j][i] = colorVal;
-
-//           //console.log('match: ', i);
-//         } else {
-//           // console.log('no match: ', i);
-//         }
-//       }
-//     }
-//   }
-
-//   findAverageColor(matches);
-// }
-
-// function findAverageColor(matches) {
-//   let totalR = 0;
-//   let totalG = 0;
-//   let totalB = 0;
-
-//   for (let i = 0; i < matches.length; i++) {
-//     let curBlock = matches[i];
-//     totalR += curBlock.finalR;
-//     totalG += curBlock.finalG;
-//     totalB += curBlock.finalB;
-//   }
-
-//   let finalR = totalR / matches.length;
-//   let finalG = totalG / matches.length;
-//   let finalB = totalB / matches.length;
-
-//   let finalColor = [finalR, finalG, finalB];
-
-//   for (let i = 0; i < matches.length; i++) {
-//     let curBlock = matches[i];
-//     curBlock.finalColor = finalColor;
-//   }
-// }
-
-// // MOST IMPORTANT INFO!! Use this to draw final image for user to color!!!
-
-// function getFinalColorArray() {
-//   return colorVals;
-// }
