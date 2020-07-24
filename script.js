@@ -13,7 +13,7 @@ let img,
   numColors,
   color1,
   color2,
-  color3, cushion;
+  color3, cushion, colorVals;
 
 function preload() {
   img = loadImage(
@@ -23,8 +23,8 @@ function preload() {
 function setup() {
   createCanvas(400, 400);
   colorMode(RGB, 255);
-  numRows = 20;
-  numCols = 20;
+  numRows = 10;
+  numCols = 10;
   imgW = 300;
   imgH = 300;
   blockW = imgW / numCols;
@@ -33,12 +33,17 @@ function setup() {
   finalColors = [];
   maxColors = 3;
   numColors = 0;
-  cushion = 100;
+  cushion = 150;
+  colorVals = [];
 
   for (let i = 0; i < numRows; i++) {
     for (let j = 0; j < numCols; j++) {
       blocks.push(new Block(i, j));
     }
+  }
+  
+  for (let i = 0; i < blocks.length; i++){
+    colorVals.push(0);
   }
 }
 
@@ -53,6 +58,9 @@ function draw() {
 
   //getFinalColors();
   refactorColors();
+  
+ // console.log(colorVals);
+
 }
 
 class Block {
@@ -129,7 +137,7 @@ function refactorColors() {
       //let color = blocks[i].finalColor;
       numColors ++;
       //blocks[i].foundMatch = true;
-      findMatches(blocks[i]);
+      findMatches(blocks[i], numColors);
       
       console.log(numColors);
     }
@@ -144,7 +152,7 @@ function refactorColors() {
   // }
 }
 
-function findMatches(testBlock) {
+function findMatches(testBlock, colorVal) {
   let matches = [];
   for (let i = 0; i < blocks.length; i++) {
     let curBlock = blocks[i];
@@ -163,6 +171,7 @@ function findMatches(testBlock) {
         // curBlock.finalG = testBlock.finalG;
         // curBlock.finalB = testBlock.finalB;
         curBlock.foundMatch = true;
+        colorVals[i] = colorVal;
   
         //console.log('match: ', i);
         
@@ -197,5 +206,9 @@ function findAverageColor(matches){
     let curBlock = matches[i];
     curBlock.finalColor = finalColor;
   }
+  
+}
+
+function getFinalColorArray(){
   
 }
