@@ -1,6 +1,6 @@
 /*global createCanvas, colorMode, HSB, background, image, loadImage, get, abs, fill, rect, RGB, noStroke*/
 // TODO: combine!
-let img, testPic, allFinalArrays = [];
+let img, testPic, allFinalArrays = [], done = false;
 
 function preload(){
   img = new Picture("https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909");
@@ -12,13 +12,21 @@ function setup(){
   createCanvas(400,400);
   image(testPic, 0, 0, 300, 300);
   img.getFinalArray();
-  //allFinalArrays.push(img.getFinalArray());
+ // allFinalArrays.push(img.getFinalArray());
   
   
 }
 
 // function draw(){
-//   background(100);
+//   //image(testPic, 0, 0, 300, 300);
+  
+//   if(!done){
+//     image(testPic, 0, 0, 300, 300);
+//     allFinalArrays.push(img.getFinalArray());
+//   }else{
+//     done = true;
+//   }
+//   //allFinalArrays.push(img.getFinalArray());
 // }
 
 class Picture {
