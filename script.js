@@ -13,7 +13,7 @@ let img,
   numColors,
   color1,
   color2,
-  color3, closeness;
+  color3, cushion;
 
 function preload() {
   img = loadImage(
@@ -23,8 +23,8 @@ function preload() {
 function setup() {
   createCanvas(400, 400);
   colorMode(RGB, 255);
-  numRows = 3;
-  numCols = 3;
+  numRows = 20;
+  numCols = 20;
   imgW = 300;
   imgH = 300;
   blockW = imgW / numCols;
@@ -33,6 +33,7 @@ function setup() {
   finalColors = [];
   maxColors = 3;
   numColors = 0;
+  cushion = 100;
 
   for (let i = 0; i < numRows; i++) {
     for (let j = 0; j < numCols; j++) {
@@ -105,7 +106,12 @@ class Block {
   }
   draw() {
     noStroke();
-    fill(this.findAverageColor(this.getColors()));
+    if(!this.foundMatch){
+      fill(this.findAverageColor(this.getColors()));
+    }else{
+      fill(this.finalColor);
+    }
+    
     rect(this.startingX, this.startingY, this.width, this.height);
   }
 }
@@ -118,11 +124,12 @@ function getFinalColors() {
 
 function refactorColors() {
   
-  for(let i = 2; i < 3; i++){
+  for(let i = 0; i < blocks.length; i++){
     if(!blocks[i].foundMatch){
       //let color = blocks[i].finalColor;
-      findMatches(blocks[i], 20);
       blocks[i].foundMatch = true;
+      findMatches(blocks[i]);
+      
       //console.log(color);
     }
     
@@ -136,27 +143,37 @@ function refactorColors() {
   // }
 }
 
-function findMatches(testBlock, closeness) {
+function findMatches(testBlock) {
+  let matches = [];
   for (let i = 0; i < blocks.length; i++) {
     let curBlock = blocks[i];
     if (!curBlock.foundMatch) {
-      console.log(testBlock.finalR, curBlock.finalR);
+      //console.log(testBlock.finalR, curBlock.finalR);
     
       if (
-        abs(testBlock.finalR - curBlock.finalR) < closeness &&
-        abs(testBlock.finalG - curBlock.finalG) < closeness &&
-        abs(testBlock.finalB - curBlock.finalB) < closeness
+        abs(testBlock.finalR - curBlock.finalR) < cushion &&
+        abs(testBlock.finalG - curBlock.finalG) < cushion &&
+        abs(testBlock.finalB - curBlock.finalB) < cushion
       ) {
-        curBlock.finalColor = testBlock.finalColor;
-        curBlock.finalR = testBlock.finalR;
-        curBlock.finalG = testBlock.finalG;
-        curBlock.finalB = testBlock.finalB;
+        
+        matches.push(curBlock);
+        //curBlock.finalColor = testBlock.finalColor;
+        // curBlock.finalR = testBlock.finalR;
+        // curBlock.finalG = testBlock.finalG;
+        // curBlock.finalB = testBlock.finalB;
         curBlock.foundMatch = true;
+  
         console.log('match: ', i);
         
       }else{
-        console.log('no match');
+        console.log('no match: ', i);
       }
     }
   }
+  
+  findAverageColor(matches);
+}
+
+function findAverageColor(matches){
+  
 }
