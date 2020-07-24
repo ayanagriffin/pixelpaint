@@ -1,5 +1,5 @@
 /*global createCanvas, colorMode, HSB, background, image, loadImage, get, abs, fill, rect, RGB, noStroke*/
-
+// TODO: refactor to create 2D array
 let img,
   numRows,
   numCols,
@@ -38,7 +38,7 @@ function setup() {
 
   for (let i = 0; i < numRows; i++) {
     for (let j = 0; j < numCols; j++) {
-      blocks.push(new Block(i, j));
+      blocks.push(new Block(j, i));
     }
   }
   

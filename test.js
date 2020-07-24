@@ -182,8 +182,9 @@ function choosePicture(curPicture) {
     [1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   ];
+  
 
-  picArray = [picture1, picture2, picture3];
+  picArray = [picture1, picture2, picture3, picture4];
 
   return picArray[curPicture];
 }
