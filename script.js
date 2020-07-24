@@ -23,17 +23,17 @@ function preload() {
 function setup() {
   createCanvas(400, 400);
   colorMode(RGB, 255);
-  numRows = 10;
-  numCols = 10;
+  numRows = 20;
+  numCols = 20;
   imgW = 300;
   imgH = 300;
   blockW = imgW / numCols;
   blockH = imgH / numRows;
   blocks = [];
   finalColors = [];
-  maxColors = 3;
+  //maxColors = 3;
   numColors = 0;
-  cushion = 150;
+  cushion = 100; // the lower the cushion, the more the number of colors will be
   colorVals = [];
 
   for (let i = 0; i < numRows; i++) {
@@ -53,13 +53,15 @@ function draw() {
 
   for (let i = 0; i < blocks.length; i++) {
     blocks[i].draw();
+    //blocks[i].getColors();
+    //blocks[i].findAverageColor();
    // console.log(blocks[i].finalColor);
   }
 
   //getFinalColors();
   refactorColors();
   
- // console.log(colorVals);
+ console.log(colorVals);
 
 }
 
@@ -79,6 +81,7 @@ class Block {
     this.finalB = 0;
     this.finalColor = [];
     this.foundMatch = false;
+    this.colors = [];
   }
 
   getColors() {
@@ -120,7 +123,7 @@ class Block {
       fill(this.finalColor);
     }
     
-    rect(this.startingX, this.startingY, this.width, this.height);
+    //rect(this.startingX, this.startingY, this.width, this.height);
   }
 }
 
@@ -209,6 +212,8 @@ function findAverageColor(matches){
   
 }
 
+// MOST IMPORTANT INFO!! Use this to draw final image for user to color!!!
+
 function getFinalColorArray(){
-  
+  return colorVals;
 }
