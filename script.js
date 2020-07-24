@@ -1,6 +1,6 @@
 /*global createCanvas, colorMode, HSB, background, image, loadImage, get, fill, rect, RGB, noStroke*/
 
-let img, numRows, numCols, imgW, imgH, blockW, blockH, blocks, finalColors;
+let img, numRows, numCols, imgW, imgH, blockW, blockH, blocks, finalColors, maxColors, numColors, color1, color2, color3;
 
 function preload() {
   img = loadImage(
@@ -10,14 +10,16 @@ function preload() {
 function setup() {
   createCanvas(400, 400);
   colorMode(RGB, 255);
-  numRows = 20;
-  numCols = 20;
+  numRows = 5;
+  numCols = 5;
   imgW = 300;
   imgH = 300;
   blockW = imgW / numCols;
   blockH = imgH / numRows;
   blocks = [];
   finalColors = [];
+  maxColors = 3;
+  numColors = 0;
 
   for (let i = 0; i < numRows; i++) {
     for (let j = 0; j < numCols; j++) {
@@ -37,6 +39,7 @@ function draw() {
   }
 
   getFinalColors();
+  refactorColors(0);
   
 }
 
@@ -102,7 +105,18 @@ function getFinalColors() {
     finalColors.push(blocks[i].finalColor);
   }
   
-  // for(let i = 0; i < finalColors.length; i++){
-  //   console.log(finalColors[i]);
-  // }
+}
+
+function refactorColors(i){
+  while(numColors < maxColors){
+    let color = blocks[i].finalColor;
+    findMatches(color);
+    numColors++;
+    console.log(color);
+    
+  }
+}
+
+function findMatches(color){
+ // for(let i = 0)
 }
