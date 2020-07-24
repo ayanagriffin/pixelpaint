@@ -47,7 +47,7 @@ function draw() {
 
   for (let i = 0; i < blocks.length; i++) {
     blocks[i].draw();
-    console.log(blocks[i].finalColor);
+   // console.log(blocks[i].finalColor);
   }
 
   getFinalColors();
@@ -118,10 +118,12 @@ function getFinalColors() {
 
 function refactorColors() {
   
-  for(let i = 0; i < blocks.length; i++){
+  for(let i = 2; i < 3; i++){
     if(!blocks[i].foundMatch){
-      let color = blocks[i].finalColor;
-      
+      //let color = blocks[i].finalColor;
+      findMatches(blocks[i], 20);
+      blocks[i].foundMatch = true;
+      //console.log(color);
     }
     
   }
@@ -134,18 +136,26 @@ function refactorColors() {
   // }
 }
 
-function findMatches(color, closeness) {
+function findMatches(testBlock, closeness) {
   for (let i = 0; i < blocks.length; i++) {
     let curBlock = blocks[i];
     if (!curBlock.foundMatch) {
+      console.log(testBlock.finalR, curBlock.finalR);
+    
       if (
-        abs(color.finalR - curBlock.finalR) < closeness &&
-        abs(color.finalG - curBlock.finalG) < closeness &&
-        abs(color.finalB - curBlock.finalB) < closeness
+        abs(testBlock.finalR - curBlock.finalR) < closeness &&
+        abs(testBlock.finalG - curBlock.finalG) < closeness &&
+        abs(testBlock.finalB - curBlock.finalB) < closeness
       ) {
-        curBlock.finalColor = color;
+        curBlock.finalColor = testBlock.finalColor;
+        curBlock.finalR = testBlock.finalR;
+        curBlock.finalG = testBlock.finalG;
+        curBlock.finalB = testBlock.finalB;
         curBlock.foundMatch = true;
+        console.log('match: ', i);
         
+      }else{
+        console.log('no match');
       }
     }
   }
