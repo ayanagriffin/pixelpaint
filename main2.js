@@ -251,41 +251,44 @@ function getNewPicture() {
   setup();
 }
 
-function undo() {
-  // allows user to "undo" last move i.e. make the Square the previous color
+// function undo() {
+//   // allows user to "undo" last move i.e. make the Square the previous color
 
-  if (moves.length > 1) {
-    let prevColor;
-    let curMove = moves[moves.length - 1];
-    let curSq
-    let prevMove = moves[moves.length - 2];
-    let prevSquare = squares[prevMove.col][prevMove.row];
-    console.log(curMove);
+//   if (moves.length > 1) {
+//     let prevColor;
+//     let curMove = moves[moves.length - 1];
+//     let curSquare = squares[curMove.col][curMove.row];
+//     let prevMove = moves[moves.length - 2];
+//     let prevSquare = squares[prevMove.col][prevMove.row];
+//     console.log(curMove);
 
-   
-    if (prevMove.row == curMove.row && prevMove.col == curMove.col) {
-      console.log("match: ", prevSquare.color);
-      prevSquare.color = prevMove.color;
-      console.log("change: ", prevSquare.color);
-    }else{
-      prevSquare.color = "white";
-    }
-    console.log(prevMove);
+//     if (prevMove.row == curMove.row && prevMove.col == curMove.col) {
+//       console.log("match: ", prevSquare.color);
+//       prevSquare.color = prevMove.color;
+//       console.log("change: ", prevSquare.color);
+//     }else{
+//       curSquare.color = "white";
+//     }
+//     console.log(prevMove);
 
-    moves.splice(moves.length - 1, 1);
-    // check to see if it is the same square, find square at correct row and col, change its color to prevMoves color
-  }
+//     moves.splice(moves.length - 1, 1);
+//     // check to see if it is the same square, find square at correct row and col, change its color to prevMoves color
+//   }else{
+//     if(moves.length > 0){
+//       squares[moves[moves.length - 1].col][moves[moves.length - 1].row].color = "white";
+//     }
+//   }
 
-  for (let i = 0; i < squares.length; i++) {
-    for (let j = 0; j < squares[i].length; j++) {
-      if (!squares[i][j].numIsVisible && !squares[i][j].bordersAreVisible) {
-        squares[i][j].numIsVisible = true;
-        squares[i][j].bordersAreVisible = true;
-      }
-    }
-  }
-  starIsVisible = false;
-}
+//   for (let i = 0; i < squares.length; i++) {
+//     for (let j = 0; j < squares[i].length; j++) {
+//       if (!squares[i][j].numIsVisible && !squares[i][j].bordersAreVisible) {
+//         squares[i][j].numIsVisible = true;
+//         squares[i][j].bordersAreVisible = true;
+//       }
+//     }
+//   }
+//   starIsVisible = false;
+// }
 
 function drawStar() {
   // a bunch of math that i did not come up with to draw a star if the user is finished. Yay!
@@ -323,6 +326,56 @@ function initializeSquares() {
 
     squares.push(row);
   }
+}
+
+function undo() {
+  // allows user to "undo" last move i.e. make the Square the previous color
+
+  if (moves.length > 0) {
+    let curMove = moves[moves.length - 1];
+    let curSquare = squares[curMove.col][curMove.row];
+    if (moves.length > 1) {
+      let prevMove = moves[moves.length - 2];
+      let prevSquare = squares[prevMove.col][prevMove.row];
+      if (prevMove.row == curMove.row && prevMove.col == curMove.col) {
+        console.log("match: ", prevSquare.color);
+        prevSquare.color = prevMove.color;
+        console.log("change: ", prevSquare.color);
+      }
+    }
+  }
+  if (moves.length > 1) {
+    let prevColor;
+
+    console.log(curMove);
+
+    if (prevMove.row == curMove.row && prevMove.col == curMove.col) {
+      console.log("match: ", prevSquare.color);
+      prevSquare.color = prevMove.color;
+      console.log("change: ", prevSquare.color);
+    } else {
+      curSquare.color = "white";
+    }
+    console.log(prevMove);
+
+    moves.splice(moves.length - 1, 1);
+    // check to see if it is the same square, find square at correct row and col, change its color to prevMoves color
+  } else {
+    if (moves.length > 0) {
+      squares[moves[moves.length - 1].col][moves[moves.length - 1].row].color =
+        "white";
+    }
+  }
+
+  for (let i = 0; i < squares.length; i++) {
+    for (let j = 0; j < squares[i].length; j++) {
+      if (!squares[i][j].numIsVisible && !squares[i][j].bordersAreVisible) {
+        squares[i][j].numIsVisible = true;
+        squares[i][j].bordersAreVisible = true;
+      }
+    }
+  }
+  starIsVisible = false;
 }
 
 // function checkCompletion() {
