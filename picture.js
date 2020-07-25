@@ -134,7 +134,8 @@ class Picture {
   }
 
   getFinalArray() {
-    // basically runs all necessary functions within the class to return the array with the color values (AKA what is needed to draw the Squares in the main file)
+    // basically runs all necessary functions within the class to return the array with the color 
+    //      values (i.e. what is needed to draw the Squares in the main file)
     
     this.getBlocks();
     this.initializeColorVals();

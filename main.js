@@ -37,7 +37,7 @@ let curPicture = 0,
   starIsVisible = false;
 
 function preload() {
-  // need to preload image for it to function properly 
+  // need to preload image for it to function properly
   img1 = new Picture(
     "https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909"
   );
@@ -50,7 +50,7 @@ function setup() {
   squares = [];
   moves = [];
 
-  // only want to call getPicArray() once.. some issues if called more than once
+  // only want to call getPicArray() once.. some issues if called more than once. should probably change to a boolean since the actual count doesn't matter
   if (test === 0) {
     picture4 = getPicArray();
     console.log(picture4);
@@ -178,7 +178,6 @@ function resetImage() {
 }
 
 function choosePicture(curPicture, picture4) {
-
   picture1 = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 2, 2, 1, 1, 2, 2, 1, 1],
@@ -240,11 +239,11 @@ function getNewPicture() {
 
 function undo() {
   // allows user to "undo" last move i.e. make the Square white again
-  
-  // TODO: it should not always go back to white. For example, if the user clicked the Square with one color, 
-  //       then clicked the same Square with a different color right after, this function should go make the 
+
+  // TODO: it should not always go back to white. For example, if the user clicked the Square with one color,
+  //       then clicked the same Square with a different color right after, this function should go make the
   //              Square the first color, not white
-  
+
   if (moves.length > 0) {
     let curSquare = moves[moves.length - 1];
     curSquare.color = "white";
@@ -254,8 +253,8 @@ function undo() {
 
 function checkCompletion() {
   // checks if all Squares are filled with a color other than white
-  
-  // TODO: edit this; the user may be finished even if their painting has white in it. 
+
+  // TODO: edit this; the user may be finished even if their painting has white in it.
   //     Could maybe add a button that the user can click when they are finished instead
   let total = 0;
   let target = picture.length * picture[0].length;
