@@ -20,7 +20,7 @@ let squareSize,
   picture3,
   picture4,
   undoButton,
-  starIsVisible = false, img1, testPic1;
+  starIsVisible = false, img1, testPic1, test = 0;
 
 function preload(){
   img1 = new Picture("https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909");
@@ -32,7 +32,14 @@ function setup() {
   image(testPic1, 0, 0, 300, 300);
   squares = [];
   moves = [];
-  picture = choosePicture(curPicture);
+  
+  if(test === 0){
+    picture4 = getPicArray();
+  }
+  
+  test++;
+  
+  picture = choosePicture(curPicture, picture4);
   if (picture === picture3) {
     squareSize = 40;
   } else {
@@ -50,6 +57,8 @@ function setup() {
       squares.push(new Square(j, i, picture[i][j]));
     }
   }
+  
+  
   
   
 }
@@ -142,7 +151,7 @@ function resetImage() {
   setup();
 }
 
-function choosePicture(curPicture) {
+function choosePicture(curPicture, picture4) {
   // loop that increments to change to next picture
 
   //picture1 = [[1, 1], [1, 1]];
@@ -194,9 +203,9 @@ function choosePicture(curPicture) {
   ];
   
   
-  //console.log(picture4);
+  
 
-  picture4 = img1.getFinalArray();
+  //picture4 = img1.getFinalArray();
   picArray = [picture1, picture2, picture3, picture4];
 
   return picArray[curPicture];
@@ -265,4 +274,8 @@ function drawStar() {
     textAlign(CENTER, CENTER);
     text("Nice!", xBuffer, yBuffer);
   }
+}
+
+function getPicArray(){
+  return img1.getFinalArray();
 }
