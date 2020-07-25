@@ -46,7 +46,13 @@ function preload() {
 
 function setup() {
   // dont need the picture to show, but functionality does not work without first placing the image somewhere
-  image(testPic1, 0, 0, 300, 300);
+  
+  
+  canvasHeight = 400;
+  canvasWidth = 400;
+  image(testPic1, 0, 0, 400, 400);
+  createCanvas(canvasWidth, canvasHeight);
+  
   squares = [];
   moves = [];
 
@@ -72,11 +78,11 @@ function setup() {
   // canvasWidth = picture[0].length * squareSize;
   // createCanvas(canvasWidth, canvasHeight);
 
-  canvasHeight = 400;
-  canvasWidth = 400;
-  createCanvas(canvasWidth, canvasHeight);
+  
+  
 
   drawButtonsAndColorPicker();
+  initializeSqur
 
   // initialize squares
   for (let i = 0; i < picture.length; i++) {
