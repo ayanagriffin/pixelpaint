@@ -12,7 +12,7 @@
 /* global createCanvas, colorMode, HSB, background, CENTER, 
   random, width, height, fill, noStroke, textAlign, ellipse, text, mouseX, mouseY, 
   collideCircleCircle, splice, rect, strokeWeight, mouseClicked, RGB, createColorPicker, color, createButton,
-  TWO_PI, beginShape, endShape, vertex, sin, cos, CLOSE, textSize, loadImage, Picture, image, windowWidth, windowHeight*/
+  TWO_PI, beginShape, endShape, vertex, sin, cos, CLOSE, textSize, loadImage, Picture, image, windowWidth, windowHeight, Square */
 
 let squareSize,
   canvasWidth,
@@ -82,50 +82,6 @@ function draw() {
   drawStar();
 }
 
-// a Square is the initially white square with a color number. User can click a particular Square to change its color
-class Square {
-  constructor(row, col, val) {
-    this.row = row;
-    this.col = col;
-    this.x = row * squareSize;
-    this.y = col * squareSize;
-    this.val = val;
-    this.color = "white";
-    this.previousColors = ["white"];
-
-    // if the painting is complete, want to remove the black borders and the numbers so that the user can see their art
-    this.numIsVisible = true;
-    this.bordersAreVisible = true;
-  }
-
-  display() {
-    if (this.bordersAreVisible) {
-      strokeWeight(2);
-    } else {
-      strokeWeight(0);
-    }
-    //strokeWeight(2);
-    fill(this.color);
-    rect(this.x, this.y, squareSize, squareSize);
-
-    if (this.numIsVisible) {
-      fill(0);
-      textAlign(CENTER, CENTER);
-      textSize(12);
-      text(
-        `${this.val}`,
-        this.row * squareSize + squareSize / 2,
-        this.col * squareSize + squareSize / 2
-      );
-    }
-  }
-
-  paint() {
-    // fill the Square based on the color the user has picked
-    this.color = colorPicker.value();
-    this.previousColors.push(this.color);
-  }
-}
 
 function mouseClicked() {
   // detects which Square the user clicked on to fill the appropriate one
@@ -286,7 +242,7 @@ function initializeSquares() {
   for (let i = 0; i < picture.length; i++) {
     let row = [];
     for (let j = 0; j < picture[i].length; j++) {
-      row.push(new Square(j, i, picture[i][j]));
+      row.push(new Square(j, i, picture[i][j], squareSize, colorPicker));
     }
 
     squares.push(row);
