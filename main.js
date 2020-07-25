@@ -50,10 +50,11 @@ function setup() {
   squares = [];
   moves = [];
 
-  // only want to call getPicArray() once.. some issues if called more than once. should probably change to a boolean since the actual count doesn't matter
+  // only want to call getPicArray() once.. some issues if called more than once. 
+  // should probably change 'test' to a boolean since the actual count doesn't matter... and rename it xD
   if (test === 0) {
-    picture4 = getPicArray();
-    console.log(picture4);
+    picture4 = img1.getFinalArray();
+    console.log(picture4); // does not give the expected output. check picture.tester to 
   }
 
   test++;
@@ -307,6 +308,6 @@ function drawStar() {
   }
 }
 
-function getPicArray() {
-  return img1.getFinalArray();
-}
+// function getPicArray() {
+//   return img1.getFinalArray();
+// }
