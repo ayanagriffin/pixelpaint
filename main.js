@@ -6,7 +6,8 @@
  GOALS/TODO: 
              refactor things in comments
              load multiple images
-             allow the user to upload image */
+             allow the user to upload image
+             */
 
 /* global createCanvas, colorMode, HSB, background, CENTER, 
   random, width, height, fill, noStroke, textAlign, ellipse, text, mouseX, mouseY, 
@@ -31,7 +32,7 @@ let squareSize,
   img1,
   testPic1;
 
-let curPicture = 0,
+let curPictureNum = 0,
   test = 0,
   colorPickerAndButtonsAreVisible = false,
   starIsVisible = false, 
@@ -48,39 +49,37 @@ function preload() {
 function setup() {
   // dont need the picture to show, but functionality does not work without first placing the image somewhere
   
-  canvasHeight = 400;
-  canvasWidth = 400;
+  
+  // canvasHeight = picture.length * squareSize + squareSize;
+  // canvasWidth = picture[0].length * squareSize;
+  // createCanvas(canvasWidth, canvasHeight);
+  
+  canvasHeight = 600;
+  canvasWidth = 600;
   createCanvas(canvasWidth, canvasHeight);
-  image(testPic1, 0, 0, 400, 400);
+  image(testPic1, 0, 0, 600, 600);
   
   
   squares = [];
   moves = [];
 
   // only want to call getPicArray() once.. some issues if called more than once. 
-  // should probably change 'test' to a boolean since the actual count doesn't matter... and rename it xD
-  if (!) {
+  if (!imgLoaded) {
     picture4 = img1.getFinalArray();
-    console.log(picture4); // does not give the expected output. check picture.tester to see expected array for penguin picture
+    console.log(picture4); 
+    imgLoaded = true;
   }
 
-  test++;
-
-  picture = choosePicture(curPicture, picture4);
+  picture = choosePicture(curPictureNum, picture4);
 
   // TODO: change later to refactor size of each square based on the size of the image, then the canvas size based off of the square size
-  if (picture === picture3) {
-    squareSize = 20;
-  } else {
-    squareSize = 20;
-  }
-
-  // canvasHeight = picture.length * squareSize + squareSize;
-  // canvasWidth = picture[0].length * squareSize;
-  // createCanvas(canvasWidth, canvasHeight);
-
+  // if (picture === picture3) {
+  //   squareSize = 20;
+  // } else {
+  //   squareSize = 20;
+  // }
   
-  
+  squareSize = picture.length * 5;
 
   drawButtonsAndColorPicker();
   initializeSquares();
@@ -179,7 +178,7 @@ function resetImage() {
   setup();
 }
 
-function choosePicture(curPicture, picture4) {
+function choosePicture(curPictureNum, picture4) {
   // i made these by hand oof
   
   
@@ -234,14 +233,15 @@ function choosePicture(curPicture, picture4) {
 
   //picture4 = img1.getFinalArray(); did not work, needed to set picture4 in setup()
   picArray = [picture1, picture2, picture3, picture4];
+  
 
-  return picArray[curPicture];
+  return picArray[curPictureNum];
 }
 
 function getNewPicture() {
   // increments to change to next picture, will loop back around
-  curPicture++;
-  curPicture %= picArray.length;
+  curPictureNum++;
+  curPictureNum %= picArray.length;
   setup();
 }
 

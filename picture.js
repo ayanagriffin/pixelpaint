@@ -6,8 +6,8 @@ class Picture {
     //this.img = loadImage(this.imgLink); (add in future when dealing with multiple images)
     this.numRows = 20; // will need to come up with formula to refactor
     this.numCols = 20;
-    this.imgW = 400;
-    this.imgH = 400;
+    this.imgW = 600;
+    this.imgH = 600;
     this.blockW = this.imgW / this.numRows;
     this.blockH = this.imgH / this.numCols;
     this.blocks = [];
