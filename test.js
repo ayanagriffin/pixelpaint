@@ -41,9 +41,11 @@ function setup() {
   
   picture = choosePicture(curPicture, picture4);
   if (picture === picture3) {
-    squareSize = 40;
-  } else {
-    squareSize = 60;
+    squareSize = 0;
+  } else if (picture === picture4){
+    squareSize = 30;
+  }else{
+    squareSize = 50;
   }
 
   canvasHeight = picture.length * squareSize + squareSize;
