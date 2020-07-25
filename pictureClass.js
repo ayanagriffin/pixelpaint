@@ -2,45 +2,41 @@
 // TODO: combine!
 let img, testPic, allFinalArrays = [], done = false;
 
-function preload(){
-  img = new Picture("https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909");
-  testPic = loadImage(img.imgLink);
-}
+// function preload(){
+//   img = new Picture("https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909");
+//   testPic = loadImage(img.imgLink);
+// }
 
-function setup(){
+// function setup(){
 
-  createCanvas(400,400);
-  image(testPic, 0, 0, 300, 300);
-  //img.getFinalArray();
-  console.log(img.getFinalArray());
- // allFinalArrays.push(img.getFinalArray());
+//   createCanvas(400,400);
+//   image(testPic, 0, 0, 300, 300);
+//   //img.getFinalArray();
+//   console.log(img.getFinalArray());
+//  // allFinalArrays.push(img.getFinalArray());
   
   
-}
+// }
 
-function draw(){
-  //image(testPic, 0, 0, 300, 300);
+// function draw(){
+//   //image(testPic, 0, 0, 300, 300);
   
-  // if(!done){
-  //   image(testPic, 0, 0, 300, 300);
-  //   allFinalArrays.push(img.getFinalArray());
-  // }else{
-  //   done = true;
-  // }
-  //allFinalArrays.push(img.getFinalArray());
-  for(let i = 0; i < img.blocks.length; i ++){
-    for(let j = 0; j < img.blocks[i].length; j++){
-      img.blocks[j][i]
-    }
-  }
-}
+//   // if(!done){
+//   //   image(testPic, 0, 0, 300, 300);
+//   //   allFinalArrays.push(img.getFinalArray());
+//   // }else{
+//   //   done = true;
+//   // }
+//   //allFinalArrays.push(img.getFinalArray());
+  
+// }
 
 class Picture {
   constructor(imgLink) {
     this.imgLink = imgLink;
     //this.img = loadImage(this.imgLink);
-    this.numRows = 10;
-    this.numCols = 10;
+    this.numRows = 20;
+    this.numCols = 20;
     this.imgW = 300;
     this.imgH = 300;
     this.blockW = this.imgW / this.numRows;
