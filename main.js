@@ -36,6 +36,7 @@ let squareSize,
 let curPictureNum = 0,
   test = 0,
   colorPickerAndButtonsAreVisible = false,
+  isFinished = false,
   starIsVisible,
   imgLoaded = false;
 
@@ -166,8 +167,10 @@ function undo() {
     }
   }
   
+  if(isFinished){
+    undoFinish();
+  }
   
-  undoFinish();
   
   
 }
@@ -176,14 +179,14 @@ function undoFinish(){
   
   for (let i = 0; i < squares.length; i++) {
     for (let j = 0; j < squares[i].length; j++) {
-      console.log("undoFinish");
       if (!squares[i][j].numIsVisible && !squares[i][j].bordersAreVisible) {
         squares[i][j].numIsVisible = true;
         squares[i][j].bordersAreVisible = true;
-        //console.log('undo');
+        console.log('yay');
       }
     }
   }
+  isFinished = false;
   starIsVisible = false;
   
 }
@@ -211,6 +214,7 @@ function finishPainting() {
     }
   }
   starIsVisible = true;
+  isFinished = true;
 }
 
 
