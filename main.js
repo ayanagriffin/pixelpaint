@@ -11,7 +11,8 @@
 /* global createCanvas, colorMode, HSB, background, CENTER, 
   random, width, height, fill, noStroke, textAlign, ellipse, text, mouseX, mouseY, 
   collideCircleCircle, splice, rect, strokeWeight, mouseClicked, RGB, createColorPicker, color, createButton,
-  TWO_PI, beginShape, endShape, vertex, sin, cos, CLOSE, textSize, loadImage, Picture, image, windowWidth, windowHeight, Square, getPictureArray */
+  TWO_PI, beginShape, endShape, vertex, sin, cos, CLOSE, textSize, loadImage, Picture, image, windowWidth, windowHeight, 
+    Square, getPictureArray, drawStar */
 
 let squareSize,
   canvasWidth,
@@ -35,7 +36,7 @@ let squareSize,
 let curPictureNum = 0,
   test = 0,
   colorPickerAndButtonsAreVisible = false,
-  starIsVisible = false,
+  starIsVisible,
   imgLoaded = false;
 
 function preload() {
@@ -48,7 +49,7 @@ function preload() {
 
 function setup() {
   // dont need the picture to show, but functionality does not work without first placing the image somewhere
-
+  starIsVisible = false;
   canvasHeight = 600;
   canvasWidth = 600;
   createCanvas(windowWidth * 0.9, windowHeight * 0.9);
@@ -79,7 +80,7 @@ function draw() {
       squares[i][j].display();
     }
   }
-  drawStar();
+  drawStar(starIsVisible);
 }
 
 
@@ -199,39 +200,10 @@ function finishPainting() {
     for (let j = 0; j < squares.length[i]; j++) {
       squares[i][j].numIsVisible = false;
       squares[i][j].bordersAreVisible = false;
+      console.log("go away");
     }
   }
   starIsVisible = true;
 }
-
-
-
-function drawStar() {
-  // a bunch of math that i did not come up with to draw a star if the user is finished. Yay!
-  if (starIsVisible) {
-    let starSize = height / 20;
-    let angle = TWO_PI / 5;
-    let halfAngle = angle / 2;
-    let xBuffer = width * 0.85;
-    let yBuffer = height * 0.15;
-    fill("gold");
-    beginShape();
-    for (let i = 0; i < TWO_PI; i += angle) {
-      let x = xBuffer + cos(i) * starSize;
-      let y = yBuffer + sin(i) * starSize;
-      vertex(x, y);
-      x = xBuffer + cos(i + halfAngle) * ((starSize * 7) / 3);
-      y = yBuffer + sin(i + halfAngle) * ((starSize * 7) / 3);
-      vertex(x, y);
-    }
-
-    endShape(CLOSE);
-    fill("black");
-    textSize(height / 25);
-    textAlign(CENTER, CENTER);
-    text("Nice!", xBuffer, yBuffer);
-  }
-}
-
 
 
