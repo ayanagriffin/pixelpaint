@@ -15,6 +15,7 @@ class Picture {
     this.finalColors = [];
     this.numColors = 0;
     this.cushion = 100; //maybe the user can determine the cushion, numRows, and numCols later
+    // this.cushion represents how close the colors can be in RGB values to be grouped together as one color. Smaller cushion = more total colors
 
   }
   
