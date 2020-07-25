@@ -241,29 +241,30 @@ function getNewPicture() {
 
 function undo() {
   // allows user to "undo" last move i.e. make the Square the previous color
-
+  let prevColor;
   if (moves.length > 0) {
     let curSquare = moves[moves.length - 1];
     
     if(moves.length > 1 && curSquare === moves[moves.length - 2]){
       console.log("same");
       let prevSquare = moves[moves.length - 2];
-      let prevColor = prevSquare.color;
-      curSquare.color = prevColor;
+      console.log(prevSquare.color);
+      prevColor = prevSquare.color;
     }else{
-      curSquare.color = "white";
+      prevColor = "white";
     }
     
+    curSquare.color = prevColor;
     moves.splice(moves.length - 1, 1);
   }
 
-  for (let i = 0; i < squares.length; i++) {
-    if (!squares[i].numIsVisible && !squares[i].bordersAreVisible) {
-      squares[i].numIsVisible = true;
-      squares[i].bordersAreVisible = true;
-    }
-  }
-  starIsVisible = false;
+  // for (let i = 0; i < squares.length; i++) {
+  //   if (!squares[i].numIsVisible && !squares[i].bordersAreVisible) {
+  //     squares[i].numIsVisible = true;
+  //     squares[i].bordersAreVisible = true;
+  //   }
+  // }
+  // starIsVisible = false;
 }
 
 function drawStar() {
