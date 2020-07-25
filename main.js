@@ -133,7 +133,12 @@ function mouseClicked() {
       (curSquare.y + squareSize > mouseY && mouseY > curSquare.y)
     ) {
       curSquare.paint();
-      moves.push([curSquare.row, curSquare.col, curSquare.color]);
+      let curSquareInfo = {"row": curSquare.row,
+                           "col": curSquare.col,
+                           "color": curSquare.color
+        
+      }
+      moves.push(curSquareInfo);
       console.log(moves); // paint moves instead of squares?
     }
   }
@@ -246,10 +251,11 @@ function undo() {
   if(moves.length > 0){
     let prevColor;
     let curMove = moves[moves.length - 1];
-    console.log(curMove);
+    //console.log(curMove);
     if(moves.length > 1){
       let prevMove = moves[moves.length - 2];
-      console.log(prevMove);
+      //console.log(prevMove);
+      
       
     }
     // check to see if it is the same square, find square at correct row and col, change its color to prevMoves color
