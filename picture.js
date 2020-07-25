@@ -3,8 +3,8 @@
 class Picture {
   constructor(imgLink) {
     this.imgLink = imgLink;
-    //this.img = loadImage(this.imgLink);
-    this.numRows = 20;
+    //this.img = loadImage(this.imgLink); (add in future when dealing with multiple images)
+    this.numRows = 20; // will need to come up with formula to refactor
     this.numCols = 20;
     this.imgW = 400;
     this.imgH = 400;
@@ -14,12 +14,13 @@ class Picture {
     this.colorVals = [];
     this.finalColors = [];
     this.numColors = 0;
-    this.cushion = 100;
+    this.cushion = 100; //maybe the user can determine the cushion, numRows, and numCols later
 
   }
   
 
   getBlocks() {
+    // creates 2D array of each block of the image -- diving the image into rows and cols
     for (let i = 0; i < this.numRows; i++) {
       let row = [];
       for (let j = 0; j < this.numCols; j++) {
@@ -30,6 +31,7 @@ class Picture {
   }
 
   initializeColorVals() {
+    // initializes 2D array that will hold the final color values later
     for (let i = 0; i < this.blocks.length; i++) {
       let row = [];
       for (let j = 0; j < this.blocks[i].length; j++) {
@@ -40,6 +42,8 @@ class Picture {
   }
 
   findBlockColors() {
+    // this, refactorColors(), and findMatches() find similar colors within the image blocks that will be grouped together to simplify the image
+    // they also fill the colorVals array with the number associated with each color group
     for (let i = 0; i < this.blocks.length; i++) {
       for (let j = 0; j < this.blocks[i].length; j++) {
         
@@ -55,6 +59,7 @@ class Picture {
   }
 
   refactorColors() {
+    
     for (let i = 0; i < this.blocks.length; i++) {
       for (let j = 0; j < this.blocks[i].length; j++) {
         
@@ -129,6 +134,7 @@ class Picture {
   }
 
   getFinalArray() {
+    // basically runs all necessary functions within the class to return the array with the color values (AKA what is needed to draw the Squares in the main file)
     
     this.getBlocks();
     this.initializeColorVals();
@@ -190,6 +196,7 @@ class Block {
     
   }
   draw() {
+    // only here for testing/debugging purposes.. will not actually draw colored blocks in final product
     noStroke();
     //console.log(this.finalColor);
     fill(this.finalColor);

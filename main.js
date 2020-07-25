@@ -173,7 +173,6 @@ function resetImage() {
 }
 
 function choosePicture(curPicture, picture4) {
-  //picture1 = [[1, 1], [1, 1]];
 
   picture1 = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
