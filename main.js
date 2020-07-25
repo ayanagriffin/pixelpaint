@@ -25,6 +25,7 @@ let squareSize,
   colorPicker,
   restartButton,
   newPictureButton,
+  finishedButton,
   moves,
   picture3,
   picture4,
@@ -35,7 +36,7 @@ let squareSize,
 let curPictureNum = 0,
   test = 0,
   colorPickerAndButtonsAreVisible = false,
-  starIsVisible = false, 
+  starIsVisible = false,
   imgLoaded = false;
 
 function preload() {
@@ -48,33 +49,31 @@ function preload() {
 
 function setup() {
   // dont need the picture to show, but functionality does not work without first placing the image somewhere
-  
+
   canvasHeight = 600;
   canvasWidth = 600;
-  createCanvas(windowWidth * .9, windowHeight * .9);
+  createCanvas(windowWidth * 0.9, windowHeight * 0.9);
   image(testPic1, 0, 0, 600, 600);
-  
-  
+
   squares = [];
   moves = [];
 
-  // only want to call getPicArray() once.. some issues if called more than once. 
+  // only want to call getPicArray() once.. some issues if called more than once.
   if (!imgLoaded) {
     picture4 = img1.getFinalArray();
-    console.log(picture4); 
+    console.log(picture4);
     imgLoaded = true;
   }
 
   picture = choosePicture(curPictureNum, picture4);
-  squareSize = (windowHeight * .75) / picture.length ;
+  squareSize = (windowHeight * 0.75) / picture.length;
   drawButtonsAndColorPicker();
   initializeSquares();
-  
 }
 
 function draw() {
   background(240);
-  checkCompletion();
+  
   for (let i = 0; i < squares.length; i++) {
     squares[i].display();
   }
@@ -91,7 +90,7 @@ class Square {
     this.val = val;
     this.color = "white";
 
-    // if the painting is complete, want to remove the black borders and the numbers so that the user can see their beautiful art!
+    // if the painting is complete, want to remove the black borders and the numbers so that the user can see their art
     this.numIsVisible = true;
     this.bordersAreVisible = true;
   }
@@ -152,22 +151,32 @@ function drawButtonsAndColorPicker() {
 
     undoButton = createButton("Undo");
     undoButton.mousePressed(undo);
+
+    finishedButton = createButton("I'm done!");
+    finishedButton.mousePressed(finishPainting);
   }
 
-  colorPicker.position(width * .9, height * .995);
-  restartButton.position((width * 2) / 3, height);
-  newPictureButton.position((width * 1) / 3, height);
-  undoButton.position(width * .1, height);
+  colorPicker.position(width * 1 / 10, height * 0.995);
+  restartButton.position(width * 5 / 10 , height);
+  newPictureButton.position((width * 3) / 10, height);
+  undoButton.position(width * 9 / 10, height);
+  finishedButton.position(width * 7 / 10, height);
 }
 
 function resetImage() {
   setup();
 }
 
+function finishPainting() {
+  for (let i = 0; i < squares.length; i++) {
+    squares[i].numIsVisible = false;
+    squares[i].bordersAreVisible = false;
+  }
+  starIsVisible = true;
+}
 function choosePicture(curPictureNum, picture4) {
   // i made these by hand oof
-  
-  
+
   // heart, length = 9
   picture1 = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -219,7 +228,6 @@ function choosePicture(curPictureNum, picture4) {
 
   //picture4 = img1.getFinalArray(); did not work, needed to set picture4 in setup()
   picArray = [picture1, picture2, picture3, picture4];
-  
 
   return picArray[curPictureNum];
 }
@@ -243,36 +251,17 @@ function undo() {
     curSquare.color = "white";
     moves.splice(moves.length - 1, 1);
   }
-}
-
-function checkCompletion() {
-  // checks if all Squares are filled with a color other than white
-
-  // TODO: edit this; the user may be finished even if their painting has white in it.
-  //     Could maybe add a button that the user can click when they are finished instead
-  let total = 0;
-  let target = picture.length * picture[0].length;
 
   for (let i = 0; i < squares.length; i++) {
-    if (squares[i].color != "white") {
-      total++;
-    }
-  }
-
-  if (total === target) {
-    for (let i = 0; i < squares.length; i++) {
-      squares[i].numIsVisible = false;
-      squares[i].bordersAreVisible = false;
-    }
-    starIsVisible = true;
-  } else {
-    for (let i = 0; i < squares.length; i++) {
+    if (!squares[i].numIsVisible && !squares[i].bordersAreVisible) {
       squares[i].numIsVisible = true;
       squares[i].bordersAreVisible = true;
     }
-    starIsVisible = false;
   }
+  starIsVisible = false;
 }
+
+
 
 function drawStar() {
   // a bunch of math that i did not come up with to draw a star if the user is finished. Yay!
@@ -301,10 +290,41 @@ function drawStar() {
   }
 }
 
-function initializeSquares(){
+function initializeSquares() {
   for (let i = 0; i < picture.length; i++) {
     for (let j = 0; j < picture[i].length; j++) {
       squares.push(new Square(j, i, picture[i][j]));
     }
   }
 }
+
+
+
+// function checkCompletion() {
+//   // checks if all Squares are filled with a color other than white
+
+//   // TODO: edit this; the user may be finished even if their painting has white in it.
+//   //     Could maybe add a button that the user can click when they are finished instead
+//   let total = 0;
+//   let target = picture.length * picture[0].length;
+
+//   for (let i = 0; i < squares.length; i++) {
+//     if (squares[i].color != "white") {
+//       total++;
+//     }
+//   }
+
+//   if (total === target) {
+//     for (let i = 0; i < squares.length; i++) {
+//       squares[i].numIsVisible = false;
+//       squares[i].bordersAreVisible = false;
+//     }
+//     starIsVisible = true;
+//   } else {
+//     for (let i = 0; i < squares.length; i++) {
+//       squares[i].numIsVisible = true;
+//       squares[i].bordersAreVisible = true;
+//     }
+//     starIsVisible = false;
+//   }
+// }
