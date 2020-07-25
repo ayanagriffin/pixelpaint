@@ -123,6 +123,7 @@ class Square {
   paint() {
     // fill the Square based on the color the user has picked
     this.color = colorPicker.value();
+    this.previousColors.push(this.color);
   }
 }
 
@@ -143,7 +144,7 @@ function mouseClicked() {
           color: curSquare.color
         };
         moves.push(curSquareInfo);
-        console.log(moves); // paint moves instead of squares?
+       // console.log(moves); // paint moves instead of squares?
       }
     }
   }
@@ -296,26 +297,39 @@ function undo() {
   // allows user to "undo" last move i.e. make the Square the previous color
   // separate array for all previous colors of the specific square -- access array, get previous color and splice the last one
 
-  if (moves.length > 0) {
-    let curMove = moves[moves.length - 1];
-    let curSquare = squares[curMove.col][curMove.row];
-    if (moves.length > 1) {
-      let prevMove = moves[moves.length - 2];
-      let prevSquare = squares[prevMove.col][prevMove.row];
-      if (prevMove.row == curMove.row && prevMove.col == curMove.col) {
-        console.log("match: ", prevSquare.color);
-        prevSquare.color = prevMove.color;
-        console.log("change: ", prevSquare.color);
-      }
-    }else{
-      curSquare.color = "white";
+  // if (moves.length > 0) {
+  //   let curMove = moves[moves.length - 1];
+  //   let curSquare = squares[curMove.col][curMove.row];
+  //   if (moves.length > 1) {
+  //     let prevMove = moves[moves.length - 2];
+  //     let prevSquare = squares[prevMove.col][prevMove.row];
+  //     if (prevMove.row == curMove.row && prevMove.col == curMove.col) {
+  //       console.log("match: ", prevSquare.color);
+  //       prevSquare.color = prevMove.color;
+  //       console.log("change: ", prevSquare.color);
+  //     }
+  //   }else{
+  //     curSquare.color = "white";
+  //   }
+  // }
+  
+  if(moves.length > 0){
+    let mostRecentMove = moves[moves.length - 1];
+    let curSquare = squares[mostRecentMove.col][mostRecentMove.row];
+    
+    if(curSquare.previousColors.length > 1){
+      curSquare.color = curSquare.previousColors[curSquare.previousColors.length - 2];
+      curSquare.previousColors.splice()
     }
   }
   
   
+  undoFinish();
   
   
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+}
+
+function undoFinish(){
   
   for (let i = 0; i < squares.length; i++) {
     for (let j = 0; j < squares[i].length; j++) {
@@ -326,5 +340,5 @@ function undo() {
     }
   }
   starIsVisible = false;
+  
 }
-
