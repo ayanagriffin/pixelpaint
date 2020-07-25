@@ -46,8 +46,8 @@ class Picture {
     //this.img = loadImage(this.imgLink);
     this.numRows = 20;
     this.numCols = 20;
-    this.imgW = 300;
-    this.imgH = 300;
+    this.imgW = 400;
+    this.imgH = 400;
     this.blockW = this.imgW / this.numRows;
     this.blockH = this.imgH / this.numCols;
     this.blocks = [];

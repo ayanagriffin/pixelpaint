@@ -1,35 +1,4 @@
 /*global createCanvas, colorMode, HSB, background, image, loadImage, get, abs, fill, rect, RGB, noStroke*/
-// TODO: combine!
-let img, testPic, allFinalArrays = [], done = false;
-
-// function preload(){
-//   img = new Picture("https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909");
-//   testPic = loadImage(img.imgLink);
-// }
-
-// function setup(){
-
-//   createCanvas(400,400);
-//   image(testPic, 0, 0, 300, 300);
-//   //img.getFinalArray();
-//   console.log(img.getFinalArray());
-//  // allFinalArrays.push(img.getFinalArray());
-  
-  
-// }
-
-// function draw(){
-//   //image(testPic, 0, 0, 300, 300);
-  
-//   // if(!done){
-//   //   image(testPic, 0, 0, 300, 300);
-//   //   allFinalArrays.push(img.getFinalArray());
-//   // }else{
-//   //   done = true;
-//   // }
-//   //allFinalArrays.push(img.getFinalArray());
-  
-// }
 
 class Picture {
   constructor(imgLink) {
@@ -37,8 +6,8 @@ class Picture {
     //this.img = loadImage(this.imgLink);
     this.numRows = 20;
     this.numCols = 20;
-    this.imgW = 300;
-    this.imgH = 300;
+    this.imgW = 400;
+    this.imgH = 400;
     this.blockW = this.imgW / this.numRows;
     this.blockH = this.imgH / this.numCols;
     this.blocks = [];
@@ -111,9 +80,9 @@ class Picture {
           
 
           if (
-            abs(testBlock.finalR - curBlock.finalR) < this.cushion &&
-            abs(testBlock.finalG - curBlock.finalG) < this.cushion &&
-            abs(testBlock.finalB - curBlock.finalB) < this.cushion
+            abs(testBlock.averageR - curBlock.averageR) < this.cushion &&
+            abs(testBlock.averageG - curBlock.averageG) < this.cushion &&
+            abs(testBlock.averageB - curBlock.averageB) < this.cushion
           ) {
             matches.push(curBlock);
         
@@ -139,9 +108,9 @@ class Picture {
 
       for (let i = 0; i < matches.length; i++) {
         let curBlock = matches[i];
-        totalR += curBlock.finalR;
-        totalG += curBlock.finalG;
-        totalB += curBlock.finalB;
+        totalR += curBlock.averageR;
+        totalG += curBlock.averageG;
+        totalB += curBlock.averageB;
       }
 
       let finalR = totalR / matches.length;
@@ -149,10 +118,12 @@ class Picture {
       let finalB = totalB / matches.length;
 
       let finalColor = [finalR, finalG, finalB];
+      //console.log(finalColor);
 
       for (let i = 0; i < matches.length; i++) {
         let curBlock = matches[i];
         curBlock.finalColor = finalColor;
+        //console.log(finalColor, curBlock.finalColor);
       }
     
   }
@@ -179,9 +150,10 @@ class Block {
     this.totalR = 0;
     this.totalG = 0;
     this.totalB = 0;
-    this.finalR = 0;
-    this.finalG = 0;
-    this.finalB = 0;
+    this.averageR = 0;
+    this.averageG = 0;
+    this.averageB = 0;
+    this.averageColor = [];
     this.finalColor = [];
     this.colors = [];
   }
@@ -209,19 +181,19 @@ class Block {
       totalB += this.colors[i][2];
     }
 
-    this.finalR = totalR / this.colors.length;
-    this.finalG = totalG / this.colors.length;
-    this.finalB = totalB / this.colors.length;
+    this.averageR = totalR / this.colors.length;
+    this.averageG = totalG / this.colors.length;
+    this.averageB = totalB / this.colors.length;
 
-    this.finalColor = [this.finalR, this.finalG, this.finalB];
+    this.averageColor = [this.averageR, this.averageG, this.averageB];
 
     
   }
   draw() {
     noStroke();
+    //console.log(this.finalColor);
     fill(this.finalColor);
 
     rect(this.startingX, this.startingY, this.width, this.height);
   }
 }
-
