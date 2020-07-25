@@ -3,8 +3,7 @@
           and play around with colors to discover their image.
 
 
- GOALS/TODO: 
-             refactor things in comments
+ GOALS/TODO:
              load multiple images
              allow the user to upload image
              */
@@ -31,7 +30,7 @@ let squareSize,
   picture4,
   undoButton,
   penguinPicture,
-  testPic1;
+  pictureHolder;
 
 let curPictureNum = 0,
   test = 0,
@@ -44,7 +43,7 @@ function preload() {
   penguinPicture = new Picture(
     "https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909"
   );
-  testPic1 = loadImage(penguinPicture.imgLink);
+  pictureHolder = loadImage(penguinPicture.imgLink);
 }
 
 function setup() {
@@ -53,13 +52,13 @@ function setup() {
   canvasHeight = 600;
   canvasWidth = 600;
   createCanvas(windowWidth * 0.9, windowHeight * 0.9);
-  image(testPic1, 0, 0, 600, 600);
+  image(pictureHolder, 0, 0, 600, 600);
 
   squares = [];
   moves = [];
 
   picture = choosePicture(curPictureNum);
-  // only want to call getPicArray() and put the picture into the array once.. some issues if called more than once.
+  // only want to call getPicArray() and put the picture into the array once
   if (!imgLoaded) {
     picture4 = penguinPicture.getFinalArray();
     console.log(picture4);
@@ -101,7 +100,6 @@ function mouseClicked() {
           color: curSquare.color
         };
         moves.push(curSquareInfo);
-       // console.log(moves); // paint moves instead of squares?
       }
     }
   }
@@ -132,63 +130,9 @@ function drawButtonsAndColorPicker() {
   colorPicker.position((width * 9) / 10, height * 0.995);
 }
 
-function resetImage() {
-  setup();
-}
-
-function finishPainting() {
-  for (let i = 0; i < squares.length; i++) {
-    for (let j = 0; j < squares.length[i]; j++) {
-      squares[i][j].numIsVisible = false;
-      squares[i][j].bordersAreVisible = false;
-    }
-  }
-  starIsVisible = true;
-}
 function choosePicture(curPictureNum) {
-
-  //picture4 = penguinPicture.getFinalArray(); did not work, needed to set picture4 in setup()
   picArray = getPictureArray();
-  
-
   return picArray[curPictureNum];
-}
-
-function getNewPicture() {
-  // increments to change to next picture, will loop back around
-  curPictureNum++;
-  console.log(curPictureNum, picArray.length);
-  curPictureNum %= picArray.length;
-  setup();
-}
-
-
-
-function drawStar() {
-  // a bunch of math that i did not come up with to draw a star if the user is finished. Yay!
-  if (starIsVisible) {
-    let starSize = height / 20;
-    let angle = TWO_PI / 5;
-    let halfAngle = angle / 2;
-    let xBuffer = width * 0.85;
-    let yBuffer = height * 0.15;
-    fill("gold");
-    beginShape();
-    for (let i = 0; i < TWO_PI; i += angle) {
-      let x = xBuffer + cos(i) * starSize;
-      let y = yBuffer + sin(i) * starSize;
-      vertex(x, y);
-      x = xBuffer + cos(i + halfAngle) * ((starSize * 7) / 3);
-      y = yBuffer + sin(i + halfAngle) * ((starSize * 7) / 3);
-      vertex(x, y);
-    }
-
-    endShape(CLOSE);
-    fill("black");
-    textSize(height / 25);
-    textAlign(CENTER, CENTER);
-    text("Nice!", xBuffer, yBuffer);
-  }
 }
 
 function initializeSquares() {
@@ -202,9 +146,9 @@ function initializeSquares() {
   }
 }
 
+
 function undo() {
   // allows user to "undo" last move i.e. make the Square the previous color
-  // separate array for all previous colors of the specific square -- access array, get previous color and splice the last one
   
   if(moves.length > 0){
     let mostRecentMove = moves[moves.length - 1];
@@ -236,3 +180,58 @@ function undoFinish(){
   starIsVisible = false;
   
 }
+
+function getNewPicture() {
+  // increments to change to next picture, will loop back around
+  curPictureNum++;
+  console.log(curPictureNum, picArray.length);
+  curPictureNum %= picArray.length;
+  setup();
+}
+
+function resetImage() {
+  setup();
+}
+
+
+function finishPainting() {
+  for (let i = 0; i < squares.length; i++) {
+    for (let j = 0; j < squares.length[i]; j++) {
+      squares[i][j].numIsVisible = false;
+      squares[i][j].bordersAreVisible = false;
+    }
+  }
+  starIsVisible = true;
+}
+
+
+
+function drawStar() {
+  // a bunch of math that i did not come up with to draw a star if the user is finished. Yay!
+  if (starIsVisible) {
+    let starSize = height / 20;
+    let angle = TWO_PI / 5;
+    let halfAngle = angle / 2;
+    let xBuffer = width * 0.85;
+    let yBuffer = height * 0.15;
+    fill("gold");
+    beginShape();
+    for (let i = 0; i < TWO_PI; i += angle) {
+      let x = xBuffer + cos(i) * starSize;
+      let y = yBuffer + sin(i) * starSize;
+      vertex(x, y);
+      x = xBuffer + cos(i + halfAngle) * ((starSize * 7) / 3);
+      y = yBuffer + sin(i + halfAngle) * ((starSize * 7) / 3);
+      vertex(x, y);
+    }
+
+    endShape(CLOSE);
+    fill("black");
+    textSize(height / 25);
+    textAlign(CENTER, CENTER);
+    text("Nice!", xBuffer, yBuffer);
+  }
+}
+
+
+
