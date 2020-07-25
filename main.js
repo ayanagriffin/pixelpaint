@@ -251,10 +251,14 @@ function undo() {
   if(moves.length > 0){
     let prevColor;
     let curMove = moves[moves.length - 1];
-    //console.log(curMove);
+    console.log(curMove);
     if(moves.length > 1){
       let prevMove = moves[moves.length - 2];
-      //console.log(prevMove);
+      if(prevMove.row == curMove.row && prevMove.col == curMove.col){
+        console.log("match");
+        
+      }
+      console.log(prevMove);
       
       
     }
@@ -298,6 +302,7 @@ function drawStar() {
 }
 
 function initializeSquares() {
+  
   for (let i = 0; i < picture.length; i++) {
     for (let j = 0; j < picture[i].length; j++) {
       squares.push(new Square(j, i, picture[i][j]));
