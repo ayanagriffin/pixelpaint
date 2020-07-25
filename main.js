@@ -133,7 +133,8 @@ function mouseClicked() {
       (curSquare.y + squareSize > mouseY && mouseY > curSquare.y)
     ) {
       curSquare.paint();
-      moves.push(curSquare);
+      moves.push([curSquare.row, curSquare.col, curSquare.color]);
+      console.log(moves); // paint moves instead of squares?
     }
   }
 }
@@ -241,30 +242,23 @@ function getNewPicture() {
 
 function undo() {
   // allows user to "undo" last move i.e. make the Square the previous color
-  let prevColor;
-  if (moves.length > 0) {
-    let curSquare = moves[moves.length - 1];
-    
-    if(moves.length > 1 && curSquare === moves[moves.length - 2]){
-      console.log("same");
-      let prevSquare = moves[moves.length - 2];
-      console.log(prevSquare.color);
-      prevColor = prevSquare.color;
-    }else{
-      prevColor = "white";
+  
+  if(moves.length > 0){
+    let prevColor;
+    if(moves.length > 1){
+      let prevMove = moves[moves.length - 2];
+      console.log(prevMove);
+      
     }
-    
-    curSquare.color = prevColor;
-    moves.splice(moves.length - 1, 1);
   }
-
-  // for (let i = 0; i < squares.length; i++) {
-  //   if (!squares[i].numIsVisible && !squares[i].bordersAreVisible) {
-  //     squares[i].numIsVisible = true;
-  //     squares[i].bordersAreVisible = true;
-  //   }
-  // }
-  // starIsVisible = false;
+  
+  for (let i = 0; i < squares.length; i++) {
+    if (!squares[i].numIsVisible && !squares[i].bordersAreVisible) {
+      squares[i].numIsVisible = true;
+      squares[i].bordersAreVisible = true;
+    }
+  }
+  starIsVisible = false;
 }
 
 function drawStar() {
