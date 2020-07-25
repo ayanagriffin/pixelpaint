@@ -3,7 +3,7 @@
           and play around with colors to discover their image.
 
 
- GOALS/TODO: debug to find out why the incorrect array is given for picture4 (the penguin)
+ GOALS/TODO: 
              refactor things in comments
              load multiple images
              allow the user to upload image */
@@ -34,7 +34,8 @@ let squareSize,
 let curPicture = 0,
   test = 0,
   colorPickerAndButtonsAreVisible = false,
-  starIsVisible = false;
+  starIsVisible = false, 
+  imgLoaded = false;
 
 function preload() {
   // need to preload image for it to function properly
@@ -47,18 +48,18 @@ function preload() {
 function setup() {
   // dont need the picture to show, but functionality does not work without first placing the image somewhere
   
-  
   canvasHeight = 400;
   canvasWidth = 400;
-  image(testPic1, 0, 0, 400, 400);
   createCanvas(canvasWidth, canvasHeight);
+  image(testPic1, 0, 0, 400, 400);
+  
   
   squares = [];
   moves = [];
 
   // only want to call getPicArray() once.. some issues if called more than once. 
   // should probably change 'test' to a boolean since the actual count doesn't matter... and rename it xD
-  if (test === 0) {
+  if (!) {
     picture4 = img1.getFinalArray();
     console.log(picture4); // does not give the expected output. check picture.tester to see expected array for penguin picture
   }
@@ -82,14 +83,8 @@ function setup() {
   
 
   drawButtonsAndColorPicker();
-  initializeSqur
-
-  // initialize squares
-  for (let i = 0; i < picture.length; i++) {
-    for (let j = 0; j < picture[i].length; j++) {
-      squares.push(new Square(j, i, picture[i][j]));
-    }
-  }
+  initializeSquares();
+  
 }
 
 function draw() {
@@ -320,6 +315,13 @@ function drawStar() {
   }
 }
 
+function initializeSquares(){
+  for (let i = 0; i < picture.length; i++) {
+    for (let j = 0; j < picture[i].length; j++) {
+      squares.push(new Square(j, i, picture[i][j]));
+    }
+  }
+}
 // function getPicArray() {
 //   return img1.getFinalArray();
 // }
