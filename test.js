@@ -1,7 +1,7 @@
 /* global createCanvas, colorMode, HSB, background, CENTER, 
   random, width, height, fill, noStroke, textAlign, ellipse, text, mouseX, mouseY, 
   collideCircleCircle, splice, rect, strokeWeight, mouseClicked, RGB, createColorPicker, color, createButton,
-  TWO_PI, beginShape, endShape, vertex, sin, cos, CLOSE, textSize*/
+  TWO_PI, beginShape, endShape, vertex, sin, cos, CLOSE, textSize, loadImage, Picture, image*/
 
 let squareSize,
   canvasWidth,
@@ -20,13 +20,16 @@ let squareSize,
   picture3,
   picture4,
   undoButton,
-  starIsVisible = false;
+  starIsVisible = false, img1, testPic1;
 
 function preload(){
+  img1 = new Picture("https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909");
+  testPic1 = loadImage(img1.imgLink);
   
 }
 
 function setup() {
+  image(testPic1, 0, 0, 300, 300);
   squares = [];
   moves = [];
   picture = choosePicture(curPicture);
@@ -187,6 +190,8 @@ function choosePicture(curPicture) {
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   ];
   
+  picture4 = img1.getFinalArray();
+  console.log(picture4);
 
   picArray = [picture1, picture2, picture3, picture4];
 

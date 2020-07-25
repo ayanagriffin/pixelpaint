@@ -2,10 +2,10 @@
 // TODO: combine!
 let img, testPic, allFinalArrays = [], done = false;
 
-function preload(){
-  img = new Picture("https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909");
-  testPic = loadImage(img.imgLink);
-}
+// function preload(){
+//   //img = new Picture("https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909");
+//   //testPic = loadImage(img.imgLink);
+// }
 
 function setup(){
 
