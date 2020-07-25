@@ -63,7 +63,6 @@ function setup() {
   // only want to call getPicArray() and put the picture into the array once
   if (!imgLoaded) {
     picture4 = penguinPicture.getFinalArray();
-    console.log(picture4);
     picArray.push(picture4);
     imgLoaded = true;
   }
@@ -79,8 +78,7 @@ function draw() {
   for (let i = 0; i < squares.length; i++) {
     for (let j = 0; j < squares[i].length; j++) {
       squares[i][j].display();
-      //console.log('draw');
-      //console.log(squares[i][j].numIsVisible);
+      
     }
   }
   drawStar(starIsVisible);
@@ -179,11 +177,10 @@ function undoFinish(){
   
   for (let i = 0; i < squares.length; i++) {
     for (let j = 0; j < squares[i].length; j++) {
-      if (!squares[i][j].numIsVisible && !squares[i][j].bordersAreVisible) {
-        squares[i][j].numIsVisible = true;
-        squares[i][j].bordersAreVisible = true;
-        console.log('yay');
-      }
+      
+        squares[i][j].isFinished = false;
+
+      
     }
   }
   isFinished = false;
@@ -194,7 +191,6 @@ function undoFinish(){
 function getNewPicture() {
   // increments to change to next picture, will loop back around
   curPictureNum++;
-  console.log(curPictureNum, picArray.length);
   curPictureNum %= picArray.length;
   setup();
 }
@@ -205,12 +201,11 @@ function resetImage() {
 
 
 function finishPainting() {
-  console.log("finished");
   for (let i = 0; i < squares.length; i++) {
-    for (let j = 0; j < squares.length[i]; j++) {
-      squares[i][j].numIsVisible = false;
-      squares[i][j].bordersAreVisible = false;
-      console.log("go away");
+    for (let j = 0; j < squares[i].length; j++) {
+      squares[i][j].isFinished = true;
+      
+      
     }
   }
   starIsVisible = true;
