@@ -44,7 +44,7 @@ function setup() {
   if (picture === picture3) {
     squareSize = 20;
   } else {
-    squareSize = 60;
+    squareSize = 20;
   }
 
   // canvasHeight = picture.length * squareSize + squareSize;
