@@ -1,6 +1,10 @@
 /*global createCanvas, colorMode, HSB, background, image, loadImage, get, abs, fill, rect, RGB, noStroke*/
-// TODO: combine!
-let img, testPic, allFinalArrays = [], done = false;
+
+
+// PROBLEM: this file gives a different final array (img.colorVals) than the main file. This file gives the correct one
+
+
+let img, testPic;
 
 function preload(){
   img = new Picture("https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909");
@@ -13,7 +17,6 @@ function setup(){
   image(testPic, 0, 0, 400, 400);
   //img.getFinalArray();
   console.log(img.getFinalArray());
- // allFinalArrays.push(img.getFinalArray());
   
   
 }
@@ -28,17 +31,15 @@ function draw(){
       img.blocks[j][i].draw();
     }
   }
-  //image(testPic, 0, 0, 300, 300);
-  
-  // if(!done){
-  //   image(testPic, 0, 0, 300, 300);
-  //   allFinalArrays.push(img.getFinalArray());
-  // }else{
-  //   done = true;
-  // }
-  //allFinalArrays.push(img.getFinalArray());
+
   
 }
+
+
+////////////////////////////////////////////////////////////////////////////////
+// only difference between pictureClass and pictureClassStandAlone is above this line; this class visualises the problem
+
+
 
 class Picture {
   constructor(imgLink) {

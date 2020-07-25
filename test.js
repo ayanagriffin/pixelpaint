@@ -8,65 +8,71 @@ let squareSize,
   canvasHeight,
   squares,
   picture,
-  curPicture = 0,
   picArray,
   picture1,
   picture2,
   colorPicker,
   restartButton,
-  colorPickerAndButtonsAreVisible = false,
   newPictureButton,
   moves,
   picture3,
   picture4,
   undoButton,
-  starIsVisible = false, img1, testPic1, test = 0;
+  img1,
+  testPic1;
 
-function preload(){
-  img1 = new Picture("https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909");
+let curPicture = 0,
+  test = 0,
+  colorPickerAndButtonsAreVisible = false,
+  starIsVisible = false;
+
+function preload() {
+  img1 = new Picture(
+    "https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909"
+  );
   testPic1 = loadImage(img1.imgLink);
-  
 }
 
 function setup() {
+  // dont need the picture to show, but functionality does not work without first placing the image somewhere
   image(testPic1, 0, 0, 300, 300);
   squares = [];
   moves = [];
-  
-  if(test === 0){
+
+  // only want to call getPicArray() once.. some issues if called more than once
+  if (test === 0) {
     picture4 = getPicArray();
     console.log(picture4);
   }
-  
+
   test++;
-  
+
   picture = choosePicture(curPicture, picture4);
+  
+  // TODO: change later to refactor size of each square based on the size of the image, then the canvas size based off of the square size
   if (picture === picture3) {
     squareSize = 20;
   } else {
     squareSize = 20;
   }
 
+  
   // canvasHeight = picture.length * squareSize + squareSize;
   // canvasWidth = picture[0].length * squareSize;
   // createCanvas(canvasWidth, canvasHeight);
-  
+
   canvasHeight = 400;
   canvasWidth = 400;
   createCanvas(canvasWidth, canvasHeight);
-  
 
   drawButtonsAndColorPicker();
 
+  // initialize squares
   for (let i = 0; i < picture.length; i++) {
     for (let j = 0; j < picture[i].length; j++) {
       squares.push(new Square(j, i, picture[i][j]));
     }
   }
-  
-  
-  
-  
 }
 
 function draw() {
@@ -76,9 +82,9 @@ function draw() {
     squares[i].display();
   }
   drawStar();
-  
 }
 
+// a Square is the initially white 
 class Square {
   constructor(row, col, val) {
     this.row = row;
@@ -207,9 +213,6 @@ function choosePicture(curPicture, picture4) {
     [1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   ];
-  
-  
-  
 
   //picture4 = img1.getFinalArray();
   picArray = [picture1, picture2, picture3, picture4];
@@ -282,7 +285,6 @@ function drawStar() {
   }
 }
 
-function getPicArray(){
+function getPicArray() {
   return img1.getFinalArray();
-  
 }
