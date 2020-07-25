@@ -12,7 +12,7 @@
 /* global createCanvas, colorMode, HSB, background, CENTER, 
   random, width, height, fill, noStroke, textAlign, ellipse, text, mouseX, mouseY, 
   collideCircleCircle, splice, rect, strokeWeight, mouseClicked, RGB, createColorPicker, color, createButton,
-  TWO_PI, beginShape, endShape, vertex, sin, cos, CLOSE, textSize, loadImage, Picture, image, windowWidth, windowHeight, Square */
+  TWO_PI, beginShape, endShape, vertex, sin, cos, CLOSE, textSize, loadImage, Picture, image, windowWidth, windowHeight, Square, getPictureArray */
 
 let squareSize,
   canvasWidth,
@@ -145,59 +145,10 @@ function finishPainting() {
   starIsVisible = true;
 }
 function choosePicture(curPictureNum, picture4) {
-  // i made these by hand oof
-
-  // heart, length = 9
-  picture1 = [
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 2, 2, 1, 1, 2, 2, 1, 1],
-    [1, 2, 3, 3, 2, 2, 3, 3, 2, 1],
-    [1, 2, 3, 3, 3, 3, 3, 3, 2, 1],
-    [1, 2, 3, 3, 3, 3, 3, 3, 2, 1],
-    [1, 1, 2, 3, 3, 3, 3, 2, 1, 1],
-    [1, 1, 1, 2, 3, 3, 2, 1, 1, 1],
-    [1, 1, 1, 1, 2, 2, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-  ];
-
-  // another heart i think, length = 10
-  picture2 = [
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 2, 2, 1, 1, 1, 2, 2, 1, 1],
-    [1, 2, 3, 3, 2, 1, 2, 3, 3, 2, 1],
-    [1, 2, 3, 3, 3, 2, 3, 3, 3, 2, 1],
-    [1, 2, 3, 3, 3, 3, 3, 3, 3, 2, 1],
-    [1, 1, 2, 3, 3, 3, 3, 3, 2, 1, 1],
-    [1, 1, 1, 2, 3, 3, 3, 2, 1, 1, 1],
-    [1, 1, 1, 1, 2, 3, 2, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-  ];
-
-  // emoji; length = 18
-  picture3 = [
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1],
-    [1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1],
-    [1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 2, 2, 1, 1],
-    [1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 4, 3, 3, 2, 1, 1],
-    [1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 4, 4, 4, 3, 2, 2, 1],
-    [1, 2, 2, 2, 4, 4, 4, 2, 2, 3, 3, 4, 3, 3, 2, 2, 1],
-    [1, 2, 2, 4, 2, 2, 2, 4, 2, 2, 3, 3, 3, 2, 2, 2, 1],
-    [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1],
-    [1, 2, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2, 2, 1],
-    [1, 1, 2, 2, 4, 4, 5, 5, 4, 5, 5, 4, 4, 2, 2, 1, 1],
-    [1, 1, 2, 2, 2, 4, 5, 5, 5, 5, 5, 4, 2, 2, 2, 1, 1],
-    [1, 1, 1, 2, 2, 2, 5, 5, 5, 5, 5, 2, 2, 2, 1, 1, 1],
-    [1, 1, 1, 1, 2, 2, 5, 5, 5, 5, 5, 2, 2, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-  ];
 
   //picture4 = img1.getFinalArray(); did not work, needed to set picture4 in setup()
-  picArray = [picture1, picture2, picture3, picture4];
+  picArray = getPictureArray();
+  picArray.push(picture4);
 
   return picArray[curPictureNum];
 }

@@ -12,7 +12,7 @@
 /* global createCanvas, colorMode, HSB, background, CENTER, 
   random, width, height, fill, noStroke, textAlign, ellipse, text, mouseX, mouseY, 
   collideCircleCircle, splice, rect, strokeWeight, mouseClicked, RGB, createColorPicker, color, createButton,
-  TWO_PI, beginShape, endShape, vertex, sin, cos, CLOSE, textSize, loadImage, Picture, image, windowWidth, windowHeight, Square */
+  TWO_PI, beginShape, endShape, vertex, sin, cos, CLOSE, textSize, loadImage, Picture, image, windowWidth, windowHeight, Square, getPictureArray */
 
 let squareSize,
   canvasWidth,
@@ -30,7 +30,7 @@ let squareSize,
   picture3,
   picture4,
   undoButton,
-  img1,
+  penguinPicture,
   testPic1;
 
 let curPictureNum = 0,
@@ -41,10 +41,10 @@ let curPictureNum = 0,
 
 function preload() {
   // need to preload image for it to function properly
-  img1 = new Picture(
+  penguinPicture = new Picture(
     "https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909"
   );
-  testPic1 = loadImage(img1.imgLink);
+  testPic1 = loadImage(penguinPicture.imgLink);
 }
 
 function setup() {
@@ -58,14 +58,15 @@ function setup() {
   squares = [];
   moves = [];
 
-  // only want to call getPicArray() once.. some issues if called more than once.
+  picture = choosePicture(curPictureNum);
+  // only want to call getPicArray() and put the picture into the array once.. some issues if called more than once.
   if (!imgLoaded) {
-    picture4 = img1.getFinalArray();
+    picture4 = penguinPicture.getFinalArray();
     console.log(picture4);
+    picArray.push(picture4);
     imgLoaded = true;
   }
 
-  picture = choosePicture(curPictureNum, picture4);
   squareSize = (windowHeight * 0.75) / picture.length;
   drawButtonsAndColorPicker();
   initializeSquares();
@@ -144,60 +145,11 @@ function finishPainting() {
   }
   starIsVisible = true;
 }
-function choosePicture(curPictureNum, picture4) {
-  // i made these by hand oof
+function choosePicture(curPictureNum) {
 
-  // heart, length = 9
-  picture1 = [
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 2, 2, 1, 1, 2, 2, 1, 1],
-    [1, 2, 3, 3, 2, 2, 3, 3, 2, 1],
-    [1, 2, 3, 3, 3, 3, 3, 3, 2, 1],
-    [1, 2, 3, 3, 3, 3, 3, 3, 2, 1],
-    [1, 1, 2, 3, 3, 3, 3, 2, 1, 1],
-    [1, 1, 1, 2, 3, 3, 2, 1, 1, 1],
-    [1, 1, 1, 1, 2, 2, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-  ];
-
-  // another heart i think, length = 10
-  picture2 = [
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 2, 2, 1, 1, 1, 2, 2, 1, 1],
-    [1, 2, 3, 3, 2, 1, 2, 3, 3, 2, 1],
-    [1, 2, 3, 3, 3, 2, 3, 3, 3, 2, 1],
-    [1, 2, 3, 3, 3, 3, 3, 3, 3, 2, 1],
-    [1, 1, 2, 3, 3, 3, 3, 3, 2, 1, 1],
-    [1, 1, 1, 2, 3, 3, 3, 2, 1, 1, 1],
-    [1, 1, 1, 1, 2, 3, 2, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-  ];
-
-  // emoji; length = 18
-  picture3 = [
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1],
-    [1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1],
-    [1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 2, 2, 1, 1],
-    [1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 4, 3, 3, 2, 1, 1],
-    [1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 4, 4, 4, 3, 2, 2, 1],
-    [1, 2, 2, 2, 4, 4, 4, 2, 2, 3, 3, 4, 3, 3, 2, 2, 1],
-    [1, 2, 2, 4, 2, 2, 2, 4, 2, 2, 3, 3, 3, 2, 2, 2, 1],
-    [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1],
-    [1, 2, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2, 2, 1],
-    [1, 1, 2, 2, 4, 4, 5, 5, 4, 5, 5, 4, 4, 2, 2, 1, 1],
-    [1, 1, 2, 2, 2, 4, 5, 5, 5, 5, 5, 4, 2, 2, 2, 1, 1],
-    [1, 1, 1, 2, 2, 2, 5, 5, 5, 5, 5, 2, 2, 2, 1, 1, 1],
-    [1, 1, 1, 1, 2, 2, 5, 5, 5, 5, 5, 2, 2, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 5, 5, 5, 5, 5, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 5, 5, 5, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-  ];
-
-  //picture4 = img1.getFinalArray(); did not work, needed to set picture4 in setup()
-  picArray = [picture1, picture2, picture3, picture4];
+  //picture4 = penguinPicture.getFinalArray(); did not work, needed to set picture4 in setup()
+  picArray = getPictureArray();
+  
 
   return picArray[curPictureNum];
 }
@@ -205,6 +157,7 @@ function choosePicture(curPictureNum, picture4) {
 function getNewPicture() {
   // increments to change to next picture, will loop back around
   curPictureNum++;
+  console.log(curPictureNum, picArray.length);
   curPictureNum %= picArray.length;
   setup();
 }
