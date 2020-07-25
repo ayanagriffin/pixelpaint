@@ -245,11 +245,14 @@ function undo() {
   
   if(moves.length > 0){
     let prevColor;
+    let curMove = moves[moves.length - 1];
+    console.log(curMove);
     if(moves.length > 1){
       let prevMove = moves[moves.length - 2];
       console.log(prevMove);
       
     }
+    // check to see if it is the same square, find square at correct row and col, change its color to prevMoves color
   }
   
   for (let i = 0; i < squares.length; i++) {
