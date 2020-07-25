@@ -91,6 +91,7 @@ class Square {
     this.y = col * squareSize;
     this.val = val;
     this.color = "white";
+    this.previousColors = ["white"];
 
     // if the painting is complete, want to remove the black borders and the numbers so that the user can see their art
     this.numIsVisible = true;
@@ -251,44 +252,7 @@ function getNewPicture() {
   setup();
 }
 
-// function undo() {
-//   // allows user to "undo" last move i.e. make the Square the previous color
 
-//   if (moves.length > 1) {
-//     let prevColor;
-//     let curMove = moves[moves.length - 1];
-//     let curSquare = squares[curMove.col][curMove.row];
-//     let prevMove = moves[moves.length - 2];
-//     let prevSquare = squares[prevMove.col][prevMove.row];
-//     console.log(curMove);
-
-//     if (prevMove.row == curMove.row && prevMove.col == curMove.col) {
-//       console.log("match: ", prevSquare.color);
-//       prevSquare.color = prevMove.color;
-//       console.log("change: ", prevSquare.color);
-//     }else{
-//       curSquare.color = "white";
-//     }
-//     console.log(prevMove);
-
-//     moves.splice(moves.length - 1, 1);
-//     // check to see if it is the same square, find square at correct row and col, change its color to prevMoves color
-//   }else{
-//     if(moves.length > 0){
-//       squares[moves[moves.length - 1].col][moves[moves.length - 1].row].color = "white";
-//     }
-//   }
-
-//   for (let i = 0; i < squares.length; i++) {
-//     for (let j = 0; j < squares[i].length; j++) {
-//       if (!squares[i][j].numIsVisible && !squares[i][j].bordersAreVisible) {
-//         squares[i][j].numIsVisible = true;
-//         squares[i][j].bordersAreVisible = true;
-//       }
-//     }
-//   }
-//   starIsVisible = false;
-// }
 
 function drawStar() {
   // a bunch of math that i did not come up with to draw a star if the user is finished. Yay!
@@ -330,6 +294,7 @@ function initializeSquares() {
 
 function undo() {
   // allows user to "undo" last move i.e. make the Square the previous color
+  // separate array for all previous colors of the specific square -- access array, get previous color and splice the last one
 
   if (moves.length > 0) {
     let curMove = moves[moves.length - 1];
@@ -342,31 +307,16 @@ function undo() {
         prevSquare.color = prevMove.color;
         console.log("change: ", prevSquare.color);
       }
-    }
-  }
-  if (moves.length > 1) {
-    let prevColor;
-
-    console.log(curMove);
-
-    if (prevMove.row == curMove.row && prevMove.col == curMove.col) {
-      console.log("match: ", prevSquare.color);
-      prevSquare.color = prevMove.color;
-      console.log("change: ", prevSquare.color);
-    } else {
+    }else{
       curSquare.color = "white";
     }
-    console.log(prevMove);
-
-    moves.splice(moves.length - 1, 1);
-    // check to see if it is the same square, find square at correct row and col, change its color to prevMoves color
-  } else {
-    if (moves.length > 0) {
-      squares[moves[moves.length - 1].col][moves[moves.length - 1].row].color =
-        "white";
-    }
   }
-
+  
+  
+  
+  
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
   for (let i = 0; i < squares.length; i++) {
     for (let j = 0; j < squares[i].length; j++) {
       if (!squares[i][j].numIsVisible && !squares[i][j].bordersAreVisible) {
@@ -378,31 +328,3 @@ function undo() {
   starIsVisible = false;
 }
 
-// function checkCompletion() {
-//   // checks if all Squares are filled with a color other than white
-
-//   // TODO: edit this; the user may be finished even if their painting has white in it.
-//   //     Could maybe add a button that the user can click when they are finished instead
-//   let total = 0;
-//   let target = picture.length * picture[0].length;
-
-//   for (let i = 0; i < squares.length; i++) {
-//     if (squares[i].color != "white") {
-//       total++;
-//     }
-//   }
-
-//   if (total === target) {
-//     for (let i = 0; i < squares.length; i++) {
-//       squares[i].numIsVisible = false;
-//       squares[i].bordersAreVisible = false;
-//     }
-//     starIsVisible = true;
-//   } else {
-//     for (let i = 0; i < squares.length; i++) {
-//       squares[i].numIsVisible = true;
-//       squares[i].bordersAreVisible = true;
-//     }
-//     starIsVisible = false;
-//   }
-// }
