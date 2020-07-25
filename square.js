@@ -12,27 +12,15 @@ class Square {
     this.color = "white";
     this.previousColors = ["white"];
     this.colorPicker = colorPicker;
-
-    // if the painting is complete, want to remove the black borders and the numbers so that the user can see their art
-    // this.numIsVisible = true;
-    // this.bordersAreVisible = true;
     this.isFinished = false;
   }
 
   display() {
-    
-    if(!this.isFinished){
+    // if the user is finished, the numbers and borders will not be shown 
+    if (!this.isFinished) {
       strokeWeight(2);
-      
-      
-    }else{
-      strokeWeight(0);
-    }
-    
-    fill(this.color);
-    rect(this.x, this.y, this.squareSize, this.squareSize);
-    
-    fill(0);
+      this.drawSquare();
+      fill(0);
       textAlign(CENTER, CENTER);
       textSize(12);
       text(
@@ -40,9 +28,15 @@ class Square {
         this.row * this.squareSize + this.squareSize / 2,
         this.col * this.squareSize + this.squareSize / 2
       );
-    
-
-   
+    } else {
+      strokeWeight(0);
+      this.drawSquare();
+    }
+  }
+  
+  drawSquare(){
+    fill(this.color);
+    rect(this.x, this.y, this.squareSize, this.squareSize);
   }
 
   paint() {
