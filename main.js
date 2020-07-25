@@ -12,7 +12,7 @@
 /* global createCanvas, colorMode, HSB, background, CENTER, 
   random, width, height, fill, noStroke, textAlign, ellipse, text, mouseX, mouseY, 
   collideCircleCircle, splice, rect, strokeWeight, mouseClicked, RGB, createColorPicker, color, createButton,
-  TWO_PI, beginShape, endShape, vertex, sin, cos, CLOSE, textSize, loadImage, Picture, image*/
+  TWO_PI, beginShape, endShape, vertex, sin, cos, CLOSE, textSize, loadImage, Picture, image, windowWidth, windowHeight*/
 
 let squareSize,
   canvasWidth,
@@ -49,14 +49,9 @@ function preload() {
 function setup() {
   // dont need the picture to show, but functionality does not work without first placing the image somewhere
   
-  
-  // canvasHeight = picture.length * squareSize + squareSize;
-  // canvasWidth = picture[0].length * squareSize;
-  // createCanvas(canvasWidth, canvasHeight);
-  
   canvasHeight = 600;
   canvasWidth = 600;
-  createCanvas(canvasWidth, canvasHeight);
+  createCanvas(windowWidth * .9, windowHeight * .9);
   image(testPic1, 0, 0, 600, 600);
   
   
@@ -71,16 +66,7 @@ function setup() {
   }
 
   picture = choosePicture(curPictureNum, picture4);
-
-  // TODO: change later to refactor size of each square based on the size of the image, then the canvas size based off of the square size
-  // if (picture === picture3) {
-  //   squareSize = 20;
-  // } else {
-  //   squareSize = 20;
-  // }
-  
-  squareSize = picture.length * 5;
-
+  squareSize = (windowHeight * .75) / picture.length ;
   drawButtonsAndColorPicker();
   initializeSquares();
   
@@ -168,10 +154,10 @@ function drawButtonsAndColorPicker() {
     undoButton.mousePressed(undo);
   }
 
-  colorPicker.position(width - 25, height - squareSize / 10);
-  restartButton.position((width * 2) / 3, height - squareSize / 20);
-  newPictureButton.position((width * 1) / 3, height - squareSize / 20);
-  undoButton.position(squareSize, height - squareSize / 20);
+  colorPicker.position(width * .9, height * .995);
+  restartButton.position((width * 2) / 3, height);
+  newPictureButton.position((width * 1) / 3, height);
+  undoButton.position(width * .1, height);
 }
 
 function resetImage() {
@@ -182,7 +168,7 @@ function choosePicture(curPictureNum, picture4) {
   // i made these by hand oof
   
   
-  // heart
+  // heart, length = 9
   picture1 = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 2, 2, 1, 1, 2, 2, 1, 1],
@@ -195,7 +181,7 @@ function choosePicture(curPictureNum, picture4) {
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   ];
 
-  // another heart i think
+  // another heart i think, length = 10
   picture2 = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 2, 2, 1, 1, 1, 2, 2, 1, 1],
@@ -209,7 +195,7 @@ function choosePicture(curPictureNum, picture4) {
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   ];
 
-  // emoji
+  // emoji; length = 18
   picture3 = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1],
@@ -322,6 +308,3 @@ function initializeSquares(){
     }
   }
 }
-// function getPicArray() {
-//   return img1.getFinalArray();
-// }
