@@ -37,7 +37,8 @@ function draw(){
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// only difference between pictureClass and pictureClassStandAlone is above this line; this class visualises the problem
+// only difference between picture.js and picture_tester.js is above this line; this file visualises the problem for debugging purposes!
+// see picture.js for more notes on functionality 
 
 
 

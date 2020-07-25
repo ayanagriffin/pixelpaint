@@ -1,7 +1,12 @@
-// GOALS/TODO: debug to find out why the incorrect array is given for picture4 (the penguin)
-//             refactor things in comments
-//             load multiple images
-//             allow the user to upload image
+/* Overall concept: An app where the user can either upload their own image or use a pre-drawn image. The image is refactored to 
+      create a "blank canvas" of "pixels" (squares). The user can then fill in each pixel of the image 
+          and play around with colors to discover their image.
+
+
+ GOALS/TODO: debug to find out why the incorrect array is given for picture4 (the penguin)
+             refactor things in comments
+             load multiple images
+             allow the user to upload image */
 
 /* global createCanvas, colorMode, HSB, background, CENTER, 
   random, width, height, fill, noStroke, textAlign, ellipse, text, mouseX, mouseY, 
