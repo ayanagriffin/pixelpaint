@@ -73,7 +73,7 @@ function setup() {
 
 function draw() {
   background(240);
-  
+
   for (let i = 0; i < squares.length; i++) {
     squares[i].display();
   }
@@ -156,11 +156,11 @@ function drawButtonsAndColorPicker() {
     finishedButton.mousePressed(finishPainting);
   }
 
-  colorPicker.position(width * 1 / 10, height * 0.995);
-  restartButton.position(width * 5 / 10 , height);
+  undoButton.position((width * 1) / 10, height);
   newPictureButton.position((width * 3) / 10, height);
-  undoButton.position(width * 9 / 10, height);
-  finishedButton.position(width * 7 / 10, height);
+  restartButton.position((width * 5) / 10, height);
+  finishedButton.position((width * 7) / 10, height);
+  colorPicker.position((width * 9) / 10, height * 0.995);
 }
 
 function resetImage() {
@@ -240,15 +240,20 @@ function getNewPicture() {
 }
 
 function undo() {
-  // allows user to "undo" last move i.e. make the Square white again
-
-  // TODO: it should not always go back to white. For example, if the user clicked the Square with one color,
-  //       then clicked the same Square with a different color right after, this function should go make the
-  //              Square the first color, not white
+  // allows user to "undo" last move i.e. make the Square the previous color
 
   if (moves.length > 0) {
     let curSquare = moves[moves.length - 1];
-    curSquare.color = "white";
+    
+    if(moves.length > 1 && curSquare === moves[moves.length - 2]){
+      console.log("same");
+      let prevSquare = moves[moves.length - 2];
+      let prevColor = prevSquare.color;
+      curSquare.color = prevColor;
+    }else{
+      curSquare.color = "white";
+    }
+    
     moves.splice(moves.length - 1, 1);
   }
 
@@ -260,8 +265,6 @@ function undo() {
   }
   starIsVisible = false;
 }
-
-
 
 function drawStar() {
   // a bunch of math that i did not come up with to draw a star if the user is finished. Yay!
@@ -297,8 +300,6 @@ function initializeSquares() {
     }
   }
 }
-
-
 
 // function checkCompletion() {
 //   // checks if all Squares are filled with a color other than white
