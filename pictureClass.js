@@ -133,7 +133,6 @@ class Picture {
   }
 
   findAverageColor(matches) {
-    function findAverageColor(matches) {
       let totalR = 0;
       let totalG = 0;
       let totalB = 0;
@@ -155,7 +154,7 @@ class Picture {
         let curBlock = matches[i];
         curBlock.finalColor = finalColor;
       }
-    }
+    
   }
 
   getFinalArray() {

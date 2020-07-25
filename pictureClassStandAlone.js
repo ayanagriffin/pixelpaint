@@ -10,7 +10,7 @@ function preload(){
 function setup(){
 
   createCanvas(400,400);
-  image(testPic, 0, 0, 300, 300);
+  image(testPic, 0, 0, 400, 400);
   //img.getFinalArray();
   console.log(img.getFinalArray());
  // allFinalArrays.push(img.getFinalArray());
@@ -21,6 +21,7 @@ function setup(){
 function draw(){
   
   background(200);
+  
   
   for(let i = 0; i < img.blocks.length; i++){
     for(let j = 0; j < img.blocks[i].length; j++){
@@ -141,7 +142,6 @@ class Picture {
   }
 
   findAverageColor(matches) {
-    function findAverageColor(matches) {
       let totalR = 0;
       let totalG = 0;
       let totalB = 0;
@@ -158,12 +158,14 @@ class Picture {
       let finalB = totalB / matches.length;
 
       let finalColor = [finalR, finalG, finalB];
+      //console.log(finalColor);
 
       for (let i = 0; i < matches.length; i++) {
         let curBlock = matches[i];
         curBlock.finalColor = finalColor;
+        //console.log(finalColor, curBlock.finalColor);
       }
-    }
+    
   }
 
   getFinalArray() {
@@ -229,6 +231,7 @@ class Block {
   }
   draw() {
     noStroke();
+    //console.log(this.finalColor);
     fill(this.finalColor);
 
     rect(this.startingX, this.startingY, this.width, this.height);
