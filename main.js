@@ -78,6 +78,8 @@ function draw() {
   for (let i = 0; i < squares.length; i++) {
     for (let j = 0; j < squares[i].length; j++) {
       squares[i][j].display();
+      //console.log('draw');
+      //console.log(squares[i][j].numIsVisible);
     }
   }
   drawStar(starIsVisible);
@@ -88,6 +90,7 @@ function mouseClicked() {
   // detects which Square the user clicked on to fill the appropriate one
   for (let i = 0; i < squares.length; i++) {
     for (let j = 0; j < squares[i].length; j++) {
+      
       let curSquare = squares[i][j];
       if (
         curSquare.x + squareSize > mouseX &&
@@ -101,6 +104,7 @@ function mouseClicked() {
           color: curSquare.color
         };
         moves.push(curSquareInfo);
+      
       }
     }
   }
@@ -172,9 +176,11 @@ function undoFinish(){
   
   for (let i = 0; i < squares.length; i++) {
     for (let j = 0; j < squares[i].length; j++) {
+      console.log("undoFinish");
       if (!squares[i][j].numIsVisible && !squares[i][j].bordersAreVisible) {
         squares[i][j].numIsVisible = true;
         squares[i][j].bordersAreVisible = true;
+        //console.log('undo');
       }
     }
   }
@@ -196,6 +202,7 @@ function resetImage() {
 
 
 function finishPainting() {
+  console.log("finished");
   for (let i = 0; i < squares.length; i++) {
     for (let j = 0; j < squares.length[i]; j++) {
       squares[i][j].numIsVisible = false;
