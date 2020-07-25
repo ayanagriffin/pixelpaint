@@ -7,15 +7,15 @@ let img, testPic, allFinalArrays = [], done = false;
 //   //testPic = loadImage(img.imgLink);
 // }
 
-function setup(){
+// function setup(){
 
-  createCanvas(400,400);
-  image(testPic, 0, 0, 300, 300);
-  img.getFinalArray();
- // allFinalArrays.push(img.getFinalArray());
+//   createCanvas(400,400);
+//   image(testPic, 0, 0, 300, 300);
+//   img.getFinalArray();
+//  // allFinalArrays.push(img.getFinalArray());
   
   
-}
+// }
 
 // function draw(){
 //   //image(testPic, 0, 0, 300, 300);
@@ -75,9 +75,11 @@ class Picture {
   findBlockColors() {
     for (let i = 0; i < this.blocks.length; i++) {
       for (let j = 0; j < this.blocks[i].length; j++) {
+        
         if (!this.blocks[j][i].foundMatch) {
           this.blocks[j][i].getColors();
           this.blocks[j][i].findAverageColor();
+          
         }
       }
     }
@@ -88,6 +90,7 @@ class Picture {
   refactorColors() {
     for (let i = 0; i < this.blocks.length; i++) {
       for (let j = 0; j < this.blocks[i].length; j++) {
+        
         if (!this.blocks[j][i].foundMatch) {
          
           this.numColors++;
@@ -105,6 +108,7 @@ class Picture {
     for (let i = 0; i < this.blocks.length; i++) {
       for (let j = 0; j < this.blocks[i].length; j++) {
         let curBlock = this.blocks[j][i];
+        
         if (!curBlock.foundMatch) {
           
 
@@ -116,6 +120,7 @@ class Picture {
             matches.push(curBlock);
         
             curBlock.foundMatch = true;
+            
             this.colorVals[j][i] = colorVal;
 
             
@@ -167,6 +172,7 @@ class Picture {
 
 class Block {
   constructor(row, col, blockW, blockH) {
+    this.foundMatch = false;
     this.row = row;
     this.col = col;
     this.width = blockW;
@@ -180,7 +186,6 @@ class Block {
     this.finalG = 0;
     this.finalB = 0;
     this.finalColor = [];
-    this.foundMatch = false;
     this.colors = [];
   }
 

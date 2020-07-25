@@ -50,6 +50,8 @@ function setup() {
       squares.push(new Square(j, i, picture[i][j]));
     }
   }
+  
+  
 }
 
 function draw() {
@@ -59,6 +61,7 @@ function draw() {
     squares[i].display();
   }
   drawStar();
+  
 }
 
 class Square {
@@ -190,9 +193,10 @@ function choosePicture(curPicture) {
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   ];
   
-  picture4 = img1.getFinalArray();
-  console.log(picture4);
+  
+  //console.log(picture4);
 
+  picture4 = img1.getFinalArray();
   picArray = [picture1, picture2, picture3, picture4];
 
   return picArray[curPicture];
