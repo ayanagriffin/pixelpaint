@@ -35,22 +35,26 @@ function setup() {
   
   if(test === 0){
     picture4 = getPicArray();
+    console.log(picture4);
   }
   
   test++;
   
   picture = choosePicture(curPicture, picture4);
   if (picture === picture3) {
-    squareSize = 0;
-  } else if (picture === picture4){
-    squareSize = 30;
-  }else{
-    squareSize = 50;
+    squareSize = 20;
+  } else {
+    squareSize = 60;
   }
 
-  canvasHeight = picture.length * squareSize + squareSize;
-  canvasWidth = picture[0].length * squareSize;
+  // canvasHeight = picture.length * squareSize + squareSize;
+  // canvasWidth = picture[0].length * squareSize;
+  // createCanvas(canvasWidth, canvasHeight);
+  
+  canvasHeight = 400;
+  canvasWidth = 400;
   createCanvas(canvasWidth, canvasHeight);
+  
 
   drawButtonsAndColorPicker();
 
@@ -280,4 +284,5 @@ function drawStar() {
 
 function getPicArray(){
   return img1.getFinalArray();
+  
 }
