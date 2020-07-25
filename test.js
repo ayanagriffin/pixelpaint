@@ -1,3 +1,8 @@
+// GOALS/TODO: debug to find out why the incorrect array is given for picture4 (the penguin)
+//             refactor things in comments
+//             load multiple images
+//             allow the user to upload image
+
 /* global createCanvas, colorMode, HSB, background, CENTER, 
   random, width, height, fill, noStroke, textAlign, ellipse, text, mouseX, mouseY, 
   collideCircleCircle, splice, rect, strokeWeight, mouseClicked, RGB, createColorPicker, color, createButton,
@@ -27,6 +32,7 @@ let curPicture = 0,
   starIsVisible = false;
 
 function preload() {
+  // need to preload image for it to function properly 
   img1 = new Picture(
     "https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909"
   );
@@ -48,7 +54,7 @@ function setup() {
   test++;
 
   picture = choosePicture(curPicture, picture4);
-  
+
   // TODO: change later to refactor size of each square based on the size of the image, then the canvas size based off of the square size
   if (picture === picture3) {
     squareSize = 20;
@@ -56,7 +62,6 @@ function setup() {
     squareSize = 20;
   }
 
-  
   // canvasHeight = picture.length * squareSize + squareSize;
   // canvasWidth = picture[0].length * squareSize;
   // createCanvas(canvasWidth, canvasHeight);
@@ -84,7 +89,7 @@ function draw() {
   drawStar();
 }
 
-// a Square is the initially white 
+// a Square is the initially white square with a color number. User can click a particular Square to change its color
 class Square {
   constructor(row, col, val) {
     this.row = row;
@@ -93,6 +98,8 @@ class Square {
     this.y = col * squareSize;
     this.val = val;
     this.color = "white";
+
+    // if the painting is complete, want to remove the black borders and the numbers so that the user can see their beautiful art!
     this.numIsVisible = true;
     this.bordersAreVisible = true;
   }
@@ -120,11 +127,13 @@ class Square {
   }
 
   paint() {
+    // fill the Square based on the color the user has picked
     this.color = colorPicker.value();
   }
 }
 
 function mouseClicked() {
+  // detects which Square the user clicked on to fill the appropriate one
   for (let i = 0; i < squares.length; i++) {
     let curSquare = squares[i];
     if (
@@ -164,8 +173,6 @@ function resetImage() {
 }
 
 function choosePicture(curPicture, picture4) {
-  // loop that increments to change to next picture
-
   //picture1 = [[1, 1], [1, 1]];
 
   picture1 = [
@@ -214,19 +221,26 @@ function choosePicture(curPicture, picture4) {
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   ];
 
-  //picture4 = img1.getFinalArray();
+  //picture4 = img1.getFinalArray(); did not work, needed to set picture4 in setup()
   picArray = [picture1, picture2, picture3, picture4];
 
   return picArray[curPicture];
 }
 
 function getNewPicture() {
+  // increments to change to next picture, will loop back around
   curPicture++;
   curPicture %= picArray.length;
   setup();
 }
 
 function undo() {
+  // allows user to "undo" last move i.e. make the Square white again
+  
+  // TODO: it should not always go back to white. For example, if the user clicked the Square with one color, 
+  //       then clicked the same Square with a different color right after, this function should go make the 
+  //              Square the first color, not white
+  
   if (moves.length > 0) {
     let curSquare = moves[moves.length - 1];
     curSquare.color = "white";
@@ -235,6 +249,10 @@ function undo() {
 }
 
 function checkCompletion() {
+  // checks if all Squares are filled with a color other than white
+  
+  // TODO: edit this; the user may be finished even if their painting has white in it. 
+  //     Could maybe add a button that the user can click when they are finished instead
   let total = 0;
   let target = picture.length * picture[0].length;
 
@@ -260,6 +278,7 @@ function checkCompletion() {
 }
 
 function drawStar() {
+  // a bunch of math that i did not come up with to draw a star if the user is finished. Yay!
   if (starIsVisible) {
     let starSize = height / 20;
     let angle = TWO_PI / 5;
