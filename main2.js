@@ -296,22 +296,6 @@ function initializeSquares() {
 function undo() {
   // allows user to "undo" last move i.e. make the Square the previous color
   // separate array for all previous colors of the specific square -- access array, get previous color and splice the last one
-
-  // if (moves.length > 0) {
-  //   let curMove = moves[moves.length - 1];
-  //   let curSquare = squares[curMove.col][curMove.row];
-  //   if (moves.length > 1) {
-  //     let prevMove = moves[moves.length - 2];
-  //     let prevSquare = squares[prevMove.col][prevMove.row];
-  //     if (prevMove.row == curMove.row && prevMove.col == curMove.col) {
-  //       console.log("match: ", prevSquare.color);
-  //       prevSquare.color = prevMove.color;
-  //       console.log("change: ", prevSquare.color);
-  //     }
-  //   }else{
-  //     curSquare.color = "white";
-  //   }
-  // }
   
   if(moves.length > 0){
     let mostRecentMove = moves[moves.length - 1];
@@ -319,7 +303,8 @@ function undo() {
     
     if(curSquare.previousColors.length > 1){
       curSquare.color = curSquare.previousColors[curSquare.previousColors.length - 2];
-      curSquare.previousColors.splice()
+      curSquare.previousColors.splice(curSquare.previousColors.length - 1, 1);
+      moves.splice(moves.length - 1, 1);
     }
   }
   
