@@ -262,15 +262,19 @@ function undo() {
     if (moves.length > 1) {
       let prevMove = moves[moves.length - 2];
       if (prevMove.row == curMove.row && prevMove.col == curMove.col) {
-        console.log("match");
+        console.log("match: ", squares[prevMove.col][prevMove.row].color);
+        squares[prevMove.col][prevMove.row].color = prevMove.color;
+        console.log("change: ", squares[prevMove.col][prevMove.row].color);
       }
       console.log(prevMove);
     }
+    
+    moves.splice(moves.length - 1, 1);
     // check to see if it is the same square, find square at correct row and col, change its color to prevMoves color
   }
 
   for (let i = 0; i < squares.length; i++) {
-    for (let j = 0; j < squares[i].length; i++){
+    for (let j = 0; j < squares[i].length; j++){
       if (!squares[i][j].numIsVisible && !squares[i][j].bordersAreVisible) {
         squares[i][j].numIsVisible = true;
         squares[i][j].bordersAreVisible = true;
