@@ -54,7 +54,7 @@ function setup() {
   // should probably change 'test' to a boolean since the actual count doesn't matter... and rename it xD
   if (test === 0) {
     picture4 = img1.getFinalArray();
-    console.log(picture4); // does not give the expected output. check picture.tester to 
+    console.log(picture4); // does not give the expected output. check picture.tester to see expected array for penguin picture
   }
 
   test++;
@@ -179,6 +179,10 @@ function resetImage() {
 }
 
 function choosePicture(curPicture, picture4) {
+  // i made these by hand oof
+  
+  
+  // heart
   picture1 = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 2, 2, 1, 1, 2, 2, 1, 1],
@@ -191,6 +195,7 @@ function choosePicture(curPicture, picture4) {
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   ];
 
+  // another heart i think
   picture2 = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 2, 2, 1, 1, 1, 2, 2, 1, 1],
@@ -204,6 +209,7 @@ function choosePicture(curPicture, picture4) {
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   ];
 
+  // emoji
   picture3 = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1],
