@@ -1,15 +1,21 @@
 /* CSS files add styling rules to your content */
 
 html {
-  background-color: hsl(10, 100%, 80%);
+  background-color: hsl(10, 80%, 80%, 0.6);
 }
 
 body {
-  font-family: helvetica, arial, sans-serif;
-  margin: 2em;
+  font-family: "Yanone Kaffeesatz";
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+  margin: 1em;
 }
 
 h1 {
-  font-family: sans-serif;
+  font-family: "Yanone Kaffeesatz";
+  font-weight: 700;
+  font-size: 40px;
+  text-align: center;
   color: #373fff;
 }
