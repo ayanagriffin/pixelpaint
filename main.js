@@ -108,10 +108,11 @@ function mouseClicked() {
   }
 }
 
-function createImage(url){
+function addUserImage(url){
   let image = new Picture(url);
   let refactoredImage = image.getFinalArray();
   picArray.push(refactoredImage);
+  console.log(refactoredImage);
 }
 
 function drawButtonsAndColorPicker() {

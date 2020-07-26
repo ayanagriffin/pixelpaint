@@ -1,6 +1,9 @@
+/* global addUserImage */
+
 async function userUpload(event){
   let uploadURL = URL.createObjectURL(event.target.files[0]);
-  createImage(uploadURL);
+  //console.log(uploadURL);
+  addUserImage(uploadURL);
 }
 
 async function newImage(event){
