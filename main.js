@@ -31,7 +31,7 @@ let squareSize,
   picture4,
   undoButton,
   penguinPicture,
-  pictureHolder;
+  pictureHolder, userUpload, userURL;
 
 let curPictureNum = 0,
   test = 0,
@@ -84,7 +84,6 @@ function draw() {
   drawStar(starIsVisible);
 }
 
-
 function mouseClicked() {
   // detects which Square the user clicked on to fill the appropriate one
   for (let i = 0; i < squares.length; i++) {
@@ -107,6 +106,12 @@ function mouseClicked() {
       }
     }
   }
+}
+
+function createImage(url){
+  let image = new Picture(url);
+  let refactoredImage = image.getFinalArray();
+  picArray.push(refactoredImage);
 }
 
 function drawButtonsAndColorPicker() {
