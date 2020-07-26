@@ -1,11 +1,15 @@
 /* CSS files add styling rules to your content */
 
+html {
+  background-color: hsl(10, 100%, 80%);
+}
+
 body {
   font-family: helvetica, arial, sans-serif;
   margin: 2em;
 }
 
 h1 {
-  font-style: italic;
+  font-family: sans-serif;
   color: #373fff;
 }
