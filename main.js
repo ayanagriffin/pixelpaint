@@ -31,7 +31,7 @@ let squareSize,
   picture4,
   undoButton,
   penguinPicture,
-  pictureHolder, userUpload, userURL;
+  pictureHolder;
 
 let curPictureNum = 0,
   test = 0,

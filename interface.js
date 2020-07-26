@@ -2,7 +2,7 @@
 
 async function userUpload(event){
   let uploadURL = URL.createObjectURL(event.target.files[0]);
-  //console.log(uploadURL);
+  console.log(uploadURL);
   addUserImage(uploadURL);
 }
 
