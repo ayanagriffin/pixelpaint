@@ -21,3 +21,93 @@ body {
   color: hsl(16, 100%, 80%);
 }
 
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.button {
+  font-weight: 500;
+  user-select: none;
+  cursor: pointer;
+  border-radius: 6px;
+  width: 9em;
+  top: -1vh;
+  padding: 3px;
+  margin: 3px;
+  outline: none;
+  position: relative;
+  color: #FFFFFF;
+}
+
+.button:hover {
+  box-shadow: 0 0px 4px #FFF;
+}
+
+#user-uploader {
+  background: hsl(345, 55%, 67%);
+}
+
+#user-uploader:active {
+  background: linear-gradient(
+    0deg,
+    rgba(237, 159, 159, 1) 0%,
+    rgba(217, 125, 148, 1) 100%
+  );
+}
+
+#new-image {
+  background: rgb(173, 129, 203);
+  background: linear-gradient(
+    0deg,
+    rgba(170, 126, 200, 1) 0%,
+    rgba(217, 159, 237, 1) 100%
+  );
+}
+
+#new-image:active {
+  background: linear-gradient(
+    0deg,
+    rgba(217, 159, 237, 1) 0%,
+    rgba(170, 126, 200, 1) 100%
+  );
+}
+
+#restart {
+  background: rgb(109, 92, 184);
+  background: linear-gradient(
+    0deg,
+    rgba(119, 112, 194, 1) 0%,
+    rgba(141, 163, 228, 1) 100%
+  );
+}
+
+#restart:active {
+  background: rgba(135, 54, 226, 1);
+  background: linear-gradient(
+    0deg,
+    rgba(141, 163, 228, 1) 0%,
+    rgba(119, 112, 194, 1) 100%
+  );
+}
+
+#undo {
+  background: rgb(109, 92, 184);
+  background: linear-gradient(
+    0deg,
+    rgba(119, 112, 194, 1) 0%,
+    rgba(141, 163, 228, 1) 100%
+  );
+}
+
+#undo:active {
+  background: rgba(135, 54, 226, 1);
+  background: linear-gradient(
+    0deg,
+    rgba(141, 163, 228, 1) 0%,
+    rgba(119, 112, 194, 1) 100%
+  );
+}
