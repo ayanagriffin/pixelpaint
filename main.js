@@ -49,6 +49,7 @@ function preload() {
 }
 
 function setup() {
+
   // dont need the picture to show, but functionality does not work without first placing the image somewhere
   starIsVisible = false;
   canvasHeight = 600;
