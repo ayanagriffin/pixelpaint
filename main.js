@@ -55,7 +55,7 @@ function setup() {
   canvasHeight = 600;
   canvasWidth = 600;
   createCanvas(windowWidth * 0.9, windowHeight * 0.9);
-  image(pictureHolder, 0, 0, 600, 600);
+  //image(pictureHolder, 0, 0, 600, 600);
 
   squares = [];
   moves = [];
