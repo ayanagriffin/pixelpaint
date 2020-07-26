@@ -1,15 +1,7 @@
 /* CSS files add styling rules to your content */
 
 html {
-  background-color: hsl(10, 80%, 80%, 0.6);
-}
-
-body {
-  font-family: "Yanone Kaffeesatz";
-  font-weight: 500;
-  font-size: 20px;
-  text-align: center;
-  margin: 1em;
+  background-color: hsl(179, 2%, 90%, 0.6);
 }
 
 h1 {
@@ -17,5 +9,15 @@ h1 {
   font-weight: 700;
   font-size: 40px;
   text-align: center;
-  color: #373fff;
+  color: hsl(16, 100%, 65%);
 }
+
+
+body {
+  font-family: "Yanone Kaffeesatz";
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+  color: hsl(16, 100%, 80%);
+}
+

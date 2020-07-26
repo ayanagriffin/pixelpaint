@@ -37,5 +37,25 @@
       choose your colors, fill the pixels in, and have fun!
       
     </p>
+    <div class="container">
+      <label for="user-upload" id="user-uploader" class="button">
+        upload
+      </label>
+      <input
+        type="file"
+        accept="image/*"
+        name="userupload"
+        id="user-upload"
+        onchange="userUpload(event)"
+        style="display: none;"
+      />
+      <div id="random-link" class="button" onclick="randomLink()">
+        random
+      </div>
+      <div id="save-painting" class="button" onclick="savePainting()">
+        save
+      </div>
+    </div>
+
   </body>
 </html>
