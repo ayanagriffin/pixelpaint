@@ -25,7 +25,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 60%;
+  width: 50%;
   margin: 0 auto;
 }
 
@@ -35,9 +35,9 @@ body {
   cursor: pointer;
   border-radius: 6px;
   width: 9em;
-  top: -1vh;
-  padding: 3px;
-  margin: 3px;
+  bottom: -1vh;
+  padding: 4px;
+  margin: 4px;
   outline: none;
   position: relative;
   color: #FFFFFF;
@@ -60,12 +60,7 @@ body {
 }
 
 #new-image {
-  background: rgb(173, 129, 203);
-  background: linear-gradient(
-    0deg,
-    rgba(170, 126, 200, 1) 0%,
-    rgba(217, 159, 237, 1) 100%
-  );
+  background: hsl(275, 42%, 65%);
 }
 
 #new-image:active {
@@ -77,12 +72,7 @@ body {
 }
 
 #restart {
-  background: rgb(109, 92, 184);
-  background: linear-gradient(
-    0deg,
-    rgba(119, 112, 194, 1) 0%,
-    rgba(141, 163, 228, 1) 100%
-  );
+  background: hsl(48, 100%, 63%);
 }
 
 #restart:active {
@@ -95,15 +85,23 @@ body {
 }
 
 #undo {
-  background: rgb(109, 92, 184);
-  background: linear-gradient(
-    0deg,
-    rgba(119, 112, 194, 1) 0%,
-    rgba(141, 163, 228, 1) 100%
-  );
+  background: hsl(16, 100%, 80%);
 }
 
 #undo:active {
+  background: rgba(135, 54, 226, 1);
+  background: linear-gradient(
+    0deg,
+    rgba(141, 163, 228, 1) 0%,
+    rgba(119, 112, 194, 1) 100%
+  );
+}
+
+#im-done {
+  background: hsl(300, 75%, 86%);
+}
+
+#im-done:active {
   background: rgba(135, 54, 226, 1);
   background: linear-gradient(
     0deg,
