@@ -18,6 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/addons/p5.sound.js"></script>
     <script src="https://cdn.JsDelivr.net/gh/bmoren/p5.collide2D/p5.collide2d.min.js"></script>
     <!-- import the webpage's javascript file -->
+    <script src="/interface.js" defer></script>
     <script src="/premade_pics.js" defer></script>
     <script src="/square.js" defer></script>
     <script src="/picture.js" defer></script>
@@ -49,16 +50,16 @@
         onchange="userUpload(event)"
         style="display: none;"
       />
-      <div id="new-image" class="button" onclick="newImage()*****">
+      <div id="new-image" class="button" onclick="newImage()">
         new image
       </div>
-      <div id="restart" class="button" onclick="savePainting()">
+      <div id="restart" class="button" onclick="restart()">
         restart
       </div>
-      <div id="im-done" class="button" onclick="insertFunction()">
+      <div id="im-done" class="button" onclick="finishImage()">
         i'm done
       </div>
-      <div id="undo" class="button" onclick="insertFunction()">
+      <div id="undo" class="button" onclick="undo()">
         undo
       </div>
     </div>
