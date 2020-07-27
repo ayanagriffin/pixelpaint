@@ -64,12 +64,12 @@ function resizeImage(){
     console.log(imgDimensions);
   }
   
-  display.resize(imgDimensions.w, imgDimensions.h);
+  display.resize(imgDimensions.w, 0);
   
   
 }
 
 
 function test(){
-  display.resize(300, 300);
+  display.resize(100, 100);
 }
