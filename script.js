@@ -1,13 +1,13 @@
 /*global loadImage, createCanvas, resizeCanvas, background, text, windowWidth, windowHeight*/
 
 let imgDimensions = { w: 0, h: 0 };
-let imgUrl, display, maxImgW, maxImgH;
+let imgUrl, display, maxImgW, maxImgH, canvas;
 const TEST_SIZE = 200;
 
   
 function preload() {
   imgUrl =
-    "https://cdn.glitch.com/d82135a4-9f9d-4654-a46b-f7f58cdc9d01%2Fmosaic-758754_960_720.webp?v=1595547170968";
+    "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2Funnamed.png?v=1595864938729";
   display = loadImage(imgUrl);
   
 }
@@ -15,9 +15,10 @@ function preload() {
 function setup() {
   maxImgW = windowWidth * 2 /3;
   maxImgH = windowHeight * 1 / 2;
-  createCanvas(TEST_SIZE, TEST_SIZE);
+  canvas = createCanvas(TEST_SIZE, TEST_SIZE);
   background(235);
   getDimensions(imgUrl);
+  
 }
 
 
@@ -29,7 +30,7 @@ function getDimensions(url) {
     image.onload = function() {
       imgDimensions.w = this.width;
       imgDimensions.h = this.height;
-      console.log(imgDimensions);
+      console.log(imgDimensions, maxImgH);
       adjustCanvas();
       resolve();
       
@@ -46,11 +47,16 @@ function adjustCanvas(){
   background(235);
 }
 
+// resizes imgDimensions to fit nicely on the window while maintaining the original ratio between w and h
 function resizeImage(){
   let ratio = imgDimensions.h / imgDimensions.w
-  if(imgDimensions.w > imgDimensions.h imgDimensions.w > maxImgW){
+  if(imgDimensions.w > imgDimensions.h && imgDimensions.w > maxImgW){
     imgDimensions.w = maxImgW;
     imgDimensions.h = imgDimensions.w * ratio;
+    console.log(imgDimensions);
+  }else if(imgDimensions.h > maxImgH){
+    imgDimensions.h = maxImgH;
+    imgDimensions.w = imgDimensions.h / ratio;
     console.log(imgDimensions);
   }
   

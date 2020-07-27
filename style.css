@@ -1,3 +1,9 @@
 /* CSS files add styling rules to your content */
 
+#canvas-div {
+  box-shadow: 0 0px 9px #FFFFFF;
+  margin: 5px 0px 0px 0px;
+  display: inline-block;
+  line-height: 0;
+}
 
