@@ -1,7 +1,7 @@
 /*global loadImage, createCanvas, resizeCanvas, background, text, windowWidth, windowHeight*/
 
 let imgDimensions = { w: 0, h: 0 };
-let imgUrl, display, imgDimensions2;
+let imgUrl, display;
 const TEST_SIZE = 200;
   
 function preload() {
@@ -14,9 +14,7 @@ function preload() {
 function setup() {
   createCanvas(TEST_SIZE, TEST_SIZE);
   getDimensions(imgUrl);
-  //console.log(imgDimensions.w);
-  //adjustCanvas();
-  
+  //console.log(imgDimensions.w); logs 0 
   //console.log(imgDimensions); // logs 0, 0 but if you expand, logs the expected output
   
   background(235);
@@ -57,21 +55,7 @@ function adjustCanvas(w, h){
  // console.log(imgDimensions); //logs expected output 
   //console.log(imgDimensions.w, imgDimensions.h); //logs expected output
   //text(imgDimensions.w, 10, 10); //shows expected value
-  fitImage();
-  resizeCanvas(w, h); // reads it as 0, 0 
+  resizeCanvas(w, h); 
 }
 
 
-function fitImage() {
-  let minPicDim = Math.min(imgDimensions.w, imgDimensions.h);
-  let minWindowDim = Math.min(windowWidth, windowHeight);
-  if (minPicDim == imgDimensions.w) {
-    imgDimensions.w =
-      ((minWindowDim * 2) / 3) * (imgDimensions.w / imgDimensions.h);
-    imgDimensions.h = (minWindowDim * 2) / 3;
-  } else if (minPicDim == imgDimensions.h) {
-    imgDimensions.h =
-      (minWindowDim - 100) * (imgDimensions.h / imgDimensions.w);
-    imgDimensions.w = minWindowDim - 100;
-  }
-}
