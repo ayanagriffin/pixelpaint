@@ -1,4 +1,4 @@
-/*global loadImage, createCanvas, resizeCanvas, background, text, windowWidth, windowHeight, image, round, floor*/
+/*global loadImage, createCanvas, resizeCanvas, background, text, windowWidth, windowHeight, image, round, floor, rect, fill*/
 
 let imgDimensions = { w: 0, h: 0 };
 let imgUrl, display, maxImgW, maxImgH, canvas, startingCanvasW, startingCanvasH, rows, cols;
@@ -19,6 +19,8 @@ function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
   background(235);
   getDimensions(imgUrl);
+  // fill(0);
+  // rect(0, 0, 100, 100);
   
   
 }
@@ -62,11 +64,10 @@ function resizeImage(){
   }else if(imgDimensions.h > maxImgH){
     imgDimensions.h = maxImgH;
     imgDimensions.w = imgDimensions.h / ratio;
-    //console.log(imgDimensions);
   }
   
-  round(imgDimensions.w);
-  round(imgDimensions.h);
+  imgDimensions.w = round(imgDimensions.w);
+  imgDimensions.h = round(imgDimensions.h);
   
   display.resize(imgDimensions.w, imgDimensions.h);
   
@@ -78,13 +79,15 @@ function resizeImage(){
 
 function getRowsAndCols(ratio){
   if(ratio > 1){
-    rows = floor(imgDimensions.h / BLOCK_SIZE);
-    cols = floor(rows / ratio);
+    rows = imgDimensions.h / BLOCK_SIZE;
+    cols = rows / ratio;
   }else{
-    cols = floor(imgDimensions.w / BLOCK_SIZE);
-    rows = floor(cols * ratio);
+    cols = imgDimensions.w / BLOCK_SIZE;
+    rows = cols * ratio;
   }
   
+  rows = floor(rows);
+  cols = floor(cols);
   console.log(rows, cols);
   
 }
