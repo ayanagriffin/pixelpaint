@@ -15,11 +15,6 @@ function setup() {
   createCanvas(TEST_SIZE, TEST_SIZE);
   background(235);
   getDimensions(imgUrl);
-  //console.log(imgDimensions.w); logs 0 
-  //console.log(imgDimensions); // logs 0, 0 but if you expand, logs the expected output
-  
-  
-  console.log("in setup: width " + imgDimensions.w + " height: " + imgDimensions.h);
 }
 
 
@@ -31,10 +26,7 @@ function getDimensions(url) {
     image.onload = function() {
       imgDimensions.w = this.width;
       imgDimensions.h = this.height;
-      console.log("changed image dimensions to: width " + imgDimensions.w + " height: " + imgDimensions.h);
-      console.log(this.width, this.height);
-      adjustCanvas(imgDimensions.w, imgDimensions.h);
-      //console.log(imgDimensions); //logs expected output 
+      adjustCanvas();
       resolve();
       
     };
@@ -44,23 +36,15 @@ function getDimensions(url) {
   
 }
 
-function adjustCanvas(w, h){
-  // console.log(w, h); //logs expected output
-  
-  // trying to adjust the size of the canvas to be the size of the image. 
-  //will later adjust the size of the image first to ensure it fits nicely in the canvas (i.e. it is not too tiny or large)
-  
-  
-  // let newWidth = imgDimensions.w;
-  // let newHeight = imgDimensions.h;
-  // console.log(newWidth, newHeight);
-  // resizeCanvas(newWidth, newHeight);
-  
- // console.log(imgDimensions); //logs expected output 
-  //console.log(imgDimensions.w, imgDimensions.h); //logs expected output
-  //text(imgDimensions.w, 10, 10); //shows expected value
-  resizeCanvas(w, h); 
+function adjustCanvas(){
+ // resizeImage();
+  resizeCanvas(imgDimensions.w, imgDimensions.h); 
   background(235);
+}
+
+function resizeImage(){
+  imgDimensions.w = windowWidth * 2 / 3;
+  
 }
 
 
