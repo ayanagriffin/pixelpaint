@@ -13,12 +13,13 @@ function preload() {
 
 function setup() {
   createCanvas(TEST_SIZE, TEST_SIZE);
+  background(235);
   getDimensions(imgUrl);
   //console.log(imgDimensions.w); logs 0 
   //console.log(imgDimensions); // logs 0, 0 but if you expand, logs the expected output
   
-  background(235);
-  console.log("in setup");
+  
+  console.log("in setup: width " + imgDimensions.w + " height: " + imgDimensions.h);
 }
 
 
@@ -30,7 +31,7 @@ function getDimensions(url) {
     image.onload = function() {
       imgDimensions.w = this.width;
       imgDimensions.h = this.height;
-      console.log("changed image dimensions to: width " + imgDimensions.w + "");
+      console.log("changed image dimensions to: width " + imgDimensions.w + " height: " + imgDimensions.h);
       console.log(this.width, this.height);
       adjustCanvas(imgDimensions.w, imgDimensions.h);
       //console.log(imgDimensions); //logs expected output 
