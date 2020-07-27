@@ -1,8 +1,8 @@
-/*global loadImage, createCanvas, resizeCanvas, background, text, windowWidth, windowHeight*/
+/*global loadImage, createCanvas, resizeCanvas, background, text, windowWidth, windowHeight, image*/
 
 let imgDimensions = { w: 0, h: 0 };
-let imgUrl, display, maxImgW, maxImgH, canvas;
-const TEST_SIZE = 200;
+let imgUrl, display, maxImgW, maxImgH, canvas, startingCanvasW, startingCanvasH;
+
 
   
 function preload() {
@@ -15,23 +15,27 @@ function preload() {
 function setup() {
   maxImgW = windowWidth * 2 /3;
   maxImgH = windowHeight * 1 / 2;
-  canvas = createCanvas(TEST_SIZE, TEST_SIZE);
+  canvas = createCanvas(windowWidth, windowHeight);
   background(235);
-  getDimensions(imgUrl);
+  image(display, 0, 0);
+  //getDimensions(imgUrl);
+  //resizeImage();
+  test();
   
 }
 
 
 //updates dimensions and returns a Promise after image finishes loading 
 function getDimensions(url) {
-  let image = new Image();
-  image.src = url;
+  let img = new Image();
+  img.src = url;
   return new Promise((resolve, reject) => {
-    image.onload = function() {
+    img.onload = function() {
       imgDimensions.w = this.width;
       imgDimensions.h = this.height;
-      console.log(imgDimensions, maxImgH);
-      adjustCanvas();
+      //console.log(imgDimensions, maxImgH);
+      //adjustCanvas();
+      resizeImage();
       resolve();
       
     };
@@ -60,7 +64,12 @@ function resizeImage(){
     console.log(imgDimensions);
   }
   
+  display.resize(imgDimensions.w, imgDimensions.h);
+  
   
 }
 
 
+function test(){
+  display.resize(300, 300);
+}
