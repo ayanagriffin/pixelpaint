@@ -45,15 +45,15 @@ class Block{
     for(let i = this.startingX; i < this.endingX; i++){
       for(let j = this.startingY; j < this.endingY; j++){
         //console.log(j, i); // row, col
-        this.originalColors.push(display.get(j, i)[2]);
+        this.originalColors.push(display.get(j, i));
         this.totalR += display.get(j,i)[0];
         this.totalG += display.get(j, i)[1];
         this.totalB += display.get(j, i)[2];
-        //TODO: separate total R G and B into variables
+        //TODO: make rgb a json?
       }
     }
     
-    console.log(this.originalColors);
+    console.log(this.totalB/900);
   }
   
   
