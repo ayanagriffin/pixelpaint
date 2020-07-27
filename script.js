@@ -45,7 +45,7 @@ function getDimensions(url) {
 }
 
 function adjustCanvas(w, h){
-  //console.log(w, h); //logs expected output
+  // console.log(w, h); //logs expected output
   
   // trying to adjust the size of the canvas to be the size of the image. 
   //will later adjust the size of the image first to ensure it fits nicely in the canvas (i.e. it is not too tiny or large)
@@ -60,6 +60,7 @@ function adjustCanvas(w, h){
   //console.log(imgDimensions.w, imgDimensions.h); //logs expected output
   //text(imgDimensions.w, 10, 10); //shows expected value
   resizeCanvas(w, h); 
+  background(235);
 }
 
 
