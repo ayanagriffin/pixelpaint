@@ -12,8 +12,8 @@ function preload() {
 
 function setup() {
   getDimensions(imgUrl);
-  createCanvas(getDimensions(imgUrl), 200);
   console.log(getDimensions(imgUrl));
+  createCanvas(imgDimensions.w, imgDimensions.h);
   background(235);
 
   
@@ -25,15 +25,15 @@ function setup() {
 function getDimensions(url) {
   let image = new Image();
   image.src = url;
-  //return new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     image.onload = function() {
       imgDimensions.w = this.width;
       imgDimensions.h = this.height;
       //console.log(imgDimensions);
-      return imgDimensions.w;
+      resolve();
       
     };
- // });
+  });
   
  //console.log(imgDimensions);
   
