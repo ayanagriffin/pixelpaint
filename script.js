@@ -17,10 +17,8 @@ function setup() {
   maxImgH = windowHeight * 1 / 2;
   canvas = createCanvas(windowWidth, windowHeight);
   background(235);
-  image(display, 0, 0);
-  //getDimensions(imgUrl);
-  //resizeImage();
-  test();
+  getDimensions(imgUrl);
+  
   
 }
 
@@ -34,8 +32,8 @@ function getDimensions(url) {
       imgDimensions.w = this.width;
       imgDimensions.h = this.height;
       //console.log(imgDimensions, maxImgH);
-      //adjustCanvas();
-      resizeImage();
+      adjustCanvas();
+      //resizeImage();
       resolve();
       
     };
@@ -48,6 +46,7 @@ function getDimensions(url) {
 function adjustCanvas(){
   resizeImage();
   resizeCanvas(imgDimensions.w, imgDimensions.h); 
+  getColors();
   background(235);
 }
 
@@ -61,15 +60,17 @@ function resizeImage(){
   }else if(imgDimensions.h > maxImgH){
     imgDimensions.h = maxImgH;
     imgDimensions.w = imgDimensions.h / ratio;
-    console.log(imgDimensions);
+    //console.log(imgDimensions);
   }
   
-  display.resize(imgDimensions.w, 0);
+  display.resize(imgDimensions.w, imgDimensions.h);
+
   
   
 }
 
-
-function test(){
-  display.resize(100, 100);
+function getColors(){
+  console.log(imgDimensions);
+  
 }
+
