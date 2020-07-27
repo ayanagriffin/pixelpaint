@@ -16,5 +16,15 @@ function setup(){
 
 function getDimensions(imgUrl){
   let image = new Image();
+  
+  image.onload = function(){
+    console.log("loaded");
+  };
   image.src = imgUrl;
+  imgDimensions.w = image.width;
+  imgDimensions.h = image.height;
+  console.log(image.src, imgDimensions);
+ 
+
 }
+
