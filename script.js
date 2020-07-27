@@ -18,6 +18,7 @@ function setup() {
   //console.log(imgDimensions); // logs 0, 0 but if you expand, logs the expected output
   
   background(235);
+  console.log("in setup");
 }
 
 
@@ -29,6 +30,8 @@ function getDimensions(url) {
     image.onload = function() {
       imgDimensions.w = this.width;
       imgDimensions.h = this.height;
+      console.log("changed image dimensions to: width " + imgDimensions.w + "");
+      console.log(this.width, this.height);
       adjustCanvas(imgDimensions.w, imgDimensions.h);
       //console.log(imgDimensions); //logs expected output 
       resolve();
