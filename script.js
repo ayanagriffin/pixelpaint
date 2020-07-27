@@ -1,8 +1,9 @@
 /*global loadImage, createCanvas, resizeCanvas, background, text, windowWidth, windowHeight*/
 
 let imgDimensions = { w: 0, h: 0 };
-let imgUrl, display;
+let imgUrl, display, maxImgW, maxImgH;
 const TEST_SIZE = 200;
+
   
 function preload() {
   imgUrl =
@@ -12,6 +13,8 @@ function preload() {
 }
 
 function setup() {
+  maxImgW = windowWidth * 2 /3;
+  maxImgH = windowHeight * 1 / 2;
   createCanvas(TEST_SIZE, TEST_SIZE);
   background(235);
   getDimensions(imgUrl);
@@ -26,6 +29,7 @@ function getDimensions(url) {
     image.onload = function() {
       imgDimensions.w = this.width;
       imgDimensions.h = this.height;
+      console.log(imgDimensions);
       adjustCanvas();
       resolve();
       
@@ -37,13 +41,19 @@ function getDimensions(url) {
 }
 
 function adjustCanvas(){
- // resizeImage();
+  resizeImage();
   resizeCanvas(imgDimensions.w, imgDimensions.h); 
   background(235);
 }
 
 function resizeImage(){
-  imgDimensions.w = windowWidth * 2 / 3;
+  let ratio = imgDimensions.h / imgDimensions.w
+  if(imgDimensions.w > imgDimensions.h imgDimensions.w > maxImgW){
+    imgDimensions.w = maxImgW;
+    imgDimensions.h = imgDimensions.w * ratio;
+    console.log(imgDimensions);
+  }
+  
   
 }
 
