@@ -31,7 +31,7 @@ let squareSize,
   picture4,
   undoButton,
   penguinPicture,
-  pictureHolder;
+  pictureHolder, imgUrl, display;
 
 let curPictureNum = 0,
   test = 0,
@@ -40,15 +40,16 @@ let curPictureNum = 0,
   starIsVisible,
   imgLoaded = false;
 
+let imgDimensions = { w: 0, h: 0 };
+
 function preload() {
   // need to preload image for it to function properly
-  penguinPicture = new Picture(
-    "https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909"
-  );
-  pictureHolder = loadImage(penguinPicture.imgLink);
+  imgUrl = "https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909";
+  display = loadImage(imgUrl);
 }
 
 function setup() {
+  getImgDimensions(imgUrl);
 
   // dont need the picture to show, but functionality does not work without first placing the image somewhere
   starIsVisible = false;
@@ -219,4 +220,6 @@ function finishPainting() {
   isFinished = true;
 }
 
-
+function getImgDimensions(){
+  
+}
