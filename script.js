@@ -1,4 +1,4 @@
-/*global loadImage, createCanvas, resizeCanvas, background, text, windowWidth, windowHeight, image, round, floor, rect, fill*/
+/*global loadImage, createCanvas, resizeCanvas, background, text, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight*/
 
 let imgDimensions = { w: 0, h: 0 };
 let imgUrl, display, maxImgW, maxImgH, canvas, startingCanvasW, startingCanvasH, rows, cols;
@@ -25,6 +25,16 @@ function setup() {
   
 }
 
+class Block{
+  constructor(row, col){
+    this.row = row;
+    this.col = col;
+    this.size = BLOCK_SIZE;
+  }
+  
+  
+  
+}
 
 //updates dimensions and returns a Promise after image finishes loading 
 function getDimensions(url) {
@@ -49,8 +59,8 @@ function getDimensions(url) {
 function adjustCanvas(){
   resizeImage();
   resizeCanvas(imgDimensions.w, imgDimensions.h); 
-  //getColors();
   background(235);
+  //drawRowsAndCols();
   //image(display, 0, 0);
 }
 
@@ -66,13 +76,17 @@ function resizeImage(){
     imgDimensions.w = imgDimensions.h / ratio;
   }
   
-  imgDimensions.w = round(imgDimensions.w);
-  imgDimensions.h = round(imgDimensions.h);
+
+  getRowsAndCols(ratio);
   
+  // some sides might be shaved down a bit to create the blocks, which are perfect squares. 
+  // these next lines adjust the dimensions so that the squares fit evenly with no excess hanging over the sides.
+  imgDimensions.w = cols * BLOCK_SIZE;
+  imgDimensions.h = rows * BLOCK_SIZE;
   display.resize(imgDimensions.w, imgDimensions.h);
   
   console.log(imgDimensions);
-  getRowsAndCols(ratio);
+  
   
   
 }
@@ -90,5 +104,15 @@ function getRowsAndCols(ratio){
   cols = floor(cols);
   console.log(rows, cols);
   
+}
+
+//helper function for visualisation of the rows and cols
+function drawRowsAndCols(){
+  for(let r = 0; r < rows; r++){
+    for(let c = 0; c < cols; c++){
+      strokeWeight(3);
+      rect(c * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+    }
+  }
 }
 
