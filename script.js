@@ -1,4 +1,4 @@
-/*global loadImage, createCanvas, resizeCanvas, background*/
+/*global loadImage, createCanvas, resizeCanvas, background, text*/
 
 let imgDimensions = { w: 0, h: 0 };
 let imgUrl, display, imgDimensions2;
@@ -14,12 +14,10 @@ function preload() {
 function setup() {
   createCanvas(TEST_SIZE, TEST_SIZE);
   getDimensions(imgUrl);
-  //console.log(getDimensions(imgUrl));
+  
+  //console.log(imgDimensions); // logs 0, 0 but if you expand, logs the expected output
   
   background(235);
-
-  
-
 }
 
 
@@ -32,7 +30,7 @@ function getDimensions(url) {
       imgDimensions.w = this.width;
       imgDimensions.h = this.height;
       adjustCanvas();
-      //console.log(imgDimensions);
+      //console.log(imgDimensions); //logs expected output 
       resolve();
       
     };
@@ -43,13 +41,19 @@ function getDimensions(url) {
 }
 
 function adjustCanvas(){
+  // trying to adjust the size of the canvas to be the size of the image. 
+  //will later adjust the size of the image first to ensure it fits nicely in the canvas (i.e. it is not too tiny or large)
+  
+  
   // let newWidth = imgDimensions.w;
   // let newHeight = imgDimensions.h;
   // console.log(newWidth, newHeight);
   // resizeCanvas(newWidth, newHeight);
   
-  console.log(imgDimensions);
-  resizeCanvas(imgDimensions.w, imgDimensions.h);
+  console.log(imgDimensions); //logs expected output 
+  //console.log(imgDimensions.w, imgDimensions.h); //logs expected output
+  //text(imgDimensions.w, 10, 10); //shows expected value
+ // resizeCanvas(imgDimensions.w, imgDimensions.h); // reads it as 0, 0 
 }
 
 
