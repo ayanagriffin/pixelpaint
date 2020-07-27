@@ -1,14 +1,14 @@
-/*global loadImage, createCanvas, resizeCanvas, background, text, windowWidth, windowHeight, image, round*/
+/*global loadImage, createCanvas, resizeCanvas, background, text, windowWidth, windowHeight, image, round, floor*/
 
 let imgDimensions = { w: 0, h: 0 };
-let imgUrl, display, maxImgW, maxImgH, canvas, startingCanvasW, startingCanvasH, blockSize;
+let imgUrl, display, maxImgW, maxImgH, canvas, startingCanvasW, startingCanvasH, rows, cols;
 const BLOCK_SIZE = 30;
 
 
   
 function preload() {
   imgUrl =
-    "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2Funnamed.png?v=1595864938729";
+    "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2FMrtallimage.webp?v=1595864859609";
   display = loadImage(imgUrl);
   
 }
@@ -49,6 +49,7 @@ function adjustCanvas(){
   resizeCanvas(imgDimensions.w, imgDimensions.h); 
   //getColors();
   background(235);
+  //image(display, 0, 0);
 }
 
 // resizes imgDimensions to fit nicely on the window while maintaining the original ratio between w and h
@@ -68,15 +69,23 @@ function resizeImage(){
   round(imgDimensions.h);
   
   display.resize(imgDimensions.w, imgDimensions.h);
+  
   console.log(imgDimensions);
-
+  getRowsAndCols(ratio);
   
   
 }
 
-function getRowsAndCols(){
+function getRowsAndCols(ratio){
+  if(ratio > 1){
+    rows = floor(imgDimensions.h / BLOCK_SIZE);
+    cols = floor(rows / ratio);
+  }else{
+    cols = floor(imgDimensions.w / BLOCK_SIZE);
+    rows = floor(cols * ratio);
+  }
   
-  
+  console.log(rows, cols);
   
 }
 
