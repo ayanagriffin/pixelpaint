@@ -1,20 +1,2 @@
 /* CSS files add styling rules to your content */
 
-
-h1 {
-  font-family: "Yanone Kaffeesatz";
-  font-weight: 700;
-  font-size: 40px;
-  text-align: center;
-  color: hsl(16, 100%, 65%);
-}
-
-
-body {
-  font-family: "Yanone Kaffeesatz";
-  font-weight: 500;
-  font-size: 20px;
-  text-align: center;
-  color: hsl(16, 100%, 80%);
-}
-

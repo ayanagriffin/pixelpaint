@@ -5,15 +5,17 @@ let imgUrl, display, imgDimensions2;
   
 function preload() {
   imgUrl =
-    "https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909";
+    "https://cdn.glitch.com/d82135a4-9f9d-4654-a46b-f7f58cdc9d01%2Fmosaic-758754_960_720.webp?v=1595547170968";
   display = loadImage(imgUrl);
   
 }
 
 function setup() {
   getDimensions(imgUrl);
-  
+  createCanvas(getDimensions(imgUrl), 200);
+  console.log(getDimensions(imgUrl));
   background(235);
+
   
 
 }
@@ -23,19 +25,17 @@ function setup() {
 function getDimensions(url) {
   let image = new Image();
   image.src = url;
-  return new Promise((resolve, reject) => {
+  //return new Promise((resolve, reject) => {
     image.onload = function() {
-      imgDimensions2 = { w: this.width, h: this.width };
-      console.log(imgDimensions2);
-      createCanvas(imgDimensions2.w, imgDimensions2.h);
       imgDimensions.w = this.width;
       imgDimensions.h = this.height;
-      
+      //console.log(imgDimensions);
+      return imgDimensions.w;
       
     };
-  });
+ // });
   
-  display.get(0,0);
+ //console.log(imgDimensions);
   
 }
 
