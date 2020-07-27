@@ -8,7 +8,7 @@ const BLOCK_SIZE = 30;
   
 function preload() {
   imgUrl =
-    "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2FMrtallimage.webp?v=1595864859609";
+    "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2Funnamed.png?v=1595864938729";
   display = loadImage(imgUrl);
   
 }
@@ -30,8 +30,31 @@ class Block{
     this.row = row;
     this.col = col;
     this.size = BLOCK_SIZE;
+    this.startingX = this.col * this.size;
+    this.startingY = this.row * this.size;
+    this.endingX = this.startingX + this.size;
+    this.endingY = this.startingY + this.size;
+    
+    this.originalColors = [];
+    this.totalR = 0;
+    this.totalG = 0;
+    this.totalB = 0;
   }
   
+  getPixels(){
+    for(let i = this.startingX; i < this.endingX; i++){
+      for(let j = this.startingY; j < this.endingY; j++){
+        //console.log(j, i); // row, col
+        this.originalColors.push(display.get(j, i)[2]);
+        this.totalR += display.get(j,i)[0];
+        this.totalG += display.get(j, i)[1];
+        this.totalB += display.get(j, i)[2];
+        //TODO: separate total R G and B into variables
+      }
+    }
+    
+    console.log(this.originalColors);
+  }
   
   
 }
@@ -87,6 +110,10 @@ function resizeImage(){
   
   console.log(imgDimensions);
   
+  let block = new Block(0, 0);
+  block.getPixels();
+  //console.log(display.get(imgDimensions.w - 1, imgDimensions.h - 1))
+  
   
   
 }
@@ -103,6 +130,7 @@ function getRowsAndCols(ratio){
   rows = floor(rows);
   cols = floor(cols);
   console.log(rows, cols);
+  
   
 }
 
