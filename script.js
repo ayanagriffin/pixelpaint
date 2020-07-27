@@ -1,7 +1,8 @@
-/*global loadImage, createCanvas, resizeCanvas, background, text, windowWidth, windowHeight, image*/
+/*global loadImage, createCanvas, resizeCanvas, background, text, windowWidth, windowHeight, image, round*/
 
 let imgDimensions = { w: 0, h: 0 };
-let imgUrl, display, maxImgW, maxImgH, canvas, startingCanvasW, startingCanvasH;
+let imgUrl, display, maxImgW, maxImgH, canvas, startingCanvasW, startingCanvasH, blockSize;
+const BLOCK_SIZE = 30;
 
 
   
@@ -46,13 +47,13 @@ function getDimensions(url) {
 function adjustCanvas(){
   resizeImage();
   resizeCanvas(imgDimensions.w, imgDimensions.h); 
-  getColors();
+  //getColors();
   background(235);
 }
 
 // resizes imgDimensions to fit nicely on the window while maintaining the original ratio between w and h
 function resizeImage(){
-  let ratio = imgDimensions.h / imgDimensions.w
+  let ratio = imgDimensions.h / imgDimensions.w; // if > 1, we have more rows than cols
   if(imgDimensions.w > imgDimensions.h && imgDimensions.w > maxImgW){
     imgDimensions.w = maxImgW;
     imgDimensions.h = imgDimensions.w * ratio;
@@ -63,14 +64,19 @@ function resizeImage(){
     //console.log(imgDimensions);
   }
   
+  round(imgDimensions.w);
+  round(imgDimensions.h);
+  
   display.resize(imgDimensions.w, imgDimensions.h);
+  console.log(imgDimensions);
 
   
   
 }
 
-function getColors(){
-  console.log(imgDimensions);
+function getRowsAndCols(){
+  
+  
   
 }
 
