@@ -1,7 +1,8 @@
-/*global loadImage, createCanvas, background*/
+/*global loadImage, createCanvas, resizeCanvas, background*/
 
 let imgDimensions = { w: 0, h: 0 };
 let imgUrl, display, imgDimensions2;
+const TEST_SIZE = 200;
   
 function preload() {
   imgUrl =
@@ -11,9 +12,10 @@ function preload() {
 }
 
 function setup() {
+  createCanvas(TEST_SIZE, TEST_SIZE);
   getDimensions(imgUrl);
-  console.log(getDimensions(imgUrl));
-  createCanvas(imgDimensions.w, imgDimensions.h);
+  //console.log(getDimensions(imgUrl));
+  
   background(235);
 
   
@@ -29,6 +31,7 @@ function getDimensions(url) {
     image.onload = function() {
       imgDimensions.w = this.width;
       imgDimensions.h = this.height;
+      adjustCanvas();
       //console.log(imgDimensions);
       resolve();
       
@@ -37,6 +40,16 @@ function getDimensions(url) {
   
  //console.log(imgDimensions);
   
+}
+
+function adjustCanvas(){
+  // let newWidth = imgDimensions.w;
+  // let newHeight = imgDimensions.h;
+  // console.log(newWidth, newHeight);
+  // resizeCanvas(newWidth, newHeight);
+  
+  console.log(imgDimensions);
+  resizeCanvas(imgDimensions.w, imgDimensions.h);
 }
 
 
