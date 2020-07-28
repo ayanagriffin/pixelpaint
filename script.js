@@ -76,7 +76,7 @@ function resizeImage() {
 
   getArray();
   // let block = new Block(0, 0);
-  // block.getAverageColor();
+  // console.log(block.getAverageColor());
   //console.log(display.get(imgDimensions.w - 1, imgDimensions.h - 1))
 }
 

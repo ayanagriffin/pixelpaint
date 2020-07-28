@@ -2,41 +2,6 @@
 
 
 
-class Block {
-  constructor(row, col) {
-    this.row = row;
-    this.col = col;
-    this.size = BLOCK_SIZE;
-    this.totalPixels = BLOCK_SIZE * BLOCK_SIZE;
-    this.startingX = this.col * this.size;
-    this.startingY = this.row * this.size;
-    this.endingX = this.startingX + this.size;
-    this.endingY = this.startingY + this.size;
-    this.finalColor = [];
-
-    //this.originalColors = [];
-    this.colorVals = [0, 0, 0];
-    this.foundMatch = false;
-  }
-
-  getAverageColor() {
-    for (let i = this.startingX; i < this.endingX; i++) {
-      for (let j = this.startingY; j < this.endingY; j++) {
-        //console.log(j, i); // row, col
-        //this.originalColors.push(display.get(j, i));
-        this.colorVals[0] += display.get(j, i)[0];
-        this.colorVals[1] += display.get(j, i)[1];
-        this.colorVals[2] += display.get(j, i)[2];
-      }
-    }
-
-    this.colorVals[0] = floor(this.colorVals[0] / this.totalPixels);
-    this.colorVals[1] = floor(this.colorVals[1] / this.totalPixels);
-    this.colorVals[2] = floor(this.colorVals[2] / this.totalPixels);
-
-    return this.colorVals;
-  }
-}
 
 class Picture {
   constructor(rows, cols, BLOCK_SIZE) {
@@ -70,6 +35,7 @@ class Picture {
       this.blocks.push(row);
     }
 
+    //return this.blocks;
     this.refactorBlockColors();
     //return this.blocks;
   }
@@ -79,7 +45,8 @@ class Picture {
       for (let c = 0; c < this.cols; c++) {
         if (!this.blocks[r][c].foundMatch) {
           this.numColors++;
-          this.findMatches(this.blocks[r][c], this.numColors);
+          //console.log(this.blocks[r][c].colorVals);
+          //this.findMatches(this.blocks[r][c], this.numColors);
         }
       }
     }
@@ -90,7 +57,7 @@ class Picture {
     for (let r = 0; r < this.rows; r++) {
       for (let c = 0; c < this.cols; c++) {
         let curBlock = this.blocks[r][c];
-        //console.log(testBlock.colorVals);
+        console.log(testBlock.colorVals);
         if (!curBlock.foundMatch) {
           if (
             abs(testBlock.colorVals[0] - curBlock.colorVals[0]) < this.cushion &&
@@ -142,8 +109,53 @@ class Picture {
     // basically runs all necessary functions within the class to return the array with the color 
     //      values (i.e. what is needed to draw the Squares in the main file)
     
-    this.initializeValsArray();
+   // this.initializeValsArray();
     this.getBlockArray();
-    return this.valsArray;
+    this.refactorBlockColors();
+    //return this.valsArray;
   }
 }
+
+
+
+
+
+
+class Block {
+  constructor(row, col) {
+    this.row = row;
+    this.col = col;
+    this.size = BLOCK_SIZE;
+    this.totalPixels = BLOCK_SIZE * BLOCK_SIZE;
+    this.startingX = this.col * this.size;
+    this.startingY = this.row * this.size;
+    this.endingX = this.startingX + this.size;
+    this.endingY = this.startingY + this.size;
+    this.finalColor = [];
+
+    //this.originalColors = [];
+    this.colorVals = [0, 0, 0];
+    this.foundMatch = false;
+  }
+
+  getAverageColor() {
+    for (let i = this.startingX; i < this.endingX; i++) {
+      for (let j = this.startingY; j < this.endingY; j++) {
+        //console.log(j, i); // row, col
+        //this.originalColors.push(display.get(j, i));
+        this.colorVals[0] += display.get(j, i)[0];
+        this.colorVals[1] += display.get(j, i)[1];
+        this.colorVals[2] += display.get(j, i)[2];
+      }
+    }
+
+    this.colorVals[0] = floor(this.colorVals[0] / this.totalPixels);
+    this.colorVals[1] = floor(this.colorVals[1] / this.totalPixels);
+    this.colorVals[2] = floor(this.colorVals[2] / this.totalPixels);
+
+    return this.colorVals;
+  }
+}
+
+
+
