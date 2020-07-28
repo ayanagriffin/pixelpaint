@@ -7,7 +7,7 @@ class Picture {
   constructor(rows, cols, BLOCK_SIZE) {
     this.blocks = [];
     this.numColors = 0;
-    this.cushion = 100;
+    this.cushion = 150;
     this.rows = rows;
     this.cols = cols;
     this.size = BLOCK_SIZE;
