@@ -14,7 +14,7 @@ const BLOCK_SIZE = 30;
 
 function preload() {
   imgUrl =
-    "https://cdn.glitch.com/d82135a4-9f9d-4654-a46b-f7f58cdc9d01%2Fimg_lights.jpg?v=1595543508242";
+    "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2Funnamed.png?v=1595864938729";
   display = loadImage(imgUrl);
 }
 

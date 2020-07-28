@@ -1,6 +1,6 @@
 /*global BLOCK_SIZE, display, floor, rows, cols, abs*/
 
-let blocks = [];
+
 
 class Block {
   constructor(row, col) {
@@ -15,7 +15,7 @@ class Block {
     this.finalColor = [];
 
     //this.originalColors = [];
-    this.colorVals = { R: 0, G: 0, B: 0 };
+    this.colorVals = [0, 0, 0];
     this.foundMatch = false;
   }
 
@@ -24,15 +24,15 @@ class Block {
       for (let j = this.startingY; j < this.endingY; j++) {
         //console.log(j, i); // row, col
         //this.originalColors.push(display.get(j, i));
-        this.colorVals.R += display.get(j, i)[0];
-        this.colorVals.G += display.get(j, i)[1];
-        this.colorVals.B += display.get(j, i)[2];
+        this.colorVals[0] += display.get(j, i)[0];
+        this.colorVals[1] += display.get(j, i)[1];
+        this.colorVals[2] += display.get(j, i)[2];
       }
     }
 
-    this.colorVals.R = floor(this.colorVals.R / this.totalPixels);
-    this.colorVals.G = floor(this.colorVals.G / this.totalPixels);
-    this.colorVals.B = floor(this.colorVals.B / this.totalPixels);
+    this.colorVals[0] = floor(this.colorVals[0] / this.totalPixels);
+    this.colorVals[1] = floor(this.colorVals[1] / this.totalPixels);
+    this.colorVals[2] = floor(this.colorVals[2] / this.totalPixels);
 
     return this.colorVals;
   }
@@ -90,12 +90,12 @@ class Picture {
     for (let r = 0; r < this.rows; r++) {
       for (let c = 0; c < this.cols; c++) {
         let curBlock = this.blocks[r][c];
-
+        //console.log(testBlock.colorVals);
         if (!curBlock.foundMatch) {
           if (
-            abs(testBlock.colorVals.R - curBlock.colorVals.R) < this.cushion &&
-            abs(testBlock.colorVals.G - curBlock.colorVals.G) < this.cushion &&
-            abs(testBlock.colorVals.B - curBlock.colorVals.B) < this.cushion
+            abs(testBlock.colorVals[0] - curBlock.colorVals[0]) < this.cushion &&
+            abs(testBlock.colorVals[1] - curBlock.colorVals[1]) < this.cushion &&
+            abs(testBlock.colorVals[2] - curBlock.colorVals[2]) < this.cushion
           ) {
             matches.push(curBlock);
 
@@ -118,9 +118,9 @@ class Picture {
 
       for (let i = 0; i < matches.length; i++) {
         let curBlock = matches[i];
-        totalR += curBlock.colorVals.R;
-        totalG += curBlock.colorVals.G;
-        totalB += curBlock.colorVals.B;
+        totalR += curBlock.colorVals[0];
+        totalG += curBlock.colorVals[1];
+        totalB += curBlock.colorVals[2];
       }
 
       let finalR = totalR / matches.length;
@@ -144,7 +144,6 @@ class Picture {
     
     this.initializeValsArray();
     this.getBlockArray();
-    this.refactorBlockColors();
     return this.valsArray;
   }
 }
