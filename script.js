@@ -60,7 +60,10 @@ function resizeImage() {
     imgDimensions.w = maxImgW;
     imgDimensions.h = imgDimensions.w * ratio;
     console.log(imgDimensions);
-  } else if (imgDimensions.h > maxImgH) {
+  // } else if (imgDimensions.h > maxImgH) {
+  //   imgDimensions.h = maxImgH;
+  //   imgDimensions.w = imgDimensions.h / ratio;
+  }else{
     imgDimensions.h = maxImgH;
     imgDimensions.w = imgDimensions.h / ratio;
   }
