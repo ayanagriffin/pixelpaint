@@ -9,7 +9,7 @@ let imgUrl,
   startingCanvasW,
   startingCanvasH,
   rows,
-  cols;
+  cols, testArray;
 const BLOCK_SIZE = 30;
 
 function preload() {
@@ -96,7 +96,8 @@ function getRowsAndCols(ratio) {
 
 function getArray(){
   let colorBlockImg = new Picture(rows, cols, BLOCK_SIZE);
-  console.log(colorBlockImg.getBlockArray());
+  testArray = colorBlockImg.getBlockArray();
+  //console.log(testArray);
 }
 
 
@@ -104,7 +105,11 @@ function getArray(){
 function drawRowsAndCols() {
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
-      strokeWeight(3);
+      //strokeWeight(3);
+      let red = testArray[r][c].R;
+      let green = testArray[r][c].G;
+      let blue = testArray[r][c].B;
+      fill(red, green, blue);
       rect(c * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
     }
   }
