@@ -1,4 +1,4 @@
-/*global loadImage, createCanvas, resizeCanvas, background, text, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight*/
+/*global loadImage, createCanvas, resizeCanvas, background, text, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
 let imgDimensions = { w: 0, h: 0 };
 let imgUrl, display, maxImgW, maxImgH, canvas, startingCanvasW, startingCanvasH, rows, cols;
@@ -25,42 +25,7 @@ function setup() {
   
 }
 
-class Block{
-  constructor(row, col){
-    this.row = row;
-    this.col = col;
-    this.size = BLOCK_SIZE;
-    this.totalPixels = BLOCK_SIZE * BLOCK_SIZE;
-    this.startingX = this.col * this.size;
-    this.startingY = this.row * this.size;
-    this.endingX = this.startingX + this.size;
-    this.endingY = this.startingY + this.size;
-    
-    //this.originalColors = [];
-    this.colorVals = {"R": 0, "G": 0, "B": 0}
-    
-  }
-  
-  getAverageColor(){
-    for(let i = this.startingX; i < this.endingX; i++){
-      for(let j = this.startingY; j < this.endingY; j++){
-        //console.log(j, i); // row, col
-        //this.originalColors.push(display.get(j, i));
-        this.colorVals.R += display.get(j,i)[0];
-        this.colorVals.G += display.get(j, i)[1];
-        this.colorVals.B += display.get(j, i)[2];
-      }
-    }
-    
-    this.colorVals.R = floor(this.colorVals.R / this.totalPixels);
-    this.colorVals.G = floor(this.colorVals.G / this.totalPixels);
-    this.colorVals.B = floor(this.colorVals.B / this.totalPixels);
-    
-    console.log(this.colorVals);
-  }
-  
-  
-}
+
 
 //updates dimensions and returns a Promise after image finishes loading 
 function getDimensions(url) {
