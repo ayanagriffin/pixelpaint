@@ -96,8 +96,9 @@ function getRowsAndCols(ratio) {
 
 function getArray(){
   let colorBlockImg = new Picture(rows, cols, BLOCK_SIZE);
-  testArray = colorBlockImg.getBlockArray();
+  //testArray = colorBlockImg.getBlockArray();
   //console.log(testArray);
+  console.log(colorBlockImg.getFinalArray());
 }
 
 

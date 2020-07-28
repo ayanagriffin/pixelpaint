@@ -12,6 +12,7 @@ class Block {
     this.startingY = this.row * this.size;
     this.endingX = this.startingX + this.size;
     this.endingY = this.startingY + this.size;
+    this.finalColor = [];
 
     //this.originalColors = [];
     this.colorVals = { R: 0, G: 0, B: 0 };
@@ -45,9 +46,19 @@ class Picture {
     this.rows = rows;
     this.cols = cols;
     this.size = BLOCK_SIZE;
-    this.
+    this.valsArray = [];
   }
 
+  initializeValsArray(){
+    for (let r = 0; r < this.rows; r++) {
+      let row = [];
+      for (let c = 0; c < this.cols; c++) {
+        row.push(0);
+      }
+      this.valsArray.push(row);
+    }
+  }
+  
   getBlockArray() {
     for (let r = 0; r < this.rows; r++) {
       let row = [];
@@ -76,9 +87,9 @@ class Picture {
 
   findMatches(testBlock, colorVal) {
     let matches = [];
-    for (let i = 0; i < this.blocks.length; i++) {
-      for (let j = 0; j < this.blocks[i].length; j++) {
-        let curBlock = this.blocks[j][i];
+    for (let r = 0; r < this.rows; r++) {
+      for (let c = 0; c < this.cols; c++) {
+        let curBlock = this.blocks[r][c];
 
         if (!curBlock.foundMatch) {
           if (
@@ -90,7 +101,7 @@ class Picture {
 
             curBlock.foundMatch = true;
 
-            this.colorVals[j][i] = colorVal;
+            this.valsArray[r][c] = colorVal;
           } else {
           }
         }
@@ -98,5 +109,42 @@ class Picture {
     }
 
     this.findAverageColor(matches);
+  }
+  
+  findAverageColor(matches){
+     let totalR = 0;
+      let totalG = 0;
+      let totalB = 0;
+
+      for (let i = 0; i < matches.length; i++) {
+        let curBlock = matches[i];
+        totalR += curBlock.colorVals.R;
+        totalG += curBlock.colorVals.G;
+        totalB += curBlock.colorVals.B;
+      }
+
+      let finalR = totalR / matches.length;
+      let finalG = totalG / matches.length;
+      let finalB = totalB / matches.length;
+
+      let finalColor = [finalR, finalG, finalB];
+      //console.log(finalColor);
+
+      for (let i = 0; i < matches.length; i++) {
+        let curBlock = matches[i];
+        curBlock.finalColor = finalColor;
+        //console.log(finalColor, curBlock.finalColor);
+      }
+    
+  }
+  
+  getFinalArray() {
+    // basically runs all necessary functions within the class to return the array with the color 
+    //      values (i.e. what is needed to draw the Squares in the main file)
+    
+    this.initializeValsArray();
+    this.getBlockArray();
+    this.refactorBlockColors();
+    return this.valsArray;
   }
 }
