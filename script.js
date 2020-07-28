@@ -10,11 +10,11 @@ let imgUrl,
   startingCanvasH,
   rows,
   cols, testArray;
-const BLOCK_SIZE = 30;
+const BLOCK_SIZE = 20;
 
 function preload() {
   imgUrl =
-    "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2Funnamed.png?v=1595864938729";
+    "https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909";
   display = loadImage(imgUrl);
 }
 

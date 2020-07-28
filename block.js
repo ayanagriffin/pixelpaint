@@ -43,10 +43,11 @@ class Picture {
   refactorBlockColors() {
     for (let r = 0; r < this.rows; r++) {
       for (let c = 0; c < this.cols; c++) {
+        //console.log(this.blocks[r][c][0]);
         if (!this.blocks[r][c].foundMatch) {
           this.numColors++;
-          //console.log(this.blocks[r][c].colorVals);
-          //this.findMatches(this.blocks[r][c], this.numColors);
+          //console.log(this.blocks[r][c].colorVals[0]);
+          this.findMatches(this.blocks[r][c], this.numColors);
         }
       }
     }
@@ -57,12 +58,12 @@ class Picture {
     for (let r = 0; r < this.rows; r++) {
       for (let c = 0; c < this.cols; c++) {
         let curBlock = this.blocks[r][c];
-        console.log(testBlock.colorVals);
+        //console.log(testBlock.colorVals);
         if (!curBlock.foundMatch) {
           if (
-            abs(testBlock.colorVals[0] - curBlock.colorVals[0]) < this.cushion &&
-            abs(testBlock.colorVals[1] - curBlock.colorVals[1]) < this.cushion &&
-            abs(testBlock.colorVals[2] - curBlock.colorVals[2]) < this.cushion
+            abs(testBlock[0] - curBlock[0]) < this.cushion &&
+            abs(testBlock[1] - curBlock[1]) < this.cushion &&
+            abs(testBlock[2] - curBlock[2]) < this.cushion
           ) {
             matches.push(curBlock);
 
@@ -85,9 +86,9 @@ class Picture {
 
       for (let i = 0; i < matches.length; i++) {
         let curBlock = matches[i];
-        totalR += curBlock.colorVals[0];
-        totalG += curBlock.colorVals[1];
-        totalB += curBlock.colorVals[2];
+        totalR += curBlock[0];
+        totalG += curBlock[1];
+        totalB += curBlock[2];
       }
 
       let finalR = totalR / matches.length;
@@ -109,10 +110,10 @@ class Picture {
     // basically runs all necessary functions within the class to return the array with the color 
     //      values (i.e. what is needed to draw the Squares in the main file)
     
-   // this.initializeValsArray();
+    this.initializeValsArray();
     this.getBlockArray();
     this.refactorBlockColors();
-    //return this.valsArray;
+    return this.valsArray;
   }
 }
 
