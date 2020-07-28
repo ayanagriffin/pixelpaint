@@ -32,29 +32,35 @@ class Block{
     this.colorVals.R = floor(this.colorVals.R / this.totalPixels);
     this.colorVals.G = floor(this.colorVals.G / this.totalPixels);
     this.colorVals.B = floor(this.colorVals.B / this.totalPixels);
-    
-    blocks.push(this.colorVals);
+
+    return this.colorVals;
   }
   
   
 }
 
 class Picture{
-  constructor(rows, cols){
+  constructor(rows, cols, BLOCK_SIZE){
     this.blocks = [];
     this.numColors = 0;
     this.cushion = 100;
     this.rows = rows;
     this.cols = cols;
+    this.size = BLOCK_SIZE;
   }
   
   getBlockArray(){
     for(let r = 0; r < this.rows; r++){
+      let row = [];
       for(let c = 0; c < this.cols; c++){
-        let row = [];
-        row.push()
+        let block = new Block(c, r);
+        
+        row.push(block.getAverageColor());
       }
+      this.blocks.push(row);
     }
+    
+    return this.blocks;
   }
   
   refactorBlockColors(){
