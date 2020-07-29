@@ -1,4 +1,4 @@
-/*global loadImage, checkColorSquareClicked, drawColorSquares, GuideSquare, ColorSquare, createCanvas, initializeColorSquares, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/*global loadImage, checkColorSquareClicked, drawColorSquares, mouseX, mouseY, GuideSquare, ColorSquare, createCanvas, initializeColorSquares, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
 let imgDimensions = { w: 0, h: 0 };
 let imgUrl,
@@ -149,6 +149,8 @@ function drawTemplate(){
 }
 
 function drawGuideSquares(){
+  
+//TODO: this function is called in draw so these squares are being made a lot... fix/separate into own function
   for(let i = 0; i < avgColors.length; i++){
     let x = imgDimensions.w;
     let y = i * 2 * BLOCK_SIZE;
@@ -165,5 +167,10 @@ function drawGuideSquares(){
 }
 
 function checkGuideSquareClicked(){
-  
+  for(let i = 0; i < guideSquares.length; i++){
+    let curSquare = guideSquares[i];
+    if(curSquare.x + curSquare.size > mouseX && mouseX > curSquare.x && curSquare.y + curSquare.size > mouseY && mouseY > curSquare.y){
+        console.log(curSquare.val)
+      }
+  }
 }

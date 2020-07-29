@@ -1,4 +1,4 @@
-/*global loadImage, colorSquaresAreMade, createCanvas, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/*global loadImage, colorSquaresAreMade, createCanvas, BLOCK_SIZE, mouseX, mouseY, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
 //given the array, implement original functionality 
 let colorSquares;
@@ -42,7 +42,12 @@ function drawColorSquares(){
 }
 
 function checkColorSquareClicked(){
-  for(let r = 0; r < colorSquares.length; i ++){
-    for(let c = 0; c < colorSquares)
+  for(let r = 0; r < colorSquares.length; r ++){
+    for(let c = 0; c < colorSquares[r].length; c++){
+      let curSquare = colorSquares[r][c];
+      if(curSquare.x + BLOCK_SIZE > mouseX && mouseX > curSquare.x && curSquare.y + BLOCK_SIZE > mouseY && mouseY > curSquare.y){
+        curSquare.paint();
+      }
+    }
   }
 }

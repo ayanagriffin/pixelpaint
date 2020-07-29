@@ -32,6 +32,7 @@ class ColorSquare{
   
   paint(){
     this.color = currentColor; 
+    this.display();
     this.previousColors.push(this.color);
   }
 }
