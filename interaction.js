@@ -4,20 +4,30 @@
 let colorSquares;
 
 function initializeColorSquares(array){
+  //console.log(array);
   colorSquares = [];
   for(let r = 0; r < array.length; r++){
-    let row = [];
+    let currentRow = [];
     for(let c = 0; c < array[r].length; c++){
-      row.push(new ColorSquare(c, r, array[r][c]));
+      //console.log(c, r, array[r][c])
+      currentRow.push(new ColorSquare(c, r, array[r][c]));
     }
     
-    colorSquares.push(row);
+    colorSquares.push(currentRow);
+    
   }
   
+   //testingArray();
+  
+  
+  //console.log(colorSquares);
+}
+
+
+function testingArray(){
   for(let i = 0; i < colorSquares.length; i++){
     for(let j = 0; j < colorSquares[i].length; j++){
-      console.log(colorSquares[i][j].ra)
+      colorSquares[i][j].test();
     }
   }
-  //console.log(colorSquares);
 }
