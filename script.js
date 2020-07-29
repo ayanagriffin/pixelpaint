@@ -9,12 +9,12 @@ let imgUrl,
   startingCanvasW,
   startingCanvasH,
   rows,
-  cols, testArray, finalColorArray, colorSquaresAreMade, avgColors, avgColorsAreRetrieved;
+  cols, testArray, finalColorArray, colorSquaresAreMade, avgColors, avgColorsAreRetrieved, guideSquares;
 const BLOCK_SIZE = 20;
 
 function preload() {
   imgUrl =
-    "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2FScreen%20Shot%202020-07-29%20at%208.48.41%20AM.png?v=1596037730655";
+    "https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909";
   display = loadImage(imgUrl);
 }
 
@@ -36,7 +36,7 @@ function draw(){
   }
   
   if(avgColorsAreRetrieved){
-    //drawGuideSquares();
+    drawGuideSquares();
   }
 }
 
@@ -145,7 +145,18 @@ function drawGuideSquares(){
   for(let i = 0; i < avgColors.length; i++){
     let x = imgDimensions.w;
     let y = i * 2 * BLOCK_SIZE;
+    let size = 2 * BLOCK_SIZE;
+    let val = i + 1;
     fill(avgColors[i]);
-    rect(x, y, 2 * )
+    rect(x, y, size, size);
+    
+    if(avgColors[i][0] + avgColors[i][1] + avgColors[i][1] < 150){
+      fill(255)
+    }else{
+      fill(0);
+    }
+    
+    
+    text(i+1, x + size / 2, y + size /2);
   }
 }

@@ -29,3 +29,28 @@ class ColorSquare{
     
   }
 }
+
+class GuideSquares{
+  constructor(x, y, size, color, val){
+    this.x = x;
+    this.y = y
+    this.size = size;
+    this.color = color;
+    this.val = val;
+    
+  }
+  
+  draw(){
+    fill(this.color);
+    rect(this.x, this.y, this.size, this.size);
+    
+    if(this.color[0] +this.color[1] + this.color[1] < 150){
+      fill(255)
+    }else{
+      fill(0);
+    }
+    
+    
+    text(this.val, this.x + this.size / 2, this.y + this.size /2);
+  }
+}
