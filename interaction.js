@@ -10,24 +10,31 @@ function initializeColorSquares(array){
     let currentRow = [];
     for(let c = 0; c < array[r].length; c++){
       //console.log(c, r, array[r][c])
-      currentRow.push(new ColorSquare(c, r, array[r][c]));
+      currentRow.push(new ColorSquare(r, c, array[r][c]));
     }
     
     colorSquares.push(currentRow);
     
   }
   
-   //testingArray();
+   testingArray();
   
   
-  //console.log(colorSquares);
+ // console.log(colorSquares);
 }
 
 
 function testingArray(){
+  
   for(let i = 0; i < colorSquares.length; i++){
+    
     for(let j = 0; j < colorSquares[i].length; j++){
-      colorSquares[i][j].test();
+      colorSquares[i][j].display();
+      
+      //console.log(colorSquares[i][j].val)
     }
+    
   }
+  
+ 
 }
