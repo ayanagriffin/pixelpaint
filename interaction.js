@@ -1,6 +1,5 @@
 /*global loadImage, currentColor, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas, BLOCK_SIZE, mouseX, mouseY, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
-//given the array, implement original functionality
 let colorSquares, guideSquares, moves = [], paintingIsFinished = false;
 
 function initializeColorSquares(array) {
@@ -96,6 +95,8 @@ function undo(){
       moves.splice(moves.length - 1, 1);
     }
   }
+  
+  paintingIsFinished = false;
 }
 
 function restart(){
@@ -105,7 +106,8 @@ function restart(){
       colorSquares[r][c].previousColors = ["white"];
     }
   }
-  
+  moves = [];
+  paintingIsFinished = false;
 }
 
 function finishImage(){

@@ -1,4 +1,4 @@
-/*global loadImage, checkColorSquareClicked, checkGuideSquareClicked, guideSquares, drawGuideSquares, drawColorSquares, mouseX, mouseY, GuideSquare, ColorSquare, createCanvas, initializeColorSquares, initializeGuideSquares, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/*global loadImage, checkColorSquareClicked, CLOSE, textAlign, textSize, beginShape, endShape, TWO_PI, CENTER, sin, cos, vertex, paintingIsFinished, checkGuideSquareClicked, guideSquares, drawGuideSquares, drawColorSquares, mouseX, mouseY, GuideSquare, ColorSquare, createCanvas, initializeColorSquares, initializeGuideSquares, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
 let imgDimensions = { w: 0, h: 0 };
 let imgUrl,
@@ -36,6 +36,10 @@ function draw(){
   
   if(avgColorsAreRetrieved){
     drawGuideSquares();
+  }
+  
+  if(paintingIsFinished){
+    drawStar();
   }
 }
 
@@ -139,4 +143,26 @@ function drawTemplate(){
 }
 
 
+function drawStar(){
+  let starSize = imgDimensions.h / 20;
+    let angle = TWO_PI / 5;
+    let halfAngle = angle / 2;
+    let xBuffer = imgDimensions.w * 0.85;
+    let yBuffer = imgDimensions.h * 0.15;
+    fill("gold");
+    beginShape();
+    for (let i = 0; i < TWO_PI; i += angle) {
+      let x = xBuffer + cos(i) * starSize;
+      let y = yBuffer + sin(i) * starSize;
+      vertex(x, y);
+      x = xBuffer + cos(i + halfAngle) * ((starSize * 7) / 3);
+      y = yBuffer + sin(i + halfAngle) * ((starSize * 7) / 3);
+      vertex(x, y);
+    }
 
+    endShape(CLOSE);
+    fill("black");
+    textSize(imgDimensions.h / 25);
+    textAlign(CENTER, CENTER);
+    text("Nice!", xBuffer, yBuffer);
+}
