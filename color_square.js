@@ -1,4 +1,4 @@
-/*global loadImage, createCanvas, currentColor, textAlign, CENTER, strokeWeight, BLOCK_SIZE, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/*global loadImage, createCanvas, currentColor, paintextAlign, CENTER, strokeWeight, BLOCK_SIZE, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
 class ColorSquare{
   constructor(row, col, val){
@@ -34,7 +34,7 @@ class ColorSquare{
     this.color = currentColor; 
     this.display();
     this.previousColors.push(currentColor);
-    console.log(this.previousColors);
+    
   }
 }
 

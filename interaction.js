@@ -1,7 +1,7 @@
 /*global loadImage, currentColor, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas, BLOCK_SIZE, mouseX, mouseY, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
 //given the array, implement original functionality
-let colorSquares, guideSquares;
+let colorSquares, guideSquares, moves = [], paintingIsFinished = false;
 
 function initializeColorSquares(array) {
   //console.log(array);
@@ -38,7 +38,6 @@ function drawColorSquares() {
     for (let j = 0; j < colorSquares[i].length; j++) {
       colorSquares[i][j].display();
 
-      //console.log(colorSquares[i][j].val)
     }
   }
 }
@@ -60,6 +59,11 @@ function checkColorSquareClicked() {
         mouseY > curSquare.y
       ) {
         curSquare.paint();
+        let curSquareInfo = {"row": curSquare.row,
+                            "col": curSquare.col,
+                            "color": curSquare.color}
+        
+        moves.push(curSquareInfo);
       }
     }
   }
@@ -81,7 +85,17 @@ function checkGuideSquareClicked() {
 
 
 function undo(){
-  
+  //TODO: add undoFinish
+   if(moves.length > 0){
+    let mostRecentMove = moves[moves.length - 1];
+    let curSquare = colorSquares[mostRecentMove.row][mostRecentMove.col];
+    
+    if(curSquare.previousColors.length > 1){
+      curSquare.color = curSquare.previousColors[curSquare.previousColors.length - 2];
+      curSquare.previousColors.splice(curSquare.previousColors.length - 1, 1);
+      moves.splice(moves.length - 1, 1);
+    }
+  }
 }
 
 function restart(){
@@ -95,5 +109,5 @@ function restart(){
 }
 
 function finishImage(){
-  
+  paintingIsFinished = true;
 }
