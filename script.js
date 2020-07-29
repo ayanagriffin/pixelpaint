@@ -1,4 +1,4 @@
-/*global loadImage, checkColorSquareClicked, drawColorSquares, mouseX, mouseY, GuideSquare, ColorSquare, createCanvas, initializeColorSquares, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/*global loadImage, checkColorSquareClicked, checkGuideSquareClicked, guideSquares, drawGuideSquares, drawColorSquares, mouseX, mouseY, GuideSquare, ColorSquare, createCanvas, initializeColorSquares, initializeGuideSquares, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
 let imgDimensions = { w: 0, h: 0 };
 let imgUrl,
@@ -9,7 +9,7 @@ let imgUrl,
   startingCanvasW,
   startingCanvasH,
   rows,
-  cols, testArray, finalColorArray, colorSquaresAreMade, avgColors, avgColorsAreRetrieved, guideSquares, currentColor;
+  cols, testArray, finalColorArray, colorSquaresAreMade, avgColors, avgColorsAreRetrieved, currentColor;
 const BLOCK_SIZE = 20;
 
 function preload() {
@@ -26,10 +26,7 @@ function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
   background(235);
   getDimensions(imgUrl);
-  guideSquares = [];
-  currentColor = "red";
-  // fill(0);
-  // rect(0, 0, 100, 100);
+  currentColor = "white";
 }
 
 function draw(){
@@ -50,9 +47,9 @@ function getDimensions(url) {
     img.onload = function() {
       imgDimensions.w = this.width;
       imgDimensions.h = this.height;
-      //console.log(imgDimensions, maxImgH);
+      
       adjustCanvas();
-      //resizeImage();
+      
       resolve();
     };
   });
@@ -67,8 +64,7 @@ function adjustCanvas() {
   resizeImage();
   resizeCanvas(imgDimensions.w + 2*BLOCK_SIZE, imgDimensions.h);
   background(235);
-  //drawRowsAndCols();
-  //image(display, 0, 0);
+
 }
 
 // resizes imgDimensions to fit nicely on the window while maintaining the original ratio between w and h
@@ -79,9 +75,6 @@ function resizeImage() {
     imgDimensions.w = maxImgW;
     imgDimensions.h = imgDimensions.w * ratio;
     console.log(imgDimensions);
-  // } else if (imgDimensions.h > maxImgH) {
-  //   imgDimensions.h = maxImgH;
-  //   imgDimensions.w = imgDimensions.h / ratio;
   }else{
     imgDimensions.h = maxImgH;
     imgDimensions.w = imgDimensions.h / ratio;
@@ -95,12 +88,8 @@ function resizeImage() {
   imgDimensions.h = rows * BLOCK_SIZE;
   display.resize(imgDimensions.w, imgDimensions.h);
 
-  //console.log(imgDimensions);
-
   getArray();
-  // let block = new Block(0, 0);
-  // console.log(block.getAverageColor());
-  //console.log(display.get(imgDimensions.w - 1, imgDimensions.h - 1))
+ 
 }
 
 function getRowsAndCols(ratio) {
@@ -146,31 +135,8 @@ function drawRowsAndCols() {
 
 function drawTemplate(){
   initializeColorSquares(finalColorArray);
+  initializeGuideSquares(avgColors);
 }
 
-function drawGuideSquares(){
-  
-//TODO: this function is called in draw so these squares are being made a lot... fix/separate into own function
-  for(let i = 0; i < avgColors.length; i++){
-    let x = imgDimensions.w;
-    let y = i * 2 * BLOCK_SIZE;
-    let size = 2 * BLOCK_SIZE;
-    let val = i + 1;
-    let color = avgColors[i];
-    guideSquares.push(new GuideSquare(x, y, size, color, val));
-  }
-  
-  
-  for(let i = 0; i < guideSquares.length; i++){
-    guideSquares[i].draw();
-  }
-}
 
-function checkGuideSquareClicked(){
-  for(let i = 0; i < guideSquares.length; i++){
-    let curSquare = guideSquares[i];
-    if(curSquare.x + curSquare.size > mouseX && mouseX > curSquare.x && curSquare.y + curSquare.size > mouseY && mouseY > curSquare.y){
-        console.log(curSquare.val)
-      }
-  }
-}
+
