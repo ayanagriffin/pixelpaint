@@ -1,4 +1,4 @@
-/*global loadImage, createCanvas, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/*global loadImage, colorSquaresAreMade, createCanvas, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
 //given the array, implement original functionality 
 let colorSquares;
@@ -17,14 +17,16 @@ function initializeColorSquares(array){
     
   }
   
-   testingArray();
+  colorSquaresAreMade = true;
+  
+   //testingArray();
   
   
  // console.log(colorSquares);
 }
 
 
-function testingArray(){
+function drawColorSquares(){
   
   for(let i = 0; i < colorSquares.length; i++){
     

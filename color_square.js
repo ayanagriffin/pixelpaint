@@ -1,4 +1,4 @@
-/*global loadImage, createCanvas, strokeWeight, BLOCK_SIZE, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/*global loadImage, createCanvas, textAlign, CENTER, strokeWeight, BLOCK_SIZE, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
 class ColorSquare{
   constructor(row, col, val){
@@ -21,6 +21,10 @@ class ColorSquare{
     strokeWeight(2);
     fill(this.color);
     rect(this.x, this.y, this.size, this.size);
+    
+    fill(0);
+    textAlign(CENTER, CENTER);
+    text(this.val, this.col * this.size + this.size / 2, this.row * this.size + this.size / 2)
     //console.log(this.x, this.y);
     
   }

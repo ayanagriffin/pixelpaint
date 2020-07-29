@@ -1,4 +1,4 @@
-/*global loadImage, ColorSquare, createCanvas, initializeColorSquares, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/*global loadImage, drawColorSquares, ColorSquare, createCanvas, initializeColorSquares, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
 let imgDimensions = { w: 0, h: 0 };
 let imgUrl,
@@ -9,7 +9,7 @@ let imgUrl,
   startingCanvasW,
   startingCanvasH,
   rows,
-  cols, testArray, finalColorArray;
+  cols, testArray, finalColorArray, colorSquaresAreMade;
 const BLOCK_SIZE = 20;
 
 function preload() {
@@ -19,6 +19,7 @@ function preload() {
 }
 
 function setup() {
+  colorSquaresAreMade = false;
   maxImgW = (windowWidth * 2) / 3;
   maxImgH = (windowHeight * 2) / 3;
   canvas = createCanvas(windowWidth, windowHeight);
@@ -26,6 +27,12 @@ function setup() {
   getDimensions(imgUrl);
   // fill(0);
   // rect(0, 0, 100, 100);
+}
+
+function draw(){
+  if(colorSquaresAreMade){
+    drawColorSquares(); 
+  }
 }
 
 //updates dimensions and returns a Promise after image finishes loading

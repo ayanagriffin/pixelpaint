@@ -12,6 +12,7 @@ class Picture {
     this.cols = cols;
     this.size = BLOCK_SIZE;
     this.valsArray = [];
+    this.finalColors = [];
   }
 
   initializeValsArray(){
@@ -99,6 +100,7 @@ class Picture {
       //console.log(finalColor);
 
       for (let i = 0; i < matches.length; i++) {
+        if(i == 0)
         let curBlock = matches[i];
         curBlock.finalColor = finalColor;
         //console.log(finalColor, curBlock.finalColor);
@@ -114,6 +116,10 @@ class Picture {
     this.getBlockArray();
     this.refactorBlockColors();
     return this.valsArray;
+  }
+  
+  getAvgColors(){
+    
   }
 }
 
