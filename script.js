@@ -73,7 +73,6 @@ function adjustCanvas() {
 
 // resizes imgDimensions to fit nicely on the window while maintaining the original ratio between w and h
 function resizeImage() {
-  console.log(maxImgW, maxImgH);
   let ratio = imgDimensions.h / imgDimensions.w; // if > 1, we have more rows than cols
   if (imgDimensions.w > imgDimensions.h && imgDimensions.w > maxImgW) {
     imgDimensions.w = maxImgW;
