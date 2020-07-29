@@ -1,9 +1,45 @@
 /* CSS files add styling rules to your content */
 
-#canvas-div {
-  box-shadow: 0 0px 9px #FFFFFF;
-  margin: 5px 0px 0px 0px;
-  display: inline-block;
-  line-height: 0;
+body {
+  text-align: center;
+  font-family: "Yanone Kaffeesatz";
+  background: hsl(179, 2%, 90%, 0.6);
+  
+}
+
+h1 {
+  font-family: "Yanone Kaffeesatz";
+  font-weight: 700;
+  font-size: 40px;
+  color: hsl(16, 100%, 65%);
+}
+
+p {
+  font-family: "Yanone Kaffeesatz";
+  font-weight: 500;
+  font-size: 20px;
+  color: hsl(16, 100%, 80%);
+  margin: -20px;
+}
+
+.buttonContainer {
+  font-weight: 500;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  
+  
+}
+
+.button {
+  cursor: pointer;
+  border-radius: 5px;
+  width: 9em;
+  height: 1em;
+  padding: 4px;
+  margin: 5px;
+  top: 75vh;
+  position: relative;
+  background: hsl(16, 100%, 80%);
 }
 
