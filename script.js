@@ -1,4 +1,4 @@
-/*global loadImage, createCanvas, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/*global loadImage, createCanvas, initializeColorSquares, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
 let imgDimensions = { w: 0, h: 0 };
 let imgUrl,
@@ -9,12 +9,12 @@ let imgUrl,
   startingCanvasW,
   startingCanvasH,
   rows,
-  cols, testArray;
+  cols, testArray, finalColorArray;
 const BLOCK_SIZE = 20;
 
 function preload() {
   imgUrl =
-    "https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909";
+    "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2FScreen%20Shot%202020-07-29%20at%208.48.41%20AM.png?v=1596037730655";
   display = loadImage(imgUrl);
 }
 
@@ -76,7 +76,7 @@ function resizeImage() {
   imgDimensions.h = rows * BLOCK_SIZE;
   display.resize(imgDimensions.w, imgDimensions.h);
 
-  console.log(imgDimensions);
+  //console.log(imgDimensions);
 
   getArray();
   // let block = new Block(0, 0);
@@ -95,14 +95,16 @@ function getRowsAndCols(ratio) {
 
   rows = floor(rows);
   cols = floor(cols);
-  console.log(rows, cols);
+  //console.log(rows, cols);
 }
 
 function getArray(){
   let colorBlockImg = new Picture(rows, cols, BLOCK_SIZE);
   //testArray = colorBlockImg.getBlockArray();
   //console.log(testArray);
-  console.log(colorBlockImg.getFinalArray());
+  finalColorArray = colorBlockImg.getFinalArray();
+  //console.log(finalColorArray);
+  drawTemplate();
 }
 
 
@@ -118,4 +120,8 @@ function drawRowsAndCols() {
       rect(c * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
     }
   }
+}
+
+function drawTemplate(){
+  initializeColorSquares(finalColorArray);
 }
