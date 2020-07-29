@@ -114,10 +114,7 @@ function finishImage(){
   paintingIsFinished = true;
 }
 
-async function testNewImage(){
-  let newUrl = "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2FScreen%20Shot%202020-07-29%20at%208.48.41%20AM.png?v=1596037730655";
-  await getDimensions(newUrl);
-  display = loadImage(newUrl);
-  //imgUrl = newUrl;
+function testNewImage(){
+  
   
 }
