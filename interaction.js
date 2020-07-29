@@ -40,3 +40,9 @@ function drawColorSquares(){
   
  
 }
+
+function checkColorSquareClicked(){
+  for(let r = 0; r < colorSquares.length; i ++){
+    for(let c = 0; c < colorSquares)
+  }
+}

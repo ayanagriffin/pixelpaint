@@ -1,4 +1,4 @@
-/*global loadImage, createCanvas, textAlign, CENTER, strokeWeight, BLOCK_SIZE, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/*global loadImage, createCanvas, currentColor, textAlign, CENTER, strokeWeight, BLOCK_SIZE, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
 class ColorSquare{
   constructor(row, col, val){
@@ -9,6 +9,7 @@ class ColorSquare{
     this.color = "white";
     this.x = this.col * this.size;
     this.y = this.row * this.size;
+    this.previousColors = ["white"];
     
   }
   
@@ -28,9 +29,14 @@ class ColorSquare{
     //console.log(this.x, this.y);
     
   }
+  
+  paint(){
+    this.color = currentColor; 
+    this.previousColors.push(this.color);
+  }
 }
 
-class GuideSquares{
+class GuideSquare{
   constructor(x, y, size, color, val){
     this.x = x;
     this.y = y

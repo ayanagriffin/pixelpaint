@@ -1,4 +1,4 @@
-/*global loadImage, drawColorSquares, ColorSquare, createCanvas, initializeColorSquares, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/*global loadImage, checkColorSquareClicked, drawColorSquares, GuideSquare, ColorSquare, createCanvas, initializeColorSquares, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
 let imgDimensions = { w: 0, h: 0 };
 let imgUrl,
@@ -9,7 +9,7 @@ let imgUrl,
   startingCanvasW,
   startingCanvasH,
   rows,
-  cols, testArray, finalColorArray, colorSquaresAreMade, avgColors, avgColorsAreRetrieved, guideSquares;
+  cols, testArray, finalColorArray, colorSquaresAreMade, avgColors, avgColorsAreRetrieved, guideSquares, currentColor;
 const BLOCK_SIZE = 20;
 
 function preload() {
@@ -26,6 +26,8 @@ function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
   background(235);
   getDimensions(imgUrl);
+  guideSquares = [];
+  currentColor = "red";
   // fill(0);
   // rect(0, 0, 100, 100);
 }
@@ -54,6 +56,11 @@ function getDimensions(url) {
       resolve();
     };
   });
+}
+
+function mouseClicked(){
+  checkColorSquareClicked();
+  checkGuideSquareClicked();
 }
 
 function adjustCanvas() {
@@ -147,16 +154,16 @@ function drawGuideSquares(){
     let y = i * 2 * BLOCK_SIZE;
     let size = 2 * BLOCK_SIZE;
     let val = i + 1;
-    fill(avgColors[i]);
-    rect(x, y, size, size);
-    
-    if(avgColors[i][0] + avgColors[i][1] + avgColors[i][1] < 150){
-      fill(255)
-    }else{
-      fill(0);
-    }
-    
-    
-    text(i+1, x + size / 2, y + size /2);
+    let color = avgColors[i];
+    guideSquares.push(new GuideSquare(x, y, size, color, val));
   }
+  
+  
+  for(let i = 0; i < guideSquares.length; i++){
+    guideSquares[i].draw();
+  }
+}
+
+function checkGuideSquareClicked(){
+  
 }
