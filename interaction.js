@@ -18,9 +18,7 @@ function initializeColorSquares(array) {
 
   colorSquaresAreMade = true;
 
-  //testingArray();
 
-  // console.log(colorSquares);
 }
 
 function initializeGuideSquares(avgColors) {
@@ -79,4 +77,23 @@ function checkGuideSquareClicked() {
       currentColor = curSquare.color;
     }
   }
+}
+
+
+function undo(){
+  
+}
+
+function restart(){
+  for(let r = 0; r < colorSquares.length; r++){
+    for(let c = 0; c < colorSquares[r].length; c++){
+      colorSquares[r][c].color = "white";
+      colorSquares[r][c].previousColors = ["white"];
+    }
+  }
+  
+}
+
+function finishImage(){
+  
 }
