@@ -1,4 +1,4 @@
-/*global loadImage, checkColorSquareClicked, CLOSE, textAlign, textSize, beginShape, endShape, TWO_PI, CENTER, sin, cos, vertex, paintingIsFinished, checkGuideSquareClicked, guideSquares, drawGuideSquares, drawColorSquares, mouseX, mouseY, GuideSquare, ColorSquare, createCanvas, initializeColorSquares, initializeGuideSquares, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/*global loadImage, random, checkColorSquareClicked, CLOSE, textAlign, textSize, beginShape, endShape, TWO_PI, CENTER, sin, cos, vertex, paintingIsFinished, checkGuideSquareClicked, guideSquares, drawGuideSquares, drawColorSquares, mouseX, mouseY, GuideSquare, ColorSquare, createCanvas, initializeColorSquares, initializeGuideSquares, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
 let imgDimensions = { w: 0, h: 0 };
 let imgUrl,
@@ -9,7 +9,7 @@ let imgUrl,
   startingCanvasW,
   startingCanvasH,
   rows,
-  cols, testArray, finalColorArray, colorSquaresAreMade, avgColors, avgColorsAreRetrieved, currentColor;
+  cols, testArray, finalColorArray, colorSquaresAreMade, avgColors, avgColorsAreRetrieved, currentColor, finishPrompt;
 const BLOCK_SIZE = 20;
 
 function preload() {
@@ -27,6 +27,9 @@ function setup() {
   background(235);
   getDimensions(imgUrl);
   currentColor = "white";
+  
+  
+  
 }
 
 function draw(){
@@ -163,5 +166,10 @@ function drawStar(){
     fill("black");
     textSize(imgDimensions.h / 25);
     textAlign(CENTER, CENTER);
-    text("Nice!", xBuffer, yBuffer);
+    text(finishPrompt, xBuffer, yBuffer);
+}
+
+function setPrompt(){
+  let prompts = ["Nice!", "Wow!", "Great!", "Cool!", "Yay!"];
+  finishPrompt = random(prompts);
 }
