@@ -100,7 +100,9 @@ class Picture {
       //console.log(finalColor);
 
       for (let i = 0; i < matches.length; i++) {
-        if(i == 0)
+        if(i == 0){
+          this.finalColors.push(finalColor);
+        }
         let curBlock = matches[i];
         curBlock.finalColor = finalColor;
         //console.log(finalColor, curBlock.finalColor);
@@ -119,7 +121,8 @@ class Picture {
   }
   
   getAvgColors(){
-    
+    return this.finalColors;
+    //USE LATER: give the user the avg color as a guide for what their colors should be
   }
 }
 

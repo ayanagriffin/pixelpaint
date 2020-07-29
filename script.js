@@ -9,7 +9,7 @@ let imgUrl,
   startingCanvasW,
   startingCanvasH,
   rows,
-  cols, testArray, finalColorArray, colorSquaresAreMade;
+  cols, testArray, finalColorArray, colorSquaresAreMade, avgColors, avgColorsAreRetrieved;
 const BLOCK_SIZE = 20;
 
 function preload() {
@@ -19,6 +19,7 @@ function preload() {
 }
 
 function setup() {
+  avgColorsAreRetrieved = false;
   colorSquaresAreMade = false;
   maxImgW = (windowWidth * 2) / 3;
   maxImgH = (windowHeight * 2) / 3;
@@ -32,6 +33,10 @@ function setup() {
 function draw(){
   if(colorSquaresAreMade){
     drawColorSquares(); 
+  }
+  
+  if(avgColorsAreRetrieved){
+    //drawGuideSquares();
   }
 }
 
@@ -53,7 +58,7 @@ function getDimensions(url) {
 
 function adjustCanvas() {
   resizeImage();
-  resizeCanvas(imgDimensions.w, imgDimensions.h);
+  resizeCanvas(imgDimensions.w + 2*BLOCK_SIZE, imgDimensions.h);
   background(235);
   //drawRowsAndCols();
   //image(display, 0, 0);
@@ -110,6 +115,9 @@ function getArray(){
   //testArray = colorBlockImg.getBlockArray();
   //console.log(testArray);
   finalColorArray = colorBlockImg.getFinalArray();
+  avgColors = colorBlockImg.getAvgColors();
+  avgColorsAreRetrieved = true;
+  console.log(avgColors);
   //console.log(finalColorArray);
   drawTemplate();
 }
@@ -131,4 +139,13 @@ function drawRowsAndCols() {
 
 function drawTemplate(){
   initializeColorSquares(finalColorArray);
+}
+
+function drawGuideSquares(){
+  for(let i = 0; i < avgColors.length; i++){
+    let x = imgDimensions.w;
+    let y = i * 2 * BLOCK_SIZE;
+    fill(avgColors[i]);
+    rect(x, y, 2 * )
+  }
 }
