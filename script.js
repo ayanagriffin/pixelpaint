@@ -10,7 +10,7 @@ let imgUrl,
   startingCanvasH,
   rows,
   cols, testArray, finalColorArray, colorSquaresAreMade, avgColors, avgColorsAreRetrieved, currentColor, finishPrompt;
-const BLOCK_SIZE = 20;
+const BLOCK_SIZE = 20, CUSHION = 75;
 
 function preload() {
   imgUrl =
