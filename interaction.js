@@ -1,6 +1,6 @@
-/*global loadImage, cushion, paintingIsFinished, currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas,blockSize, mouseX, mouseY, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/*global loadImage, rows, cushion, paintingIsFinished, currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas,blockSize, mouseX, mouseY, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
-let colorSquares, guideSquares, moves = [];
+let colorSquares, guideSquares, moves = [], guideSquareHeight;
 
 function initializeColorSquares(array) {
   //console.log(array);
@@ -26,7 +26,7 @@ function initializeGuideSquares(avgColors) {
     let size = 2 * blockSize;
     let val = i + 1;
     let color = avgColors[i];
-    guideSquares.push(new GuideSquare(x, y, size, color, val));
+    guideSquares.push(new GuideSquare(x, size, color, val));
   }
 }
 
@@ -40,8 +40,13 @@ function drawColorSquares() {
 }
 
 function drawGuideSquares() {
+  if(guideSquares.length > 3){
+    guideSquareHeight = blockSize;
+  }else{
+    guideSquareHeight = 2*blockSize;
+  }
   for (let i = 0; i < guideSquares.length; i++) {
-    guideSquares[i].draw();
+    guideSquares[i].draw(i * guideSquareHeight);
   }
 }
 

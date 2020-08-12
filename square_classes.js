@@ -1,4 +1,4 @@
-/*global loadImage, stroke, mouseX, moves, mouseY, createCanvas, currentColor, paintingIsFinished, textSize, textAlign, CENTER, strokeWeight, blockSize, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/*global loadImage, stroke, guideSquareHeight, mouseX, moves, mouseY, createCanvas, currentColor, paintingIsFinished, textSize, textAlign, CENTER, strokeWeight, blockSize, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
 class ColorSquare {
   constructor(row, col, val) {
@@ -60,9 +60,9 @@ class ColorSquare {
 }
 
 class GuideSquare {
-  constructor(x, y, size, color, val) {
+  constructor(x, size, color, val) {
     this.x = x;
-    this.y = y;
+    this.y = 0;
     this.size = size;
     this.color = color;
     this.val = val;
@@ -71,7 +71,7 @@ class GuideSquare {
   draw() {
     strokeWeight(2);
     fill(this.color);
-    rect(this.x, this.y, this.size, this.size);
+    rect(this.x, this.y, this.size, guideSquareHeight);
 
     if (this.color[0] + this.color[1] + this.color[1] < 150) {
       fill(255);
