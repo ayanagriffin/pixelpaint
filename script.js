@@ -1,4 +1,4 @@
-/*global loadImage, random, checkColorSquareClicked, CLOSE, textAlign, textSize, beginShape, endShape, TWO_PI, CENTER, sin, cos, vertex, paintingIsFinished, 
+/*global loadImage, random, url, auto, checkColorSquareClicked, CLOSE, textAlign, textSize, beginShape, endShape, TWO_PI, CENTER, sin, cos, vertex, paintingIsFinished, 
 checkGuideSquareClicked, guideSquares, drawGuideSquares, drawColorSquares, mouseX, mouseY, GuideSquare, ColorSquare, createCanvas, initializeColorSquares, 
 initializeGuideSquares, width, colorSquares, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
@@ -55,15 +55,13 @@ function draw() {
   
   if(mouseX > width - 2 * blockSize && mouseX < width){
     document.body.style.cursor = "pointer";
-  }else{
-    document.body.style.cursor = "default";
   }
 }
 
 //updates dimensions and returns a Promise after image finishes loading
-function getDimensions(url) {
+function getDimensions(srcUrl) {
   let img = new Image();
-  img.src = url;
+  img.src = srcUrl;
   return new Promise((resolve, reject) => {
     img.onload = function() {
       imgDimensions.w = this.width;
