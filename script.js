@@ -3,7 +3,7 @@ checkGuideSquareClicked, rectMode, CENTER, CORNER, guideSquares, drawGuideSquare
 initializeGuideSquares, noStroke, width, colorSquares, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
 let imgDimensions = { w: 0, h: 0 };
-let imgUrl, 
+let imgUrl,
   display,
   maxImgW,
   maxImgH,
@@ -12,15 +12,15 @@ let imgUrl,
   startingCanvasH,
   rows,
   cols,
-  testArray,
+  testArray, guideSquareHeight,
   finalColorArray,
   colorSquaresAreMade,
   avgColors,
   avgColorsAreRetrieved,
   currentColor,
   finishPrompt,
-  blockSize = 20, cushion = 70;
-
+  blockSize = 20,
+  cushion = 70;
 
 function preload() {
   imgUrl =
@@ -39,7 +39,7 @@ function setup() {
   getDimensions(imgUrl);
   currentColor = "white";
   paintingIsFinished = false;
-  console.log("setup")
+  
 }
 
 function draw() {
@@ -55,21 +55,7 @@ function draw() {
     drawStar();
   }
 
-  if (mouseX > -10 + width - 2 * blockSize && mouseX < width) {
-    document.body.style.cursor = "pointer";
-  } else {
-    document.body.style.cursor = "default";
-    strokeWeight(0);
-    fill(currentColor);
-    triangle(
-      mouseX - 3,
-      mouseY - 10,
-      mouseX - 4,
-      mouseY + 5,
-      mouseX + 7,
-      mouseY + 3
-    );
-  }
+  drawCursor();
 }
 
 //updates dimensions and returns a Promise after image finishes loading
@@ -114,7 +100,6 @@ function resizeImage() {
   if (imgDimensions.w > imgDimensions.h && imgDimensions.w > maxImgW) {
     imgDimensions.w = maxImgW;
     imgDimensions.h = imgDimensions.w * ratio;
-    
   } else {
     imgDimensions.h = maxImgH;
     imgDimensions.w = imgDimensions.h / ratio;
@@ -142,7 +127,6 @@ function getRowsAndCols(ratio) {
 
   rows = floor(rows);
   cols = floor(cols);
-
 }
 
 function getArray() {
@@ -200,4 +184,72 @@ function drawStar() {
 function setPrompt() {
   let prompts = ["Nice!", "Wow!", "Great!", "Cool!", "Yay!"];
   finishPrompt = random(prompts);
+}
+
+function drawCursor() {
+  if (mouseX > -10 + width - 2 * blockSize && mouseX < width) {
+    document.body.style.cursor = "pointer";
+  } else {
+    document.body.style.cursor = "default";
+    strokeWeight(0);
+    fill(currentColor);
+    triangle(
+      mouseX - 3,
+      mouseY - 10,
+      mouseX - 4,
+      mouseY + 5,
+      mouseX + 7,
+      mouseY + 3
+    );
+  }
+}
+
+
+function initializeColorSquares(array) {
+
+  colorSquares = [];
+  for (let r = 0; r < array.length; r++) {
+    let currentRow = [];
+    for (let c = 0; c < array[r].length; c++) {
+
+      currentRow.push(new ColorSquare(r, c, array[r][c]));
+    }
+
+    colorSquares.push(currentRow);
+  }
+
+  colorSquaresAreMade = true;
+}
+
+function initializeGuideSquares(avgColors) {
+  guideSquares = [];
+  for (let i = 0; i < avgColors.length; i++) {
+    let x = imgDimensions.w;
+    let y = i * 2 * blockSize;
+    let size = 2 * blockSize;
+    let val = i + 1;
+    let color = avgColors[i];
+    guideSquares.push(new GuideSquare(x, color, val));
+  }
+  
+}
+
+function drawColorSquares() {
+  for (let i = 0; i < colorSquares.length; i++) {
+    for (let j = 0; j < colorSquares[i].length; j++) {
+      colorSquares[i][j].display();
+
+    }
+  }
+}
+
+function drawGuideSquares() {
+  if(guideSquares.length > rows / 2){
+    guideSquareHeight = blockSize;
+  }else{
+    guideSquareHeight = 2*blockSize;
+  }
+  for (let i = 0; i < guideSquares.length; i++) {
+    guideSquares[i].draw(i * guideSquareHeight);
+  }
 }

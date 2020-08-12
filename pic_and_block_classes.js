@@ -15,6 +15,18 @@ class Picture {
     this.finalColors = [];
   }
 
+  
+   getFinalArray() {
+    // basically runs all necessary functions within the class to return the array with the color 
+    //      values (i.e. what is needed to draw the Squares in the main file)
+    
+    this.initializeValsArray();
+    this.getBlockArray();
+    this.refactorBlockColors();
+    return this.valsArray;
+  }
+  
+  
   initializeValsArray(){
     for (let r = 0; r < this.rows; r++) {
       let row = [];
@@ -36,18 +48,17 @@ class Picture {
       this.blocks.push(row);
     }
 
-    //return this.blocks;
     this.refactorBlockColors();
-    //return this.blocks;
+
   }
 
   refactorBlockColors() {
     for (let r = 0; r < this.rows; r++) {
       for (let c = 0; c < this.cols; c++) {
-        //console.log(this.blocks[r][c][0]);
+        
         if (!this.blocks[r][c].foundMatch) {
           this.numColors++;
-          //console.log(this.blocks[r][c].colorVals[0]);
+         
           this.findMatches(this.blocks[r][c], this.numColors);
         }
       }
@@ -59,7 +70,7 @@ class Picture {
     for (let r = 0; r < this.rows; r++) {
       for (let c = 0; c < this.cols; c++) {
         let curBlock = this.blocks[r][c];
-        //console.log(testBlock.colorVals);
+        
         if (!curBlock.foundMatch) {
           if (
             abs(testBlock[0] - curBlock[0]) < this.cushion &&
@@ -97,7 +108,7 @@ class Picture {
       let finalB = totalB / matches.length;
 
       let finalColor = [finalR, finalG, finalB];
-      //console.log(finalColor);
+     
 
       for (let i = 0; i < matches.length; i++) {
         if(i == 0){
@@ -105,24 +116,16 @@ class Picture {
         }
         let curBlock = matches[i];
         curBlock.finalColor = finalColor;
-        //console.log(finalColor, curBlock.finalColor);
+        
       }
     
   }
   
-  getFinalArray() {
-    // basically runs all necessary functions within the class to return the array with the color 
-    //      values (i.e. what is needed to draw the Squares in the main file)
-    
-    this.initializeValsArray();
-    this.getBlockArray();
-    this.refactorBlockColors();
-    return this.valsArray;
-  }
+ 
   
   getAvgColors(){
     return this.finalColors;
-    //USE LATER: give the user the avg color as a guide for what their colors should be
+
   }
 }
 
@@ -151,8 +154,7 @@ class Block {
   getAverageColor() {
     for (let i = this.startingX; i < this.endingX; i++) {
       for (let j = this.startingY; j < this.endingY; j++) {
-        //console.log(j, i); // row, col
-        //this.originalColors.push(display.get(j, i));
+    
         this.colorVals[0] += display.get(j, i)[0];
         this.colorVals[1] += display.get(j, i)[1];
         this.colorVals[2] += display.get(j, i)[2];
