@@ -1,5 +1,5 @@
-/*global loadImage, random, url, auto, ellipse, checkColorSquareClicked, CLOSE, textAlign, textSize, beginShape, endShape, TWO_PI, CENTER, sin, cos, vertex, paintingIsFinished, 
-checkGuideSquareClicked, guideSquares, drawGuideSquares, drawColorSquares, mouseX, mouseY, GuideSquare, ColorSquare, createCanvas, initializeColorSquares, 
+/*global loadImage, random, triangle, auto, ellipse, checkColorSquareClicked, CLOSE, textAlign, textSize, beginShape, endShape, TWO_PI, CENTER, sin, cos, vertex, paintingIsFinished, 
+checkGuideSquareClicked, rectMode, CENTER, CORNER, guideSquares, drawGuideSquares, drawColorSquares, mouseX, mouseY, GuideSquare, ColorSquare, createCanvas, initializeColorSquares, 
 initializeGuideSquares, noStroke, width, colorSquares, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
 let imgDimensions = { w: 0, h: 0 };
@@ -53,17 +53,23 @@ function draw() {
     drawStar();
   }
   
-  if(mouseX > width - 2 * blockSize && mouseX < width){
+  if(mouseX > -10 + width - 2 * blockSize && mouseX < width){
     document.body.style.cursor = "pointer";
     
   
   }else{
     //document.body.style.cursor = "url('https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2FScreen%20Shot%202020-08-11%20at%207.33.51%20PM.png?v=1597199641250'), auto";
+    
+    
     document.body.style.cursor = "none";
     
     strokeWeight(0);
     fill(currentColor);
-    rect(mouseX, mouseY, blockSize / 2, blockSize / 2);
+    triangle(mouseX - 5, mouseY - 10, mouseX - 3, mouseY + 5, mouseX + 5, mouseY + 3);
+    
+    // rectMode(CENTER);
+    // rect(mouseX, mouseY, blockSize / 2, blockSize / 2);
+    // rectMode(CORNER);
   }
 }
 
