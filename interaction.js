@@ -1,6 +1,6 @@
 /*global loadImage, cushion, paintingIsFinished, currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas,blockSize, mouseX, mouseY, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
-let colorSquares, guideSquares, moves = [];
+let colorSquares, guideSquares, moves = [], cushionVals = [70];
 
 function initializeColorSquares(array) {
   //console.log(array);
@@ -113,13 +113,17 @@ function finishImage(){
   paintingIsFinished = true;
 }
 
-function adjustBlockSize(newBlockSize){
-  blockSize += 10;
-  console.log(newBlockSize, blockSize);
+function adjustBlockSize(val){
+  // functions as expected if I manually put in the number, as shown below
+  blockSize = 30;
+  
+  // does not function as expected if I try to do this:
+  //blockSize = val;
   setup();
 }
 
 function adjustCushion(newCushion){
-  cushion = newCushion;
+  cushionVals.push(newCushion);
+  cushion = cushionVals[length - 1] - newCushion;
   setup();
 }
