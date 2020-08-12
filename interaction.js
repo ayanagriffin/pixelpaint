@@ -113,8 +113,9 @@ function finishImage(){
   paintingIsFinished = true;
 }
 
-function adjustSize(newBlockSize){
-  blockSize = newBlockSize;
+function adjustBlockSize(newBlockSize){
+  blockSize += 10;
+  console.log(newBlockSize, blockSize);
   setup();
 }
 

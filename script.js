@@ -19,7 +19,7 @@ let imgUrl,
   avgColorsAreRetrieved,
   currentColor,
   finishPrompt,
-  blockSize = 20, cushion = 70;
+  blockSize = 30, cushion = 70;
 
 
 function preload() {
@@ -39,6 +39,7 @@ function setup() {
   getDimensions(imgUrl);
   currentColor = "white";
   paintingIsFinished = false;
+  console.log("setup")
 }
 
 function draw() {
@@ -113,7 +114,7 @@ function resizeImage() {
   if (imgDimensions.w > imgDimensions.h && imgDimensions.w > maxImgW) {
     imgDimensions.w = maxImgW;
     imgDimensions.h = imgDimensions.w * ratio;
-    console.log(imgDimensions);
+    
   } else {
     imgDimensions.h = maxImgH;
     imgDimensions.w = imgDimensions.h / ratio;
@@ -141,7 +142,7 @@ function getRowsAndCols(ratio) {
 
   rows = floor(rows);
   cols = floor(cols);
-  //console.log(rows, cols);
+
 }
 
 function getArray() {
@@ -149,7 +150,7 @@ function getArray() {
   finalColorArray = colorBlockImg.getFinalArray();
   avgColors = colorBlockImg.getAvgColors();
   avgColorsAreRetrieved = true;
-  console.log(avgColors);
+
   drawTemplate();
 }
 
