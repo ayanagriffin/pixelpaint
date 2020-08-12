@@ -55,33 +55,38 @@
       
     </div>
     
-    <div class = "sideButtonContainer">
-      <div id="incBS" class="sideButton" onclick="increaseBlockSize()">
-        +bs
-      </div>
-      <div id="decBS" class="sideButton" onclick="decreaseBlockSize()">
-        -bs
-      </div>
-      <div id="incC" class="sideButton" onclick="increaseCushion()">
-        +c
-      </div>
-      <div id="decC" class="sideButton" onclick="decreaseCushion()">
-        -c
-      </div>
-    </div>
+   
     
      <div id="canvas-div"></div>
     
-     <div>
+     <div id = "sliderDiv">
       <input
-        id="slider"
+        id="blockSizeSlider"
         type="range"
         min="1"
         max="100"
         step="1"
         value="10"
-        onchange="updateSlider(this.value)"
+        onchange="fillInLater"
       />
+       
+       <input
+        id="cushionSlider"
+        type="range"
+        min="1"
+        max="100"
+        step="1"
+        value="10"
+        onchange="fillInLater"
+      />
+    </div>
+    <div id = "instructionsDiv">
+      <p>
+        adjust size
+      </p>
+      <p>
+        adjust colors
+      </p>
     </div>
   </body>
 </html>

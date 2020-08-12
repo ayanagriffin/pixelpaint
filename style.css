@@ -32,6 +32,19 @@ p {
   
 }
 
+#sliderDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#instructionsDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 22px;
+  position: relative;
+}
 .buttonContainer {
   font-weight: 500;
   display: flex;
@@ -48,7 +61,7 @@ p {
   height: 1em;
   padding: 4px;
   margin: 5px;
-  top: 75vh;
+  top: 78vh;
   position: relative;
   background: hsl(16, 100%, 80%);
 }
