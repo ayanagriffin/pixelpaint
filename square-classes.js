@@ -1,4 +1,3 @@
-
 /*
 -------------------------- COLORSQUARE CLASS ----------------------------
 
@@ -35,12 +34,11 @@ class ColorSquare {
         this.col * this.size + this.size / 2,
         this.row * this.size + this.size / 2
       );
-    }else{
+    } else {
       strokeWeight(0);
       fill(this.color);
       rect(this.x, this.y, this.size, this.size);
     }
-
   }
 
   paint() {
@@ -48,24 +46,22 @@ class ColorSquare {
     this.display();
     this.previousColors.push(currentColor);
   }
-  
-  checkClicked(){
+
+  checkClicked() {
     if (
-        this.x + blockSize > mouseX &&
-        mouseX > this.x &&
-        this.y + blockSize > mouseY &&
-        mouseY > this.y
-      ) {
-        this.paint();
-        let curSquareInfo = {"row": this.row,
-                            "col": this.col,
-                            "color": this.color}
-        
-        moves.push(curSquareInfo);
-      }
+      this.color != currentColor &&
+      this.x + blockSize > mouseX &&
+      mouseX > this.x &&
+      this.y + blockSize > mouseY &&
+      mouseY > this.y
+    ) {
+      this.paint();
+      let curSquareInfo = { row: this.row, col: this.col, color: this.color };
+
+      moves.push(curSquareInfo);
+    }
   }
 }
-
 
 /*
 -------------------------- GUIDESQUARE CLASS ----------------------------
@@ -101,8 +97,8 @@ class GuideSquare {
     textSize(blockSize / 2);
     text(this.val, this.x + blockSize, this.y + guideSquareHeight / 2);
   }
-  
-  checkClicked(){
+
+  checkClicked() {
     if (
       this.x + blockSize * 2 > mouseX &&
       mouseX > this.x &&
@@ -113,7 +109,5 @@ class GuideSquare {
     }
   }
 }
-
-
 
 /*global loadImage, stroke, guideSquareHeight, mouseX, moves, mouseY, createCanvas, currentColor, paintingIsFinished, textSize, textAlign, CENTER, strokeWeight, blockSize, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/

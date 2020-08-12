@@ -2,7 +2,7 @@ pixelpaint (todo)
 =================
 fix blockSize slider
 
-add in mouse dragging
+
 
 add in user upload
 
@@ -22,7 +22,8 @@ add instructions
 
 edit this page!
 
-
+-------------------------
+add in mouse dragging ✔
 
 
 

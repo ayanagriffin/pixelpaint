@@ -1,6 +1,5 @@
 let imgDimensions = { w: 0, h: 0 };
-let
-  display,
+let display,
   maxImgW,
   maxImgH,
   canvas,
@@ -17,10 +16,11 @@ let
   currentColor,
   finishPrompt,
   blockSize = 20,
-  cushion = 70, imgUrl =
-    "https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909";
+  cushion = 70,
+  imgUrl;
 
 function preload() {
+  imgUrl = random(defaultPics);
   display = loadImage(imgUrl);
 }
 
@@ -67,6 +67,15 @@ function mouseClicked() {
   }
 }
 
+function mouseDragged() {
+  if (!paintingIsFinished) {
+    for (let r = 0; r < colorSquares.length; r++) {
+      for (let c = 0; c < colorSquares[r].length; c++) {
+        colorSquares[r][c].checkClicked();
+      }
+    }
+  }
+}
 //updates dimensions and returns a Promise after image finishes loading
 function getDimensions(srcUrl) {
   let img = new Image();
@@ -135,7 +144,7 @@ function getArray() {
   drawTemplate();
 }
 
-// makes colorSquares and guideSquares arrays 
+// makes colorSquares and guideSquares arrays
 function drawTemplate() {
   initializeColorSquares(finalColorArray);
   initializeGuideSquares(avgColors);
@@ -223,6 +232,6 @@ function drawGuideSquares() {
   }
 }
 
-/*global loadImage, random, triangle, auto, ellipse, CLOSE, textAlign, textSize, beginShape, endShape, TWO_PI, CENTER, sin, cos, vertex, paintingIsFinished, 
+/*global defaultPics, loadImage, random, triangle, auto, ellipse, CLOSE, textAlign, textSize, beginShape, endShape, TWO_PI, CENTER, sin, cos, vertex, paintingIsFinished, 
 checkGuideSquareClicked, rectMode, CENTER, CORNER, guideSquares, drawGuideSquares, drawColorSquares, mouseX, mouseY, GuideSquare, ColorSquare, createCanvas, initializeColorSquares, 
 initializeGuideSquares, noStroke, width, colorSquares, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
