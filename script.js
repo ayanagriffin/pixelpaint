@@ -1,4 +1,3 @@
-
 let imgDimensions = { w: 0, h: 0 };
 let imgUrl,
   display,
@@ -162,6 +161,8 @@ function initializeGuideSquares(avgColors) {
     let color = avgColors[i];
     guideSquares.push(new GuideSquare(x, color, val));
   }
+
+  guideSquareHeight = blockSize * (rows / guideSquares.length);
 }
 
 function drawStar() {
@@ -188,11 +189,6 @@ function drawStar() {
   text(finishPrompt, xBuffer, yBuffer);
 }
 
-function setPrompt() {
-  let prompts = ["Nice!", "Wow!", "Great!", "Cool!", "Yay!"];
-  finishPrompt = random(prompts);
-}
-
 function drawCursor() {
   if (mouseX > -10 + width - 2 * blockSize && mouseX < width) {
     document.body.style.cursor = "pointer";
@@ -214,25 +210,16 @@ function drawCursor() {
 function drawColorSquares() {
   for (let i = 0; i < colorSquares.length; i++) {
     for (let j = 0; j < colorSquares[i].length; j++) {
-      colorSquares[i][j].display();
+      colorSquares[i][j].draw();
     }
   }
 }
 
 function drawGuideSquares() {
-  if (guideSquares.length > rows / 2) {
-    guideSquareHeight = blockSize;
-  } else {
-    guideSquareHeight = 2 * blockSize;
-  }
   for (let i = 0; i < guideSquares.length; i++) {
     guideSquares[i].draw(i * guideSquareHeight);
   }
 }
-
-
-
-
 
 /*global loadImage, random, triangle, auto, ellipse, CLOSE, textAlign, textSize, beginShape, endShape, TWO_PI, CENTER, sin, cos, vertex, paintingIsFinished, 
 checkGuideSquareClicked, rectMode, CENTER, CORNER, guideSquares, drawGuideSquares, drawColorSquares, mouseX, mouseY, GuideSquare, ColorSquare, createCanvas, initializeColorSquares, 

@@ -30,9 +30,11 @@ function restart(){
 }
 
 function finishImage(){
-  setPrompt();
+  let prompts = ["Nice!", "Wow!", "Great!", "Cool!", "Yay!", "Neat!"];
+  finishPrompt = random(prompts);
   paintingIsFinished = true;
 }
+
 
 function adjustBlockSize(newBlockSize){
   // functions as expected if I manually put in the number, as shown below
@@ -56,4 +58,4 @@ function adjustCushion(newCushion){
 
 
 
-/*global loadImage, rows, cushion, paintingIsFinished, currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas,blockSize, mouseX, mouseY, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/*global loadImage, finishPrompt, random, rows, cushion, paintingIsFinished, currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas,blockSize, mouseX, mouseY, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/

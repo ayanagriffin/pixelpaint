@@ -21,7 +21,7 @@ class ColorSquare {
     this.previousColors = ["white"];
   }
 
-  display() {
+  draw() {
     if (!paintingIsFinished) {
       strokeWeight(2);
       fill(this.color);
