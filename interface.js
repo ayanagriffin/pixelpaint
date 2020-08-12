@@ -57,10 +57,12 @@ function adjustCushion(newCushion){
 }
 
 // for now, I want to change the imgUrl and basically re-run/reload everything when the "new image" button is pressed
-// not exactly sure how though, since the original imgUrl and display are set in preload
+// this works, but i'm guessing there is a better way to do it than setTimeout
 function newImage(){
-  
+  imgUrl = "https://cdn.glitch.com/d82135a4-9f9d-4654-a46b-f7f58cdc9d01%2Fimg_lights.jpg?v=1595543508242";
+  display = loadImage(imgUrl);
+  setTimeout(setup, 3000);
 }
 
 
-/*global loadImage, finishPrompt, random, rows, cushion, paintingIsFinished, currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas,blockSize, mouseX, mouseY, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/*global loadImage, setTimeout, finishPrompt, random, rows, cushion, paintingIsFinished, currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas,blockSize, mouseX, mouseY, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/

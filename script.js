@@ -1,5 +1,5 @@
 let imgDimensions = { w: 0, h: 0 };
-let imgUrl,
+let
   display,
   maxImgW,
   maxImgH,
@@ -17,11 +17,10 @@ let imgUrl,
   currentColor,
   finishPrompt,
   blockSize = 20,
-  cushion = 70;
+  cushion = 70, imgUrl =
+    "https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909";
 
 function preload() {
-  imgUrl =
-    "https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909";
   display = loadImage(imgUrl);
 }
 
