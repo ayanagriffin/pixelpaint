@@ -47,11 +47,12 @@ p {
 }
 
 #size {
-  padding-right: 5vh;
+  padding-left: 3vh;
+  padding-right: 17vh;
 }
 
 #colors {
-  padding-left: 10vh;
+  
 }
 .buttonContainer {
   font-weight: 500;
