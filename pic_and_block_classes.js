@@ -1,16 +1,16 @@
-/*global BLOCK_SIZE, display, floor, rows, cols, abs, CUSHION*/
+/*global blockSize, display, floor, rows, cols, abs, CUSHION*/
 
 
 
 
 class Picture {
-  constructor(rows, cols, BLOCK_SIZE) {
+  constructor(rows, cols) {
     this.blocks = [];
     this.numColors = 0;
     this.cushion = CUSHION;
     this.rows = rows;
     this.cols = cols;
-    this.size = BLOCK_SIZE;
+    this.size = blockSize;
     this.valsArray = [];
     this.finalColors = [];
   }
@@ -135,8 +135,8 @@ class Block {
   constructor(row, col) {
     this.row = row;
     this.col = col;
-    this.size = BLOCK_SIZE;
-    this.totalPixels = BLOCK_SIZE * BLOCK_SIZE;
+    this.size = blockSize;
+    this.totalPixels = blockSize * blockSize;
     this.startingX = this.col * this.size;
     this.startingY = this.row * this.size;
     this.endingX = this.startingX + this.size;

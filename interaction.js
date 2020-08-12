@@ -16,16 +16,14 @@ function initializeColorSquares(array) {
   }
 
   colorSquaresAreMade = true;
-
-
 }
 
 function initializeGuideSquares(avgColors) {
   guideSquares = [];
   for (let i = 0; i < avgColors.length; i++) {
     let x = imgDimensions.w;
-    let y = i * 2 * BLOCK_SIZE;
-    let size = 2 * BLOCK_SIZE;
+    let y = i * 2 * blockSize;
+    let size = 2 * blockSize;
     let val = i + 1;
     let color = avgColors[i];
     guideSquares.push(new GuideSquare(x, y, size, color, val));
@@ -52,9 +50,9 @@ function checkColorSquareClicked() {
     for (let c = 0; c < colorSquares[r].length; c++) {
       let curSquare = colorSquares[r][c];
       if (
-        curSquare.x + BLOCK_SIZE > mouseX &&
+        curSquare.x + blockSize > mouseX &&
         mouseX > curSquare.x &&
-        curSquare.y + BLOCK_SIZE > mouseY &&
+        curSquare.y + blockSize > mouseY &&
         mouseY > curSquare.y
       ) {
         curSquare.paint();
@@ -116,6 +114,7 @@ function finishImage(){
 }
 
 function testNewImage(){
-  
+  blockSize = 40;
+  setup();
   
 }

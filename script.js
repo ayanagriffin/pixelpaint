@@ -11,7 +11,7 @@ let imgUrl,
   startingCanvasW,
   startingCanvasH,
   rows,
-  cols, testArray, finalColorArray, colorSquaresAreMade, avgColors, avgColorsAreRetrieved, currentColor, finishPrompt, blockSize;
+  cols, testArray, finalColorArray, colorSquaresAreMade, avgColors, avgColorsAreRetrieved, currentColor, finishPrompt, blockSize = 20;
 const CUSHION = 75;
 
 function preload() {
@@ -29,7 +29,6 @@ function setup() {
   background(235);
   getDimensions(imgUrl);
   currentColor = "white";
-  blockSize = 20;
   
   
   
@@ -116,7 +115,7 @@ function getRowsAndCols(ratio) {
 }
 
 function getArray(){
-  let colorBlockImg = new Picture(rows, cols, blockSize);
+  let colorBlockImg = new Picture(rows, cols);
   finalColorArray = colorBlockImg.getFinalArray();
   avgColors = colorBlockImg.getAvgColors();
   avgColorsAreRetrieved = true;

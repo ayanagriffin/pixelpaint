@@ -1,11 +1,11 @@
-/*global loadImage, createCanvas, currentColor, paintingIsFinished, textSize, textAlign, CENTER, strokeWeight, BLOCK_SIZE, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/*global loadImage, createCanvas, currentColor, paintingIsFinished, textSize, textAlign, CENTER, strokeWeight, blockSize, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
 class ColorSquare {
   constructor(row, col, val) {
     this.row = row;
     this.col = col;
     this.val = val;
-    this.size = BLOCK_SIZE;
+    this.size = blockSize;
     this.color = "white";
     this.x = this.col * this.size;
     this.y = this.row * this.size;
@@ -23,7 +23,7 @@ class ColorSquare {
       rect(this.x, this.y, this.size, this.size);
 
       fill(0);
-      textSize(12);
+      textSize(blockSize / 2);
       textAlign(CENTER, CENTER);
       text(
         this.val,
@@ -65,7 +65,7 @@ class GuideSquare {
       fill(0);
     }
 
-    textSize(12);
+    textSize(blockSize / 2);
     text(this.val, this.x + this.size / 2, this.y + this.size / 2);
   }
 }
