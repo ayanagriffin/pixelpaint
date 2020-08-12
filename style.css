@@ -27,9 +27,9 @@ p {
 #canvas-div {
   padding: 0;
   margin: auto;
-  display: block;
-  position: static;
- 
+  display: inline-block;
+  
+  
 }
 
 .buttonContainer {
