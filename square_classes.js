@@ -1,4 +1,4 @@
-/*global loadImage, mouseX, moves, mouseY, createCanvas, currentColor, paintingIsFinished, textSize, textAlign, CENTER, strokeWeight, blockSize, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/*global loadImage, stroke, mouseX, moves, mouseY, createCanvas, currentColor, paintingIsFinished, textSize, textAlign, CENTER, strokeWeight, blockSize, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
 class ColorSquare {
   constructor(row, col, val) {
@@ -14,6 +14,7 @@ class ColorSquare {
 
   display() {
     if (!paintingIsFinished) {
+      //stroke();
       strokeWeight(2);
       fill(this.color);
       rect(this.x, this.y, this.size, this.size);
@@ -68,6 +69,7 @@ class GuideSquare {
   }
 
   draw() {
+    strokeWeight(2);
     fill(this.color);
     rect(this.x, this.y, this.size, this.size);
 
