@@ -11,8 +11,8 @@ let imgUrl,
   startingCanvasW,
   startingCanvasH,
   rows,
-  cols, testArray, finalColorArray, colorSquaresAreMade, avgColors, avgColorsAreRetrieved, currentColor, finishPrompt;
-const BLOCK_SIZE = 20, CUSHION = 75;
+  cols, testArray, finalColorArray, colorSquaresAreMade, avgColors, avgColorsAreRetrieved, currentColor, finishPrompt, blockSize;
+const CUSHION = 75;
 
 function preload() {
   imgUrl =
@@ -29,6 +29,7 @@ function setup() {
   background(235);
   getDimensions(imgUrl);
   currentColor = "white";
+  blockSize = 20;
   
   
   
@@ -71,7 +72,7 @@ function mouseClicked(){
 
 function adjustCanvas() {
   resizeImage();
-  resizeCanvas(imgDimensions.w + 2*BLOCK_SIZE, imgDimensions.h);
+  resizeCanvas(imgDimensions.w + 2*blockSize, imgDimensions.h);
   background(235);
 
 }
@@ -92,8 +93,8 @@ function resizeImage() {
 
   // some sides might be shaved down a bit to create the blocks, which are perfect squares.
   // these next lines adjust the dimensions so that the squares fit evenly with no excess hanging over the sides.
-  imgDimensions.w = cols * BLOCK_SIZE;
-  imgDimensions.h = rows * BLOCK_SIZE;
+  imgDimensions.w = cols * blockSize;
+  imgDimensions.h = rows * blockSize;
   display.resize(imgDimensions.w, imgDimensions.h);
 
   getArray();
@@ -102,10 +103,10 @@ function resizeImage() {
 
 function getRowsAndCols(ratio) {
   if (ratio > 1) {
-    rows = imgDimensions.h / BLOCK_SIZE;
+    rows = imgDimensions.h / blockSize;
     cols = rows / ratio;
   } else {
-    cols = imgDimensions.w / BLOCK_SIZE;
+    cols = imgDimensions.w / blockSize;
     rows = cols * ratio;
   }
 
@@ -115,14 +116,11 @@ function getRowsAndCols(ratio) {
 }
 
 function getArray(){
-  let colorBlockImg = new Picture(rows, cols, BLOCK_SIZE);
-  //testArray = colorBlockImg.getBlockArray();
-  //console.log(testArray);
+  let colorBlockImg = new Picture(rows, cols, blockSize);
   finalColorArray = colorBlockImg.getFinalArray();
   avgColors = colorBlockImg.getAvgColors();
   avgColorsAreRetrieved = true;
   console.log(avgColors);
-  //console.log(finalColorArray);
   drawTemplate();
 }
 
@@ -136,7 +134,7 @@ function drawRowsAndCols() {
       let green = testArray[r][c].G;
       let blue = testArray[r][c].B;
       fill(red, green, blue);
-      rect(c * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+      rect(c * blockSize, r * blockSize, blockSize, blockSize);
     }
   }
 }
