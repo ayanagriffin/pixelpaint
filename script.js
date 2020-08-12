@@ -1,6 +1,3 @@
-/*global loadImage, random, triangle, auto, ellipse, checkColorSquareClicked, CLOSE, textAlign, textSize, beginShape, endShape, TWO_PI, CENTER, sin, cos, vertex, paintingIsFinished, 
-checkGuideSquareClicked, rectMode, CENTER, CORNER, guideSquares, drawGuideSquares, drawColorSquares, mouseX, mouseY, GuideSquare, ColorSquare, createCanvas, initializeColorSquares, 
-initializeGuideSquares, noStroke, width, colorSquares, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
 let imgDimensions = { w: 0, h: 0 };
 let imgUrl,
@@ -12,7 +9,8 @@ let imgUrl,
   startingCanvasH,
   rows,
   cols,
-  testArray, guideSquareHeight,
+  testArray,
+  guideSquareHeight,
   finalColorArray,
   colorSquaresAreMade,
   avgColors,
@@ -39,7 +37,6 @@ function setup() {
   getDimensions(imgUrl);
   currentColor = "white";
   paintingIsFinished = false;
-  
 }
 
 function draw() {
@@ -58,6 +55,20 @@ function draw() {
   drawCursor();
 }
 
+function mouseClicked() {
+  if (!paintingIsFinished) {
+    for (let r = 0; r < colorSquares.length; r++) {
+      for (let c = 0; c < colorSquares[r].length; c++) {
+        colorSquares[r][c].checkClicked();
+      }
+    }
+
+    for (let i = 0; i < guideSquares.length; i++) {
+      guideSquares[i].checkClicked();
+    }
+  }
+}
+
 //updates dimensions and returns a Promise after image finishes loading
 function getDimensions(srcUrl) {
   let img = new Image();
@@ -72,20 +83,6 @@ function getDimensions(srcUrl) {
       resolve();
     };
   });
-}
-
-function mouseClicked() {
-  if (!paintingIsFinished) {
-    for (let r = 0; r < colorSquares.length; r++) {
-      for (let c = 0; c < colorSquares[r].length; c++) {
-        colorSquares[r][c].checkClicked();
-      }
-    }
-
-    for (let i = 0; i < guideSquares.length; i++) {
-      guideSquares[i].checkClicked();
-    }
-  }
 }
 
 function adjustCanvas() {
@@ -138,11 +135,33 @@ function getArray() {
   drawTemplate();
 }
 
-
-
 function drawTemplate() {
   initializeColorSquares(finalColorArray);
   initializeGuideSquares(avgColors);
+}
+
+function initializeColorSquares(array) {
+  colorSquares = [];
+  for (let r = 0; r < array.length; r++) {
+    let currentRow = [];
+    for (let c = 0; c < array[r].length; c++) {
+      currentRow.push(new ColorSquare(r, c, array[r][c]));
+    }
+    colorSquares.push(currentRow);
+  }
+  colorSquaresAreMade = true;
+}
+
+function initializeGuideSquares(avgColors) {
+  guideSquares = [];
+  for (let i = 0; i < avgColors.length; i++) {
+    let x = imgDimensions.w;
+    let y = i * 2 * blockSize;
+    let size = 2 * blockSize;
+    let val = i + 1;
+    let color = avgColors[i];
+    guideSquares.push(new GuideSquare(x, color, val));
+  }
 }
 
 function drawStar() {
@@ -192,52 +211,29 @@ function drawCursor() {
   }
 }
 
-
-function initializeColorSquares(array) {
-
-  colorSquares = [];
-  for (let r = 0; r < array.length; r++) {
-    let currentRow = [];
-    for (let c = 0; c < array[r].length; c++) {
-
-      currentRow.push(new ColorSquare(r, c, array[r][c]));
-    }
-
-    colorSquares.push(currentRow);
-  }
-
-  colorSquaresAreMade = true;
-}
-
-function initializeGuideSquares(avgColors) {
-  guideSquares = [];
-  for (let i = 0; i < avgColors.length; i++) {
-    let x = imgDimensions.w;
-    let y = i * 2 * blockSize;
-    let size = 2 * blockSize;
-    let val = i + 1;
-    let color = avgColors[i];
-    guideSquares.push(new GuideSquare(x, color, val));
-  }
-  
-}
-
 function drawColorSquares() {
   for (let i = 0; i < colorSquares.length; i++) {
     for (let j = 0; j < colorSquares[i].length; j++) {
       colorSquares[i][j].display();
-
     }
   }
 }
 
 function drawGuideSquares() {
-  if(guideSquares.length > rows / 2){
+  if (guideSquares.length > rows / 2) {
     guideSquareHeight = blockSize;
-  }else{
-    guideSquareHeight = 2*blockSize;
+  } else {
+    guideSquareHeight = 2 * blockSize;
   }
   for (let i = 0; i < guideSquares.length; i++) {
     guideSquares[i].draw(i * guideSquareHeight);
   }
 }
+
+
+
+
+
+/*global loadImage, random, triangle, auto, ellipse, CLOSE, textAlign, textSize, beginShape, endShape, TWO_PI, CENTER, sin, cos, vertex, paintingIsFinished, 
+checkGuideSquareClicked, rectMode, CENTER, CORNER, guideSquares, drawGuideSquares, drawColorSquares, mouseX, mouseY, GuideSquare, ColorSquare, createCanvas, initializeColorSquares, 
+initializeGuideSquares, noStroke, width, colorSquares, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/

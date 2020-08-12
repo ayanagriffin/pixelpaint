@@ -1,18 +1,14 @@
-/*global loadImage, stroke, guideSquareHeight, mouseX, moves, mouseY, createCanvas, currentColor, paintingIsFinished, textSize, textAlign, CENTER, strokeWeight, blockSize, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
-
 
 /*
 -------------------------- COLORSQUARE CLASS ----------------------------
 
 a ColorSquare represents a square drawn on to the canvas, which is initially white but is painted by the user. This class:
 
-1. sections out the image into Blocks,
-2. finds the average color of each block, 
-3. compares those average colors against each other to see if they are similar enough to be considered the same color,
-4. assigns each of the final colors a number and puts those numbers into a 2D array that will be used to draw the template
-   that is displayed to the user for them to paint
+1. displays each ColorSquare
+2. checks if the ColorSquare is clicked; if it is, the color will be changed to currentColor
 
 */
+
 class ColorSquare {
   constructor(row, col, val) {
     this.row = row;
@@ -70,6 +66,18 @@ class ColorSquare {
   }
 }
 
+
+/*
+-------------------------- GUIDESQUARE CLASS ----------------------------
+
+a GuideSquare represents the squares shown on the right side of the canvas. These are the color options for the user
+to paint with, determined by the average color of each color value (this color is found in the Picture and Block classes)
+
+1. displays each GuideSquare
+2. checks if the  GuideSquare is clicked; if it is, the currentColor = the color of the GuideSquare
+
+*/
+
 class GuideSquare {
   constructor(x, color, val) {
     this.x = x;
@@ -105,3 +113,7 @@ class GuideSquare {
     }
   }
 }
+
+
+
+/*global loadImage, stroke, guideSquareHeight, mouseX, moves, mouseY, createCanvas, currentColor, paintingIsFinished, textSize, textAlign, CENTER, strokeWeight, blockSize, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/

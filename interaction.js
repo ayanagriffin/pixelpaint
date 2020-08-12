@@ -1,10 +1,9 @@
-/*global loadImage, rows, cushion, paintingIsFinished, currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas,blockSize, mouseX, mouseY, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/* These functions handle user interaction with the buttons and sliders */
+
 
 let colorSquares, guideSquares, moves = [];
 
-
 function undo(){
-  //TODO: add undoFinish
    if(moves.length > 0){
     let mostRecentMove = moves[moves.length - 1];
     let curSquare = colorSquares[mostRecentMove.row][mostRecentMove.col];
@@ -54,3 +53,7 @@ function adjustCushion(newCushion){
   cushion = 70 - newCushion;
   setup();
 }
+
+
+
+/*global loadImage, rows, cushion, paintingIsFinished, currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas,blockSize, mouseX, mouseY, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/

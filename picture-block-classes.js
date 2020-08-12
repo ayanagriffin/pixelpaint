@@ -1,4 +1,3 @@
-/*global blockSize, display, floor, rows, cols, abs, cushion*/
 
 
 /*
@@ -181,3 +180,7 @@ class Block {
 
 
 
+
+
+
+/*global blockSize, display, floor, rows, cols, abs, cushion*/
