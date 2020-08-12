@@ -49,12 +49,13 @@ p {
 
 #size {
   
-  padding-left: 0;
-  padding-right: 18vh;
+  padding-left: 5vh;
+  padding-right: 15vh;
   font-size: 15px;
 }
 
 #colors {
+ 
   font-size: 15px;
 }
 

@@ -1,6 +1,6 @@
 /*global loadImage, cushion, paintingIsFinished, currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas,blockSize, mouseX, mouseY, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
-let colorSquares, guideSquares, moves = [], cushionVals = [70];
+let colorSquares, guideSquares, moves = [];
 
 function initializeColorSquares(array) {
   //console.log(array);
@@ -123,7 +123,14 @@ function adjustBlockSize(val){
 }
 
 function adjustCushion(newCushion){
-  cushionVals.push(newCushion);
-  cushion = cushionVals[length - 1] - newCushion;
+  /* The "cushion" variable represents how close/far the RGB values of two colors can be to be
+   considered the same color. The larger the cushion, the less colors there will be. This is because
+   RGB values can be far from each other in value, but still considered the same color. If the cushion is
+   small, however, the number of colors will increase because RGB values have to be very close to be 
+   considered the same color. Therefore, larger cushion = less colors and smaller cushion = more colors.
+   For UX purposes, it makes more sense for the slider to look as if it is representing the total number
+   of colors -- sliding it to the right = more colors, sliding to left = less. This statement helps achieve
+   this, while in reality, the cushion is changed directly, not the number of colors*/
+  cushion = 70 - newCushion;
   setup();
 }
