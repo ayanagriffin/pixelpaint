@@ -1,45 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@500;600;700&display=swap"
-      rel="stylesheet"    
-          />
+      rel="stylesheet"
+    />
 
     <title>pixelpaint</title>
-    <link rel="icon" href="https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2Fpbn%20icon.png?v=1597195637438" />
-    
+    <link
+      rel="icon"
+      href="https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2Fpbn%20icon.png?v=1597195637438"
+    />
+
     <!-- import the webpage's stylesheet ****************** -->
     <link rel="stylesheet" href="/style.css" />
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/addons/p5.sound.js"></script>
     <script src="https://cdn.JsDelivr.net/gh/bmoren/p5.collide2D/p5.collide2d.min.js"></script>
     <!-- import the webpage's javascript file -->
-    
 
     <script src="/script.js" defer></script>
     <script src="/pic_and_block_classes.js" defer></script>
     <script src="/square_classes.js" defer></script>
     <script src="/interaction.js" defer></script>
-    
-
-   
-    
-    
-  </head>  
+  </head>
   <body>
     <h1>
       pixelpaint
     </h1>
-    
-   
-     <div id="canvas-div"></div>
-    <div class = "buttonContainer">
+    <div id="canvas-div"></div>
+    <div class="buttonContainer">
       <div id="undo" class="button" onclick="undo()">
         undo
       </div>
@@ -49,11 +44,9 @@
       <div id="im-done" class="button" onclick="finishImage()">
         i'm done
       </div>
-      
     </div>
-    
-    
-     <div class = "sliderDiv">
+
+    <div class="sliderDiv">
       <input
         id="blockSizeSlider"
         type="range"
@@ -63,8 +56,8 @@
         value="20"
         onchange="adjustBlockSize(this.value)"
       />
-       
-       <input
+
+      <input
         id="cushionSlider"
         type="range"
         min="-20"
@@ -74,11 +67,11 @@
         onchange="adjustCushion(this.value)"
       />
     </div>
-    <div class = "instructionsDiv">
-      <p id = "size">
-        adjust size 
+    <div class="instructionsDiv">
+      <p id="size">
+        adjust size
       </p>
-      <p id = "colors">
+      <p id="colors">
         adjust number of colors
       </p>
     </div>
