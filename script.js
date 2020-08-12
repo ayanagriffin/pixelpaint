@@ -31,7 +31,7 @@ function setup() {
   maxImgW = (windowWidth * 2) / 3;
   maxImgH = (windowHeight * 2) / 3;
   canvas = createCanvas(windowWidth, windowHeight);
-  canvas.parent("canvas-div");
+  canvas.parent("canvas");
   background(235);
   getDimensions(imgUrl);
   currentColor = "white";
