@@ -21,7 +21,7 @@ class ColorSquare {
     this.previousColors = ["white"];
   }
 
-  draw() {
+  display() {
     if (!paintingIsFinished) {
       strokeWeight(2);
       fill(this.color);
@@ -106,7 +106,7 @@ class GuideSquare {
     if (
       this.x + blockSize * 2 > mouseX &&
       mouseX > this.x &&
-      this.y + blockSize * 2 > mouseY &&
+      this.y + guideSquareHeight > mouseY &&
       mouseY > this.y
     ) {
       currentColor = this.color;

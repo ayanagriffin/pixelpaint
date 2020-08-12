@@ -21,7 +21,7 @@ let imgUrl,
 
 function preload() {
   imgUrl =
-    "https://cdn.glitch.com/d82135a4-9f9d-4654-a46b-f7f58cdc9d01%2Fimg_lights.jpg?v=1595543508242";
+    "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2Fpbn%20icon.png?v=1597195637438";
   display = loadImage(imgUrl);
 }
 
@@ -210,7 +210,7 @@ function drawCursor() {
 function drawColorSquares() {
   for (let i = 0; i < colorSquares.length; i++) {
     for (let j = 0; j < colorSquares[i].length; j++) {
-      colorSquares[i][j].draw();
+      colorSquares[i][j].display();
     }
   }
 }
