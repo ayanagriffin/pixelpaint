@@ -21,7 +21,7 @@ let imgUrl,
 
 function preload() {
   imgUrl =
-    "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2Fpbn%20icon.png?v=1597195637438";
+    "https://cdn.glitch.com/c6a55a91-1fc8-414c-9c30-7b343a077157%2Fdownload.png?v=1595548272909";
   display = loadImage(imgUrl);
 }
 
