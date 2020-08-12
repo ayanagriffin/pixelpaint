@@ -11,7 +11,15 @@ let imgUrl,
   startingCanvasW,
   startingCanvasH,
   rows,
-  cols, testArray, finalColorArray, colorSquaresAreMade, avgColors, avgColorsAreRetrieved, currentColor, finishPrompt, blockSize = 20;
+  cols,
+  testArray,
+  finalColorArray,
+  colorSquaresAreMade,
+  avgColors,
+  avgColorsAreRetrieved,
+  currentColor,
+  finishPrompt,
+  blockSize = 20;
 const CUSHION = 75;
 
 function preload() {
@@ -29,21 +37,19 @@ function setup() {
   background(235);
   getDimensions(imgUrl);
   currentColor = "white";
-  
-  
-  
+  paintingIsFinished = false;
 }
 
-function draw(){
-  if(colorSquaresAreMade){
-    drawColorSquares(); 
+function draw() {
+  if (colorSquaresAreMade) {
+    drawColorSquares();
   }
-  
-  if(avgColorsAreRetrieved){
+
+  if (avgColorsAreRetrieved) {
     drawGuideSquares();
   }
-  
-  if(paintingIsFinished){
+
+  if (paintingIsFinished) {
     drawStar();
   }
 }
@@ -56,24 +62,25 @@ function getDimensions(url) {
     img.onload = function() {
       imgDimensions.w = this.width;
       imgDimensions.h = this.height;
-      
+
       adjustCanvas();
-      
+
       resolve();
     };
   });
 }
 
-function mouseClicked(){
-  checkColorSquareClicked();
-  checkGuideSquareClicked();
+function mouseClicked() {
+  if (!paintingIsFinished) {
+    checkColorSquareClicked();
+    checkGuideSquareClicked();
+  }
 }
 
 function adjustCanvas() {
   resizeImage();
-  resizeCanvas(imgDimensions.w + 2*blockSize, imgDimensions.h);
+  resizeCanvas(imgDimensions.w + 2 * blockSize, imgDimensions.h);
   background(235);
-
 }
 
 // resizes imgDimensions to fit nicely on the window while maintaining the original ratio between w and h
@@ -83,7 +90,7 @@ function resizeImage() {
     imgDimensions.w = maxImgW;
     imgDimensions.h = imgDimensions.w * ratio;
     console.log(imgDimensions);
-  }else{
+  } else {
     imgDimensions.h = maxImgH;
     imgDimensions.w = imgDimensions.h / ratio;
   }
@@ -97,7 +104,6 @@ function resizeImage() {
   display.resize(imgDimensions.w, imgDimensions.h);
 
   getArray();
- 
 }
 
 function getRowsAndCols(ratio) {
@@ -114,7 +120,7 @@ function getRowsAndCols(ratio) {
   //console.log(rows, cols);
 }
 
-function getArray(){
+function getArray() {
   let colorBlockImg = new Picture(rows, cols);
   finalColorArray = colorBlockImg.getFinalArray();
   avgColors = colorBlockImg.getAvgColors();
@@ -122,7 +128,6 @@ function getArray(){
   console.log(avgColors);
   drawTemplate();
 }
-
 
 //helper function for visualisation of the rows and cols
 function drawRowsAndCols() {
@@ -138,37 +143,36 @@ function drawRowsAndCols() {
   }
 }
 
-function drawTemplate(){
+function drawTemplate() {
   initializeColorSquares(finalColorArray);
   initializeGuideSquares(avgColors);
 }
 
-
-function drawStar(){
+function drawStar() {
   let starSize = imgDimensions.h / 20;
-    let angle = TWO_PI / 5;
-    let halfAngle = angle / 2;
-    let xBuffer = imgDimensions.w * 0.85;
-    let yBuffer = imgDimensions.h * 0.15;
-    fill("gold");
-    beginShape();
-    for (let i = 0; i < TWO_PI; i += angle) {
-      let x = xBuffer + cos(i) * starSize;
-      let y = yBuffer + sin(i) * starSize;
-      vertex(x, y);
-      x = xBuffer + cos(i + halfAngle) * ((starSize * 7) / 3);
-      y = yBuffer + sin(i + halfAngle) * ((starSize * 7) / 3);
-      vertex(x, y);
-    }
+  let angle = TWO_PI / 5;
+  let halfAngle = angle / 2;
+  let xBuffer = imgDimensions.w * 0.85;
+  let yBuffer = imgDimensions.h * 0.15;
+  fill("gold");
+  beginShape();
+  for (let i = 0; i < TWO_PI; i += angle) {
+    let x = xBuffer + cos(i) * starSize;
+    let y = yBuffer + sin(i) * starSize;
+    vertex(x, y);
+    x = xBuffer + cos(i + halfAngle) * ((starSize * 7) / 3);
+    y = yBuffer + sin(i + halfAngle) * ((starSize * 7) / 3);
+    vertex(x, y);
+  }
 
-    endShape(CLOSE);
-    fill("black");
-    textSize(imgDimensions.h / 25);
-    textAlign(CENTER, CENTER);
-    text(finishPrompt, xBuffer, yBuffer);
+  endShape(CLOSE);
+  fill("black");
+  textSize(imgDimensions.h / 25);
+  textAlign(CENTER, CENTER);
+  text(finishPrompt, xBuffer, yBuffer);
 }
 
-function setPrompt(){
+function setPrompt() {
   let prompts = ["Nice!", "Wow!", "Great!", "Cool!", "Yay!"];
   finishPrompt = random(prompts);
 }
