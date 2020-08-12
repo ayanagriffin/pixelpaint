@@ -1,7 +1,18 @@
 /*global blockSize, display, floor, rows, cols, abs, cushion*/
 
 
+/*
+-------------------------- PICTURE CLASS ----------------------------
 
+a Picture represents the original image. This class:
+
+1. sections out the image into Blocks,
+2. finds the average color of each block, 
+3. compares those average colors against each other to see if they are similar enough to be considered the same color,
+4. assigns each of the final colors a number and puts those numbers into a 2D array that will be used to draw the template
+   that is displayed to the user for them to paint
+
+*/
 
 class Picture {
   constructor(rows, cols) {
@@ -18,7 +29,7 @@ class Picture {
   
    getFinalArray() {
     // basically runs all necessary functions within the class to return the array with the color 
-    //      values (i.e. what is needed to draw the Squares in the main file)
+    //      values (i.e. what is needed to draw the Squares)
     
     this.initializeValsArray();
     this.getBlockArray();
@@ -26,7 +37,7 @@ class Picture {
     return this.valsArray;
   }
   
-  
+  // not sure if I need this? probably some way to initialize a 2D array quicker
   initializeValsArray(){
     for (let r = 0; r < this.rows; r++) {
       let row = [];
@@ -122,7 +133,6 @@ class Picture {
   }
   
  
-  
   getAvgColors(){
     return this.finalColors;
 
@@ -130,10 +140,12 @@ class Picture {
 }
 
 
+/* -------------------------- BLOCK CLASS ----------------------------
 
+a Block represents a section of the original image. Blocks are used by the Picture class 
+to determine the number of colors that will be displayed to the user and what those colors are
 
-
-
+*/
 class Block {
   constructor(row, col) {
     this.row = row;
@@ -145,8 +157,6 @@ class Block {
     this.endingX = this.startingX + this.size;
     this.endingY = this.startingY + this.size;
     this.finalColor = [];
-
-    //this.originalColors = [];
     this.colorVals = [0, 0, 0];
     this.foundMatch = false;
   }

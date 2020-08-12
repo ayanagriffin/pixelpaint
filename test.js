@@ -27,3 +27,17 @@ function test(){
   display.resize(100, 100);
   console.log(display.get(99, 99));
 }
+
+//helper function for visualisation of the rows and cols
+function drawRowsAndCols() {
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      //strokeWeight(3);
+      let red = testArray[r][c].R;
+      let green = testArray[r][c].G;
+      let blue = testArray[r][c].B;
+      fill(red, green, blue);
+      rect(c * blockSize, r * blockSize, blockSize, blockSize);
+    }
+  }
+}

@@ -1,5 +1,18 @@
 /*global loadImage, stroke, guideSquareHeight, mouseX, moves, mouseY, createCanvas, currentColor, paintingIsFinished, textSize, textAlign, CENTER, strokeWeight, blockSize, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
+
+/*
+-------------------------- COLORSQUARE CLASS ----------------------------
+
+a ColorSquare represents a square drawn on to the canvas, which is initially white but is painted by the user. This class:
+
+1. sections out the image into Blocks,
+2. finds the average color of each block, 
+3. compares those average colors against each other to see if they are similar enough to be considered the same color,
+4. assigns each of the final colors a number and puts those numbers into a 2D array that will be used to draw the template
+   that is displayed to the user for them to paint
+
+*/
 class ColorSquare {
   constructor(row, col, val) {
     this.row = row;
@@ -14,7 +27,6 @@ class ColorSquare {
 
   display() {
     if (!paintingIsFinished) {
-      //stroke();
       strokeWeight(2);
       fill(this.color);
       rect(this.x, this.y, this.size, this.size);
@@ -33,7 +45,6 @@ class ColorSquare {
       rect(this.x, this.y, this.size, this.size);
     }
 
-    //console.log(this.x, this.y);
   }
 
   paint() {
@@ -87,7 +98,7 @@ class GuideSquare {
     if (
       this.x + blockSize * 2 > mouseX &&
       mouseX > this.x &&
-      this.y + blockSize * 2> mouseY &&
+      this.y + blockSize * 2 > mouseY &&
       mouseY > this.y
     ) {
       currentColor = this.color;
