@@ -26,8 +26,10 @@ function initializeGuideSquares(avgColors) {
     let size = 2 * blockSize;
     let val = i + 1;
     let color = avgColors[i];
-    guideSquares.push(new GuideSquare(x, size, color, val));
+    guideSquares.push(new GuideSquare(x, color, val));
   }
+  
+  console.log(guideSquares.length);
 }
 
 function drawColorSquares() {
@@ -40,7 +42,7 @@ function drawColorSquares() {
 }
 
 function drawGuideSquares() {
-  if(guideSquares.length > 3){
+  if(guideSquares.length > rows / 2){
     guideSquareHeight = blockSize;
   }else{
     guideSquareHeight = 2*blockSize;
@@ -49,41 +51,6 @@ function drawGuideSquares() {
     guideSquares[i].draw(i * guideSquareHeight);
   }
 }
-
-// function checkColorSquareClicked() {
-//   for (let r = 0; r < colorSquares.length; r++) {
-//     for (let c = 0; c < colorSquares[r].length; c++) {
-//       let curSquare = colorSquares[r][c];
-//       if (
-//         curSquare.x + blockSize > mouseX &&
-//         mouseX > curSquare.x &&
-//         curSquare.y + blockSize > mouseY &&
-//         mouseY > curSquare.y
-//       ) {
-//         curSquare.paint();
-//         let curSquareInfo = {"row": curSquare.row,
-//                             "col": curSquare.col,
-//                             "color": curSquare.color}
-        
-//         moves.push(curSquareInfo);
-//       }
-//     }
-//   }
-// }
-
-// function checkGuideSquareClicked() {
-//   for (let i = 0; i < guideSquares.length; i++) {
-//     let curSquare = guideSquares[i];
-//     if (
-//       curSquare.x + curSquare.size > mouseX &&
-//       mouseX > curSquare.x &&
-//       curSquare.y + curSquare.size > mouseY &&
-//       mouseY > curSquare.y
-//     ) {
-//       currentColor = curSquare.color;
-//     }
-//   }
-// }
 
 
 function undo(){
@@ -120,8 +87,9 @@ function finishImage(){
 
 function adjustBlockSize(val){
   // functions as expected if I manually put in the number, as shown below
-  blockSize = 30;
-  
+  //blockSize = 30;
+  blockSize = 20 + val;
+  console.log(bloc)
   // does not function as expected if I try to do this:
   //blockSize = val;
   setup();
@@ -129,13 +97,11 @@ function adjustBlockSize(val){
 
 function adjustCushion(newCushion){
   /* The "cushion" variable represents how close/far the RGB values of two colors can be to be
-   considered the same color. The larger the cushion, the less colors there will be. This is because
-   RGB values can be far from each other in value, but still considered the same color. If the cushion is
-   small, however, the number of colors will increase because RGB values have to be very close to be 
-   considered the same color. Therefore, larger cushion = less colors and smaller cushion = more colors.
+   considered the same color. The larger the cushion, the less colors there will be. 
    For UX purposes, it makes more sense for the slider to look as if it is representing the total number
    of colors -- sliding it to the right = more colors, sliding to left = less. This statement helps achieve
    this, while in reality, the cushion is changed directly, not the number of colors*/
+  
   cushion = 70 - newCushion;
   setup();
 }

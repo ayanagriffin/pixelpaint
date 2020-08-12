@@ -60,18 +60,18 @@ class ColorSquare {
 }
 
 class GuideSquare {
-  constructor(x, size, color, val) {
+  constructor(x, color, val) {
     this.x = x;
     this.y = 0;
-    this.size = size;
     this.color = color;
     this.val = val;
   }
 
-  draw() {
+  draw(y) {
+    this.y = y;
     strokeWeight(2);
     fill(this.color);
-    rect(this.x, this.y, this.size, guideSquareHeight);
+    rect(this.x, this.y, blockSize * 2, guideSquareHeight);
 
     if (this.color[0] + this.color[1] + this.color[1] < 150) {
       fill(255);
@@ -80,14 +80,14 @@ class GuideSquare {
     }
 
     textSize(blockSize / 2);
-    text(this.val, this.x + this.size / 2, this.y + this.size / 2);
+    text(this.val, this.x + blockSize, this.y + guideSquareHeight / 2);
   }
   
   checkClicked(){
     if (
-      this.x + this.size > mouseX &&
+      this.x + blockSize * 2 > mouseX &&
       mouseX > this.x &&
-      this.y + this.size > mouseY &&
+      this.y + blockSize * 2> mouseY &&
       mouseY > this.y
     ) {
       currentColor = this.color;
