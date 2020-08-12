@@ -22,6 +22,18 @@ p {
   margin: -20px;
 }
 
+#canvas-div {
+  padding: 0;
+  margin: auto;
+  display: block;
+  
+  position: absolute;
+  top: 22vh;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 .buttonContainer {
   font-weight: 500;
   display: flex;

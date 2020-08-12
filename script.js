@@ -3,7 +3,7 @@ checkGuideSquareClicked, rectMode, CENTER, CORNER, guideSquares, drawGuideSquare
 initializeGuideSquares, noStroke, width, colorSquares, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
 let imgDimensions = { w: 0, h: 0 };
-let imgUrl,
+let imgUrl, 
   display,
   maxImgW,
   maxImgH,
@@ -34,6 +34,7 @@ function setup() {
   maxImgW = (windowWidth * 2) / 3;
   maxImgH = (windowHeight * 2) / 3;
   canvas = createCanvas(windowWidth, windowHeight);
+  canvas.parent("canvas-div");
   background(235);
   getDimensions(imgUrl);
   currentColor = "white";
