@@ -113,23 +113,12 @@ function finishImage(){
   paintingIsFinished = true;
 }
 
-function increaseBlockSize(){
-  // insert some condition to ensure the blocks don't get too large
-  blockSize += 10;
-  setup();
-
-}
-
-function decreaseBlockSize(){
-   // insert some condition to ensure the blocks don't get too small
-  blockSize -= 10;
+function adjustSize(newBlockSize){
+  blockSize = newBlockSize;
   setup();
 }
 
-function increaseCushion(){
-  cushion += 10;
-}
-
-function decreasecushion(){
-  cushion -= 10;
+function adjustCushion(newCushion){
+  cushion = newCushion;
+  setup();
 }

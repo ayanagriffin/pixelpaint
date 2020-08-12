@@ -44,16 +44,20 @@ p {
   justify-content: center;
   padding-top: 22px;
   
+  
 }
 
 #size {
-  padding-left: 3vh;
-  padding-right: 17vh;
+  
+  padding-left: 0;
+  padding-right: 18vh;
+  font-size: 15px;
 }
 
 #colors {
-  
+  font-size: 15px;
 }
+
 .buttonContainer {
   font-weight: 500;
   display: flex;

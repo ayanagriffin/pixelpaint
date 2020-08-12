@@ -19,7 +19,7 @@ let imgUrl,
   avgColorsAreRetrieved,
   currentColor,
   finishPrompt,
-  blockSize = 20, cushion = 75;
+  blockSize = 20, cushion = 70;
 
 
 function preload() {
