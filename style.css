@@ -1,5 +1,7 @@
 /* CSS files add styling rules to your content */
 
+
+
 body {
   text-align: center;
   font-family: "Yanone Kaffeesatz";
@@ -24,14 +26,9 @@ p {
 
 #canvas-div {
   padding: 0;
-  margin: auto;
+   margin: 5px 0px 0px 0px;
   display: block;
   
-  position: absolute;
-  top: 22vh;
-  bottom: 0;
-  left: 0;
-  right: 0;
 }
 
 .buttonContainer {
