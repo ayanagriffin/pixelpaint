@@ -112,6 +112,7 @@ function resizeImage() {
   getArray();
 }
 
+// finds the number of rows and cols based on the blockSize and imgDimensions
 function getRowsAndCols(ratio) {
   if (ratio > 1) {
     rows = imgDimensions.h / blockSize;
@@ -125,6 +126,7 @@ function getRowsAndCols(ratio) {
   cols = floor(cols);
 }
 
+//gets array of numbers (that represent the color values)
 function getArray() {
   let colorBlockImg = new Picture(rows, cols);
   finalColorArray = colorBlockImg.getFinalArray();
@@ -134,6 +136,7 @@ function getArray() {
   drawTemplate();
 }
 
+// makes colorSquares and guideSquares arrays 
 function drawTemplate() {
   initializeColorSquares(finalColorArray);
   initializeGuideSquares(avgColors);

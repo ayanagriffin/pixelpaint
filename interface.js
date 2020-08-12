@@ -56,6 +56,11 @@ function adjustCushion(newCushion){
   setup();
 }
 
+// for now, I want to change the imgUrl and basically re-run/reload everything when the "new image" button is pressed
+// not exactly sure how though, since the original imgUrl and display are set in preload
+function newImage(){
+  
+}
 
 
 /*global loadImage, finishPrompt, random, rows, cushion, paintingIsFinished, currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas,blockSize, mouseX, mouseY, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
