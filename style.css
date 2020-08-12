@@ -17,17 +17,13 @@ h1 {
 }
 
 #canvas-div {
-  
-  margin: auto;
   display: inline-block;
-  
-  
 }
 
 
 p {
   font-weight: 500;
-  font-size: 20px;
+  font-size: 15px;
   color: hsl(16, 100%, 80%);
   margin: -20px;
 }
@@ -49,23 +45,17 @@ p {
 }
 
 #size {
-  
   padding-left: 5vh;
   padding-right: 15vh;
-  font-size: 15px;
 }
 
-#colors {
- 
-  font-size: 15px;
-}
+
 
 .buttonContainer {
   font-weight: 500;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  
   
 }
 
@@ -76,7 +66,6 @@ p {
   height: 1em;
   padding: 4px;
   margin: 5px;
-  top: 78vh;
   display: inline-block;
   background: hsl(16, 100%, 80%);
 }
