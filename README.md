@@ -16,7 +16,9 @@ add in color picker(?)
 
 fix text under sliders
 
-improve overall design
+improve overall design (background image, icons, etc)
+
+see original picture button (after completion?)
 
 add instructions
 
