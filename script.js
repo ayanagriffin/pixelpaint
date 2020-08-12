@@ -1,6 +1,6 @@
 /*global loadImage, random, checkColorSquareClicked, CLOSE, textAlign, textSize, beginShape, endShape, TWO_PI, CENTER, sin, cos, vertex, paintingIsFinished, 
 checkGuideSquareClicked, guideSquares, drawGuideSquares, drawColorSquares, mouseX, mouseY, GuideSquare, ColorSquare, createCanvas, initializeColorSquares, 
-initializeGuideSquares, colorSquares, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+initializeGuideSquares, width, colorSquares, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
 let imgDimensions = { w: 0, h: 0 };
 let imgUrl,
@@ -29,7 +29,6 @@ function preload() {
 }
 
 function setup() {
-  
   avgColorsAreRetrieved = false;
   colorSquaresAreMade = false;
   maxImgW = (windowWidth * 2) / 3;
@@ -53,6 +52,12 @@ function draw() {
   if (paintingIsFinished) {
     drawStar();
   }
+  
+  if(mouseX > width - 2 * blockSize && mouseX < width){
+    document.body.style.cursor = "pointer";
+  }else{
+    document.body.style.cursor = "default";
+  }
 }
 
 //updates dimensions and returns a Promise after image finishes loading
@@ -73,17 +78,16 @@ function getDimensions(url) {
 
 function mouseClicked() {
   if (!paintingIsFinished) {
-    
-    for(let i = 0; i < colorSquares.length; i++){
-      console.log(colorSquares[i]);
-      // colorSquares[i].display();
+    for (let r = 0; r < colorSquares.length; r++) {
+      for (let c = 0; c < colorSquares[r].length; c++) {
+        colorSquares[r][c].checkClicked();
+      }
     }
-    //checkColorSquareClicked();
-    
-    for(let i = 0; i < guideSquares.length; i++){
+
+    for (let i = 0; i < guideSquares.length; i++) {
       guideSquares[i].checkClicked();
     }
-   // checkGuideSquareClicked();
+
   }
 }
 

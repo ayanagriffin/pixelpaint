@@ -45,26 +45,26 @@ function drawGuideSquares() {
   }
 }
 
-function checkColorSquareClicked() {
-  for (let r = 0; r < colorSquares.length; r++) {
-    for (let c = 0; c < colorSquares[r].length; c++) {
-      let curSquare = colorSquares[r][c];
-      if (
-        curSquare.x + blockSize > mouseX &&
-        mouseX > curSquare.x &&
-        curSquare.y + blockSize > mouseY &&
-        mouseY > curSquare.y
-      ) {
-        curSquare.paint();
-        let curSquareInfo = {"row": curSquare.row,
-                            "col": curSquare.col,
-                            "color": curSquare.color}
+// function checkColorSquareClicked() {
+//   for (let r = 0; r < colorSquares.length; r++) {
+//     for (let c = 0; c < colorSquares[r].length; c++) {
+//       let curSquare = colorSquares[r][c];
+//       if (
+//         curSquare.x + blockSize > mouseX &&
+//         mouseX > curSquare.x &&
+//         curSquare.y + blockSize > mouseY &&
+//         mouseY > curSquare.y
+//       ) {
+//         curSquare.paint();
+//         let curSquareInfo = {"row": curSquare.row,
+//                             "col": curSquare.col,
+//                             "color": curSquare.color}
         
-        moves.push(curSquareInfo);
-      }
-    }
-  }
-}
+//         moves.push(curSquareInfo);
+//       }
+//     }
+//   }
+// }
 
 // function checkGuideSquareClicked() {
 //   for (let i = 0; i < guideSquares.length; i++) {
