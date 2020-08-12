@@ -43,3 +43,17 @@ p {
   background: hsl(16, 100%, 80%);
 }
 
+.sideButtonContainer {
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+}
+
+.sideButton {
+  cursor: pointer;
+  border-radius: 5px;
+  width: 5em;
+  height: 1em;
+  background: hsl(16, 100%, 80%);
+  
+}
