@@ -1,6 +1,6 @@
 /*global loadImage, random, checkColorSquareClicked, CLOSE, textAlign, textSize, beginShape, endShape, TWO_PI, CENTER, sin, cos, vertex, paintingIsFinished, 
 checkGuideSquareClicked, guideSquares, drawGuideSquares, drawColorSquares, mouseX, mouseY, GuideSquare, ColorSquare, createCanvas, initializeColorSquares, 
-initializeGuideSquares, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+initializeGuideSquares, colorSquares, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
 let imgDimensions = { w: 0, h: 0 };
 let imgUrl,
@@ -73,8 +73,17 @@ function getDimensions(url) {
 
 function mouseClicked() {
   if (!paintingIsFinished) {
-    checkColorSquareClicked();
-    checkGuideSquareClicked();
+    
+    for(let i = 0; i < colorSquares.length; i++){
+      console.log(colorSquares[i]);
+      // colorSquares[i].display();
+    }
+    //checkColorSquareClicked();
+    
+    for(let i = 0; i < guideSquares.length; i++){
+      guideSquares[i].checkClicked();
+    }
+   // checkGuideSquareClicked();
   }
 }
 

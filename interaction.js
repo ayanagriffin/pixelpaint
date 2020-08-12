@@ -66,19 +66,19 @@ function checkColorSquareClicked() {
   }
 }
 
-function checkGuideSquareClicked() {
-  for (let i = 0; i < guideSquares.length; i++) {
-    let curSquare = guideSquares[i];
-    if (
-      curSquare.x + curSquare.size > mouseX &&
-      mouseX > curSquare.x &&
-      curSquare.y + curSquare.size > mouseY &&
-      mouseY > curSquare.y
-    ) {
-      currentColor = curSquare.color;
-    }
-  }
-}
+// function checkGuideSquareClicked() {
+//   for (let i = 0; i < guideSquares.length; i++) {
+//     let curSquare = guideSquares[i];
+//     if (
+//       curSquare.x + curSquare.size > mouseX &&
+//       mouseX > curSquare.x &&
+//       curSquare.y + curSquare.size > mouseY &&
+//       mouseY > curSquare.y
+//     ) {
+//       currentColor = curSquare.color;
+//     }
+//   }
+// }
 
 
 function undo(){
