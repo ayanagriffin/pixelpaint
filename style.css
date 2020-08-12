@@ -32,18 +32,26 @@ p {
   
 }
 
-#sliderDiv {
+.sliderDiv {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-#instructionsDiv {
+.instructionsDiv {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding: 22px;
-  position: relative;
+  padding-top: 22px;
+  
+}
+
+#size {
+  padding-right: 5vh;
+}
+
+#colors {
+  padding-left: 10vh;
 }
 .buttonContainer {
   font-weight: 500;
