@@ -28,11 +28,8 @@ p {
   padding: 0;
   margin: auto;
   display: block;
-  position: absolute;
-  top: 20vh;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  position: static;
+ 
 }
 
 .buttonContainer {
