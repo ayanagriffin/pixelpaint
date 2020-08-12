@@ -61,15 +61,10 @@ function draw() {
     //document.body.style.cursor = "url('https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2FScreen%20Shot%202020-08-11%20at%207.33.51%20PM.png?v=1597199641250'), auto";
     
     
-    document.body.style.cursor = "none";
-    
+    document.body.style.cursor = "default";
     strokeWeight(0);
     fill(currentColor);
-    triangle(mouseX - 5, mouseY - 10, mouseX - 3, mouseY + 5, mouseX + 5, mouseY + 3);
-    
-    // rectMode(CENTER);
-    // rect(mouseX, mouseY, blockSize / 2, blockSize / 2);
-    // rectMode(CORNER);
+    triangle(mouseX - 5, mouseY - 12, mouseX - 9, mouseY + 7, mouseX + 9, mouseY + 5);
   }
 }
 
