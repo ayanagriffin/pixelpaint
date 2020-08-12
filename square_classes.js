@@ -1,4 +1,4 @@
-/*global loadImage, createCanvas, currentColor, paintingIsFinished, textSize, textAlign, CENTER, strokeWeight, blockSize, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/*global loadImage, mouseX, mouseY, createCanvas, currentColor, paintingIsFinished, textSize, textAlign, CENTER, strokeWeight, blockSize, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
 class ColorSquare {
   constructor(row, col, val) {
@@ -67,5 +67,16 @@ class GuideSquare {
 
     textSize(blockSize / 2);
     text(this.val, this.x + this.size / 2, this.y + this.size / 2);
+  }
+  
+  checkClicked(){
+    if (
+      this.x + this.size > mouseX &&
+      mouseX > this.x &&
+      this.y + this.size > mouseY &&
+      mouseY > this.y
+    ) {
+      currentColor = this.color;
+    }
   }
 }

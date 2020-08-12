@@ -29,6 +29,7 @@ function preload() {
 }
 
 function setup() {
+  
   avgColorsAreRetrieved = false;
   colorSquaresAreMade = false;
   maxImgW = (windowWidth * 2) / 3;
