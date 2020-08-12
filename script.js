@@ -19,8 +19,8 @@ let imgUrl,
   avgColorsAreRetrieved,
   currentColor,
   finishPrompt,
-  blockSize = 20;
-const CUSHION = 75;
+  blockSize = 20, cushion = 75;
+
 
 function preload() {
   imgUrl =

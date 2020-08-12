@@ -1,4 +1,4 @@
-/*global loadImage, paintingIsFinished, currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas,blockSize, mouseX, mouseY, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/*global loadImage, cushion, paintingIsFinished, currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas,blockSize, mouseX, mouseY, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
 
 let colorSquares, guideSquares, moves = [];
 
@@ -113,8 +113,23 @@ function finishImage(){
   paintingIsFinished = true;
 }
 
-function testNewImage(){
-  blockSize = 40;
+function increaseBlockSize(){
+  // insert some condition to ensure the blocks don't get too large
+  blockSize += 10;
   setup();
-  
+
+}
+
+function decreaseBlockSize(){
+   // insert some condition to ensure the blocks don't get too small
+  blockSize -= 10;
+  setup();
+}
+
+function increaseCushion(){
+  cushion += 10;
+}
+
+function decreasecushion(){
+  cushion -= 10;
 }

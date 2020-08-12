@@ -1,4 +1,4 @@
-/*global blockSize, display, floor, rows, cols, abs, CUSHION*/
+/*global blockSize, display, floor, rows, cols, abs, cushion*/
 
 
 
@@ -7,7 +7,7 @@ class Picture {
   constructor(rows, cols) {
     this.blocks = [];
     this.numColors = 0;
-    this.cushion = CUSHION;
+    this.cushion = cushion;
     this.rows = rows;
     this.cols = cols;
     this.size = blockSize;
