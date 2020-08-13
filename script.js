@@ -5,7 +5,9 @@ let display,
   canvas,
   startingCanvasW,
   startingCanvasH,
-  rows, templateIsLoading, templateColors, 
+  rows,
+  templateIsLoading,
+  templateColors,
   cols,
   testArray,
   guideSquareHeight,
@@ -17,17 +19,18 @@ let display,
   finishPrompt,
   blockSize = 20,
   cushion = 70,
-  imgUrl, prevPics = [];
+  imgUrl,
+  prevPics = [];
 
 function preload() {
   //imgUrl = random(defaultPics);
-  imgUrl =
-    "https://cdn.glitch.com/d82135a4-9f9d-4654-a46b-f7f58cdc9d01%2Fmosaic-758754_960_720.webp?v=1595547170968";
+  imgUrl = random(defaultPics);
   display = loadImage(imgUrl);
+  prevPics.push(imgUrl);
+
 }
 
 function setup() {
-  prevPics.push(imgUrl);
   avgColorsAreRetrieved = false;
   colorSquaresAreMade = false;
   maxImgW = (windowWidth * 3) / 4;
@@ -55,14 +58,13 @@ function draw() {
   }
 
   drawCursor();
-  
-  if(templateIsLoading){
+
+  if (templateIsLoading) {
     fill(0);
-    textSize(width / 40)
+    textSize(width / 40);
     textAlign(CENTER);
     text("Loading your image...", width / 2, height / 2);
   }
-  
 }
 
 function mouseClicked() {
@@ -182,7 +184,7 @@ function initializeColorSquares() {
     for (let c = 0; c < finalColorArray[r].length; c++) {
       let val = finalColorArray[r][c];
 
-      let templateColor = templateColors[val - 1]
+      let templateColor = templateColors[val - 1];
       currentRow.push(new ColorSquare(r, c, val, templateColor));
     }
     colorSquares.push(currentRow);
@@ -190,12 +192,13 @@ function initializeColorSquares() {
   colorSquaresAreMade = true;
 }
 
-function getTemplateColors(){
+// creates grayscale for template to make it easier to paint
+function getTemplateColors() {
   templateColors = [];
-  for(let i = 0; i < avgColors.length; i++){
+  for (let i = 0; i < avgColors.length; i++) {
     let curColor = avgColors[i];
-    let templateColor = ((curColor[0] + curColor[1] + curColor [2]) / 3) + 100;
-    templateColors.push(templateColor)
+    let templateColor = (curColor[0] + curColor[1] + curColor[2]) / 3 + 75;
+    templateColors.push(templateColor);
   }
 }
 

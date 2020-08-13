@@ -60,12 +60,15 @@ function adjustCushion(newCushion){
 // this works, but i'm guessing there is a better way to do it than setTimeout
 
 function newImage(){
-  while(prevPics.includes(imgUrl)){
-    
-  }
   
-  imgUrl = random(defaultPics);
+  if(prevPics.length === defaultPics.length){
+    prevPics = [];
+  }
+  while(prevPics.includes(imgUrl)){
+    imgUrl = random(defaultPics);
+  }
   display = loadImage(imgUrl);
+  prevPics.push(imgUrl);
   setTimeout(setup, 3000);
 }
 
