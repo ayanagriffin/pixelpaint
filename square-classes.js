@@ -15,15 +15,12 @@ class ColorSquare {
     this.val = val;
     this.size = blockSize;
     this.originalColor = color;
-    this.color = this.getGuideColor();
+    this.color = "white";
     this.x = this.col * this.size;
     this.y = this.row * this.size;
     this.previousColors = [this.color];
   }
 
-  getGuideColor(){
-    
-  }
   display() {
     if (!paintingIsFinished) {
       strokeWeight(2);
