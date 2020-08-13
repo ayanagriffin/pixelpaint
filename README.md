@@ -1,4 +1,4 @@
-pixelpaint (todo)
+TO DO!
 =================
 fix blockSize slider
 
