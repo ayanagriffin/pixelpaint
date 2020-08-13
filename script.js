@@ -20,7 +20,7 @@ let display,
   blockSize = 20,
   cushion = 70,
   imgUrl,
-  prevPics = [];
+  prevPics = [], loadingVid;
 
 function preload() {
   imgUrl = random(defaultPics);
@@ -64,6 +64,7 @@ function draw() {
     textSize(width / 40);
     textAlign(CENTER);
     text("Loading your image...", width / 2, height / 2);
+    
   }
 }
 
@@ -273,6 +274,6 @@ function drawStar() {
   text(finishPrompt, xBuffer, yBuffer);
 }
 
-/*global defaultPics, loadImage, random, triangle, auto, ellipse, CLOSE, textAlign, textSize, beginShape, endShape, TWO_PI, CENTER, sin, cos, vertex, paintingIsFinished, 
+/*global defaultPics, createVideo, loadImage, random, triangle, auto, ellipse, CLOSE, textAlign, textSize, beginShape, endShape, TWO_PI, CENTER, sin, cos, vertex, paintingIsFinished, 
 checkGuideSquareClicked, rectMode, CENTER, CORNER, guideSquares, drawGuideSquares, drawColorSquares, mouseX, mouseY, GuideSquare, ColorSquare, createCanvas, initializeColorSquares, 
 initializeGuideSquares, noStroke, width, colorSquares, resizeCanvas, background, text, height, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
