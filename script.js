@@ -5,7 +5,7 @@ let display,
   canvas,
   startingCanvasW,
   startingCanvasH,
-  rows, imgIsLoading, 
+  rows, templateIsLoading, 
   cols,
   testArray,
   guideSquareHeight,
@@ -29,7 +29,7 @@ function preload() {
 function setup() {
   avgColorsAreRetrieved = false;
   colorSquaresAreMade = false;
-  maxImgW = (windowWidth * 2) / 3;
+  maxImgW = (windowWidth * 3) / 4;
   maxImgH = (windowHeight * 3) / 4;
   canvas = createCanvas(maxImgW, maxImgH);
   canvas.parent("canvas");
@@ -37,7 +37,7 @@ function setup() {
   getDimensions(imgUrl);
   currentColor = "white";
   paintingIsFinished = false;
-  imgIsLoading = true;
+  templateIsLoading = true;
 }
 
 function draw() {
@@ -55,11 +55,11 @@ function draw() {
 
   drawCursor();
   
-  if(imgIsLoading){
+  if(templateIsLoading){
     fill(0);
-    textSize(width / 20)
+    textSize(width / 35)
     textAlign(CENTER);
-    text("Loading your image!", width / 2, height / 2);
+    text("Loading your image...", width / 2, height / 2);
   }
 }
 
@@ -169,7 +169,7 @@ function getArray() {
 function drawTemplate() {
   initializeColorSquares(finalColorArray);
   initializeGuideSquares(avgColors);
-  imgIsLoading = false;
+  templateIsLoading = false;
 }
 
 function initializeColorSquares(array) {
