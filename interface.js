@@ -60,10 +60,14 @@ function adjustCushion(newCushion){
 // this works, but i'm guessing there is a better way to do it than setTimeout
 
 function newImage(){
+  while(prevPics.includes(imgUrl)){
+    
+  }
+  
   imgUrl = random(defaultPics);
   display = loadImage(imgUrl);
   setTimeout(setup, 3000);
 }
 
 
-/*global loadImage, defaultPics, setTimeout, finishPrompt, random, rows, cushion, paintingIsFinished, currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas,blockSize, mouseX, mouseY, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/*global loadImage, prevPics, defaultPics, setTimeout, finishPrompt, random, rows, cushion, paintingIsFinished, currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas,blockSize, mouseX, mouseY, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/

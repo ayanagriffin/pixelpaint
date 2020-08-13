@@ -14,12 +14,12 @@ class ColorSquare {
     this.col = col;
     this.val = val;
     this.size = blockSize;
-    if(color <= 255){
+    if (color <= 255) {
       this.originalColor = [color, color, color];
-    }else{
+    } else {
       this.originalColor = "white";
     }
-    
+
     this.color = this.originalColor;
     this.x = this.col * this.size;
     this.y = this.row * this.size;
@@ -89,19 +89,27 @@ class GuideSquare {
   }
 
   draw(y) {
+    
     this.y = y;
-    strokeWeight(2);
+    
+    if(!paintingIsFinished){
+      strokeWeight(2);
+    }
+    
     fill(this.color);
     rect(this.x, this.y, blockSize * 2, guideSquareHeight);
 
+    // if the color of the GuideSquare is light, the text on top of it will be black; if dark, text will be white
     if (this.color[0] + this.color[1] + this.color[1] < 150) {
       fill(255);
     } else {
       fill(0);
     }
 
-    textSize(blockSize / 2);
-    text(this.val, this.x + blockSize, this.y + guideSquareHeight / 2);
+    if (!paintingIsFinished) {
+      textSize(blockSize / 2);
+      text(this.val, this.x + blockSize, this.y + guideSquareHeight / 2);
+    }
   }
 
   checkClicked() {

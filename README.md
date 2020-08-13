@@ -5,9 +5,9 @@ overall functionality
 ---------------
 fix blockSize slider
 
-hide GuideSquares if paintingIsFinished
-
 handle transparent backgroudns (they go to black right now)
+
+make it so user can't get same default image multiple times
 
 smoothen mouse dragging
 
@@ -41,6 +41,8 @@ edit this page!
 
 -------------------------
 add in mouse dragging ✔
+
+hide GuideSquares if paintingIsFinished ✔
 
 
 

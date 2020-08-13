@@ -17,7 +17,7 @@ let display,
   finishPrompt,
   blockSize = 20,
   cushion = 70,
-  imgUrl;
+  imgUrl, prevPics = [];
 
 function preload() {
   //imgUrl = random(defaultPics);
@@ -27,6 +27,7 @@ function preload() {
 }
 
 function setup() {
+  prevPics.push(imgUrl);
   avgColorsAreRetrieved = false;
   colorSquaresAreMade = false;
   maxImgW = (windowWidth * 3) / 4;
@@ -62,7 +63,6 @@ function draw() {
     text("Loading your image...", width / 2, height / 2);
   }
   
-  console.log(paintingIsFinished)
 }
 
 function mouseClicked() {
@@ -265,10 +265,6 @@ function drawColorSquares() {
 
 function drawGuideSquares() {
   for (let i = 0; i < guideSquares.length; i++) {
-    
-    if(paintingIsFinished){
-     
-    }
     guideSquares[i].draw(i * guideSquareHeight);
   }
 }
