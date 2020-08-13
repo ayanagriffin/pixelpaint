@@ -25,13 +25,14 @@ see original picture button (after completion?)
 
 UX/UI
 ----------
-make the loading screen pretty
 
 fix text under sliders
 
 improve overall design (background image, icons, etc)
 
 add instructions
+
+change icon
 
 
 
@@ -69,6 +70,8 @@ make it so user can't get same default image multiple times ✔
 make separate project for image visualization ✔
 
 handle transparent backgrounds ✔
+
+make the loading screen pretty ✔
 
 
 

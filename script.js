@@ -41,14 +41,20 @@ function setup() {
   maxImgH = (windowHeight * 3) / 4;
   canvas = createCanvas(maxImgW, maxImgH);
   canvas.parent("canvas");
-  background(255, 228, 204);
   getDimensions(imgUrl);
   currentColor = "white";
   paintingIsFinished = false;
   templateIsLoading = true;
+  background(255, 245, 235);
 }
 
 function draw() {
+  
+  if (templateIsLoading) {
+    imageMode(CENTER);
+    image(brushImg, width / 2 + 10, height * .4, width / 2, width / 2);
+  }
+  
   if (colorSquaresAreMade) {
     drawColorSquares();
   }
@@ -63,14 +69,7 @@ function draw() {
 
   drawCursor();
 
-  if (templateIsLoading) {
-    imageMode(CENTER);
-    image(brushImg, width / 2 + 10, height * .4, width / 2, width / 2);
-    // fill(255);
-    // textSize(width / 40);
-    // textAlign(CENTER);
-    // text("loading...", width / 2, height * .57);
-  }
+  
 }
 
 function mouseClicked() {
