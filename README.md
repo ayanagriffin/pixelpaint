@@ -2,7 +2,7 @@ TO DO!
 =================
 fix blockSize slider
 
-
+make the loading screen pretty
 
 add in user upload
 

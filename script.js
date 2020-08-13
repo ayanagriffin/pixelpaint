@@ -5,7 +5,7 @@ let display,
   canvas,
   startingCanvasW,
   startingCanvasH,
-  rows,
+  rows, imgIsLoading, 
   cols,
   testArray,
   guideSquareHeight,
@@ -21,7 +21,8 @@ let display,
 
 function preload() {
   //imgUrl = random(defaultPics);
-  imgUrl = "https://cdn.glitch.com/d82135a4-9f9d-4654-a46b-f7f58cdc9d01%2Fmosaic-758754_960_720.webp?v=1595547170968";
+  imgUrl =
+    "https://cdn.glitch.com/d82135a4-9f9d-4654-a46b-f7f58cdc9d01%2Fmosaic-758754_960_720.webp?v=1595547170968";
   display = loadImage(imgUrl);
 }
 
@@ -29,13 +30,14 @@ function setup() {
   avgColorsAreRetrieved = false;
   colorSquaresAreMade = false;
   maxImgW = (windowWidth * 2) / 3;
-  maxImgH = (windowHeight * 2) / 3;
-  canvas = createCanvas(windowWidth, windowHeight);
+  maxImgH = (windowHeight * 3) / 4;
+  canvas = createCanvas(maxImgW, maxImgH);
   canvas.parent("canvas");
-  background(235);
+  background(255);
   getDimensions(imgUrl);
   currentColor = "white";
   paintingIsFinished = false;
+  imgIsLoading = true;
 }
 
 function draw() {
@@ -52,6 +54,13 @@ function draw() {
   }
 
   drawCursor();
+  
+  if(imgIsLoading){
+    fill(0);
+    textSize(width / 20)
+    textAlign(CENTER);
+    text("Loading your image!", width / 2, height / 2);
+  }
 }
 
 function mouseClicked() {
@@ -105,16 +114,19 @@ function resizeImage() {
   if (imgDimensions.w > imgDimensions.h && imgDimensions.w > maxImgW) {
     imgDimensions.w = maxImgW;
     imgDimensions.h = imgDimensions.w * ratio;
-    
-    while(imgDimensions.w * ratio > maxImgH){
-      console.log(imgDimensions.w, ma)
-      imgDimensions.w *= .9;
+
+    while (imgDimensions.w * ratio > maxImgH) {
+      imgDimensions.w *= 0.9;
     }
-    
+
     imgDimensions.h = imgDimensions.w * ratio;
-    
   } else {
     imgDimensions.h = maxImgH;
+
+    while (imgDimensions.h / ratio > maxImgW) {
+      imgDimensions.h *= 0.9;
+    }
+
     imgDimensions.w = imgDimensions.h / ratio;
   }
 
@@ -157,6 +169,7 @@ function getArray() {
 function drawTemplate() {
   initializeColorSquares(finalColorArray);
   initializeGuideSquares(avgColors);
+  imgIsLoading = false;
 }
 
 function initializeColorSquares(array) {
@@ -243,4 +256,4 @@ function drawGuideSquares() {
 
 /*global defaultPics, loadImage, random, triangle, auto, ellipse, CLOSE, textAlign, textSize, beginShape, endShape, TWO_PI, CENTER, sin, cos, vertex, paintingIsFinished, 
 checkGuideSquareClicked, rectMode, CENTER, CORNER, guideSquares, drawGuideSquares, drawColorSquares, mouseX, mouseY, GuideSquare, ColorSquare, createCanvas, initializeColorSquares, 
-initializeGuideSquares, noStroke, width, colorSquares, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+initializeGuideSquares, noStroke, width, colorSquares, resizeCanvas, background, text, height, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
