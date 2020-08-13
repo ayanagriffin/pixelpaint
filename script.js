@@ -174,10 +174,15 @@ function drawTemplate() {
 
 function initializeColorSquares(finalColorArray) {
   colorSquares = [];
+  // console.log(avgColors);
+  // console.log(finalColorArray);
   for (let r = 0; r < finalColorArray.length; r++) {
     let currentRow = [];
     for (let c = 0; c < finalColorArray[r].length; c++) {
-      currentRow.push(new ColorSquare(r, c, finalColorArray[r][c]));
+      let val = finalColorArray[r][c];
+      let color = avgColors[val - 1];
+      // console.log(val, color)
+      currentRow.push(new ColorSquare(r, c, val, color));
     }
     colorSquares.push(currentRow);
   }

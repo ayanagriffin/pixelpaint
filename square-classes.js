@@ -9,17 +9,21 @@ a ColorSquare represents a square drawn on to the canvas, which is initially whi
 */
 
 class ColorSquare {
-  constructor(row, col, val) {
+  constructor(row, col, val, color) {
     this.row = row;
     this.col = col;
     this.val = val;
     this.size = blockSize;
-    this.color = "white";
+    this.originalColor = color;
+    this.color = this.getGuideColor();
     this.x = this.col * this.size;
     this.y = this.row * this.size;
-    this.previousColors = ["white"];
+    this.previousColors = [this.color];
   }
 
+  getGuideColor(){
+    
+  }
   display() {
     if (!paintingIsFinished) {
       strokeWeight(2);
