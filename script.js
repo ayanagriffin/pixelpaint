@@ -20,14 +20,17 @@ let display,
   blockSize = 20,
   cushion = 70,
   imgUrl,
-  prevPics = [], brushImg;
+  prevPics = [],
+  brushImg;
 
 function preload() {
   imgUrl = random(defaultPics);
   //imgUrl = "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2Fpbn%20icon.png?v=1597195637438";
   //imgUrl = "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2FScreen%20Shot%202020-08-13%20at%2010.44.17%20AM.png?v=1597340676948"
   display = loadImage(imgUrl);
-  brushImg = loadImage("https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2FNew%20Document%202.png?v=1597348059372", 200, 100)
+  brushImg = loadImage(
+    "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2FNew%20Document%202.png?v=1597348059372"
+  );
   prevPics.push(imgUrl);
 }
 
@@ -38,7 +41,7 @@ function setup() {
   maxImgH = (windowHeight * 3) / 4;
   canvas = createCanvas(maxImgW, maxImgH);
   canvas.parent("canvas");
-  background(255);
+  background(255,218,185);
   getDimensions(imgUrl);
   currentColor = "white";
   paintingIsFinished = false;
@@ -61,11 +64,12 @@ function draw() {
   drawCursor();
 
   if (templateIsLoading) {
-    fill(0);
+    imageMode(CENTER);
+    image(brushImg, width / 2 + 10, height * .4, 450, 400);
+    fill(255);
     textSize(width / 40);
     textAlign(CENTER);
-    text("loading...", width / 2, height / 2);
-    
+    text("loading...", width / 2, height * .545);
   }
 }
 
@@ -277,4 +281,4 @@ function drawStar() {
 
 /*global defaultPics, createVideo, loadImage, random, triangle, auto, ellipse, CLOSE, textAlign, textSize, beginShape, endShape, TWO_PI, CENTER, sin, cos, vertex, paintingIsFinished, 
 checkGuideSquareClicked, rectMode, CENTER, CORNER, guideSquares, drawGuideSquares, drawColorSquares, mouseX, mouseY, GuideSquare, ColorSquare, createCanvas, initializeColorSquares, 
-initializeGuideSquares, noStroke, width, colorSquares, resizeCanvas, background, text, height, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+initializeGuideSquares, imageMode, noStroke, width, colorSquares, resizeCanvas, background, text, height, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
