@@ -14,8 +14,13 @@ class ColorSquare {
     this.col = col;
     this.val = val;
     this.size = blockSize;
-    this.originalColor = color;
-    this.color = "white";
+    if(color <= 255){
+      this.originalColor = [color, color, color];
+    }else{
+      this.originalColor = "white";
+    }
+    
+    this.color = this.originalColor;
     this.x = this.col * this.size;
     this.y = this.row * this.size;
     this.previousColors = [this.color];

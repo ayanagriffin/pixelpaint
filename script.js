@@ -5,7 +5,7 @@ let display,
   canvas,
   startingCanvasW,
   startingCanvasH,
-  rows, templateIsLoading, 
+  rows, templateIsLoading, templateColors, 
   cols,
   testArray,
   guideSquareHeight,
@@ -174,17 +174,26 @@ function drawTemplate() {
 
 function initializeColorSquares(finalColorArray) {
   colorSquares = [];
-  console.log(avgColors)
+  getTemplateColors();
   for (let r = 0; r < finalColorArray.length; r++) {
     let currentRow = [];
     for (let c = 0; c < finalColorArray[r].length; c++) {
       let val = finalColorArray[r][c];
-      let color = avgColors[val - 1];
-      currentRow.push(new ColorSquare(r, c, val, color));
+      let originalColor = avgColors[val - 1];
+      let templateColor = originalColor[0] + originalColor[1] + originalColor[2];
+      templateColor /= 3;
+      templateColor += 100;
+      currentRow.push(new ColorSquare(r, c, val, templateColor));
     }
     colorSquares.push(currentRow);
   }
   colorSquaresAreMade = true;
+}
+
+function getTemplateColors(){
+  for(let i = 0; i < avgColors.length; i++){
+    
+  }
 }
 
 function initializeGuideSquares(avgColors) {
