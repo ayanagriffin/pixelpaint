@@ -20,7 +20,8 @@ let display,
   imgUrl;
 
 function preload() {
-  imgUrl = random(defaultPics);
+  //imgUrl = random(defaultPics);
+  imgUrl = "https://cdn.glitch.com/d82135a4-9f9d-4654-a46b-f7f58cdc9d01%2Fmosaic-758754_960_720.webp?v=1595547170968";
   display = loadImage(imgUrl);
 }
 
@@ -104,6 +105,14 @@ function resizeImage() {
   if (imgDimensions.w > imgDimensions.h && imgDimensions.w > maxImgW) {
     imgDimensions.w = maxImgW;
     imgDimensions.h = imgDimensions.w * ratio;
+    
+    while(imgDimensions.w * ratio > maxImgH){
+      console.log(imgDimensions.w, ma)
+      imgDimensions.w *= .9;
+    }
+    
+    imgDimensions.h = imgDimensions.w * ratio;
+    
   } else {
     imgDimensions.h = maxImgH;
     imgDimensions.w = imgDimensions.h / ratio;
