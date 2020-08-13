@@ -20,7 +20,7 @@ let display,
   blockSize = 20,
   cushion = 70,
   imgUrl,
-  prevPics = [], loadingVid;
+  prevPics = [], loadingText;
 
 function preload() {
   imgUrl = random(defaultPics);
@@ -42,6 +42,7 @@ function setup() {
   currentColor = "white";
   paintingIsFinished = false;
   templateIsLoading = true;
+  loadingText = "loading"
 }
 
 function draw() {
@@ -63,7 +64,7 @@ function draw() {
     fill(0);
     textSize(width / 40);
     textAlign(CENTER);
-    text("Loading your image...", width / 2, height / 2);
+    text(loadingText, width / 2, height / 2);
     
   }
 }
