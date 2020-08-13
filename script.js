@@ -167,22 +167,20 @@ function getArray() {
 
 // makes colorSquares and guideSquares arrays
 function drawTemplate() {
-  initializeColorSquares(finalColorArray);
-  initializeGuideSquares(avgColors);
+  initializeColorSquares();
+  initializeGuideSquares();
   templateIsLoading = false;
 }
 
-function initializeColorSquares(finalColorArray) {
+function initializeColorSquares() {
   colorSquares = [];
   getTemplateColors();
   for (let r = 0; r < finalColorArray.length; r++) {
     let currentRow = [];
     for (let c = 0; c < finalColorArray[r].length; c++) {
       let val = finalColorArray[r][c];
-      let originalColor = avgColors[val - 1];
-      let templateColor = originalColor[0] + originalColor[1] + originalColor[2];
-      templateColor /= 3;
-      templateColor += 100;
+
+      let templateColor = templateColors[val - 1]
       currentRow.push(new ColorSquare(r, c, val, templateColor));
     }
     colorSquares.push(currentRow);
@@ -191,12 +189,15 @@ function initializeColorSquares(finalColorArray) {
 }
 
 function getTemplateColors(){
+  templateColors = [];
   for(let i = 0; i < avgColors.length; i++){
-    
+    let curColor = avgColors[i];
+    let templateColor = ((curColor[0] + curColor[1] + curColor [2]) / 3) + 100;
+    templateColors.push(templateColor)
   }
 }
 
-function initializeGuideSquares(avgColors) {
+function initializeGuideSquares() {
   guideSquares = [];
   for (let i = 0; i < avgColors.length; i++) {
     let x = imgDimensions.w;
