@@ -61,6 +61,8 @@ function draw() {
     textAlign(CENTER);
     text("Loading your image...", width / 2, height / 2);
   }
+  
+  console.log(paintingIsFinished)
 }
 
 function mouseClicked() {
@@ -263,6 +265,10 @@ function drawColorSquares() {
 
 function drawGuideSquares() {
   for (let i = 0; i < guideSquares.length; i++) {
+    
+    if(paintingIsFinished){
+     
+    }
     guideSquares[i].draw(i * guideSquareHeight);
   }
 }
