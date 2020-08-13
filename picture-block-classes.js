@@ -1,5 +1,3 @@
-
-
 /*
 -------------------------- PICTURE CLASS ----------------------------
 
@@ -25,19 +23,18 @@ class Picture {
     this.finalColors = [];
   }
 
-  
-   getFinalArray() {
-    // basically runs all necessary functions within the class to return the array with the color 
+  getFinalArray() {
+    // basically runs all necessary functions within the class to return the array with the color
     //      values (i.e. what is needed to draw the Squares)
-    
+
     this.initializeValsArray();
     this.getBlockArray();
     this.refactorBlockColors();
     return this.valsArray;
   }
-  
+
   // not sure if I need this? probably some way to initialize a 2D array quicker
-  initializeValsArray(){
+  initializeValsArray() {
     for (let r = 0; r < this.rows; r++) {
       let row = [];
       for (let c = 0; c < this.cols; c++) {
@@ -46,7 +43,7 @@ class Picture {
       this.valsArray.push(row);
     }
   }
-  
+
   getBlockArray() {
     for (let r = 0; r < this.rows; r++) {
       let row = [];
@@ -59,16 +56,14 @@ class Picture {
     }
 
     this.refactorBlockColors();
-
   }
 
   refactorBlockColors() {
     for (let r = 0; r < this.rows; r++) {
       for (let c = 0; c < this.cols; c++) {
-        
         if (!this.blocks[r][c].foundMatch) {
           this.numColors++;
-         
+
           this.findMatches(this.blocks[r][c], this.numColors);
         }
       }
@@ -80,7 +75,7 @@ class Picture {
     for (let r = 0; r < this.rows; r++) {
       for (let c = 0; c < this.cols; c++) {
         let curBlock = this.blocks[r][c];
-        
+
         if (!curBlock.foundMatch) {
           if (
             abs(testBlock[0] - curBlock[0]) < this.cushion &&
@@ -100,44 +95,38 @@ class Picture {
 
     this.findAverageColor(matches);
   }
-  
-  findAverageColor(matches){
-     let totalR = 0;
-      let totalG = 0;
-      let totalB = 0;
 
-      for (let i = 0; i < matches.length; i++) {
-        let curBlock = matches[i];
-        totalR += curBlock[0];
-        totalG += curBlock[1];
-        totalB += curBlock[2];
+  findAverageColor(matches) {
+    let totalR = 0;
+    let totalG = 0;
+    let totalB = 0;
+
+    for (let i = 0; i < matches.length; i++) {
+      let curBlock = matches[i];
+      totalR += curBlock[0];
+      totalG += curBlock[1];
+      totalB += curBlock[2];
+    }
+
+    let finalR = totalR / matches.length;
+    let finalG = totalG / matches.length;
+    let finalB = totalB / matches.length;
+
+    let finalColor = [finalR, finalG, finalB];
+
+    for (let i = 0; i < matches.length; i++) {
+      if (i == 0) {
+        this.finalColors.push(finalColor);
       }
-
-      let finalR = totalR / matches.length;
-      let finalG = totalG / matches.length;
-      let finalB = totalB / matches.length;
-
-      let finalColor = [finalR, finalG, finalB];
-     
-
-      for (let i = 0; i < matches.length; i++) {
-        if(i == 0){
-          this.finalColors.push(finalColor);
-        }
-        let curBlock = matches[i];
-        curBlock.finalColor = finalColor;
-        
-      }
-    
+      let curBlock = matches[i];
+      curBlock.finalColor = finalColor;
+    }
   }
-  
- 
-  getAvgColors(){
-    return this.finalColors;
 
+  getAvgColors() {
+    return this.finalColors;
   }
 }
-
 
 /* -------------------------- BLOCK CLASS ----------------------------
 
@@ -163,15 +152,18 @@ class Block {
   getAverageColor() {
     for (let i = this.startingX; i < this.endingX; i++) {
       for (let j = this.startingY; j < this.endingY; j++) {
-    
-        if(!display.get())
-        this.colorVals[0] += display.get(j, i)[0];
-        this.colorVals[1] += display.get(j, i)[1];
-        this.colorVals[2] += display.get(j, i)[2];
         
+        // checks for transparent bkg; if transparent, set it to white instead
+        if (display.get(j, i)[3] === 255) {
+          this.colorVals[0] += display.get(j, i)[0];
+          this.colorVals[1] += display.get(j, i)[1];
+          this.colorVals[2] += display.get(j, i)[2];
+        }else{
+          this.colorVals[0] += 255;
+          this.colorVals[1] += 255;
+          this.colorVals[2] += 255;
+        }
 
-        
-      
       }
     }
 
@@ -182,10 +174,5 @@ class Block {
     return this.colorVals;
   }
 }
-
-
-
-
-
 
 /*global blockSize, display, floor, rows, cols, abs, cushion*/

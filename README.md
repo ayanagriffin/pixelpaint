@@ -3,9 +3,7 @@ TO DO!
 
 overall functionality 
 ---------------
-fix blockSize slider
-
-handle transparent backgrounds (they go to black right now)
+fix blockSize slider!!!
 
 smoothen mouse dragging
 
@@ -44,6 +42,10 @@ edit this page!
 fix image links
 
 -------------------------
+daily log
+==========
+
+
 **aug12**
 
 add in mouse dragging ✔ 
@@ -65,6 +67,8 @@ hide GuideSquares if paintingIsFinished ✔
 make it so user can't get same default image multiple times ✔
 
 make separate project for image visualization ✔
+
+handle transparent backgrounds ✔
 
 
 

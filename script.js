@@ -23,8 +23,8 @@ let display,
   prevPics = [];
 
 function preload() {
-  //imgUrl = random(defaultPics);
   imgUrl = random(defaultPics);
+  //imgUrl = "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2Fpbn%20icon.png?v=1597195637438";
   //imgUrl = "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2FScreen%20Shot%202020-08-13%20at%2010.44.17%20AM.png?v=1597340676948"
   display = loadImage(imgUrl);
   prevPics.push(imgUrl);
