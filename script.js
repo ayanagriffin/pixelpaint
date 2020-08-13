@@ -185,7 +185,7 @@ function initializeColorSquares() {
       let val = finalColorArray[r][c];
 
       let templateColor = templateColors[val - 1];
-      currentRow.push(new ColorSquare(r, c, val, avgColors[val - 1]));
+      currentRow.push(new ColorSquare(r, c, val, templateColor));
     }
     colorSquares.push(currentRow);
   }
