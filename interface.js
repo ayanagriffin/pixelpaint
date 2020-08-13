@@ -58,6 +58,7 @@ function adjustCushion(newCushion){
 
 // for now, I want to change the imgUrl and basically re-run/reload everything when the "new image" button is pressed
 // this works, but i'm guessing there is a better way to do it than setTimeout
+
 function newImage(){
   imgUrl = random(defaultPics);
   display = loadImage(imgUrl);
