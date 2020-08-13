@@ -29,7 +29,7 @@ function preload() {
   //imgUrl = "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2FScreen%20Shot%202020-08-13%20at%2010.44.17%20AM.png?v=1597340676948"
   display = loadImage(imgUrl);
   brushImg = loadImage(
-    "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2FNew%20Document%202.png?v=1597348059372"
+    "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2FNew%20Document%204.png?v=1597350123550"
   );
   prevPics.push(imgUrl);
 }
@@ -41,7 +41,7 @@ function setup() {
   maxImgH = (windowHeight * 3) / 4;
   canvas = createCanvas(maxImgW, maxImgH);
   canvas.parent("canvas");
-  background(255, 241, 229);
+  background(255, 228, 204);
   getDimensions(imgUrl);
   currentColor = "white";
   paintingIsFinished = false;
@@ -66,10 +66,10 @@ function draw() {
   if (templateIsLoading) {
     imageMode(CENTER);
     image(brushImg, width / 2 + 10, height * .4, width / 2, width / 2);
-    fill(255);
-    textSize(width / 40);
-    textAlign(CENTER);
-    text("loading...", width / 2, height * .57);
+    // fill(255);
+    // textSize(width / 40);
+    // textAlign(CENTER);
+    // text("loading...", width / 2, height * .57);
   }
 }
 
