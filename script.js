@@ -20,13 +20,14 @@ let display,
   blockSize = 20,
   cushion = 70,
   imgUrl,
-  prevPics = [], loadingText;
+  prevPics = [], brushImg;
 
 function preload() {
   imgUrl = random(defaultPics);
   //imgUrl = "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2Fpbn%20icon.png?v=1597195637438";
   //imgUrl = "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2FScreen%20Shot%202020-08-13%20at%2010.44.17%20AM.png?v=1597340676948"
   display = loadImage(imgUrl);
+  brushImg = loadImage("https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2FNew%20Document%202.png?v=1597348059372", 200, 100)
   prevPics.push(imgUrl);
 }
 
@@ -42,7 +43,6 @@ function setup() {
   currentColor = "white";
   paintingIsFinished = false;
   templateIsLoading = true;
-  loadingText = "loading"
 }
 
 function draw() {
@@ -64,7 +64,7 @@ function draw() {
     fill(0);
     textSize(width / 40);
     textAlign(CENTER);
-    text(loadingText, width / 2, height / 2);
+    text("loading...", width / 2, height / 2);
     
   }
 }
