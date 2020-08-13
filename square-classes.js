@@ -81,16 +81,14 @@ to paint with, determined by the average color of each color value (this color i
 */
 
 class GuideSquare {
-  constructor(x, color, val) {
+  constructor(x, y, color, val) {
     this.x = x;
-    this.y = 0;
+    this.y = y;
     this.color = color;
     this.val = val;
   }
 
-  draw(y) {
-    
-    this.y = y;
+  draw() {
     
     if(!paintingIsFinished){
       strokeWeight(2);

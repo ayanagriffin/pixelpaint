@@ -27,7 +27,6 @@ function preload() {
   imgUrl = random(defaultPics);
   display = loadImage(imgUrl);
   prevPics.push(imgUrl);
-
 }
 
 function setup() {
@@ -204,16 +203,49 @@ function getTemplateColors() {
 
 function initializeGuideSquares() {
   guideSquares = [];
+  guideSquareHeight = blockSize * (rows / avgColors.length);
   for (let i = 0; i < avgColors.length; i++) {
     let x = imgDimensions.w;
-    let y = i * 2 * blockSize;
+    let y = i * guideSquareHeight;
     let size = 2 * blockSize;
     let val = i + 1;
     let color = avgColors[i];
-    guideSquares.push(new GuideSquare(x, color, val));
+    guideSquares.push(new GuideSquare(x, y, color, val));
   }
+}
 
-  guideSquareHeight = blockSize * (rows / guideSquares.length);
+/* -------------------- DRAW FUNCTIONS --------------------- */
+
+function drawColorSquares() {
+  for (let i = 0; i < colorSquares.length; i++) {
+    for (let j = 0; j < colorSquares[i].length; j++) {
+      colorSquares[i][j].display();
+    }
+  }
+}
+
+function drawGuideSquares() {
+  for (let i = 0; i < guideSquares.length; i++) {
+    guideSquares[i].draw();
+  }
+}
+
+function drawCursor() {
+  if (mouseX > -10 + width - 2 * blockSize && mouseX < width) {
+    document.body.style.cursor = "pointer";
+  } else {
+    document.body.style.cursor = "default";
+    strokeWeight(0);
+    fill(currentColor);
+    triangle(
+      mouseX - 3,
+      mouseY - 10,
+      mouseX - 4,
+      mouseY + 5,
+      mouseX + 7,
+      mouseY + 3
+    );
+  }
 }
 
 function drawStar() {
@@ -238,38 +270,6 @@ function drawStar() {
   textSize(imgDimensions.h / 25);
   textAlign(CENTER, CENTER);
   text(finishPrompt, xBuffer, yBuffer);
-}
-
-function drawCursor() {
-  if (mouseX > -10 + width - 2 * blockSize && mouseX < width) {
-    document.body.style.cursor = "pointer";
-  } else {
-    document.body.style.cursor = "default";
-    strokeWeight(0);
-    fill(currentColor);
-    triangle(
-      mouseX - 3,
-      mouseY - 10,
-      mouseX - 4,
-      mouseY + 5,
-      mouseX + 7,
-      mouseY + 3
-    );
-  }
-}
-
-function drawColorSquares() {
-  for (let i = 0; i < colorSquares.length; i++) {
-    for (let j = 0; j < colorSquares[i].length; j++) {
-      colorSquares[i][j].display();
-    }
-  }
-}
-
-function drawGuideSquares() {
-  for (let i = 0; i < guideSquares.length; i++) {
-    guideSquares[i].draw(i * guideSquareHeight);
-  }
 }
 
 /*global defaultPics, loadImage, random, triangle, auto, ellipse, CLOSE, textAlign, textSize, beginShape, endShape, TWO_PI, CENTER, sin, cos, vertex, paintingIsFinished, 

@@ -38,9 +38,23 @@ add instructions
 edit this page!
 
 -------------------------
-add in mouse dragging ✔
+**aug12**
 
-hide GuideSquares if paintingIsFinished ✔
+add in mouse dragging ✔ 
+
+new image button ✔
+
+new defaults ✔
+
+sliders and cushion slider functionality ✔
+
+positioning of elements ✔
+
+**aug13**
+
+grayscale template ✔
+
+hide GuideSquares if paintingIsFinished ✔ 
 
 make it so user can't get same default image multiple times ✔
 
