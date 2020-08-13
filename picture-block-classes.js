@@ -164,9 +164,14 @@ class Block {
     for (let i = this.startingX; i < this.endingX; i++) {
       for (let j = this.startingY; j < this.endingY; j++) {
     
+        if(!display.get())
         this.colorVals[0] += display.get(j, i)[0];
         this.colorVals[1] += display.get(j, i)[1];
         this.colorVals[2] += display.get(j, i)[2];
+        
+
+        
+      
       }
     }
 

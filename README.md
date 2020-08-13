@@ -5,7 +5,7 @@ overall functionality
 ---------------
 fix blockSize slider
 
-handle transparent backgroudns (they go to black right now)
+handle transparent backgrounds (they go to black right now)
 
 smoothen mouse dragging
 
@@ -35,7 +35,13 @@ improve overall design (background image, icons, etc)
 
 add instructions
 
+
+
+overall readability + cleanliness
+----------
 edit this page!
+
+fix image links
 
 -------------------------
 **aug12**
@@ -57,6 +63,8 @@ grayscale template ✔
 hide GuideSquares if paintingIsFinished ✔ 
 
 make it so user can't get same default image multiple times ✔
+
+make separate project for image visualization ✔
 
 
 
