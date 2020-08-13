@@ -41,7 +41,7 @@ function setup() {
   maxImgH = (windowHeight * 3) / 4;
   canvas = createCanvas(maxImgW, maxImgH);
   canvas.parent("canvas");
-  background(255,218,185);
+  background(255, 241, 229);
   getDimensions(imgUrl);
   currentColor = "white";
   paintingIsFinished = false;
@@ -65,11 +65,11 @@ function draw() {
 
   if (templateIsLoading) {
     imageMode(CENTER);
-    image(brushImg, width / 2 + 10, height * .4, 450, 400);
+    image(brushImg, width / 2 + 10, height * .4, width / 2, width / 2);
     fill(255);
     textSize(width / 40);
     textAlign(CENTER);
-    text("loading...", width / 2, height * .545);
+    text("loading...", width / 2, height * .57);
   }
 }
 
