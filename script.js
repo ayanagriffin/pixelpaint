@@ -25,6 +25,7 @@ let display,
 function preload() {
   //imgUrl = random(defaultPics);
   imgUrl = random(defaultPics);
+  //imgUrl = "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2FScreen%20Shot%202020-08-13%20at%2010.44.17%20AM.png?v=1597340676948"
   display = loadImage(imgUrl);
   prevPics.push(imgUrl);
 }
@@ -184,7 +185,7 @@ function initializeColorSquares() {
       let val = finalColorArray[r][c];
 
       let templateColor = templateColors[val - 1];
-      currentRow.push(new ColorSquare(r, c, val, templateColor));
+      currentRow.push(new ColorSquare(r, c, val, avgColors[val - 1]));
     }
     colorSquares.push(currentRow);
   }
