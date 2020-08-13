@@ -57,7 +57,7 @@ function draw() {
   
   if(templateIsLoading){
     fill(0);
-    textSize(width / 35)
+    textSize(width / 40)
     textAlign(CENTER);
     text("Loading your image...", width / 2, height / 2);
   }
@@ -172,12 +172,12 @@ function drawTemplate() {
   templateIsLoading = false;
 }
 
-function initializeColorSquares(array) {
+function initializeColorSquares(finalColorArray) {
   colorSquares = [];
-  for (let r = 0; r < array.length; r++) {
+  for (let r = 0; r < finalColorArray.length; r++) {
     let currentRow = [];
-    for (let c = 0; c < array[r].length; c++) {
-      currentRow.push(new ColorSquare(r, c, array[r][c]));
+    for (let c = 0; c < finalColorArray[r].length; c++) {
+      currentRow.push(new ColorSquare(r, c, finalColorArray[r][c]));
     }
     colorSquares.push(currentRow);
   }

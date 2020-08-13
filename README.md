@@ -2,6 +2,8 @@ TO DO!
 =================
 fix blockSize slider
 
+smoothen mouse dragging
+
 make the loading screen pretty
 
 add in user upload
