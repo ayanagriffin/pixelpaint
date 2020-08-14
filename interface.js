@@ -80,8 +80,8 @@ function newImage(){
   display = loadImage(imgUrl);
   prevPics.push(imgUrl);
   
-  drawGrid(/* IM NOT SURE WHAT VALUES TO PUT IN HERE*/);
-  //setTimeout(setup, 3000);
+  //drawGrid(INITIAL_BLOCK_SIZE, INITIAL_CUSHION);
+  setTimeout(setup, 3000);
 }
 
 
@@ -89,14 +89,7 @@ function newImage(){
 
 
 function adjustBlockSize(newBlockSize, cushion){
-  // functions as expected if I manually put in the number, as shown below
-  //blockSize = 30;
-  console.log("new size: " + newBlockSize)
-  // does not function as expected if I try to do this:
- // blockSize = newBlockSize;
-  //setup();
-  
-  drawGrid(newBlockSize, cushion);
+  //drawGrid(newBlockSize, cushion);
 }
 
 function adjustCushion(newCushion, blockSize){
