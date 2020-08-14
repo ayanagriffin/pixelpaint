@@ -59,7 +59,7 @@ class ColorSquare {
       this.color != currentColor &&
       this.x + this.size > mouseX &&
       mouseX > this.x &&
-      this.y + blockSize > mouseY &&
+      this.y + this.size > mouseY &&
       mouseY > this.y
     ) {
       this.paint();
@@ -82,11 +82,13 @@ to paint with, determined by the average color of each color value (this color i
 */
 
 class GuideSquare {
-  constructor(x, y, color, val) {
+  constructor(x, y, color, val, w, h) {
     this.x = x;
     this.y = y;
     this.color = color;
     this.val = val;
+    this.width = w;
+    this.height = h;
   }
 
   draw() {
@@ -96,7 +98,7 @@ class GuideSquare {
     }
     
     fill(this.color);
-    rect(this.x, this.y, blockSize * 2, guideSquareHeight);
+    rect(this.x, this.y, this.width, this.height);
 
     // if the color of the GuideSquare is light, the text on top of it will be black; if dark, text will be white
     if (this.color[0] + this.color[1] + this.color[1] < 150) {
@@ -106,16 +108,16 @@ class GuideSquare {
     }
 
     if (!paintingIsFinished) {
-      textSize(blockSize / 2);
-      text(this.val, this.x + blockSize, this.y + guideSquareHeight / 2);
+      textSize(this.width / 4);
+      text(this.val, this.x + this.width / 2, this.y + this.height / 2);
     }
   }
 
   checkClicked() {
     if (
-      this.x + blockSize * 2 > mouseX &&
+      this.x + this.width > mouseX &&
       mouseX > this.x &&
-      this.y + guideSquareHeight > mouseY &&
+      this.y + this.height > mouseY &&
       mouseY > this.y
     ) {
       currentColor = this.color;
@@ -123,4 +125,4 @@ class GuideSquare {
   }
 }
 
-/*global loadImage, stroke, guideSquareHeight, mouseX, moves, mouseY, createCanvas, currentColor, paintingIsFinished, textSize, textAlign, CENTER, strokeWeight, blockSize, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/*global loadImage, stroke, guideSquareHeight, mouseX, moves, mouseY, createCanvas, currentColor, paintingIsFinished, textSize, textAlign, CENTER, strokeWeight, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/

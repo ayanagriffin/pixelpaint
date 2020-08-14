@@ -214,10 +214,10 @@ function initializeGuideSquares(blockSize) {
   for (let i = 0; i < avgColors.length; i++) {
     let x = imgDimensions.w;
     let y = i * guideSquareHeight;
-    let size = 2 * blockSize;
+    let guideSquareWidth = 2 * blockSize;
     let val = i + 1;
     let color = avgColors[i];
-    guideSquares.push(new GuideSquare(x, y, color, val));
+    guideSquares.push(new GuideSquare(x, y, color, val, guideSquareWidth, guideSquareHeight));
   }
 }
 

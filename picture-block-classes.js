@@ -175,4 +175,4 @@ class Block {
   }
 }
 
-/*global blockSize, display, floor, rows, cols, abs, cushion*/
+/*global display, floor, rows, cols, abs, cushion*/

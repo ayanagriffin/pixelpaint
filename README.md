@@ -22,6 +22,8 @@ add color picker(?)
 
 see original picture button (after completion?)
 
+user can draw on loading screen
+
 
 UX/UI
 ----------
