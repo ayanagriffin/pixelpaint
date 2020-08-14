@@ -37,8 +37,8 @@ function drawGrid(blockSize, cushion) {
   
   avgColorsAreRetrieved = false;
   colorSquaresAreMade = false;
-  maxImgW = 300;
-  maxImgH = 300;
+  maxImgW = windowWidth * 3 / 4;
+  maxImgH = windowHeight * 3 / 4;
   imgDimensions = { w: maxImgW, h: maxImgH };
   canvas = createCanvas(maxImgW, maxImgH);
   canvas.parent("canvas");
@@ -154,7 +154,7 @@ function getRowsAndCols(ratio, blockSize) {
 function getArray(blockSize, cushion) {
 
   let colorBlockImg = new Picture(rows, cols, blockSize, cushion);
-  console.log(colorBlockImg)
+ 
   finalColorArray = colorBlockImg.getFinalArray();
   avgColors = colorBlockImg.getAvgColors();
   avgColorsAreRetrieved = true;
