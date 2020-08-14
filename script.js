@@ -77,30 +77,29 @@ function drawTestTemplate(){
   
 }
 
-//updates dimensions and returns a Promise after image finishes loading
+//updates dimensions based on the size of the reference image
 function getDimensions(srcUrl, blockSize, cushion) {
   let img = new Image();
   img.src = srcUrl;
   img.onload = function() {
     imgDimensions.w = img.width;
     imgDimensions.h = img.height;
-    testRun(blockSize, cushion);
+    // after imgDimensions are received, can call necessary functions to create the template
+    // called here to ensure that the dimensions are set before execution
+    createTemplate(blockSize, cushion);
   };
 }
 
-function testRun(blockSize, cushion){
+// runs all necessary functions to set up the template
+function createTemplate(blockSize, cushion){
   resizeImage(blockSize);
   getArray(blockSize, cushion);
-  drawTemplate(blockSize);
+  initializeSquares(blockSize);
   adjustCanvas(blockSize);
 }
 
 
-function adjustCanvas(blockSize) {
-  resizeCanvas(imgDimensions.w + 2 * blockSize, imgDimensions.h);
-  background(235);
-}
-
+// CALLED BY: createTemplate()
 // resizes imgDimensions to fit nicely on the window while maintaining the original ratio between w and h
 function resizeImage(blockSize) {
   let ratio = imgDimensions.h / imgDimensions.w; // if > 1, we have more rows than cols
@@ -133,6 +132,7 @@ function resizeImage(blockSize) {
 
 }
 
+// CALLED BY: resizeImage();
 // finds the number of rows and cols based on the blockSize and imgDimensions
 function getRowsAndCols(ratio, blockSize) {
   if (ratio > 1) {
@@ -147,7 +147,8 @@ function getRowsAndCols(ratio, blockSize) {
   cols = floor(cols);
 }
 
-//gets array of numbers (that represent the color values)
+// CALLED BY: createTemplate()
+//gets array of numbers (that represent the color values) using the Picture and Block classes
 function getArray(blockSize, cushion) {
   let colorBlockImg = new Picture(rows, cols, blockSize, cushion);
   finalColorArray = colorBlockImg.getFinalArray();
@@ -156,13 +157,17 @@ function getArray(blockSize, cushion) {
 
 }
 
+// CALLED BY: createTemplate()
 // makes colorSquares and guideSquares arrays
-function drawTemplate(blockSize) {
+function initializeSquares(blockSize) {
   initializeColorSquares(blockSize);
   initializeGuideSquares(blockSize);
   templateIsLoading = false;
 }
 
+
+// CALLED BY: initializeSquares()
+// creates array of ColorSquares 
 function initializeColorSquares(blockSize) {
   colorSquares = [];
   getTemplateColors();
@@ -179,6 +184,7 @@ function initializeColorSquares(blockSize) {
   colorSquaresAreMade = true;
 }
 
+// CALLED BY: initializeColorSquares()
 // creates grayscale for template to make it easier to paint
 function getTemplateColors() {
   templateColors = [];
@@ -189,6 +195,9 @@ function getTemplateColors() {
   }
 }
 
+
+// CALLED BY: initializeSquares()
+// creates array of GuideSquares with correct positioning
 function initializeGuideSquares(blockSize) {
   guideSquares = [];
   let guideSquareHeight = blockSize * (rows / avgColors.length);
@@ -204,7 +213,12 @@ function initializeGuideSquares(blockSize) {
   }
 }
 
-
+// CALLED BY: createTemplate()
+// resizes the canvas to be the size of imgDimensions + some excess to fit the GuideSquares on the right side of the canvas
+function adjustCanvas(blockSize) {
+  resizeCanvas(imgDimensions.w + 2 * blockSize, imgDimensions.h);
+  background(235);
+}
 
 
 /* ----------------------------- DRAW FUNCTIONS -------------------------------- */

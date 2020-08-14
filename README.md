@@ -7,6 +7,7 @@ fix blockSize slider
 
 smoothen mouse dragging
 
+undo restart
 
 
 additions
