@@ -28,7 +28,7 @@ class Picture {
     // values (i.e. what is needed to draw the Squares)
 
     this.initializeValsArray();
-    console.log("Picture class: getFinArr line 1 finished");
+    //console.log("Picture class: getFinArr line 1 finished");
     this.getBlockArray();
      console.log("Picture class: getFinArr line 2 finished"); // DOESN'T REACH HERE*****************************************
     this.refactorBlockColors();
@@ -46,6 +46,8 @@ class Picture {
       }
       this.valsArray.push(row);
     }
+    console.log("vals array:")
+    console.log(this.valsArray)
   }
 
   getBlockArray() {
@@ -58,9 +60,11 @@ class Picture {
         row.push(block.getAverageColor());
       }
       this.blocks.push(row);
-      console.log(this.blocks)
+      console.log(row);
+      
     }
-
+    console.log("blocks:")
+    console.log(this.blocks)
      console.log("Picture class: getBlockArr finished")
     
   }
