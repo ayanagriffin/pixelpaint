@@ -8,17 +8,17 @@ let display,
   templateColors,
   cols,
   testArray,
-  
   finalColorArray,
   colorSquaresAreMade,
   avgColors,
   avgColorsAreRetrieved,
   currentColor,
   finishPrompt,
-  cushion = 70,
   imgUrl,
   prevPics = [],
   brushImg;
+
+const INITIAL_BLOCK_SIZE = 20, INITIAL_CUSHION = 70;
 
 function preload() {
   imgUrl = random(defaultPics);
@@ -32,17 +32,17 @@ function preload() {
 }
 
 function setup() {
-  drawGrid(20);
+  drawGrid(INITIAL_BLOCK_SIZE, INITIAL_CUSHION);
 }
 
-function drawGrid(blockSize){
+function drawGrid(blockSize, cushion) {
   avgColorsAreRetrieved = false;
   colorSquaresAreMade = false;
   maxImgW = (windowWidth * 3) / 4;
   maxImgH = (windowHeight * 3) / 4;
   canvas = createCanvas(maxImgW, maxImgH);
   canvas.parent("canvas");
-  getDimensions(imgUrl, blockSize);
+  getDimensions(imgUrl, blockSize, cushion);
   currentColor = "white";
   paintingIsFinished = false;
   templateIsLoading = true;
@@ -94,7 +94,7 @@ function mouseDragged() {
   }
 }
 //updates dimensions and returns a Promise after image finishes loading
-function getDimensions(srcUrl, blockSize) {
+function getDimensions(srcUrl, blockSize, cushion) {
   let img = new Image();
   img.src = srcUrl;
   // return new Promise((resolve, reject) => {
@@ -102,7 +102,7 @@ function getDimensions(srcUrl, blockSize) {
     imgDimensions.w = img.width;
     imgDimensions.h = img.height;
 
-    adjustCanvas(blockSize);
+    adjustCanvas(blockSize, cushion);
 
     //     resolve();
     //   };
@@ -110,14 +110,14 @@ function getDimensions(srcUrl, blockSize) {
   };
 }
 
-function adjustCanvas(blockSize) {
-  resizeImage(blockSize);
+function adjustCanvas(blockSize, cushion) {
+  resizeImage(blockSize, cushion);
   resizeCanvas(imgDimensions.w + 2 * blockSize, imgDimensions.h);
   background(235);
 }
 
 // resizes imgDimensions to fit nicely on the window while maintaining the original ratio between w and h
-function resizeImage(blockSize) {
+function resizeImage(blockSize, cushion) {
   let ratio = imgDimensions.h / imgDimensions.w; // if > 1, we have more rows than cols
   if (imgDimensions.w > imgDimensions.h && imgDimensions.w > maxImgW) {
     imgDimensions.w = maxImgW;
@@ -146,7 +146,7 @@ function resizeImage(blockSize) {
   imgDimensions.h = rows * blockSize;
   display.resize(imgDimensions.w, imgDimensions.h);
 
-  getArray(blockSize);
+  getArray(blockSize, cushion);
 }
 
 // finds the number of rows and cols based on the blockSize and imgDimensions
@@ -164,8 +164,8 @@ function getRowsAndCols(ratio, blockSize) {
 }
 
 //gets array of numbers (that represent the color values)
-function getArray(blockSize) {
-  let colorBlockImg = new Picture(rows, cols, blockSize);
+function getArray(blockSize, cushion) {
+  let colorBlockImg = new Picture(rows, cols, blockSize, cushion);
   finalColorArray = colorBlockImg.getFinalArray();
   avgColors = colorBlockImg.getAvgColors();
   avgColorsAreRetrieved = true;
@@ -215,7 +215,9 @@ function initializeGuideSquares(blockSize) {
     let guideSquareWidth = 2 * blockSize;
     let val = i + 1;
     let color = avgColors[i];
-    guideSquares.push(new GuideSquare(x, y, color, val, guideSquareWidth, guideSquareHeight));
+    guideSquares.push(
+      new GuideSquare(x, y, color, val, guideSquareWidth, guideSquareHeight)
+    );
   }
 }
 
