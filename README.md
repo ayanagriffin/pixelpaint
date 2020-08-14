@@ -3,7 +3,7 @@ TO DO!
 
 overall functionality 
 ---------------
-fix blockSize slider!!!
+fix blockSize slider
 
 smoothen mouse dragging
 
@@ -40,6 +40,11 @@ change icon
 
 overall readability + cleanliness
 ----------
+
+limit global variables
+
+eliminate calls to setup()
+
 edit this page!
 
 fix image links
