@@ -104,7 +104,6 @@ function getDimensions(srcUrl) {
       imgDimensions.w = this.width;
       imgDimensions.h = this.height;
 
-      console.log("BlockSize in getDimensions: " + blockSize);
       adjustCanvas();
 
       resolve();
