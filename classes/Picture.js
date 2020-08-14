@@ -28,11 +28,8 @@ class Picture {
     // values (i.e. what is needed to draw the Squares)
 
     this.initializeValsArray();
-    //console.log("Picture class: getFinArr line 1 finished");
     this.getBlockArray();
-    // console.log("Picture class: getFinArr line 2 finished"); // DOESN'T REACH HERE*****************************************
     this.refactorBlockColors();
-    // console.log("getFinArr line 3 finished");
     return this.valsArray;
      
   }
@@ -46,28 +43,23 @@ class Picture {
       }
       this.valsArray.push(row);
     }
-    // console.log("vals array:")
-    // console.log(this.valsArray)
   }
 
   getBlockArray() {
-   // console.log("Picture class: getBlockArr started")
     for (let r = 0; r < this.rows; r++) {
       let row = [];
       for (let c = 0; c < this.cols; c++) {
         let block = new Block(r, c, this.size);
 
         row.push(block.getAverageColor());
+        console.log("block added to row")
       }
       this.blocks.push(row);
-      console.log(row);
+     // console.log(row);
       console.log("row complete")
-      // it EVENTUALLY does each row, but it is INCREDIBLY slow
+      // ****************** it eventually does each row, but it is INCREDIBLY slow ***********************
       
     }
-   // console.log("blocks:")
-    console.log(this.blocks)
-     //console.log("Picture class: getBlockArr finished")
     
   }
 
