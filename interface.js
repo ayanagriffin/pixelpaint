@@ -66,10 +66,10 @@ function finishImage() {
   paintingIsFinished = true;
 }
 
-// for now, I want to change the imgUrl and basically re-run/reload everything when the "new image" button is pressed
-// this works, but i'm guessing there is a better way to do it than setTimeout
+function newImage(blockSize, cushion) {
+  // for now, I want to change the imgUrl and basically re-run/reload everything when the "new image" button is pressed
+  // this works, but i'm guessing there is a better way to do it than setTimeout
 
-function newImage() {
   if (prevPics.length === defaultPics.length) {
     prevPics = [];
   }
@@ -79,6 +79,7 @@ function newImage() {
   display = loadImage(imgUrl);
   prevPics.push(imgUrl);
 
+  document.getElementById("blockSizeSlider").value = 20;
   setTimeout(function() {
     drawGrid(INITIAL_BLOCK_SIZE, INITIAL_CUSHION);
   }, 50);
@@ -86,19 +87,16 @@ function newImage() {
 
 /* ------------------- SLIDER FUNCTIONS ---------------------*/
 
-function adjustBlockSize(newBlockSize, cushion) {
-  drawGrid(newBlockSize, cushion);
-}
 
-function adjustCushion(newCushion, blockSize) {
-  /* The "cushion" variable represents how close/far the RGB values of two colors can be to be
+function adjust(blockSize, cushion){
+   /* The "cushion" variable represents how close/far the RGB values of two colors can be to be
    considered the same color. The larger the cushion, the less colors there will be. 
    For UX purposes, it makes more sense for the slider to look as if it is representing the total number
    of colors -- sliding it to the right = more colors, sliding to left = less. This statement helps achieve
    this, while in reality, the cushion is changed directly, not the number of colors*/
 
-  newCushion = INITIAL_CUSHION - newCushion;
-  drawGrid(blockSize, newCushion);
+  cushion = INITIAL_CUSHION - cushion;
+  drawGrid(blockSize, cushion);
+  
 }
-
 /*global loadImage, drawGrid, INITIAL_CUSHION, INITIAL_BLOCK_SIZE, templateColors, prevPics, defaultPics, setTimeout, finishPrompt, random, rows, cushion, paintingIsFinished, currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas, mouseX, mouseY, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/

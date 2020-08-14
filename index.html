@@ -58,11 +58,11 @@
       <input
         id="blockSizeSlider"
         type="range"
-        min="10"
+        min="15"
         max="40"
-        step="10"
+        step="5"
         value="20"
-        onchange="adjustBlockSize(parseInt(this.value), parseInt(cushionSlider.value))"
+        onchange="adjust(parseInt(this.value), parseInt(cushionSlider.value))"
       />
 
       <input
@@ -72,7 +72,7 @@
         max="40"
         step="10"
         value="0"
-        onchange="adjustCushion(parseInt(this.value), parseInt(blockSizeSlider.value))"
+        onchange="adjust(parseInt(blockSizeSlider.value), parseInt(this.value))"
       />
     </div>
     <div class="instructionsDiv">
