@@ -49,6 +49,7 @@ class Picture {
   }
 
   getBlockArray() {
+    console.log("Picture class: getBlockArr started")
     for (let r = 0; r < this.rows; r++) {
       let row = [];
       for (let c = 0; c < this.cols; c++) {
@@ -57,9 +58,11 @@ class Picture {
         row.push(block.getAverageColor());
       }
       this.blocks.push(row);
+      console.log(this.blocks)
     }
 
-    console.log("Picture class: getBlockArr finished")
+     console.log("Picture class: getBlockArr finished")
+    
   }
 
   refactorBlockColors() {
