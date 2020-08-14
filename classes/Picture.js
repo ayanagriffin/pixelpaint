@@ -61,6 +61,8 @@ class Picture {
       }
       this.blocks.push(row);
       console.log(row);
+      console.log("row complete")
+      // it EVENTUALLY does each row, but it is INCREDIBLY slow
       
     }
     console.log("blocks:")

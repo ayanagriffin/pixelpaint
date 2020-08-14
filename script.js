@@ -18,7 +18,7 @@ let display,
   prevPics = [],
   brushImg;
 
-const INITIAL_BLOCK_SIZE = 20, INITIAL_CUSHION = 70;
+const INITIAL_BLOCK_SIZE = 120, INITIAL_CUSHION = 70;
 
 function preload() {
   imgUrl = random(defaultPics);
