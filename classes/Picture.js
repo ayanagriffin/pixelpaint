@@ -61,6 +61,8 @@ class Picture {
       
     }
     
+    console.log("IMAGE COMPLETE")
+    
   }
 
   refactorBlockColors() {

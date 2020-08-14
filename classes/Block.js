@@ -22,7 +22,7 @@ class Block {
   }
 
   getAverageColor() {
-    for (let i = this.startingY; i < this.endingY; i+=2) {
+    for (let i = this.startingY; i < this.endingY; i++) {
       for (let j = this.startingX; j < this.endingX; j++) {
         
         // checks for transparent bkg; if transparent, set it to white instead
@@ -35,15 +35,16 @@ class Block {
           this.colorVals[1] += 255;
           this.colorVals[2] += 255;
         }
-
+          console.log("color values added")
       }
     }
 
-    this.colorVals[0] = floor(this.colorVals[0] / this.totalPixels / 2);
-    this.colorVals[1] = floor(this.colorVals[1] / this.totalPixels / 2);
-    this.colorVals[2] = floor(this.colorVals[2] / this.totalPixels / 2);
+    this.colorVals[0] = floor(this.colorVals[0] / this.totalPixels);
+    this.colorVals[1] = floor(this.colorVals[1] / this.totalPixels);
+    this.colorVals[2] = floor(this.colorVals[2] / this.totalPixels);
 
     return this.colorVals;
+    
   }
 }
 
