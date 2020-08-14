@@ -12,8 +12,8 @@ class Block {
     this.col = col;
     this.size = blockSize;
     this.totalPixels = this.size * this.size;
-    this.startingX = this.row * this.size;
-    this.startingY = this.col * this.size;
+    this.startingX = this.col * this.size;
+    this.startingY = this.row * this.size;
     this.endingX = this.startingX + this.size;
     this.endingY = this.startingY + this.size;
     this.finalColor = [];
@@ -22,8 +22,8 @@ class Block {
   }
 
   getAverageColor() {
-    for (let i = this.startingY; i < this.endingY; i++) {
-      for (let j = this.startingX; j < this.endingX; j++) {
+    for (let i = this.startingX; i < this.endingX; i++) {
+      for (let j = this.startingY; j < this.endingY; j++) {
         
         // checks for transparent bkg; if transparent, set it to white instead
         if (display.get(i, j)[3] === 255) {
@@ -35,7 +35,10 @@ class Block {
           this.colorVals[1] += 255;
           this.colorVals[2] += 255;
         }
+          console.log(this.totalPixels)
           console.log("color values added")
+          /* PROBLEM: going way too slow and adding too many when slider is adjusted -- if blockSize is 20,
+          should only log "color values added" 400x per block, but is doing way more than this for some reason*/
       }
     }
 
