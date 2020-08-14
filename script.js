@@ -1,4 +1,4 @@
-let imgDimensions = { w: 0, h: 0 };
+let imgDimensions;
 let display,
   maxImgW,
   maxImgH,
@@ -34,10 +34,12 @@ function setup() {
 }
 
 function drawGrid(blockSize, cushion) {
+  
   avgColorsAreRetrieved = false;
   colorSquaresAreMade = false;
   maxImgW = (windowWidth * 3) / 4;
   maxImgH = (windowHeight * 3) / 4;
+  imgDimensions = { w: maxImgW, h: maxImgH };
   canvas = createCanvas(maxImgW, maxImgH);
   canvas.parent("canvas");
   getDimensions(blockSize, cushion);
@@ -158,13 +160,14 @@ function getArray(blockSize, cushion) {
   console.log("getArray started")
 
   let colorBlockImg = new Picture(rows, cols, blockSize, cushion);
-  console.log("line1 finished")
+  console.log("getArr line1 finished")
+  console.log(colorBlockImg)
   finalColorArray = colorBlockImg.getFinalArray();
-   console.log("line2 finished") // DOESN'T REACH HERE*****************************************
+   console.log("getArr line2 finished") // DOESN'T REACH HERE*****************************************
   avgColors = colorBlockImg.getAvgColors();
-   console.log("line3 finished")
+   console.log("getArr line3 finished")
   avgColorsAreRetrieved = true;
-   console.log("line4 finished")
+   console.log("get Arr line4 finished")
   
   console.log("getArray finished")
 

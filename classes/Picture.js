@@ -28,11 +28,11 @@ class Picture {
     // values (i.e. what is needed to draw the Squares)
 
     this.initializeValsArray();
-    console.log("getFinArr line 1 finished");
+    console.log("Picture class: getFinArr line 1 finished");
     this.getBlockArray();
-     console.log("getFinArr line 2 finished"); // DOESN'T REACH HERE*****************************************
+     console.log("Picture class: getFinArr line 2 finished"); // DOESN'T REACH HERE*****************************************
     this.refactorBlockColors();
-     console.log("getFinArr line 3 finished");
+    // console.log("getFinArr line 3 finished");
     return this.valsArray;
      
   }
@@ -52,13 +52,14 @@ class Picture {
     for (let r = 0; r < this.rows; r++) {
       let row = [];
       for (let c = 0; c < this.cols; c++) {
-        let block = new Block(c, r, this.size);
+        let block = new Block(r, c, this.size);
 
         row.push(block.getAverageColor());
       }
       this.blocks.push(row);
     }
 
+    console.log("Picture class: getBlockArr finished")
   }
 
   refactorBlockColors() {
