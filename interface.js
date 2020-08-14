@@ -88,27 +88,28 @@ function newImage(){
 /* ------------------- SLIDER FUNCTIONS ---------------------*/
 
 
-function adjustBlockSize(newBlockSize){
+function adjustBlockSize(newBlockSize, cushion){
   // functions as expected if I manually put in the number, as shown below
-  blockSize = 30;
+  //blockSize = 30;
   console.log("new size: " + newBlockSize)
   // does not function as expected if I try to do this:
  // blockSize = newBlockSize;
   //setup();
+  
+  drawGrid(newBlockSize, cushion);
 }
 
-function adjustCushion(newCushion, test){
+function adjustCushion(newCushion, blockSize){
   /* The "cushion" variable represents how close/far the RGB values of two colors can be to be
    considered the same color. The larger the cushion, the less colors there will be. 
    For UX purposes, it makes more sense for the slider to look as if it is representing the total number
    of colors -- sliding it to the right = more colors, sliding to left = less. This statement helps achieve
    this, while in reality, the cushion is changed directly, not the number of colors*/
   
-  console.log(newCushion, blockSize)
-  //cushion = 70 - newCushion;
-  //setup();
-  drawGrid(blockSize, 70 - newCushion);
+  newCushion = INITIAL_CUSHION - newCushion;
+  console.log("New Cushion: " + newCushion + ", Block Size: " + blockSize)
+  drawGrid(blockSize, newCushion);
 }
 
 
-/*global loadImage, drawGrid, templateColors, prevPics, defaultPics, setTimeout, finishPrompt, random, rows, cushion, paintingIsFinished, currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas,blockSize, mouseX, mouseY, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/*global loadImage, drawGrid, INITIAL_CUSHION, templateColors, prevPics, defaultPics, setTimeout, finishPrompt, random, rows, cushion, paintingIsFinished, currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas, mouseX, mouseY, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/

@@ -40,7 +40,7 @@ function drawGrid(blockSize, cushion) {
   maxImgH = (windowHeight * 3) / 4;
   canvas = createCanvas(maxImgW, maxImgH);
   canvas.parent("canvas");
-  getDimensions(imgUrl, blockSize, cushion);
+  getDimensions(blockSize, cushion);
   currentColor = "white";
   paintingIsFinished = false;
   templateIsLoading = true;
@@ -76,9 +76,9 @@ function drawTestTemplate(){
 }
 
 //updates dimensions based on the size of the reference image
-function getDimensions(srcUrl, blockSize, cushion) {
+function getDimensions(blockSize, cushion) {
   let img = new Image();
-  img.src = srcUrl;
+  img.src = imgUrl;
   img.onload = function() {
     imgDimensions.w = img.width;
     imgDimensions.h = img.height;
