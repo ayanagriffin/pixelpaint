@@ -79,7 +79,8 @@ function newImage(blockSize, cushion) {
   display = loadImage(imgUrl);
   prevPics.push(imgUrl);
 
-  document.getElementById("blockSizeSlider").value = 20;
+  document.getElementById("blockSizeSlider").value = INITIAL_BLOCK_SIZE;
+  document.getElementById("cushionSlider").value = 0;
   setTimeout(function() {
     drawGrid(INITIAL_BLOCK_SIZE, INITIAL_CUSHION);
   }, 50);
