@@ -22,8 +22,6 @@ const INITIAL_BLOCK_SIZE = 20, INITIAL_CUSHION = 70;
 
 function preload() {
   imgUrl = random(defaultPics);
-  //imgUrl = "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2Fpbn%20icon.png?v=1597195637438";
-  //imgUrl = "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2FScreen%20Shot%202020-08-13%20at%2010.44.17%20AM.png?v=1597340676948"
   display = loadImage(imgUrl);
   brushImg = loadImage(
     "https://cdn.glitch.com/f91fc56a-e988-47d9-bd82-072447cac29f%2FNew%20Document%204.png?v=1597350123550"
@@ -90,6 +88,8 @@ function getDimensions(srcUrl, blockSize, cushion) {
   };
 }
 
+
+// CALLED BY: getDimensions()
 // runs all necessary functions to set up the template
 function createTemplate(blockSize, cushion){
   resizeImage(blockSize);
@@ -148,7 +148,7 @@ function getRowsAndCols(ratio, blockSize) {
 }
 
 // CALLED BY: createTemplate()
-//gets array of numbers (that represent the color values) using the Picture and Block classes
+// gets array of numbers (that represent the color values) using the Picture and Block classes
 function getArray(blockSize, cushion) {
   let colorBlockImg = new Picture(rows, cols, blockSize, cushion);
   finalColorArray = colorBlockImg.getFinalArray();
@@ -211,6 +211,8 @@ function initializeGuideSquares(blockSize) {
       new GuideSquare(x, y, color, val, guideSquareWidth, guideSquareHeight)
     );
   }
+  
+  currentColor = guideSquares[0].color;
 }
 
 // CALLED BY: createTemplate()
@@ -221,7 +223,7 @@ function adjustCanvas(blockSize) {
 }
 
 
-/* ----------------------------- DRAW FUNCTIONS -------------------------------- */
+/* ----------------------------- DRAW FUNCTIONS (all called by draw()) -------------------------------- */
 
 function drawColorSquares() {
   for (let i = 0; i < colorSquares.length; i++) {
