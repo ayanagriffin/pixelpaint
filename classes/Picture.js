@@ -28,9 +28,13 @@ class Picture {
     // values (i.e. what is needed to draw the Squares)
 
     this.initializeValsArray();
+    console.log("getFinArr line 1 finished");
     this.getBlockArray();
+     console.log("getFinArr line 2 finished"); // DOESN'T REACH HERE*****************************************
     this.refactorBlockColors();
+     console.log("getFinArr line 3 finished");
     return this.valsArray;
+     
   }
 
   // not sure if I need this? probably some way to initialize a 2D array quicker

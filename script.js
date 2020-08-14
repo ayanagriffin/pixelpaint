@@ -77,6 +77,7 @@ function drawTestTemplate(){
 
 //updates dimensions based on the size of the reference image
 function getDimensions(blockSize, cushion) {
+  console.log("getDimensions started")
   let img = new Image();
   img.src = imgUrl;
   img.onload = function() {
@@ -92,6 +93,8 @@ function getDimensions(blockSize, cushion) {
 // CALLED BY: getDimensions()
 // runs all necessary functions to set up the template
 function createTemplate(blockSize, cushion){
+    console.log("createTemplate started")
+
   resizeImage(blockSize);
   getArray(blockSize, cushion);
   initializeSquares(blockSize);
@@ -102,6 +105,8 @@ function createTemplate(blockSize, cushion){
 // CALLED BY: createTemplate()
 // resizes imgDimensions to fit nicely on the window while maintaining the original ratio between w and h
 function resizeImage(blockSize) {
+    console.log("resizeImage started")
+
   let ratio = imgDimensions.h / imgDimensions.w; // if > 1, we have more rows than cols
   if (imgDimensions.w > imgDimensions.h && imgDimensions.w > maxImgW) {
     imgDimensions.w = maxImgW;
@@ -150,16 +155,27 @@ function getRowsAndCols(ratio, blockSize) {
 // CALLED BY: createTemplate()
 // gets array of numbers (that represent the color values) using the Picture and Block classes
 function getArray(blockSize, cushion) {
+  console.log("getArray started")
+
   let colorBlockImg = new Picture(rows, cols, blockSize, cushion);
+  console.log("line1 finished")
   finalColorArray = colorBlockImg.getFinalArray();
+   console.log("line2 finished") // DOESN'T REACH HERE*****************************************
   avgColors = colorBlockImg.getAvgColors();
+   console.log("line3 finished")
   avgColorsAreRetrieved = true;
+   console.log("line4 finished")
+  
+  console.log("getArray finished")
+
 
 }
 
 // CALLED BY: createTemplate()
 // makes colorSquares and guideSquares arrays
 function initializeSquares(blockSize) {
+  console.log("initSquares started")
+
   initializeColorSquares(blockSize);
   initializeGuideSquares(blockSize);
   templateIsLoading = false;
