@@ -41,7 +41,7 @@ function adjustBlockSize(newBlockSize){
   blockSize = 30;
   console.log("new size: " + newBlockSize)
   // does not function as expected if I try to do this:
-  //blockSize = newBlockSize;
+ // blockSize = newBlockSize;
   setup();
 }
 

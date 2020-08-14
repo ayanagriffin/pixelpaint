@@ -49,12 +49,11 @@ function setup() {
 }
 
 function draw() {
-  
   if (templateIsLoading) {
     imageMode(CENTER);
-    image(brushImg, width / 2 + 10, height * .4, width / 2, width / 2);
+    image(brushImg, width / 2 + 10, height * 0.4, width / 2, width / 2);
   }
-  
+
   if (colorSquaresAreMade) {
     drawColorSquares();
   }
@@ -68,8 +67,6 @@ function draw() {
   }
 
   drawCursor();
-
-  
 }
 
 function mouseClicked() {
@@ -100,15 +97,16 @@ function getDimensions(srcUrl) {
   let img = new Image();
   img.src = srcUrl;
   // return new Promise((resolve, reject) => {
-  //   img.onload = function() {
-      imgDimensions.w = this.width;
-      imgDimensions.h = this.height;
+  img.onload = function() {
+    imgDimensions.w = img.width;
+    imgDimensions.h = img.height;
 
-      adjustCanvas();
+    adjustCanvas();
 
-  //     resolve();
-  //   };
-  // });
+    //     resolve();
+    //   };
+    // });
+  };
 }
 
 function adjustCanvas() {
