@@ -94,19 +94,20 @@ function adjustBlockSize(newBlockSize){
   console.log("new size: " + newBlockSize)
   // does not function as expected if I try to do this:
  // blockSize = newBlockSize;
-  setup();
+  //setup();
 }
 
-function adjustCushion(newCushion){
+function adjustCushion(newCushion, test){
   /* The "cushion" variable represents how close/far the RGB values of two colors can be to be
    considered the same color. The larger the cushion, the less colors there will be. 
    For UX purposes, it makes more sense for the slider to look as if it is representing the total number
    of colors -- sliding it to the right = more colors, sliding to left = less. This statement helps achieve
    this, while in reality, the cushion is changed directly, not the number of colors*/
   
+  console.log(newCushion, blockSize)
   //cushion = 70 - newCushion;
   //setup();
-  drawGrid(/*INSERT SOME BLOCKSIZE HERE,*/ 70 - newCushion);
+  drawGrid(blockSize, 70 - newCushion);
 }
 
 

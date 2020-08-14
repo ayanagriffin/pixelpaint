@@ -56,18 +56,11 @@ fix image links
 daily log
 ==========
 
+**aug14**
 
-**aug12**
+simplify path to run functions in script ✔
 
-add in mouse dragging ✔ 
-
-new image button ✔
-
-new defaults ✔
-
-sliders and cushion slider functionality ✔
-
-positioning of elements ✔
+fix restart button to go back to original colors if pressed ✔
 
 **aug13**
 
@@ -82,6 +75,20 @@ make separate project for image visualization ✔
 handle transparent backgrounds ✔
 
 make the loading screen pretty ✔
+
+
+**aug12**
+
+add in mouse dragging ✔ 
+
+new image button ✔
+
+new defaults ✔
+
+sliders and cushion slider functionality ✔
+
+positioning of elements ✔
+
 
 
 

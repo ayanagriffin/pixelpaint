@@ -25,7 +25,7 @@ class Picture {
 
   getFinalArray() {
     // basically runs all necessary functions within the class to return the array with the color
-    //      values (i.e. what is needed to draw the Squares)
+    // values (i.e. what is needed to draw the Squares)
 
     this.initializeValsArray();
     this.getBlockArray();
@@ -55,7 +55,6 @@ class Picture {
       this.blocks.push(row);
     }
 
-    this.refactorBlockColors();
   }
 
   refactorBlockColors() {
