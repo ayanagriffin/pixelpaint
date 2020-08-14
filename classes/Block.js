@@ -21,7 +21,6 @@ class Block {
   }
 
   getAverageColor() {
-    console.log(this);
     let totalPixels = 0;
     for (let i = this.startingX; i < this.endingX; i+=4) {
       for (let j = this.startingY; j < this.endingY; j+=2) {
