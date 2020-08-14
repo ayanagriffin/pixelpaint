@@ -52,8 +52,9 @@ function adjustCushion(newCushion){
    of colors -- sliding it to the right = more colors, sliding to left = less. This statement helps achieve
    this, while in reality, the cushion is changed directly, not the number of colors*/
   
-  cushion = 70 - newCushion;
-  setup();
+  //cushion = 70 - newCushion;
+  //setup();
+  drawGrid(/*INSERT SOME BLOCKSIZE HERE,*/ 70 - newCushion);
 }
 
 // for now, I want to change the imgUrl and basically re-run/reload everything when the "new image" button is pressed
@@ -69,7 +70,9 @@ function newImage(){
   }
   display = loadImage(imgUrl);
   prevPics.push(imgUrl);
-  setTimeout(setup, 3000);
+  
+  drawGrid(/* IM NOT SURE WHAT VALUES TO PUT IN HERE*/);
+  //setTimeout(setup, 3000);
 }
 
 

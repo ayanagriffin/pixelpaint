@@ -6,8 +6,8 @@ a Picture represents the original image. This class:
 1. sections out the image into Blocks,
 2. finds the average color of each block, 
 3. compares those average colors against each other to see if they are similar enough to be considered the same color,
-4. assigns each of the final colors a number, then puts those numbers into a 2D array. this array will be used to draw the template
-   that is displayed to the user for them to paint
+4. assigns each of the final colors a number, then puts those numbers into a 2D array. this array will be used to draw 
+  the template that is displayed to the user for them to paint
 
 */
 
