@@ -84,18 +84,25 @@ function getDimensions(srcUrl, blockSize, cushion) {
   img.onload = function() {
     imgDimensions.w = img.width;
     imgDimensions.h = img.height;
-    adjustCanvas(blockSize, cushion);
+    testRun(blockSize, cushion);
   };
 }
 
-function adjustCanvas(blockSize, cushion) {
-  resizeImage(blockSize, cushion);
+function testRun(blockSize, cushion){
+  resizeImage(blockSize);
+  getArray(blockSize, cushion);
+  drawTemplate(blockSize);
+  adjustCanvas(blockSize);
+}
+
+
+function adjustCanvas(blockSize) {
   resizeCanvas(imgDimensions.w + 2 * blockSize, imgDimensions.h);
   background(235);
 }
 
 // resizes imgDimensions to fit nicely on the window while maintaining the original ratio between w and h
-function resizeImage(blockSize, cushion) {
+function resizeImage(blockSize) {
   let ratio = imgDimensions.h / imgDimensions.w; // if > 1, we have more rows than cols
   if (imgDimensions.w > imgDimensions.h && imgDimensions.w > maxImgW) {
     imgDimensions.w = maxImgW;
@@ -124,7 +131,6 @@ function resizeImage(blockSize, cushion) {
   imgDimensions.h = rows * blockSize;
   display.resize(imgDimensions.w, imgDimensions.h);
 
-  getArray(blockSize, cushion);
 }
 
 // finds the number of rows and cols based on the blockSize and imgDimensions
@@ -148,7 +154,6 @@ function getArray(blockSize, cushion) {
   avgColors = colorBlockImg.getAvgColors();
   avgColorsAreRetrieved = true;
 
-  drawTemplate(blockSize);
 }
 
 // makes colorSquares and guideSquares arrays
