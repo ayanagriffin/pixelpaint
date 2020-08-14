@@ -154,7 +154,6 @@ function getRowsAndCols(ratio, blockSize) {
 function getArray(blockSize, cushion) {
 
   let colorBlockImg = new Picture(rows, cols, blockSize, cushion);
- 
   finalColorArray = colorBlockImg.getFinalArray();
   avgColors = colorBlockImg.getAvgColors();
   avgColorsAreRetrieved = true;
@@ -216,7 +215,7 @@ function initializeGuideSquares(blockSize) {
     );
   }
   
-  currentColor = guideSquares[0].color;
+  //currentColor = guideSquares[0].color;
 }
 
 // CALLED BY: createTemplate()

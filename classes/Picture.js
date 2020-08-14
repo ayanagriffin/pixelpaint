@@ -52,16 +52,10 @@ class Picture {
         let block = new Block(r, c, this.size);
 
         row.push(block.getAverageColor());
-        console.log("block added to row")
       }
       this.blocks.push(row);
-     // console.log(row);
-      console.log("row complete")
-      // ****************** it eventually does each row, but it is INCREDIBLY slow ***********************
-      
     }
     
-    console.log("IMAGE COMPLETE")
     
   }
 

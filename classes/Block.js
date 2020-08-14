@@ -35,16 +35,10 @@ class Block {
           this.colorVals[1] += 255;
           this.colorVals[2] += 255;
         }
-         // console.log("pixels")
-          /* PROBLEM: going way too slow and adding too many when slider is adjusted -- if blockSize is 20,
-          should only log "color values added" 400x per block, but is doing way more than this when slider is adjusted
-          for some reason*/
-        
         totalPixels++;
       }
     }
 
-    console.log("totalPix: " + totalPixels)
     this.colorVals[0] = floor(this.colorVals[0] / totalPixels);
     this.colorVals[1] = floor(this.colorVals[1] / totalPixels);
     this.colorVals[2] = floor(this.colorVals[2] / totalPixels);

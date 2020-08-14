@@ -107,7 +107,6 @@ function adjustCushion(newCushion, blockSize){
    this, while in reality, the cushion is changed directly, not the number of colors*/
   
   newCushion = INITIAL_CUSHION - newCushion;
-  console.log("New Cushion: " + newCushion + ", Block Size: " + blockSize)
   drawGrid(blockSize, newCushion);
 }
 
