@@ -1,7 +1,37 @@
-/* These functions handle user interaction with the buttons and sliders */
+/* These functions handle user interaction with the buttons, sliders, and the mouse */
 
 
 let colorSquares, guideSquares, moves = [];
+
+/* ------------------- MOUSE FUNCTIONS ---------------------*/
+
+function mouseClicked() {
+  if (!paintingIsFinished) {
+    for (let r = 0; r < colorSquares.length; r++) {
+      for (let c = 0; c < colorSquares[r].length; c++) {
+        colorSquares[r][c].checkClicked();
+      }
+    }
+
+    for (let i = 0; i < guideSquares.length; i++) {
+      guideSquares[i].checkClicked();
+    }
+  }
+}
+
+function mouseDragged() {
+  if (!paintingIsFinished) {
+    for (let r = 0; r < colorSquares.length; r++) {
+      for (let c = 0; c < colorSquares[r].length; c++) {
+        colorSquares[r][c].checkClicked();
+      }
+    }
+  }
+}
+
+
+
+/* ------------------- BUTTON FUNCTIONS ---------------------*/
 
 function undo(){
    if(moves.length > 0){
@@ -18,13 +48,12 @@ function undo(){
   paintingIsFinished = false;
 }
 
-// SHOULD NOT GO BACK TO WHITE, SHOULD GO BACK TO TEMPLATE COLOR
 function restart(){
   for(let r = 0; r < colorSquares.length; r++){
     for(let c = 0; c < colorSquares[r].length; c++){
-      // colorSquares[r][c].color = "white";
-      colorSquares[r][c].color = templateColors[colorSquares[r][c].val - 1];
-      colorSquares[r][c].previousColors = [templateColors[colorSquares[r][c].val - 1]];
+      let originalColor = templateColors[colorSquares[r][c].val - 1]
+      colorSquares[r][c].color = originalColor;
+      colorSquares[r][c].previousColors = [originalColor];
     }
   }
   moves = [];
@@ -36,6 +65,27 @@ function finishImage(){
   finishPrompt = random(prompts);
   paintingIsFinished = true;
 }
+
+// for now, I want to change the imgUrl and basically re-run/reload everything when the "new image" button is pressed
+// this works, but i'm guessing there is a better way to do it than setTimeout
+
+function newImage(){
+  
+  if(prevPics.length === defaultPics.length){
+    prevPics = [];
+  }
+  while(prevPics.includes(imgUrl)){
+    imgUrl = random(defaultPics);
+  }
+  display = loadImage(imgUrl);
+  prevPics.push(imgUrl);
+  
+  drawGrid(/* IM NOT SURE WHAT VALUES TO PUT IN HERE*/);
+  //setTimeout(setup, 3000);
+}
+
+
+/* ------------------- SLIDER FUNCTIONS ---------------------*/
 
 
 function adjustBlockSize(newBlockSize){
@@ -57,24 +107,6 @@ function adjustCushion(newCushion){
   //cushion = 70 - newCushion;
   //setup();
   drawGrid(/*INSERT SOME BLOCKSIZE HERE,*/ 70 - newCushion);
-}
-
-// for now, I want to change the imgUrl and basically re-run/reload everything when the "new image" button is pressed
-// this works, but i'm guessing there is a better way to do it than setTimeout
-
-function newImage(){
-  
-  if(prevPics.length === defaultPics.length){
-    prevPics = [];
-  }
-  while(prevPics.includes(imgUrl)){
-    imgUrl = random(defaultPics);
-  }
-  display = loadImage(imgUrl);
-  prevPics.push(imgUrl);
-  
-  drawGrid(/* IM NOT SURE WHAT VALUES TO PUT IN HERE*/);
-  //setTimeout(setup, 3000);
 }
 
 

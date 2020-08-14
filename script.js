@@ -49,6 +49,8 @@ function drawGrid(blockSize, cushion) {
   background(255, 245, 235);
 }
 
+
+
 function draw() {
   if (templateIsLoading) {
     imageMode(CENTER);
@@ -70,43 +72,19 @@ function draw() {
   drawCursor();
 }
 
-function mouseClicked() {
-  if (!paintingIsFinished) {
-    for (let r = 0; r < colorSquares.length; r++) {
-      for (let c = 0; c < colorSquares[r].length; c++) {
-        colorSquares[r][c].checkClicked();
-      }
-    }
 
-    for (let i = 0; i < guideSquares.length; i++) {
-      guideSquares[i].checkClicked();
-    }
-  }
+function drawTestTemplate(){
+  
 }
 
-function mouseDragged() {
-  if (!paintingIsFinished) {
-    for (let r = 0; r < colorSquares.length; r++) {
-      for (let c = 0; c < colorSquares[r].length; c++) {
-        colorSquares[r][c].checkClicked();
-      }
-    }
-  }
-}
 //updates dimensions and returns a Promise after image finishes loading
 function getDimensions(srcUrl, blockSize, cushion) {
   let img = new Image();
   img.src = srcUrl;
-  // return new Promise((resolve, reject) => {
   img.onload = function() {
     imgDimensions.w = img.width;
     imgDimensions.h = img.height;
-
     adjustCanvas(blockSize, cushion);
-
-    //     resolve();
-    //   };
-    // });
   };
 }
 
@@ -221,7 +199,10 @@ function initializeGuideSquares(blockSize) {
   }
 }
 
-/* -------------------- DRAW FUNCTIONS --------------------- */
+
+
+
+/* ----------------------------- DRAW FUNCTIONS -------------------------------- */
 
 function drawColorSquares() {
   for (let i = 0; i < colorSquares.length; i++) {
