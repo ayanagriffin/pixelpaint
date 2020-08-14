@@ -26,6 +26,8 @@ see original picture button (after completion?)
 UX/UI
 ----------
 
+fix grayscale 
+
 fix text under sliders
 
 improve overall design (background image, icons, etc)
