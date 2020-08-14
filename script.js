@@ -99,16 +99,16 @@ function mouseDragged() {
 function getDimensions(srcUrl) {
   let img = new Image();
   img.src = srcUrl;
-  return new Promise((resolve, reject) => {
-    img.onload = function() {
+  // return new Promise((resolve, reject) => {
+  //   img.onload = function() {
       imgDimensions.w = this.width;
       imgDimensions.h = this.height;
 
       adjustCanvas();
 
-      resolve();
-    };
-  });
+  //     resolve();
+  //   };
+  // });
 }
 
 function adjustCanvas() {
