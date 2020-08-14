@@ -18,7 +18,7 @@ let display,
   prevPics = [],
   brushImg;
 
-const INITIAL_BLOCK_SIZE = 120, INITIAL_CUSHION = 70;
+const INITIAL_BLOCK_SIZE = 20, INITIAL_CUSHION = 70;
 
 function preload() {
   imgUrl = random(defaultPics);
@@ -37,8 +37,8 @@ function drawGrid(blockSize, cushion) {
   
   avgColorsAreRetrieved = false;
   colorSquaresAreMade = false;
-  maxImgW = (windowWidth * 3) / 4;
-  maxImgH = (windowHeight * 3) / 4;
+  maxImgW = 80;
+  maxImgH = 80;
   imgDimensions = { w: maxImgW, h: maxImgH };
   canvas = createCanvas(maxImgW, maxImgH);
   canvas.parent("canvas");
@@ -160,10 +160,10 @@ function getArray(blockSize, cushion) {
  // console.log("getArray started")
 
   let colorBlockImg = new Picture(rows, cols, blockSize, cushion);
-  console.log("getArr line1 finished")
-  console.log(colorBlockImg)
+ // console.log("getArr line1 finished")
+  //console.log(colorBlockImg)
   finalColorArray = colorBlockImg.getFinalArray();
-   console.log("getArr line2 finished") // DOESN'T REACH HERE*****************************************
+  // console.log("getArr line2 finished") // DOESN'T REACH HERE*****************************************
   avgColors = colorBlockImg.getAvgColors();
   // console.log("getArr line3 finished")
   avgColorsAreRetrieved = true;
