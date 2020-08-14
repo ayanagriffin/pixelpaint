@@ -69,7 +69,7 @@ function newImage(){
   }
   display = loadImage(imgUrl);
   prevPics.push(imgUrl);
-  setTimeout(drawGrid, 3000);
+  setTimeout(setup, 3000);
 }
 
 

@@ -3,14 +3,12 @@ let display,
   maxImgW,
   maxImgH,
   canvas,
-  startingCanvasW,
-  startingCanvasH,
   rows,
   templateIsLoading,
   templateColors,
   cols,
   testArray,
-  guideSquareHeight,
+  
   finalColorArray,
   colorSquaresAreMade,
   avgColors,
@@ -210,7 +208,7 @@ function getTemplateColors() {
 
 function initializeGuideSquares(blockSize) {
   guideSquares = [];
-  guideSquareHeight = blockSize * (rows / avgColors.length);
+  let guideSquareHeight = blockSize * (rows / avgColors.length);
   for (let i = 0; i < avgColors.length; i++) {
     let x = imgDimensions.w;
     let y = i * guideSquareHeight;
