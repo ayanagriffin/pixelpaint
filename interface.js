@@ -18,11 +18,13 @@ function undo(){
   paintingIsFinished = false;
 }
 
+// SHOULD NOT GO BACK TO WHITE, SHOULD GO BACK TO TEMPLATE COLOR
 function restart(){
   for(let r = 0; r < colorSquares.length; r++){
     for(let c = 0; c < colorSquares[r].length; c++){
-      colorSquares[r][c].color = "white";
-      colorSquares[r][c].previousColors = ["white"];
+      // colorSquares[r][c].color = "white";
+      colorSquares[r][c].color = templateColors[colorSquares[r][c].val - 1];
+      colorSquares[r][c].previousColors = [templateColors[colorSquares[r][c].val - 1]];
     }
   }
   moves = [];
@@ -76,4 +78,4 @@ function newImage(){
 }
 
 
-/*global loadImage, drawGrid, prevPics, defaultPics, setTimeout, finishPrompt, random, rows, cushion, paintingIsFinished, currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas,blockSize, mouseX, mouseY, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/*global loadImage, drawGrid, templateColors, prevPics, defaultPics, setTimeout, finishPrompt, random, rows, cushion, paintingIsFinished, currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas,blockSize, mouseX, mouseY, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
