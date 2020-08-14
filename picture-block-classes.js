@@ -12,7 +12,7 @@ a Picture represents the original image. This class:
 */
 
 class Picture {
-  constructor(rows, cols) {
+  constructor(rows, cols, blockSize) {
     this.blocks = [];
     this.numColors = 0;
     this.cushion = cushion;
@@ -48,7 +48,7 @@ class Picture {
     for (let r = 0; r < this.rows; r++) {
       let row = [];
       for (let c = 0; c < this.cols; c++) {
-        let block = new Block(c, r);
+        let block = new Block(c, r, this.size);
 
         row.push(block.getAverageColor());
       }
@@ -135,11 +135,11 @@ to determine the number of colors that will be displayed to the user and what th
 
 */
 class Block {
-  constructor(row, col) {
+  constructor(row, col, blockSize) {
     this.row = row;
     this.col = col;
     this.size = blockSize;
-    this.totalPixels = blockSize * blockSize;
+    this.totalPixels = this.size * this.size;
     this.startingX = this.col * this.size;
     this.startingY = this.row * this.size;
     this.endingX = this.startingX + this.size;

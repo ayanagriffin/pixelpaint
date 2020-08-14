@@ -17,7 +17,6 @@ let display,
   avgColorsAreRetrieved,
   currentColor,
   finishPrompt,
-  blockSize = 20,
   cushion = 70,
   imgUrl,
   prevPics = [],
@@ -35,13 +34,17 @@ function preload() {
 }
 
 function setup() {
+  drawGrid(20);
+}
+
+function drawGrid(blockSize){
   avgColorsAreRetrieved = false;
   colorSquaresAreMade = false;
   maxImgW = (windowWidth * 3) / 4;
   maxImgH = (windowHeight * 3) / 4;
   canvas = createCanvas(maxImgW, maxImgH);
   canvas.parent("canvas");
-  getDimensions(imgUrl);
+  getDimensions(imgUrl, blockSize);
   currentColor = "white";
   paintingIsFinished = false;
   templateIsLoading = true;
@@ -93,7 +96,7 @@ function mouseDragged() {
   }
 }
 //updates dimensions and returns a Promise after image finishes loading
-function getDimensions(srcUrl) {
+function getDimensions(srcUrl, blockSize) {
   let img = new Image();
   img.src = srcUrl;
   // return new Promise((resolve, reject) => {
@@ -101,7 +104,7 @@ function getDimensions(srcUrl) {
     imgDimensions.w = img.width;
     imgDimensions.h = img.height;
 
-    adjustCanvas();
+    adjustCanvas(blockSize);
 
     //     resolve();
     //   };
@@ -109,14 +112,14 @@ function getDimensions(srcUrl) {
   };
 }
 
-function adjustCanvas() {
-  resizeImage();
+function adjustCanvas(blockSize) {
+  resizeImage(blockSize);
   resizeCanvas(imgDimensions.w + 2 * blockSize, imgDimensions.h);
   background(235);
 }
 
 // resizes imgDimensions to fit nicely on the window while maintaining the original ratio between w and h
-function resizeImage() {
+function resizeImage(blockSize) {
   let ratio = imgDimensions.h / imgDimensions.w; // if > 1, we have more rows than cols
   if (imgDimensions.w > imgDimensions.h && imgDimensions.w > maxImgW) {
     imgDimensions.w = maxImgW;
@@ -137,7 +140,7 @@ function resizeImage() {
     imgDimensions.w = imgDimensions.h / ratio;
   }
 
-  getRowsAndCols(ratio);
+  getRowsAndCols(ratio, blockSize);
 
   // some sides might be shaved down a bit to create the blocks, which are perfect squares.
   // these next lines adjust the dimensions so that the squares fit evenly with no excess hanging over the sides.
@@ -145,11 +148,11 @@ function resizeImage() {
   imgDimensions.h = rows * blockSize;
   display.resize(imgDimensions.w, imgDimensions.h);
 
-  getArray();
+  getArray(blockSize);
 }
 
 // finds the number of rows and cols based on the blockSize and imgDimensions
-function getRowsAndCols(ratio) {
+function getRowsAndCols(ratio, blockSize) {
   if (ratio > 1) {
     rows = imgDimensions.h / blockSize;
     cols = rows / ratio;
@@ -163,23 +166,23 @@ function getRowsAndCols(ratio) {
 }
 
 //gets array of numbers (that represent the color values)
-function getArray() {
-  let colorBlockImg = new Picture(rows, cols);
+function getArray(blockSize) {
+  let colorBlockImg = new Picture(rows, cols, blockSize);
   finalColorArray = colorBlockImg.getFinalArray();
   avgColors = colorBlockImg.getAvgColors();
   avgColorsAreRetrieved = true;
 
-  drawTemplate();
+  drawTemplate(blockSize);
 }
 
 // makes colorSquares and guideSquares arrays
-function drawTemplate() {
-  initializeColorSquares();
-  initializeGuideSquares();
+function drawTemplate(blockSize) {
+  initializeColorSquares(blockSize);
+  initializeGuideSquares(blockSize);
   templateIsLoading = false;
 }
 
-function initializeColorSquares() {
+function initializeColorSquares(blockSize) {
   colorSquares = [];
   getTemplateColors();
   for (let r = 0; r < finalColorArray.length; r++) {
@@ -188,7 +191,7 @@ function initializeColorSquares() {
       let val = finalColorArray[r][c];
 
       let templateColor = templateColors[val - 1];
-      currentRow.push(new ColorSquare(r, c, val, templateColor));
+      currentRow.push(new ColorSquare(r, c, val, templateColor, blockSize));
     }
     colorSquares.push(currentRow);
   }
@@ -205,7 +208,7 @@ function getTemplateColors() {
   }
 }
 
-function initializeGuideSquares() {
+function initializeGuideSquares(blockSize) {
   guideSquares = [];
   guideSquareHeight = blockSize * (rows / avgColors.length);
   for (let i = 0; i < avgColors.length; i++) {
@@ -235,7 +238,8 @@ function drawGuideSquares() {
 }
 
 function drawCursor() {
-  if (mouseX > -10 + width - 2 * blockSize && mouseX < width) {
+  // FIX 20 TO BE BLOCK SIZE
+  if (mouseX > -10 + width - 2 * 20 && mouseX < width) {
     document.body.style.cursor = "pointer";
   } else {
     document.body.style.cursor = "default";

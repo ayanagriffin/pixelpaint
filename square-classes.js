@@ -9,7 +9,7 @@ a ColorSquare represents a square drawn on to the canvas, which is initially whi
 */
 
 class ColorSquare {
-  constructor(row, col, val, color) {
+  constructor(row, col, val, color, blockSize) {
     this.row = row;
     this.col = col;
     this.val = val;
@@ -34,7 +34,7 @@ class ColorSquare {
       rect(this.x, this.y, this.size, this.size);
 
       fill(0);
-      textSize(blockSize / 2);
+      textSize(this.size / 2);
       textAlign(CENTER, CENTER);
       text(
         this.val,
@@ -57,7 +57,7 @@ class ColorSquare {
   checkClicked() {
     if (
       this.color != currentColor &&
-      this.x + blockSize > mouseX &&
+      this.x + this.size > mouseX &&
       mouseX > this.x &&
       this.y + blockSize > mouseY &&
       mouseY > this.y
