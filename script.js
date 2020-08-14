@@ -154,6 +154,7 @@ function getRowsAndCols(ratio, blockSize) {
 function getArray(blockSize, cushion) {
 
   let colorBlockImg = new Picture(rows, cols, blockSize, cushion);
+  console.log(colorBlockImg)
   finalColorArray = colorBlockImg.getFinalArray();
   avgColors = colorBlockImg.getAvgColors();
   avgColorsAreRetrieved = true;
