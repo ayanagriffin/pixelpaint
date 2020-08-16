@@ -1,7 +1,4 @@
-let imgDimensions;
 let display,
-  // maxImgW,
-  // maxImgH,
   canvas,
   rows,
   templateIsLoading,
@@ -30,10 +27,11 @@ function preload() {
 }
 
 function setup() {
+  /* would prefer to initialize MAX_IMG_W and MAX_IMG_H with the other constants, but cant because they 
+   utilize windowWidth and I believe glitch does not initialize those until setup or preload */
   const MAX_IMG_W = windowWidth * 3 / 4;
   const MAX_IMG_H = windowHeight * 3 / 4;
-  // maxImgW = windowWidth * 3 / 4
-  // maxImgH = windowHeight * 3 / 4
+  
   drawGrid(INITIAL_BLOCK_SIZE, INITIAL_CUSHION, MAX_IMG_W, MAX_IMG_H);
 }
 
@@ -41,10 +39,10 @@ function drawGrid(blockSize, cushion, maxImgW, maxImgH) {
   
   avgColorsAreRetrieved = false;
   colorSquaresAreMade = false;
-  imgDimensions = { w: maxImgW, h: maxImgH};
+  let imgDimensions = { w: maxImgW, h: maxImgH};
   canvas = createCanvas(maxImgW, maxImgH);
   canvas.parent("canvas");
-  getDimensions(blockSize, cushion, maxImgW, maxImgH);
+  getDimensions(blockSize, cushion, maxImgW, maxImgH, imgDimensions);
   currentColor = "white";
   paintingIsFinished = false;
   templateIsLoading = true;
@@ -75,12 +73,10 @@ function draw() {
 }
 
 
-function drawTestTemplate(){
-  
-}
-
+// CALLED BY: drawGrid()
 //updates dimensions based on the size of the reference image
-function getDimensions(blockSize, cushion, maxImgW, maxImgH) {
+// maxImgW and maxImgH only needed in this function to pass to createTemplate
+function getDimensions(blockSize, cushion, maxImgW, maxImgH, imgDimensions) {
   let img = new Image();
   img.src = imgUrl;
   img.onload = function() {
@@ -88,24 +84,24 @@ function getDimensions(blockSize, cushion, maxImgW, maxImgH) {
     imgDimensions.h = img.height;
     // after imgDimensions are received, can call necessary functions to create the template
     // called here to ensure that the dimensions are set before execution
-    createTemplate(blockSize, cushion, maxImgW, maxImgH);
+    createTemplate(blockSize, cushion, maxImgW, maxImgH, imgDimensions);
   };
 }
 
 
 // CALLED BY: getDimensions()
 // runs all necessary functions to set up the template
-function createTemplate(blockSize, cushion, maxImgW, maxImgH){
-  resizeImage(blockSize);
+function createTemplate(blockSize, cushion, maxImgW, maxImgH, imgDimensions){
+  resizeImage(blockSize, maxImgW, maxImgH, imgDimensions);
   getArray(blockSize, cushion);
-  initializeSquares(blockSize);
-  adjustCanvas(blockSize);
+  initializeSquares(blockSize, imgDimensions);
+  adjustCanvas(blockSize, imgDimensions);
 }
 
 
 // CALLED BY: createTemplate()
 // resizes imgDimensions to fit nicely on the window while maintaining the original ratio between w and h
-function resizeImage(blockSize) {
+function resizeImage(blockSize, maxImgW, maxImgH, imgDimensions) {
   let ratio = imgDimensions.h / imgDimensions.w; // if > 1, we have more rows than cols
   if (imgDimensions.w > imgDimensions.h && imgDimensions.w > maxImgW) {
     imgDimensions.w = maxImgW;
@@ -126,7 +122,7 @@ function resizeImage(blockSize) {
     imgDimensions.w = imgDimensions.h / ratio;
   }
 
-  getRowsAndCols(ratio, blockSize);
+  getRowsAndCols(ratio, blockSize, imgDimensions);
 
   // some sides might be shaved down a bit to create the blocks, which are perfect squares.
   // these next lines adjust the dimensions so that the squares fit evenly with no excess hanging over the sides.
@@ -136,9 +132,10 @@ function resizeImage(blockSize) {
 
 }
 
+
 // CALLED BY: resizeImage();
 // finds the number of rows and cols based on the blockSize and imgDimensions
-function getRowsAndCols(ratio, blockSize) {
+function getRowsAndCols(ratio, blockSize, imgDimensions) {
   if (ratio > 1) {
     rows = imgDimensions.h / blockSize;
     cols = rows / ratio;
@@ -163,10 +160,10 @@ function getArray(blockSize, cushion) {
 
 // CALLED BY: createTemplate()
 // makes colorSquares and guideSquares arrays
-function initializeSquares(blockSize) {
+function initializeSquares(blockSize, imgDimensions) {
 
   initializeColorSquares(blockSize);
-  initializeGuideSquares(blockSize);
+  initializeGuideSquares(blockSize, imgDimensions);
   templateIsLoading = false;
 }
 
@@ -203,7 +200,7 @@ function getTemplateColors() {
 
 // CALLED BY: initializeSquares()
 // creates array of GuideSquares with correct positioning
-function initializeGuideSquares(blockSize) {
+function initializeGuideSquares(blockSize, imgDimensions) {
   guideSquares = [];
   let guideSquareHeight = blockSize * (rows / avgColors.length);
   for (let i = 0; i < avgColors.length; i++) {
@@ -217,12 +214,11 @@ function initializeGuideSquares(blockSize) {
     );
   }
   
-  //currentColor = guideSquares[0].color;
 }
 
 // CALLED BY: createTemplate()
 // resizes the canvas to be the size of imgDimensions + some excess to fit the GuideSquares on the right side of the canvas
-function adjustCanvas(blockSize) {
+function adjustCanvas(blockSize, imgDimensions) {
   resizeCanvas(imgDimensions.w + 2 * blockSize, imgDimensions.h);
   background(235);
 }
