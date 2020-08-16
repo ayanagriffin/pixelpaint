@@ -82,7 +82,7 @@ function newImage(blockSize, cushion) {
   document.getElementById("blockSizeSlider").value = INITIAL_BLOCK_SIZE;
   document.getElementById("cushionSlider").value = 0;
   setTimeout(function() {
-    drawGrid(INITIAL_BLOCK_SIZE, INITIAL_CUSHION);
+    drawGrid(INITIAL_BLOCK_SIZE, INITIAL_CUSHION, windowWidth * 3 / 4, windowHeight * 3 / 4);
   }, 50);
 }
 
@@ -97,7 +97,7 @@ function adjust(blockSize, cushion){
    this, while in reality, the cushion is changed directly, not the number of colors*/
 
   cushion = INITIAL_CUSHION - cushion;
-  drawGrid(blockSize, cushion);
+  drawGrid(blockSize, cushion, windowWidth * 3 / 4, windowHeight * 3 / 4);
   
 }
 /*global loadImage, drawGrid, INITIAL_CUSHION, INITIAL_BLOCK_SIZE, templateColors, prevPics, defaultPics, setTimeout, finishPrompt, random, rows, cushion, paintingIsFinished, currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas, mouseX, mouseY, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/

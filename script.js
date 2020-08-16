@@ -1,7 +1,7 @@
 let imgDimensions;
 let display,
-  maxImgW,
-  maxImgH,
+  // maxImgW,
+  // maxImgH,
   canvas,
   rows,
   templateIsLoading,
@@ -30,19 +30,21 @@ function preload() {
 }
 
 function setup() {
-  drawGrid(INITIAL_BLOCK_SIZE, INITIAL_CUSHION);
+  const MAX_IMG_W = windowWidth * 3 / 4;
+  const MAX_IMG_H = windowHeight * 3 / 4;
+  // maxImgW = windowWidth * 3 / 4
+  // maxImgH = windowHeight * 3 / 4
+  drawGrid(INITIAL_BLOCK_SIZE, INITIAL_CUSHION, MAX_IMG_W, MAX_IMG_H);
 }
 
-function drawGrid(blockSize, cushion) {
+function drawGrid(blockSize, cushion, maxImgW, maxImgH) {
   
   avgColorsAreRetrieved = false;
   colorSquaresAreMade = false;
-  maxImgW = windowWidth * 3 / 4;
-  maxImgH = windowHeight * 3 / 4;
-  imgDimensions = { w: maxImgW, h: maxImgH };
+  imgDimensions = { w: maxImgW, h: maxImgH};
   canvas = createCanvas(maxImgW, maxImgH);
   canvas.parent("canvas");
-  getDimensions(blockSize, cushion);
+  getDimensions(blockSize, cushion, maxImgW, maxImgH);
   currentColor = "white";
   paintingIsFinished = false;
   templateIsLoading = true;
@@ -78,7 +80,7 @@ function drawTestTemplate(){
 }
 
 //updates dimensions based on the size of the reference image
-function getDimensions(blockSize, cushion) {
+function getDimensions(blockSize, cushion, maxImgW, maxImgH) {
   let img = new Image();
   img.src = imgUrl;
   img.onload = function() {
@@ -86,14 +88,14 @@ function getDimensions(blockSize, cushion) {
     imgDimensions.h = img.height;
     // after imgDimensions are received, can call necessary functions to create the template
     // called here to ensure that the dimensions are set before execution
-    createTemplate(blockSize, cushion);
+    createTemplate(blockSize, cushion, maxImgW, maxImgH);
   };
 }
 
 
 // CALLED BY: getDimensions()
 // runs all necessary functions to set up the template
-function createTemplate(blockSize, cushion){
+function createTemplate(blockSize, cushion, maxImgW, maxImgH){
   resizeImage(blockSize);
   getArray(blockSize, cushion);
   initializeSquares(blockSize);
