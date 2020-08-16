@@ -1,16 +1,12 @@
-TO DO!
-=================
+# TO DO!
 
-overall functionality 
----------------
+## overall functionality
 
 smoothen mouse dragging
 
 verification before restart
 
-
-additions
------------
+## additions
 
 create easy and hard modes (easy: original colors are grayscale, hard: all white)
 
@@ -24,11 +20,9 @@ see original picture button (after completion?)
 
 user can draw on loading screen
 
+## UX/UI
 
-UX/UI
-----------
-
-fix grayscale 
+fix grayscale
 
 fix text under sliders
 
@@ -38,10 +32,7 @@ add instructions
 
 change icon
 
-
-
-overall readability + cleanliness
-----------
+## overall readability + cleanliness
 
 limit global variables
 
@@ -49,9 +40,15 @@ edit this page!
 
 fix image links
 
--------------------------
-daily log
-==========
+---
+
+# daily log
+
+**aug15**
+
+eliminate more global variables ✔
+
+change restart() function ✔
 
 **aug14**
 
@@ -67,7 +64,7 @@ eliminate calls to setup() ✔
 
 grayscale template ✔
 
-hide GuideSquares if paintingIsFinished ✔ 
+hide GuideSquares if paintingIsFinished ✔
 
 make it so user can't get same default image multiple times ✔
 
@@ -77,10 +74,9 @@ handle transparent backgrounds ✔
 
 make the loading screen pretty ✔
 
-
 **aug12**
 
-add in mouse dragging ✔ 
+add in mouse dragging ✔
 
 new image button ✔
 
@@ -90,15 +86,7 @@ sliders and cushion slider functionality ✔
 
 positioning of elements ✔
 
-
-
-
-
-
-
-
--------------------
-
+---
 
 creator: Ayana Griffin
 
