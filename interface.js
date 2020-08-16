@@ -1,8 +1,5 @@
 /* These functions handle user interaction with the buttons, sliders, and the mouse */
 
-let colorSquares,
-  guideSquares,
-  moves = [];
 
 /* ------------------- MOUSE FUNCTIONS ---------------------*/
 
@@ -104,6 +101,6 @@ function adjust(blockSize, cushion){
   
 }
 /*global loadImage, drawGrid, INITIAL_CUSHION, INITIAL_BLOCK_SIZE, templateColors, prevPics, defaultPics, setTimeout, finishPrompt, random, rows, cushion, paintingIsFinished, currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas, mouseX, mouseY, ColorSquare, resize
-, background, text, Picture, getTemplateColors, 
+, background, text, Picture, getTemplateColors, colorSquares, guideSquares, moves,
 
 windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/

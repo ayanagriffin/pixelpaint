@@ -1,15 +1,23 @@
-let 
-  display, // needs to be assigned a value in preload(), but cannot pass this value from preload into another function
-  templateIsLoading, // used in draw() and cannot pass anything into draw
-  colorSquaresAreMade, // used in draw() and cannot pass anything into draw
-  avgColorsAreRetrieved, // used in draw() and cannot pass anything into draw
-  currentColor, // used in drawCursor(), which is called in draw()
-  finishPrompt, // used in drawStar(), which is called in draw()
-  imgUrl, // needs to be assigned a value in preload(), but cannot pass this value from preload into another function
-  prevPics = [], // used in a function attached to one of the buttons (newImage()), and not sure how to pass it in there
-  brushImg; // used in draw() and cannot pass anything into draw
+// need to be assigned values in preload(), but cannot pass this value from preload into another function
+let display, imgUrl;
 
-const INITIAL_BLOCK_SIZE = 20, INITIAL_CUSHION = 70;
+// used in draw() and cannot pass anything into draw
+let templateIsLoading,
+  colorSquaresAreMade,
+  avgColorsAreRetrieved,
+  currentColor,
+  finishPrompt,
+  brushImg;
+
+/* used in functions that are called with user interaction (buttons, mouse clicks, etc), 
+ not functions that I call so I can't give parameters */
+let colorSquares,
+  guideSquares,
+  moves,
+  prevPics = [];
+
+const INITIAL_BLOCK_SIZE = 20,
+  INITIAL_CUSHION = 70;
 
 function preload() {
   imgUrl = random(defaultPics);
@@ -23,17 +31,17 @@ function preload() {
 function setup() {
   /* would prefer to initialize MAX_IMG_W and MAX_IMG_H with the other constants, but cant because they 
    utilize windowWidth and I believe glitch does not initialize those until setup or preload */
-  const MAX_IMG_W = windowWidth * 3 / 4;
-  const MAX_IMG_H = windowHeight * 3 / 4;
-  
+  const MAX_IMG_W = (windowWidth * 3) / 4;
+  const MAX_IMG_H = (windowHeight * 3) / 4;
+
   drawGrid(INITIAL_BLOCK_SIZE, INITIAL_CUSHION, MAX_IMG_W, MAX_IMG_H);
 }
 
 function drawGrid(blockSize, cushion, maxImgW, maxImgH) {
-  
+  moves = [];
   avgColorsAreRetrieved = false;
   colorSquaresAreMade = false;
-  let imgDimensions = { w: maxImgW, h: maxImgH};
+  let imgDimensions = { w: maxImgW, h: maxImgH };
   let canvas = createCanvas(maxImgW, maxImgH);
   canvas.parent("canvas");
   getDimensions(blockSize, cushion, maxImgW, maxImgH, imgDimensions);
@@ -42,8 +50,6 @@ function drawGrid(blockSize, cushion, maxImgW, maxImgH) {
   templateIsLoading = true;
   background(255, 245, 235);
 }
-
-
 
 function draw() {
   if (templateIsLoading) {
@@ -66,7 +72,6 @@ function draw() {
   drawCursor();
 }
 
-
 // CALLED BY: drawGrid()
 //updates dimensions based on the size of the reference image
 // maxImgW and maxImgH only needed in this function to pass to createTemplate
@@ -82,10 +87,9 @@ function getDimensions(blockSize, cushion, maxImgW, maxImgH, imgDimensions) {
   };
 }
 
-
 // CALLED BY: getDimensions()
 // runs all necessary functions to set up the template
-function createTemplate(blockSize, cushion, maxImgW, maxImgH, imgDimensions){
+function createTemplate(blockSize, cushion, maxImgW, maxImgH, imgDimensions) {
   let rowsAndCols = resizeImage(blockSize, maxImgW, maxImgH, imgDimensions);
   let rows = rowsAndCols[0];
   let cols = rowsAndCols[1];
@@ -95,7 +99,6 @@ function createTemplate(blockSize, cushion, maxImgW, maxImgH, imgDimensions){
   initializeSquares(blockSize, imgDimensions, finalColorArray, avgColors, rows);
   adjustCanvas(blockSize, imgDimensions);
 }
-
 
 // CALLED BY: createTemplate()
 // resizes imgDimensions to fit nicely on the window while maintaining the original ratio between w and h
@@ -129,16 +132,13 @@ function resizeImage(blockSize, maxImgW, maxImgH, imgDimensions) {
   imgDimensions.w = cols * blockSize;
   imgDimensions.h = rows * blockSize;
   display.resize(imgDimensions.w, imgDimensions.h);
-  
+
   return [rows, cols];
-
 }
-
 
 // CALLED BY: resizeImage();
 // finds the number of rows and cols based on the blockSize and imgDimensions
 function getRowsAndCols(ratio, blockSize, imgDimensions) {
-  
   let rows, cols;
   if (ratio > 1) {
     rows = imgDimensions.h / blockSize;
@@ -150,14 +150,13 @@ function getRowsAndCols(ratio, blockSize, imgDimensions) {
 
   rows = floor(rows);
   cols = floor(cols);
-  
+
   return [rows, cols];
 }
 
 // CALLED BY: createTemplate()
 // gets array of numbers (that represent the color values) using the Picture and Block classes
 function getArray(blockSize, cushion, rows, cols) {
-
   let colorBlockImg = new Picture(rows, cols, blockSize, cushion);
   let finalColorArray = colorBlockImg.getFinalArray();
   let avgColors = colorBlockImg.getAvgColors();
@@ -165,20 +164,22 @@ function getArray(blockSize, cushion, rows, cols) {
   return [finalColorArray, avgColors];
 }
 
-
-
 // CALLED BY: createTemplate()
 // makes colorSquares and guideSquares arrays
-function initializeSquares(blockSize, imgDimensions, finalColorArray, avgColors, rows) {
-
+function initializeSquares(
+  blockSize,
+  imgDimensions,
+  finalColorArray,
+  avgColors,
+  rows
+) {
   initializeColorSquares(blockSize, finalColorArray, avgColors);
   initializeGuideSquares(blockSize, imgDimensions, avgColors, rows);
   templateIsLoading = false;
 }
 
-
 // CALLED BY: initializeSquares()
-// creates array of ColorSquares 
+// creates array of ColorSquares
 function initializeColorSquares(blockSize, finalColorArray, avgColors) {
   colorSquares = [];
   let templateColors = getTemplateColors(avgColors);
@@ -204,10 +205,9 @@ function getTemplateColors(avgColors) {
     let templateColor = (curColor[0] + curColor[1] + curColor[2]) / 3 + 75;
     templateColors.push(templateColor);
   }
-  
+
   return templateColors;
 }
-
 
 // CALLED BY: initializeSquares()
 // creates array of GuideSquares with correct positioning
@@ -224,7 +224,6 @@ function initializeGuideSquares(blockSize, imgDimensions, avgColors, rows) {
       new GuideSquare(x, y, color, val, guideSquareWidth, guideSquareHeight)
     );
   }
-  
 }
 
 // CALLED BY: createTemplate()
@@ -233,7 +232,6 @@ function adjustCanvas(blockSize, imgDimensions) {
   resizeCanvas(imgDimensions.w + 2 * blockSize, imgDimensions.h);
   background(235);
 }
-
 
 /* ----------------------------- DRAW FUNCTIONS (all called by draw()) -------------------------------- */
 
