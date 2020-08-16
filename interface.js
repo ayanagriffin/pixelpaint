@@ -51,6 +51,7 @@ function undo() {
 function restart() {
   for (let r = 0; r < colorSquares.length; r++) {
     for (let c = 0; c < colorSquares[r].length; c++) {
+      let templateColors = getTemplateColors();
       let originalColor = templateColors[colorSquares[r][c].val - 1];
       colorSquares[r][c].color = originalColor;
       colorSquares[r][c].previousColors = [originalColor];
@@ -100,4 +101,5 @@ function adjust(blockSize, cushion){
   drawGrid(blockSize, cushion, windowWidth * 3 / 4, windowHeight * 3 / 4);
   
 }
-/*global loadImage, drawGrid, INITIAL_CUSHION, INITIAL_BLOCK_SIZE, templateColors, prevPics, defaultPics, setTimeout, finishPrompt, random, rows, cushion, paintingIsFinished, currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas, mouseX, mouseY, ColorSquare, resizeCanvas, background, text, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
+/*global loadImage, drawGrid, INITIAL_CUSHION, INITIAL_BLOCK_SIZE, templateColors, prevPics, defaultPics, setTimeout, finishPrompt, random, rows, cushion, paintingIsFinished, currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas, mouseX, mouseY, ColorSquare, resize
+, background, text, Picture, getTemplateColors, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/

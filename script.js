@@ -1,11 +1,8 @@
 let display,
-  canvas,
   rows,
-  templateIsLoading,
-  templateColors,
+  templateIsLoading, // used in draw() and cannot pass anything into draw
   cols,
-  testArray,
-  finalColorArray,
+ // finalColorArray,
   colorSquaresAreMade,
   avgColors,
   avgColorsAreRetrieved,
@@ -13,7 +10,7 @@ let display,
   finishPrompt,
   imgUrl,
   prevPics = [],
-  brushImg;
+  brushImg; // used in draw() and cannot pass anything into draw
 
 const INITIAL_BLOCK_SIZE = 20, INITIAL_CUSHION = 70;
 
@@ -40,7 +37,7 @@ function drawGrid(blockSize, cushion, maxImgW, maxImgH) {
   avgColorsAreRetrieved = false;
   colorSquaresAreMade = false;
   let imgDimensions = { w: maxImgW, h: maxImgH};
-  canvas = createCanvas(maxImgW, maxImgH);
+  let canvas = createCanvas(maxImgW, maxImgH);
   canvas.parent("canvas");
   getDimensions(blockSize, cushion, maxImgW, maxImgH, imgDimensions);
   currentColor = "white";
@@ -153,9 +150,10 @@ function getRowsAndCols(ratio, blockSize, imgDimensions) {
 function getArray(blockSize, cushion) {
 
   let colorBlockImg = new Picture(rows, cols, blockSize, cushion);
-  finalColorArray = colorBlockImg.getFinalArray();
+  let finalColorArray = colorBlockImg.getFinalArray();
   avgColors = colorBlockImg.getAvgColors();
   avgColorsAreRetrieved = true;
+  return finalColorArray;
 }
 
 // CALLED BY: createTemplate()
@@ -172,7 +170,7 @@ function initializeSquares(blockSize, imgDimensions) {
 // creates array of ColorSquares 
 function initializeColorSquares(blockSize) {
   colorSquares = [];
-  getTemplateColors();
+  let templateColors = getTemplateColors();
   for (let r = 0; r < finalColorArray.length; r++) {
     let currentRow = [];
     for (let c = 0; c < finalColorArray[r].length; c++) {
@@ -189,12 +187,14 @@ function initializeColorSquares(blockSize) {
 // CALLED BY: initializeColorSquares()
 // creates grayscale for template to make it easier to paint
 function getTemplateColors() {
-  templateColors = [];
+  let templateColors = [];
   for (let i = 0; i < avgColors.length; i++) {
     let curColor = avgColors[i];
     let templateColor = (curColor[0] + curColor[1] + curColor[2]) / 3 + 75;
     templateColors.push(templateColor);
   }
+  
+  return templateColors;
 }
 
 
@@ -260,11 +260,11 @@ function drawCursor() {
 }
 
 function drawStar() {
-  let starSize = imgDimensions.h / 20;
+  let starSize = height / 20;
   let angle = TWO_PI / 5;
   let halfAngle = angle / 2;
-  let xBuffer = imgDimensions.w * 0.85;
-  let yBuffer = imgDimensions.h * 0.15;
+  let xBuffer = width * 0.8;
+  let yBuffer = height * 0.15;
   fill("gold");
   beginShape();
   for (let i = 0; i < TWO_PI; i += angle) {
@@ -278,7 +278,7 @@ function drawStar() {
 
   endShape(CLOSE);
   fill("black");
-  textSize(imgDimensions.h / 25);
+  textSize(height / 25);
   textAlign(CENTER, CENTER);
   text(finishPrompt, xBuffer, yBuffer);
 }
