@@ -1,13 +1,12 @@
-let display,
-  rows,
-  cols,
+let 
+  display, // needs to be assigned a value in preload(), but cannot pass this value from preload into another function
   templateIsLoading, // used in draw() and cannot pass anything into draw
   colorSquaresAreMade, // used in draw() and cannot pass anything into draw
   avgColorsAreRetrieved, // used in draw() and cannot pass anything into draw
-  currentColor,
-  finishPrompt,
-  imgUrl,
-  prevPics = [],
+  currentColor, // used in drawCursor(), which is called in draw()
+  finishPrompt, // used in drawStar(), which is called in draw()
+  imgUrl, // needs to be assigned a value in preload(), but cannot pass this value from preload into another function
+  prevPics = [], // used in a function attached to one of the buttons (newImage()), and not sure how to pass it in there
   brushImg; // used in draw() and cannot pass anything into draw
 
 const INITIAL_BLOCK_SIZE = 20, INITIAL_CUSHION = 70;
@@ -87,10 +86,13 @@ function getDimensions(blockSize, cushion, maxImgW, maxImgH, imgDimensions) {
 // CALLED BY: getDimensions()
 // runs all necessary functions to set up the template
 function createTemplate(blockSize, cushion, maxImgW, maxImgH, imgDimensions){
-  resizeImage(blockSize, maxImgW, maxImgH, imgDimensions);
-  let finalColorArray = getArray(blockSize, cushion)[0];
-  let avgColors = getArray(blockSize, cushion)[1];
-  initializeSquares(blockSize, imgDimensions, finalColorArray, avgColors);
+  let rowsAndCols = resizeImage(blockSize, maxImgW, maxImgH, imgDimensions);
+  let rows = rowsAndCols[0];
+  let cols = rowsAndCols[1];
+  let colorArrays = getArray(blockSize, cushion, rows, cols);
+  let finalColorArray = colorArrays[0];
+  let avgColors = colorArrays[1];
+  initializeSquares(blockSize, imgDimensions, finalColorArray, avgColors, rows);
   adjustCanvas(blockSize, imgDimensions);
 }
 
@@ -118,13 +120,17 @@ function resizeImage(blockSize, maxImgW, maxImgH, imgDimensions) {
     imgDimensions.w = imgDimensions.h / ratio;
   }
 
-  getRowsAndCols(ratio, blockSize, imgDimensions);
+  let rowsAndCols = getRowsAndCols(ratio, blockSize, imgDimensions);
+  let rows = rowsAndCols[0];
+  let cols = rowsAndCols[1];
 
   // some sides might be shaved down a bit to create the blocks, which are perfect squares.
   // these next lines adjust the dimensions so that the squares fit evenly with no excess hanging over the sides.
   imgDimensions.w = cols * blockSize;
   imgDimensions.h = rows * blockSize;
   display.resize(imgDimensions.w, imgDimensions.h);
+  
+  return [rows, cols];
 
 }
 
@@ -132,6 +138,8 @@ function resizeImage(blockSize, maxImgW, maxImgH, imgDimensions) {
 // CALLED BY: resizeImage();
 // finds the number of rows and cols based on the blockSize and imgDimensions
 function getRowsAndCols(ratio, blockSize, imgDimensions) {
+  
+  let rows, cols;
   if (ratio > 1) {
     rows = imgDimensions.h / blockSize;
     cols = rows / ratio;
@@ -142,11 +150,13 @@ function getRowsAndCols(ratio, blockSize, imgDimensions) {
 
   rows = floor(rows);
   cols = floor(cols);
+  
+  return [rows, cols];
 }
 
 // CALLED BY: createTemplate()
 // gets array of numbers (that represent the color values) using the Picture and Block classes
-function getArray(blockSize, cushion) {
+function getArray(blockSize, cushion, rows, cols) {
 
   let colorBlockImg = new Picture(rows, cols, blockSize, cushion);
   let finalColorArray = colorBlockImg.getFinalArray();
@@ -159,10 +169,10 @@ function getArray(blockSize, cushion) {
 
 // CALLED BY: createTemplate()
 // makes colorSquares and guideSquares arrays
-function initializeSquares(blockSize, imgDimensions, finalColorArray, avgColors) {
+function initializeSquares(blockSize, imgDimensions, finalColorArray, avgColors, rows) {
 
   initializeColorSquares(blockSize, finalColorArray, avgColors);
-  initializeGuideSquares(blockSize, imgDimensions, avgColors);
+  initializeGuideSquares(blockSize, imgDimensions, avgColors, rows);
   templateIsLoading = false;
 }
 
@@ -201,7 +211,7 @@ function getTemplateColors(avgColors) {
 
 // CALLED BY: initializeSquares()
 // creates array of GuideSquares with correct positioning
-function initializeGuideSquares(blockSize, imgDimensions, avgColors) {
+function initializeGuideSquares(blockSize, imgDimensions, avgColors, rows) {
   guideSquares = [];
   let guideSquareHeight = blockSize * (rows / avgColors.length);
   for (let i = 0; i < avgColors.length; i++) {
