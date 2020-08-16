@@ -1,11 +1,9 @@
 let display,
   rows,
-  templateIsLoading, // used in draw() and cannot pass anything into draw
   cols,
- // finalColorArray,
-  colorSquaresAreMade,
-  avgColors,
-  avgColorsAreRetrieved,
+  templateIsLoading, // used in draw() and cannot pass anything into draw
+  colorSquaresAreMade, // used in draw() and cannot pass anything into draw
+  avgColorsAreRetrieved, // used in draw() and cannot pass anything into draw
   currentColor,
   finishPrompt,
   imgUrl,
@@ -90,8 +88,9 @@ function getDimensions(blockSize, cushion, maxImgW, maxImgH, imgDimensions) {
 // runs all necessary functions to set up the template
 function createTemplate(blockSize, cushion, maxImgW, maxImgH, imgDimensions){
   resizeImage(blockSize, maxImgW, maxImgH, imgDimensions);
-  getArray(blockSize, cushion);
-  initializeSquares(blockSize, imgDimensions);
+  let finalColorArray = getArray(blockSize, cushion)[0];
+  let avgColors = getArray(blockSize, cushion)[1];
+  initializeSquares(blockSize, imgDimensions, finalColorArray, avgColors);
   adjustCanvas(blockSize, imgDimensions);
 }
 
@@ -151,26 +150,28 @@ function getArray(blockSize, cushion) {
 
   let colorBlockImg = new Picture(rows, cols, blockSize, cushion);
   let finalColorArray = colorBlockImg.getFinalArray();
-  avgColors = colorBlockImg.getAvgColors();
+  let avgColors = colorBlockImg.getAvgColors();
   avgColorsAreRetrieved = true;
-  return finalColorArray;
+  return [finalColorArray, avgColors];
 }
+
+
 
 // CALLED BY: createTemplate()
 // makes colorSquares and guideSquares arrays
-function initializeSquares(blockSize, imgDimensions) {
+function initializeSquares(blockSize, imgDimensions, finalColorArray, avgColors) {
 
-  initializeColorSquares(blockSize);
-  initializeGuideSquares(blockSize, imgDimensions);
+  initializeColorSquares(blockSize, finalColorArray, avgColors);
+  initializeGuideSquares(blockSize, imgDimensions, avgColors);
   templateIsLoading = false;
 }
 
 
 // CALLED BY: initializeSquares()
 // creates array of ColorSquares 
-function initializeColorSquares(blockSize) {
+function initializeColorSquares(blockSize, finalColorArray, avgColors) {
   colorSquares = [];
-  let templateColors = getTemplateColors();
+  let templateColors = getTemplateColors(avgColors);
   for (let r = 0; r < finalColorArray.length; r++) {
     let currentRow = [];
     for (let c = 0; c < finalColorArray[r].length; c++) {
@@ -186,7 +187,7 @@ function initializeColorSquares(blockSize) {
 
 // CALLED BY: initializeColorSquares()
 // creates grayscale for template to make it easier to paint
-function getTemplateColors() {
+function getTemplateColors(avgColors) {
   let templateColors = [];
   for (let i = 0; i < avgColors.length; i++) {
     let curColor = avgColors[i];
@@ -200,7 +201,7 @@ function getTemplateColors() {
 
 // CALLED BY: initializeSquares()
 // creates array of GuideSquares with correct positioning
-function initializeGuideSquares(blockSize, imgDimensions) {
+function initializeGuideSquares(blockSize, imgDimensions, avgColors) {
   guideSquares = [];
   let guideSquareHeight = blockSize * (rows / avgColors.length);
   for (let i = 0; i < avgColors.length; i++) {

@@ -1,5 +1,6 @@
 
 
+
 /* -------------------------- BLOCK CLASS ----------------------------
 
 a Block represents a section of the original image. Blocks are used by the Picture class 
