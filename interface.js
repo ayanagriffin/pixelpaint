@@ -57,6 +57,7 @@ function finishImage() {
   let prompts = ["Nice!", "Wow!", "Great!", "Cool!", "Yay!", "Neat!"];
   finishPrompt = random(prompts);
   paintingIsFinished = true;
+  starIsVisible = true;
   document.getElementsByClassName("afterCompletionContainer")[0].style.display =
     "flex";
 }
@@ -89,7 +90,11 @@ function setNewImage(url) {
 }
 
 function savePainting() {
-  saveCanvas("my-pbn", "png");
+  starIsVisible = false;
+  setTimeout(function() {
+    saveCanvas("my-pbn", "png")
+  }, 50);
+  
 }
 
 function viewOriginalImage() {
@@ -109,6 +114,6 @@ function adjust(blockSize, cushion) {
   drawGrid(blockSize, cushion, (windowWidth * 3) / 4, (windowHeight * 3) / 4);
 }
 
-/*global loadImage, saveCanvas, drawGrid, INITIAL_CUSHION, INITIAL_BLOCK_SIZE, templateColors, prevPics, defaultPics, setTimeout, finishPrompt, random, rows, cushion, paintingIsFinished, 
+/*global loadImage, starIsVisible, saveCanvas, drawGrid, INITIAL_CUSHION, INITIAL_BLOCK_SIZE, templateColors, prevPics, defaultPics, setTimeout, finishPrompt, random, rows, cushion, paintingIsFinished, 
 currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas, mouseX, mouseY, ColorSquare, resize,
 background, text, Picture, getTemplateColors, colorSquares, guideSquares, moves, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/

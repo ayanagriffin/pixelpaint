@@ -7,7 +7,7 @@ let templateIsLoading,
   avgColorsAreRetrieved,
   currentColor,
   finishPrompt,
-  brushImg;
+  brushImg, starIsVisible;
 
 /* used in functions that are called with user interaction (buttons, mouse clicks, etc), 
  not functions that I call so I can't give parameters */
@@ -66,7 +66,7 @@ function draw() {
     drawGuideSquares();
   }
 
-  if (paintingIsFinished) {
+  if (starIsVisible && paintingIsFinished) {
     drawStar();
   }
 

@@ -6,6 +6,8 @@ smoothen mouse dragging
 
 verification before restart
 
+
+
 ## additions
 
 create easy and hard modes (easy: original colors are grayscale, hard: all white)
@@ -14,10 +16,14 @@ add good default images (a lot of them, too)
 
 add color picker(?)
 
+watermark when save image
+
 
 ## UX/UI
 
 change color of "invisible" buttons 
+
+play with placement of invisible buttons
 
 fix grayscale
 
@@ -40,6 +46,8 @@ fix image links
 # daily log
 
 **aug18**
+
+get rid of star when saving image ✔
 
 add user upload button ✔
 
