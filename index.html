@@ -39,6 +39,16 @@
     </h1>
 
     <div id="canvas"></div>
+    <div class = "afterCompletionContainer">
+      
+      <div id="save-img" class="button" onclick="savePainting()">
+        save
+      </div>
+      <div id="view-link" class="button">
+
+        <a href="url" target="blank" id="source-link"> </a>
+      </div>
+    </div>
     <div class="buttonContainer">
       <div id="undo" class="button" onclick="undo()">
         undo
@@ -63,12 +73,7 @@
         onchange="userUpload(event)"
         style="display: none;"
       />
-      <div id="save-img" class="button" onclick="savePainting()">
-        save
-      </div>
-      <div id="view-link" class="button" onclick="viewOriginalImage()">
-        <a href="url" target="blank" id="source-link"> </a>
-      </div>
+      
     </div>
 
     <div class="sliderDiv">

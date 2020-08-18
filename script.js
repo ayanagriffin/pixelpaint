@@ -49,6 +49,7 @@ function drawGrid(blockSize, cushion, maxImgW, maxImgH) {
   paintingIsFinished = false;
   templateIsLoading = true;
   background(255, 245, 235);
+  viewOriginalImage();
 }
 
 function draw() {
@@ -292,6 +293,6 @@ function drawStar() {
   text(finishPrompt, xBuffer, yBuffer);
 }
 
-/*global defaultPics, createVideo, loadImage, random, triangle, auto, ellipse, CLOSE, textAlign, textSize, beginShape, endShape, TWO_PI, CENTER, sin, cos, vertex, paintingIsFinished, 
+/*global defaultPics, viewOriginalImage, createVideo, loadImage, random, triangle, auto, ellipse, CLOSE, textAlign, textSize, beginShape, endShape, TWO_PI, CENTER, sin, cos, vertex, paintingIsFinished, 
 checkGuideSquareClicked, rectMode, CENTER, CORNER, guideSquares, drawGuideSquares, drawColorSquares, mouseX, mouseY, GuideSquare, ColorSquare, createCanvas, initializeColorSquares, 
 initializeGuideSquares, imageMode, noStroke, width, colorSquares, resizeCanvas, background, text, height, Picture, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/

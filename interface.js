@@ -91,7 +91,8 @@ function savePainting(){
 }
 
 function viewOriginalImage(){
-  
+  document.getElementById("source-link").innerHTML = "view original";
+  document.getElementById("source-link").href = imgUrl;
 }
 /* ------------------- SLIDER FUNCTIONS ---------------------*/
 
