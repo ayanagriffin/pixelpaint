@@ -53,6 +53,7 @@ function finishImage() {
   let prompts = ["Nice!", "Wow!", "Great!", "Cool!", "Yay!", "Neat!"];
   finishPrompt = random(prompts);
   paintingIsFinished = true;
+  document.getElementsByClassName("afterCompletionContainer").style.display = "none";
 }
 
 function newImage(blockSize, cushion) {

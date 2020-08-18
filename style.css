@@ -51,9 +51,8 @@ p {
 }
 
 .afterCompletionContainer{
-  visibility: hidden;
-  font-weight: 500;
   display: flex;
+  font-weight: 500;
   flex-direction: row;
   justify-content: center;
   margin-top: 1.5vh;
