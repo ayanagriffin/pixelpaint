@@ -12,15 +12,12 @@ create easy and hard modes (easy: original colors are grayscale, hard: all white
 
 add good default images (a lot of them, too)
 
-**add user upload**
-
 add color picker(?)
 
-see original picture button (after completion?)
-
-user can draw on loading screen
 
 ## UX/UI
+
+change color of "invisible" buttons 
 
 fix grayscale
 
@@ -41,6 +38,15 @@ fix image links
 ---
 
 # daily log
+
+**aug18**
+
+add user upload button ✔
+
+add view original image button ✔
+
+change visibility of new buttons depending on whether the user has finished ✔
+
 
 **aug15**
 
