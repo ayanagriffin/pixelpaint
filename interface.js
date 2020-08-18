@@ -85,6 +85,14 @@ function setNewImage(url){
     drawGrid(INITIAL_BLOCK_SIZE, INITIAL_CUSHION, windowWidth * 3 / 4, windowHeight * 3 / 4);
   }, 50);
 }
+
+function savePainting(){
+  saveCanvas("my-pbn", "png");
+}
+
+function viewOriginalImage(){
+  
+}
 /* ------------------- SLIDER FUNCTIONS ---------------------*/
 
 
@@ -101,6 +109,6 @@ function adjust(blockSize, cushion){
 }
 
 
-/*global loadImage, drawGrid, INITIAL_CUSHION, INITIAL_BLOCK_SIZE, templateColors, prevPics, defaultPics, setTimeout, finishPrompt, random, rows, cushion, paintingIsFinished, 
+/*global loadImage, saveCanvas, drawGrid, INITIAL_CUSHION, INITIAL_BLOCK_SIZE, templateColors, prevPics, defaultPics, setTimeout, finishPrompt, random, rows, cushion, paintingIsFinished, 
 currentColor, getDimensions, setPrompt, imgUrl, display, colorSquaresAreMade,imgDimensions, GuideSquare createCanvas, mouseX, mouseY, ColorSquare, resize,
 background, text, Picture, getTemplateColors, colorSquares, guideSquares, moves, windowWidth, windowHeight, image, round, floor, rect, fill, strokeWeight, Block*/
