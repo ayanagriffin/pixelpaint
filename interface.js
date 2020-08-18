@@ -59,24 +59,31 @@ function newImage(blockSize, cushion) {
   // for now, I want to change the imgUrl and basically re-run/reload everything when the "new image" button is pressed
   // this works, but i'm guessing there is a better way to do it than setTimeout
 
-  if (prevPics.length === defaultPics.length) {
-    prevPics = [];
-  }
-  while (prevPics.includes(imgUrl)) {
-    imgUrl = random(defaultPics);
-  }
+  // if (prevPics.length === defaultPics.length) {
+  //   prevPics = [];
+  // }
+  // while (prevPics.includes(imgUrl)) {
+  //   imgUrl = random(defaultPics);
+  // }
+  
+  
+  setNewImage(random(defaultPics));
+}
+
+function userUpload(event){
+  let uploadUrl = URL.createObjectURL(event.target.files[0]);
+  setNewImage(uploadUrl);
+}
+
+function setNewImage(url){
+  imgUrl = url;
   display = loadImage(imgUrl);
   prevPics.push(imgUrl);
-
   document.getElementById("blockSizeSlider").value = INITIAL_BLOCK_SIZE;
   document.getElementById("cushionSlider").value = 0;
   setTimeout(function() {
     drawGrid(INITIAL_BLOCK_SIZE, INITIAL_CUSHION, windowWidth * 3 / 4, windowHeight * 3 / 4);
   }, 50);
-}
-
-function userUpload(event){
-  let uploadUrl = URL.createObjectURL(event.target.files[0]);
 }
 /* ------------------- SLIDER FUNCTIONS ---------------------*/
 
