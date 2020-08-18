@@ -52,6 +52,17 @@
       <div id="new-img" class="button" onclick="newImage(parseInt(blockSizeSlider.value), parseInt(cushionSlider.value))">
         new image
       </div>
+      <label for="user-upload" id="user-uploader" class="button">
+        upload
+      </label>
+      <input
+        type="file"
+        accept="image/*"
+        name="userupload"
+        id="user-upload"
+        onchange="userUpload(event)"
+        style="display: none;"
+      />
     </div>
 
     <div class="sliderDiv">

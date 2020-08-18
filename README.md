@@ -12,7 +12,7 @@ create easy and hard modes (easy: original colors are grayscale, hard: all white
 
 add good default images (a lot of them, too)
 
-add user upload
+**add user upload**
 
 add color picker(?)
 
@@ -33,8 +33,6 @@ add instructions
 change icon
 
 ## overall readability + cleanliness
-
-limit global variables
 
 edit this page!
 

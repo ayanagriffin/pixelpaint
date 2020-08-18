@@ -75,6 +75,9 @@ function newImage(blockSize, cushion) {
   }, 50);
 }
 
+function userUpload(event){
+  let uploadUrl = URL.createObjectURL(event.target.files[0]);
+}
 /* ------------------- SLIDER FUNCTIONS ---------------------*/
 
 

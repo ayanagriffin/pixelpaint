@@ -20,7 +20,7 @@ class ColorSquare {
       this.originalColor = "white";
     }
 
-   this.color = this.originalColor;
+    this.color = this.originalColor;
 
     this.x = this.col * this.size;
     this.y = this.row * this.size;
