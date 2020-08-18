@@ -53,7 +53,7 @@ function finishImage() {
   let prompts = ["Nice!", "Wow!", "Great!", "Cool!", "Yay!", "Neat!"];
   finishPrompt = random(prompts);
   paintingIsFinished = true;
-  document.getElementsByClassName("afterCompletionContainer").style.display = "none";
+  document.getElementsByClassName("afterCompletionContainer")[0].style.display = "flex";
 }
 
 function newImage(blockSize, cushion) {
@@ -77,6 +77,8 @@ function userUpload(event){
 }
 
 function setNewImage(url){
+    document.getElementsByClassName("afterCompletionContainer")[0].style.display = "none";
+
   imgUrl = url;
   display = loadImage(imgUrl);
   prevPics.push(imgUrl);
