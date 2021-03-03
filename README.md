@@ -1,105 +1,29 @@
-# TO DO!
+# Pixel Paint!
 
-## overall functionality
+Welcome to pixel paint! This app allows you to cycle through and choose an image: your blank canvas! Once you have found an image that you like, use the colors to fill each one of the pixels in. You can adjust the number of colors and the block size to make your artwork more/less detailed.
 
-smoothen mouse dragging
-
-verification before restart
-
-
-
-## additions
-
-create easy and hard modes (easy: original colors are grayscale, hard: all white)
-
-add good default images (a lot of them, too)
-
-add color picker(?)
-
-watermark when save image
-
-
-## UX/UI
-
-change color of "invisible" buttons 
-
-play with placement of invisible buttons
-
-fix grayscale
-
-fix text under sliders
-
-improve overall design (background image, icons, etc)
-
-add instructions
-
-change icon
-
-## overall readability + cleanliness
-
-edit this page!
-
-fix image links
+## Current Features
 
 ---
 
-# daily log
+**Random Default Images**
 
-**aug18**
+The current loaded images are defaults. Using the "new image" button, the user can cycle through these default images to select which one they'd like to paint
 
-get rid of star when saving image ✔
+**Color Factoring**
 
-add user upload button ✔
+This program takes an image, sections it out into blocks then finds the average color of each block. After all average colors are found, these colors are compared to each other to see if any are similar enough to be considered the same color. This is done by comparing the RGB values of the colors, and if these values are within a specified distance from each other, they are considered the same color. This distance can be changes by the user using the "adjust number of colors" slider.
 
-add view original image button ✔
+Each one of the final colors is then assigned a number which will be used in the template so that the user knows which color to use for each pixel. The actual colors are also displayed on the right side of the canvas; the user can click each of these colors to change the current color they are painting with.
 
-change visibility of new buttons depending on whether the user has finished ✔
+**Painting Completion**
 
+After the user is finished with their painting, they can click the "i'm done" button. This will remove the black borders around each square as well as the numbers. It will also display a gold star with a positive message to congratulate the user on finishing.
 
-**aug15**
-
-eliminate more global variables ✔
-
-change restart() function ✔
-
-**aug14**
-
-simplify path to run functions in script ✔
-
-fix restart button to go back to original colors if pressed ✔
-
-fix blockSize slider ✔
-
-eliminate calls to setup() ✔
-
-**aug13**
-
-grayscale template ✔
-
-hide GuideSquares if paintingIsFinished ✔
-
-make it so user can't get same default image multiple times ✔
-
-make separate project for image visualization ✔
-
-handle transparent backgrounds ✔
-
-make the loading screen pretty ✔
-
-**aug12**
-
-add in mouse dragging ✔
-
-new image button ✔
-
-new defaults ✔
-
-sliders and cushion slider functionality ✔
-
-positioning of elements ✔
+## Future Plans/Ideas
 
 ---
 
-creator: Ayana Griffin
+Add an instructions screen
 
-Find out more [about Glitch](https://glitch.com/about).
+---
